@@ -20,6 +20,14 @@
 	"features": {
 		"ghcr.io/devcontainers/features/common-utils:2": {},
 		"ghcr.io/devcontainers-extra/features/zsh-plugins:0": {}
+	},
+
+	"mounts": [
+		"source=${localEnv:HOME}/.ssh,target=/home/node/.ssh,type=bind,consistency=cached"
+	],
+
+	"remoteEnv": {
+		"SSH_AUTH_SOCK": "${localEnv:SSH_AUTH_SOCK}"
 	}
 
 	// Features to add to the dev container. More info: https://containers.dev/features.
