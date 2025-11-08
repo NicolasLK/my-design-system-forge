@@ -1,0 +1,82 @@
+/* Reset + Estilos globais */
+
+/* Reset básico */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 16px; /* 1rem = 16px */
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-base);
+  color: var(--color-black);
+  background-color: var(--color-white);
+  line-height: var(--line-height-text1);
+  min-height: 100vh;
+  margin: 0 auto;
+  padding: var(--space-4);
+  max-width: 100%;
+}
+
+/* Containers padrão */
+.container {
+  width: 100%;
+  margin: 0 auto;
+  padding-inline: var(--space-4);
+  max-width: 1280px;
+}
+
+/* Tipografia base */
+h1 {
+  font-size: var(--font-heading1-size);
+  line-height: var(--line-height-heading1);
+  font-weight: var(--weight-bold);
+}
+
+h2 {
+  font-size: var(--font-heading2-size);
+  line-height: var(--line-height-heading2);
+  font-weight: var(--weight-semi-bold);
+}
+
+h3 {
+  font-size: var(--font-heading3-size);
+  line-height: var(--line-height-heading3);
+  font-weight: var(--weight-medium);
+}
+
+p {
+  font-size: var(--font-text1-size);
+  line-height: var(--line-height-text1);
+  font-weight: var(--weight-regular);
+}
+
+small {
+  font-size: var(--font-text3-size);
+  line-height: var(--line-height-text3);
+}
+
+button {
+  cursor: pointer;
+  font-family: inherit;
+  font-size: var(--font-text2-size);
+  line-height: var(--line-height-text2);
+  font-weight: var(--weight-medium);
+}
+
+a {
+  color: var(--color-primary-default);
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}

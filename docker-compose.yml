@@ -1,0 +1,13 @@
+version: '3'
+
+services:
+  web:
+    container_name: my-design-system-forge
+    image: web
+    build:
+      context: .
+      dockerfile: Dockerfile.local
+    ports:
+      - 3000:3000
+    volumes:
+      - .:/home/node/app

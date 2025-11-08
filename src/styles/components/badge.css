@@ -1,0 +1,36 @@
+.badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-1) var(--space-2);
+  border-radius: var(--radius-full);
+  font-size: var(--font-text3-size);
+  font-weight: var(--weight-medium);
+  color: var(--color-white);
+}
+
+.badge-primary { 
+    background: var(--color-primary-default); 
+}
+
+.badge-secondary { 
+    background: var(--color-secondary-default); 
+}
+
+.badge-success { 
+    background: var(--color-success-default); 
+}
+
+.badge-destructive { 
+    background: var(--color-destructive-default); 
+}
+
+.badge-warning { 
+    background: var(--color-warning-default); 
+    color: var(--color-black); 
+}
+
+/* 🔁 Largura total */
+.btn-full {
+  width: 100%;
+}
