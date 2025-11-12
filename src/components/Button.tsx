@@ -9,6 +9,8 @@ interface IButtonProps {
     variant?: ButtonVariant
     // A prop para odefinir o tamanho. 'medium' será o padrão.
     size?: ComponentSize
+    /** Função chamada no clique do botão */
+    onClick?: () => void
     // Opcional: define se o botão deve estar desabilitado
     disabled?: boolean
     // Opcional: fullWidth programatico.
@@ -17,7 +19,7 @@ interface IButtonProps {
     children?: ReactNode
 }
 
-export const Button = ({ variant = 'primary', size = 'medium', disabled = false, fullWidth = false, children }: IButtonProps) => {
+export const Button = ({ variant = 'primary', size = 'medium', onClick, disabled = false, fullWidth = false, children }: IButtonProps) => {
 
     const defaultText = (): string => {
         switch (variant) {
@@ -42,7 +44,7 @@ export const Button = ({ variant = 'primary', size = 'medium', disabled = false,
 
     return (
         <>
-            <button className={buttonClasses} disabled={disabled}>
+            <button className={buttonClasses} onClick={onClick} disabled={disabled}>
                 {children || (disabled ? 'Desabilitado' : defaultText())}
             </button>
         </>

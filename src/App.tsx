@@ -5,6 +5,11 @@ import { Alert } from './components/Alert'
 import { Badge } from './components/Badge'
 import { Input } from './components/Input'
 import { Switch } from './components/Switch'
+import { Modal } from './components/Modal'
+import { useState } from 'react'
+import { Divider } from './components/Divider'
+import { Tabs } from './components/Tabs'
+import { Tooltip } from './components/Tooltip'
 
 const sectionStyle = {
   marginTop: "2rem"
@@ -17,6 +22,7 @@ const divStyle = {
 }
 
 function App() {
+  const [isModalOpen, setIsModalOpen] = useState(false)
 
 
   return (
@@ -119,18 +125,42 @@ function App() {
       <section style={sectionStyle}>
         <h2>Modal</h2>
         <div style={divStyle}>
+
+          <Button variant="primary" onClick={() => setIsModalOpen(true)}>
+            Abrir Modal
+          </Button>
+          <Modal
+            isOpen={isModalOpen}
+            onClose={() => setIsModalOpen(false)}
+            size="large"
+            title="Confirmação"
+            description="Deseja realmente realizar esta ação?" />
+        </div>
+      </section>
+
+      <section style={sectionStyle}>
+        <h2>Divider</h2>
+        <div style={divStyle}>
+          <Divider />
         </div>
       </section>
 
       <section style={sectionStyle}>
         <h2>Tabs</h2>
         <div style={divStyle}>
+          <Tabs tabs={[
+            { label: "Geral", content: <p>Conteúdo da aba Geral</p> },
+            { label: "Configurações", content: <p>Conteúdo da aba Configurações</p> },
+          ]} />
         </div>
       </section>
 
       <section style={sectionStyle}>
         <h2>Tooltips</h2>
         <div style={divStyle}>
+          <Tooltip text="Clique para mais informações">
+            <Button variant="primary">Info</Button>
+          </Tooltip>
         </div>
       </section>
     </>

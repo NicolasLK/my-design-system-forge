@@ -1,0 +1,45 @@
+/* ===========================
+   🧱 Divider
+   =========================== */
+
+.divider {
+  background-color: var(--color-gray-default);
+  flex-shrink: 0;
+  border-radius: var(--radius-full);
+}
+
+/* Orientações */
+.divider-horizontal {
+  width: 100%;
+  height: 1px;
+}
+
+.divider-vertical {
+  width: 1px;
+  height: 100%;
+}
+
+/* Variantes */
+.divider-strong {
+  background-color: color-mix(in srgb, var(--color-gray-default) 85%, black);
+}
+
+/* Espaçamentos */
+.divider-small {
+  margin: var(--space-2) 0;
+}
+
+.divider-medium {
+  margin: var(--space-4) 0;
+}
+
+.divider-large {
+  margin: var(--space-6) 0;
+}
+
+/* Responsividade */
+@media (max-width: var(--screen-sm)) {
+  .divider {
+    opacity: 0.9;
+  }
+}

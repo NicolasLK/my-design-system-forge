@@ -1,0 +1,62 @@
+/* ===========================
+   🧭 Tabs
+   =========================== */
+
+.tabs-container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+/* Cabeçalho de abas */
+.tabs {
+  display: flex;
+  flex-wrap: wrap;
+  border-bottom: 2px solid var(--color-gray-default);
+  gap: var(--space-2);
+}
+
+.tab {
+  background: transparent;
+  border: none;
+  outline: none;
+  padding: var(--space-2) var(--space-3);
+  font-size: var(--font-text2-size);
+  font-weight: var(--weight-medium);
+  cursor: pointer;
+  color: var(--color-gray-default);
+  border-bottom: 2px solid transparent;
+  transition: color 0.2s ease, border-color 0.2s ease;
+}
+
+.tab:hover {
+  color: var(--color-primary-default);
+}
+
+.tab.active {
+  border-color: var(--color-primary-default);
+  color: var(--color-primary-default);
+}
+
+/* Conteúdo */
+.tab-content {
+  padding: var(--space-4) 0;
+  font-size: var(--font-text2-size);
+  line-height: var(--line-height-text2);
+  color: var(--color-black);
+}
+
+/* 📱 Responsividade */
+@media (max-width: var(--screen-sm)) {
+  .tabs {
+    gap: var(--space-1);
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+
+  .tab {
+    font-size: clamp(0.75rem, 1vw, 0.875rem);
+    padding: var(--space-1) var(--space-2);
+  }
+}
