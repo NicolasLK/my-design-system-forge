@@ -1,0 +1,77 @@
+/* ===========================
+   🧩 Progress Bar Component
+   =========================== */
+
+.progress-container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  font-family: var(--font-family-base);
+}
+
+.progress-label {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: var(--font-text2-size);
+  font-weight: var(--weight-medium);
+  color: var(--color-black);
+}
+
+/* 📏 Barra base */
+.progress-bar {
+  background-color: color-mix(in srgb, var(--color-gray-default) 30%, var(--color-white));
+  border-radius: var(--radius-full);
+  overflow: hidden;
+  height: 8px;
+  position: relative;
+}
+
+/* 🔵 Preenchimento dinâmico */
+.progress-fill {
+  height: 100%;
+  border-radius: var(--radius-full);
+  transition: width 0.4s ease;
+}
+
+/* 🎨 Variantes */
+.progress-primary {
+  background-color: var(--color-primary-default);
+}
+
+.progress-secondary {
+  background-color: var(--color-secondary-default);
+}
+
+.progress-success {
+  background-color: var(--color-success-default);
+}
+
+.progress-warning {
+  background-color: var(--color-warning-default);
+}
+
+.progress-destructive {
+  background-color: var(--color-destructive-default);
+}
+
+/* 📏 Tamanhos via getComponentSize */
+.progress-sm {
+  height: 4px;
+}
+
+.progress-lg {
+  height: 12px;
+}
+
+/* 📱 Responsividade */
+@media (max-width: var(--screen-sm)) {
+  .progress-label {
+    font-size: var(--font-text3-size);
+  }
+
+  .progress-bar {
+    height: 6px;
+  }
+}

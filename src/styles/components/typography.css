@@ -1,0 +1,84 @@
+/* ===========================
+   🧩 Typography System
+   =========================== */
+
+.typography {
+  font-family: var(--font-family-base);
+  margin: 0;
+  padding: 0;
+  color: var(--color-black);
+}
+
+/* 🪶 Títulos */
+.typography-h1 {
+  font-size: var(--font-heading1-size);
+  line-height: var(--line-height-heading1);
+}
+
+.typography-h2 {
+  font-size: var(--font-heading2-size);
+  line-height: var(--line-height-heading2);
+}
+
+.typography-h3 {
+  font-size: var(--font-heading3-size);
+  line-height: var(--line-height-heading3);
+}
+
+/* 📄 Texto padrão */
+.typography-text1 {
+  font-size: var(--font-text1-size);
+  line-height: var(--line-height-text1);
+}
+
+.typography-text2 {
+  font-size: var(--font-text2-size);
+  line-height: var(--line-height-text2);
+}
+
+.typography-text3 {
+  font-size: var(--font-text3-size);
+  line-height: var(--line-height-text3);
+}
+
+/* 🪧 Legenda */
+.typography-caption {
+  font-size: clamp(0.75rem, 1vw, var(--font-text3-size));
+  line-height: 1.2;
+  opacity: 0.85;
+}
+
+/* 🧱 Pesos */
+.font-regular {
+  font-weight: var(--weight-regular);
+}
+
+.font-medium {
+  font-weight: var(--weight-medium);
+}
+
+.font-semi-bold {
+  font-weight: var(--weight-semi-bold);
+}
+
+.font-bold {
+  font-weight: var(--weight-bold);
+}
+
+/* 📱 Responsividade */
+@media (max-width: var(--screen-md)) {
+  .typography-h1 {
+    font-size: clamp(1.75rem, 4vw, 2rem);
+  }
+  .typography-h2 {
+    font-size: clamp(1.5rem, 3vw, 1.75rem);
+  }
+  .typography-h3 {
+    font-size: clamp(1.25rem, 2.5vw, 1.5rem);
+  }
+  .typography-text1,
+  .typography-text2,
+  .typography-text3 {
+    font-size: clamp(0.875rem, 2vw, 1rem);
+  }
+}

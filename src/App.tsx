@@ -10,6 +10,12 @@ import { useState } from 'react'
 import { Divider } from './components/Divider'
 import { Tabs } from './components/Tabs'
 import { Tooltip } from './components/Tooltip'
+import { Accordion } from './components/Accordion'
+import { Typography } from './components/Typography'
+import { Avatar } from './components/Avatar'
+import { Progress } from './components/Progress'
+import { Breadcrumb } from './components/Breadcrumb'
+import { Pagination } from './components/Pagination'
 
 const sectionStyle = {
   marginTop: "2rem"
@@ -163,6 +169,99 @@ function App() {
           </Tooltip>
         </div>
       </section>
+
+      <section style={sectionStyle}>
+        <h2>Accordion</h2>
+        <div style={divStyle}>
+          <Accordion items={[
+            {
+              title: "O que é a plataforma?",
+              content:
+                "Nossa plataforma de telessaúde conecta profissionais e pacientes de forma prática, segura e online.",
+            },
+            {
+              title: "Como realizo o cadastro?",
+              content:
+                "Você pode se cadastrar com seu e-mail e confirmar a conta via link enviado automaticamente.",
+            },
+            {
+              title: "Posso integrar outros serviços?",
+              content:
+                "Sim. A plataforma possui integrações com Stripe, Memed e Webex para garantir fluxo completo.",
+            },
+          ]} />
+        </div>
+      </section>
+
+      <section style={sectionStyle}>
+        <h2>Typography</h2>
+        <div style={divStyle}>
+          <Typography variant="h1" weight="bold">
+            Título Principal (H1)
+          </Typography>
+
+          <Typography variant="h2" weight="bold">
+            Subtítulo Secundário (H2)
+          </Typography>
+
+          <Typography variant="text1">
+            Este é um texto padrão utilizado em descrições ou parágrafos.
+          </Typography>
+
+          <Typography variant="text2" color="var(--color-gray-default)">
+            Texto de apoio ou descrição
+          </Typography>
+
+          <Typography variant="caption" as="span">
+            Texto pequeno em linha
+          </Typography>
+        </div>
+      </section>
+
+      <section style={sectionStyle}>
+        <h2>Avatar</h2>
+        <div style={divStyle}>
+          <Avatar name="Nicolas Loffi" size="large" />
+          <Avatar src="https://i.pravatar.cc/150?img=3" name="Lucas Souza" size="medium" />
+          <Avatar size="small" />
+        </div>
+      </section>
+
+      <section style={sectionStyle}>
+        <h2>Progress</h2>
+        <div style={divStyle}>
+          <Progress value={45} label="Carregando dados" variant="primary" showPercentage />
+          <Progress value={75} label="Upload concluído" variant="success" size="large" />
+          <Progress value={30} label="Aguardando resposta" variant="warning" size="small" />
+          <Progress value={90} variant="secondary" />
+        </div>
+      </section>
+
+      <section style={sectionStyle}>
+        <h2>Breadcrumb</h2>
+        <div style={divStyle}>
+          <Breadcrumb
+            items={[
+              { label: "Início", href: "#" },
+              { label: "Usuários", href: "#" },
+              { label: "Perfil", href: "#" },
+              { label: "Configurações" },
+            ]}
+          />
+        </div>
+      </section>
+
+      <section style={sectionStyle}>
+        <h2>Pagination</h2>
+        <div style={divStyle}>
+          <Pagination
+            totalPages={5}
+            currentPage={2}
+            onPageChange={(page) => console.log("Página:", page)}
+          />
+        </div>
+      </section>
+
     </>
   )
 }

@@ -1,0 +1,96 @@
+/* ===========================
+   🧩 Accordion
+   =========================== */
+
+.accordion {
+  width: 100%;
+  border-radius: var(--radius-md);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+/* 🧱 Item base */
+.accordion-item {
+  border: 1px solid var(--color-gray-default);
+  border-radius: var(--radius-md);
+  background-color: var(--color-white);
+  overflow: hidden;
+  transition: box-shadow 0.2s ease;
+}
+
+.accordion-item.open {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.08);
+}
+
+/* 🎯 Cabeçalho */
+.accordion-header {
+  width: 100%;
+  background: none;
+  border: none;
+  outline: none;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+  padding: var(--space-3) var(--space-4);
+  color: var(--color-black);
+  font-family: var(--font-family-base);
+  font-size: var(--font-text1-size);
+  line-height: var(--line-height-text1);
+  font-weight: var(--weight-medium);
+  transition: background-color 0.2s ease;
+}
+
+.accordion-header:hover {
+  background-color: color-mix(in srgb, var(--color-gray-default) 12%, white);
+}
+
+/* ➕ Ícone */
+.accordion-icon {
+  font-size: 1.25rem;
+  line-height: 1;
+  font-weight: var(--weight-bold);
+  color: var(--color-gray-default);
+  transition: transform 0.2s ease, color 0.2s ease;
+}
+
+.accordion-item.open .accordion-icon {
+  color: var(--color-primary-default);
+  transform: rotate(180deg);
+}
+
+/* 📜 Conteúdo */
+.accordion-content {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease, opacity 0.2s ease;
+  opacity: 0;
+  background-color: var(--color-white);
+}
+
+.accordion-item.open .accordion-content {
+  max-height: 500px; /* valor suficiente para exibir conteúdo */
+  opacity: 1;
+}
+
+/* ✍️ Texto interno */
+.accordion-text {
+  padding: 0 var(--space-4) var(--space-4);
+  font-size: var(--font-text2-size);
+  line-height: var(--line-height-text2);
+  color: var(--color-gray-default);
+  margin-top: 1rem;
+}
+
+/* 📱 Responsividade */
+@media (max-width: var(--screen-sm)) {
+  .accordion-header {
+    padding: var(--space-2) var(--space-3);
+    font-size: clamp(0.875rem, 2vw, 1rem);
+  }
+
+  .accordion-text {
+    font-size: clamp(0.8rem, 1.5vw, 0.9rem);
+  }
+}

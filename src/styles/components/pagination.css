@@ -1,0 +1,67 @@
+/* ===========================
+   🔢 Pagination
+   =========================== */
+
+.pagination {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.pagination-button,
+.pagination-nav {
+  background-color: var(--color-white);
+  border: 1px solid var(--color-gray-default);
+  border-radius: var(--radius-md);
+  color: var(--color-black);
+  padding: var(--space-1) var(--space-3);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-size: var(--font-text2-size);
+}
+
+.pagination-button:hover:not(:disabled),
+.pagination-nav:hover:not(:disabled) {
+  background-color: var(--color-primary-default);
+  color: var(--color-white);
+  border-color: var(--color-primary-default);
+}
+
+.pagination-button.active {
+  background-color: var(--color-primary-default);
+  color: var(--color-white);
+  font-weight: var(--weight-semi-bold);
+  border-color: var(--color-primary-default);
+}
+
+.pagination-button:disabled,
+.pagination-nav:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* 📏 Tamanhos via getComponentSize */
+.pagination-sm button {
+  padding: var(--space-1) var(--space-2);
+  font-size: var(--font-text3-size);
+}
+
+.pagination-lg button {
+  padding: var(--space-2) var(--space-4);
+  font-size: var(--font-text1-size);
+}
+
+/* 📱 Responsividade */
+@media (max-width: var(--screen-sm)) {
+  .pagination {
+    gap: var(--space-1);
+  }
+
+  .pagination-button,
+  .pagination-nav {
+    padding: var(--space-1) var(--space-2);
+    font-size: var(--font-text3-size);
+  }
+}

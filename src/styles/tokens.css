@@ -18,7 +18,7 @@
 
   /* 🧩 Typography fluida */
   --font-family-base: 'Inter', system-ui, sans-serif;
-    --font-size-base: clamp(14px, 1.2vw, 16px);
+  --font-size-base: clamp(14px, 1.2vw, 16px);
   
   /* 🪶 Font Sizes (REM) */
   --font-heading1-size: clamp(1.75rem, 2vw + 1rem, 2.5rem); /* 28–40px */

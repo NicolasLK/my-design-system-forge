@@ -1,0 +1,83 @@
+/* ===========================
+   🧩 Avatar Component
+   =========================== */
+
+.avatar {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--color-gray-default);
+  color: var(--color-white);
+  font-family: var(--font-family-base);
+  font-weight: var(--weight-medium);
+  overflow: hidden;
+  text-transform: uppercase;
+  user-select: none;
+  position: relative;
+  flex-shrink: 0;
+}
+
+/* 🟢 Formatos */
+.avatar-circle {
+  border-radius: var(--radius-full);
+}
+
+.avatar-square {
+  border-radius: var(--radius-md);
+}
+
+/* 📸 Imagem */
+.avatar-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* 🔤 Fallback (iniciais) */
+.avatar-initials,
+.avatar-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+}
+
+/* 📏 Tamanhos via getComponentSize */
+.avatar-sm {
+  width: 32px;
+  height: 32px;
+  font-size: var(--font-text3-size);
+}
+
+.avatar-lg {
+  width: 64px;
+  height: 64px;
+  font-size: var(--font-heading3-size);
+}
+
+.avatar:not(.avatar-sm):not(.avatar-lg) {
+  /* Medium padrão */
+  width: 48px;
+  height: 48px;
+  font-size: var(--font-text1-size);
+}
+
+/* 🧠 Responsividade */
+@media (max-width: var(--screen-sm)) {
+  .avatar-lg {
+    width: 56px;
+    height: 56px;
+  }
+
+  .avatar-sm {
+    width: 28px;
+    height: 28px;
+  }
+}
+
+/* 🪶 Hover e estados */
+.avatar:hover {
+  filter: brightness(1.05);
+  transition: filter 0.2s ease;
+}
