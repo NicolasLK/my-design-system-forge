@@ -16,6 +16,8 @@ import { Avatar } from './components/Avatar'
 import { Progress } from './components/Progress'
 import { Breadcrumb } from './components/Breadcrumb'
 import { Pagination } from './components/Pagination'
+import { Stepper } from './components/Stepper'
+import { ProgressCircular } from './components/ProgressCircular'
 
 const sectionStyle = {
   marginTop: "2rem"
@@ -259,6 +261,31 @@ function App() {
             currentPage={2}
             onPageChange={(page) => console.log("Página:", page)}
           />
+        </div>
+      </section>
+
+      <section style={sectionStyle}>
+        <h2>Stepper</h2>
+        <div style={divStyle}>
+          <Stepper
+            currentStep={1}
+            steps={[
+              { label: "Informações" },
+              { label: "Pagamento" },
+              { label: "Confirmação" },
+            ]}
+          />
+        </div>
+      </section>
+
+      <section style={sectionStyle}>
+        <h2>ProgressCircular</h2>
+        <div style={divStyle}>
+          <ProgressCircular value={65} variant="primary" />
+          <ProgressCircular value={90} variant="success" />
+          <ProgressCircular value={45} variant="destructive" />
+          <ProgressCircular value={70} variant="secondary" />
+          <ProgressCircular value={30} variant="warning" />
         </div>
       </section>
 

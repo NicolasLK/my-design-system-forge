@@ -1,0 +1,110 @@
+/* ===========================
+   🌀 Progress Circular
+   =========================== */
+
+.progress-circular {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent; /* 🧹 remove fundo */
+  border-radius: 50%;
+  overflow: visible;
+}
+
+/* SVG centralizado e limpo */
+.progress-circular svg {
+  display: block;
+  transform: rotate(-90deg);
+  overflow: visible;
+}
+
+/* Círculo de fundo */
+.progress-bg {
+  fill: none;
+  stroke: var(--color-gray-default);
+  opacity: 0.25;
+}
+
+/* Círculo de progresso */
+.progress-bar {
+  fill: none;
+  stroke-linecap: round;
+  transition: stroke-dashoffset 0.35s ease, stroke 0.3s ease;
+}
+
+/* 🎨 Variantes de cor */
+.progress-primary .progress-bar {
+  stroke: var(--color-primary-default);
+}
+
+.progress-secondary .progress-bar {
+  stroke: var(--color-secondary-default);
+}
+
+.progress-success .progress-bar {
+  stroke: var(--color-success-default);
+}
+
+.progress-destructive .progress-bar {
+  stroke: var(--color-destructive-default);
+}
+
+.progress-warning .progress-bar {
+  stroke: var(--color-warning-default);
+}
+
+/* 📊 Valor no centro */
+.progress-value {
+  position: absolute;
+  font-size: var(--font-text2-size);
+  font-weight: var(--weight-bold);
+  color: var(--color-black);
+  line-height: 1;
+}
+
+/* 🎨 Cores principais do progresso circular */
+.progress-primary {
+  --progress-color: var(--color-primary-default);
+  --text-color: var(--color-primary-default);
+}
+
+.progress-success {
+  --progress-color: var(--color-success-default);
+  --text-color: var(--color-success-default);
+}
+
+.progress-destructive {
+  --progress-color: var(--color-destructive-default);
+  --text-color: var(--color-destructive-default);
+}
+
+.progress-secondary {
+  --progress-color: var(--color-secondary-default);
+  --text-color: var(--color-secondary-default);
+}
+
+.progress-warning {
+  --progress-color: var(--color-warning-default);
+  --text-color: var(--color-warning-default);
+}
+
+/* 🌈 Aplicação das variáveis */
+.progress-ring circle {
+  stroke: var(--progress-color);
+}
+
+.progress-value {
+  fill: var(--text-color);
+  font-weight: var(--weight-bold);
+  font-size: var(--font-text2-size);
+  text-anchor: middle;
+  dominant-baseline: middle;
+}
+
+/* 📱 Responsividade */
+@media (max-width: var(--screen-sm)) {
+  .progress-value {
+    font-size: var(--font-text3-size);
+  }
+}
