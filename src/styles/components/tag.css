@@ -1,0 +1,63 @@
+/* ===========================
+   🏷️ Tag Component
+   =========================== */
+
+.tag {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-1) var(--space-3);
+  border-radius: var(--radius-full);
+  font-size: var(--font-text3-size);
+  font-weight: var(--weight-medium);
+  color: var(--color-white);
+  cursor: default;
+  transition: background-color 0.2s ease, opacity 0.2s ease;
+}
+
+/* Variantes */
+.tag-primary {
+  background-color: var(--color-primary-default);
+}
+.tag-secondary {
+  background-color: var(--color-secondary-default);
+}
+.tag-success {
+  background-color: var(--color-success-default);
+}
+.tag-warning {
+  background-color: var(--color-warning-default);
+  color: var(--color-black);
+}
+.tag-destructive {
+  background-color: var(--color-destructive-default);
+}
+
+/* Texto interno */
+.tag-text {
+  user-select: none;
+}
+
+/* Botão de fechar */
+.tag-close {
+  background: transparent;
+  border: none;
+  color: inherit;
+  font-size: 0.875rem;
+  cursor: pointer;
+  line-height: 1;
+  padding: 0;
+  transition: opacity 0.2s;
+}
+
+.tag-close:hover {
+  opacity: 0.75;
+}
+
+/* 📱 Responsividade */
+@media (max-width: var(--screen-sm)) {
+  .tag {
+    font-size: var(--font-text2-size);
+    padding: var(--space-1) var(--space-2);
+  }
+}

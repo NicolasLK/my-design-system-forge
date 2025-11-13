@@ -1,0 +1,139 @@
+/* ===========================
+   🔽 Custom Select Component
+   =========================== */
+
+.select-wrapper {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+  width: 100%;
+  max-width: 300px;
+}
+
+.select-label {
+  font-size: var(--font-text2-size);
+  font-weight: var(--weight-medium);
+  color: var(--color-black);
+}
+
+/* --- Botão principal --- */
+.select-input {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--space-2) var(--space-3);
+  border: 1px solid var(--color-gray-default);
+  border-radius: var(--radius-md);
+  background-color: var(--color-white);
+  font-size: var(--font-text2-size);
+  color: var(--color-black);
+  cursor: pointer;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.select-input:hover:not(:disabled) {
+  border-color: var(--color-primary-default);
+}
+
+.select-input.open {
+  border-color: var(--color-primary-default);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--color-primary-default) 20%, transparent);
+}
+
+/* --- Seta --- */
+.select-arrow {
+  transition: transform 0.2s ease;
+}
+
+.select-arrow.rotate {
+  transform: rotate(180deg);
+}
+
+/* --- Dropdown --- */
+.select-menu {
+  position: absolute;
+  top: calc(100% + 4px);
+  left: 0;
+  width: 100%;
+  background-color: var(--color-white);
+  border: 1px solid var(--color-gray-default);
+  border-radius: var(--radius-md);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  list-style: none;
+  padding: var(--space-1) 0;
+  margin: 0;
+  z-index: 100;
+  animation: dropdown-fade 0.15s ease;
+
+  /* 🔽 Scroll configurado */
+  max-height: 180px;
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-gray-default) var(--color-white);
+}
+
+/* Scrollbar custom (para navegadores baseados em WebKit) */
+.select-menu::-webkit-scrollbar {
+  width: 6px;
+}
+
+.select-menu::-webkit-scrollbar-track {
+  background: var(--color-white);
+  border-radius: var(--radius-md);
+}
+
+.select-menu::-webkit-scrollbar-thumb {
+  background-color: var(--color-gray-default);
+  border-radius: var(--radius-md);
+}
+
+/* --- Opções --- */
+.select-option {
+  padding: var(--space-2) var(--space-3);
+  font-size: var(--font-text2-size);
+  color: var(--color-black);
+  cursor: pointer;
+  transition: background-color 0.15s ease;
+  border-radius: var(--radius-sm);
+}
+
+.select-option:hover {
+  background-color: color-mix(in srgb, var(--color-primary-default) 10%, white);
+}
+
+.select-option.selected {
+  background-color: color-mix(in srgb, var(--color-primary-default) 20%, white);
+  font-weight: var(--weight-medium);
+}
+
+/* --- Estados --- */
+.select-disabled {
+  opacity: 0.6;
+  pointer-events: none;
+}
+
+/* --- Animação --- */
+@keyframes dropdown-fade {
+  from {
+    opacity: 0;
+    transform: translateY(-5px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* 📱 Responsividade */
+@media (max-width: var(--screen-sm)) {
+  .select-input,
+  .select-option {
+    font-size: var(--font-text3-size);
+    padding: var(--space-1) var(--space-2);
+  }
+
+  .select-menu {
+    max-height: 150px;
+  }
+}

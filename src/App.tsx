@@ -18,6 +18,12 @@ import { Breadcrumb } from './components/Breadcrumb'
 import { Pagination } from './components/Pagination'
 import { Stepper } from './components/Stepper'
 import { ProgressCircular } from './components/ProgressCircular'
+import { Toast } from './components/Toast'
+import { BadgeGroup } from './components/BadgeGroup'
+import { Tag } from './components/Tag'
+import { Chip } from './components/Chip'
+import { Dropdown } from './components/Dropdown'
+import { Select } from './components/Select'
 
 const sectionStyle = {
   marginTop: "2rem"
@@ -286,6 +292,91 @@ function App() {
           <ProgressCircular value={45} variant="destructive" />
           <ProgressCircular value={70} variant="secondary" />
           <ProgressCircular value={30} variant="warning" />
+        </div>
+      </section>
+
+      <section style={sectionStyle}>
+        <h2>Toast</h2>
+        <div style={divStyle}>
+          <Toast message="Erro ao enviar formulário." variant="error" />
+        </div>
+      </section>
+
+      <section style={sectionStyle}>
+        <h2>Badgegroup</h2>
+        <div style={divStyle}>
+          <BadgeGroup maxVisible={3}>
+            <Badge variant="primary">Saúde</Badge>
+            <Badge variant="secondary">Psicologia</Badge>
+            <Badge variant="success">Online</Badge>
+            <Badge variant="warning">Premium</Badge>
+            <Badge variant="destructive">Inativo</Badge>
+          </BadgeGroup>
+        </div>
+      </section>
+
+      <section style={sectionStyle}>
+        <h2>Tag</h2>
+        <div style={divStyle}>
+          <Tag variant="success">Aprovado</Tag>
+          <Tag variant="destructive" closable onClose={() => alert("Removido!")}>
+            Erro crítico
+          </Tag>
+        </div>
+      </section>
+
+      <section style={sectionStyle}>
+        <h2>Dropdown</h2>
+        <div style={divStyle}>
+          <Dropdown label="Opções">
+            <button>Perfil</button>
+            <button>Configurações</button>
+            <button>Sair</button>
+          </Dropdown>
+        </div>
+      </section>
+
+      <section style={sectionStyle}>
+        <h2>Select</h2>
+        <div style={divStyle}>
+          <Select
+            label="Selecione o plano"
+            options={[
+              { value: "basic", label: "Básico" },
+              { value: "pro", label: "Profissional" },
+              { value: "enterprise", label: "Empresarial" },
+              { value: "family", label: "Família" },
+              { value: "couple", label: "Casal" },
+              { value: "children's", label: "Infantil" },
+            ]}
+            onChange={(val) => console.log("Selecionado:", val)}
+          />
+        </div>
+      </section>
+
+      <section style={sectionStyle}>
+        <h2>Chip</h2>
+        <div style={divStyle}>
+          {/* Padrão */}
+          <Chip label="Padrão" />
+
+          {/* Selecionável */}
+          <Chip label="Padrão" selected />
+
+          {/* Com variantes de cor */}
+          <Chip label="Ativo" variant="primary" />
+          <Chip label="Sucesso" variant="success" />
+          <Chip label="Aviso" variant="warning" />
+          <Chip label="Erro" variant="destructive" />
+
+          {/* Com interação */}
+          <Chip
+            label="Filtro ativo"
+            onClick={() => console.log("Filtro clicado!")}
+          />
+
+          {/* Desabilitado */}
+          <Chip label="Indisponível" disabled />
         </div>
       </section>
 

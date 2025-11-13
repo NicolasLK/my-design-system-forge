@@ -1,0 +1,90 @@
+/* ===========================
+   💊 Chip Component
+   =========================== */
+
+.chip {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-full);
+  border: 1px solid var(--color-gray-default);
+  background-color: var(--color-white);
+  color: var(--color-black);
+  font-size: var(--font-text2-size);
+  font-weight: var(--weight-medium);
+  padding: var(--space-1) var(--space-3);
+  cursor: pointer;
+  transition: background-color 0.25s ease, border-color 0.25s ease,
+    color 0.25s ease, opacity 0.25s ease;
+}
+
+/* 🟦 Variantes */
+.chip-default {
+  background-color: var(--color-white);
+  border-color: var(--color-gray-default);
+}
+
+.chip-primary {
+  border-color: var(--color-primary-default);
+  color: var(--color-primary-default);
+}
+
+.chip-success {
+  border-color: var(--color-success-default);
+  color: var(--color-success-default);
+}
+
+.chip-warning {
+  border-color: var(--color-warning-default);
+  color: var(--color-warning-default);
+}
+
+.chip-destructive {
+  border-color: var(--color-destructive-default);
+  color: var(--color-destructive-default);
+}
+
+/* 🎨 Hover mais suave */
+.chip:hover:not(.chip-disabled):not(.chip-selected) {
+  background-color: color-mix(in srgb, var(--color-primary-default) 6%, white);
+}
+
+/* ✅ Estado selecionado */
+.chip-selected {
+  color: var(--color-white);
+}
+
+.chip-selected.chip-primary {
+  background-color: var(--color-primary-default);
+  border-color: var(--color-primary-default);
+}
+
+.chip-selected.chip-success {
+  background-color: var(--color-success-default);
+  border-color: var(--color-success-default);
+}
+
+.chip-selected.chip-warning {
+  background-color: var(--color-warning-default);
+  border-color: var(--color-warning-default);
+  color: var(--color-black);
+}
+
+.chip-selected.chip-destructive {
+  background-color: var(--color-destructive-default);
+  border-color: var(--color-destructive-default);
+}
+
+/* 🚫 Desabilitado */
+.chip-disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+/* 📱 Responsividade */
+@media (max-width: var(--screen-sm)) {
+  .chip {
+    font-size: var(--font-text3-size);
+    padding: var(--space-1) var(--space-2);
+  }
+}
