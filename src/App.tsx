@@ -24,6 +24,8 @@ import { Tag } from './components/Tag'
 import { Chip } from './components/Chip'
 import { Dropdown } from './components/Dropdown'
 import { Select } from './components/Select'
+import { Slider } from './components/Slider'
+import { Spinner } from './components/Spinner'
 
 const sectionStyle = {
   marginTop: "2rem"
@@ -377,6 +379,23 @@ function App() {
 
           {/* Desabilitado */}
           <Chip label="Indisponível" disabled />
+        </div>
+      </section>
+
+      <section style={sectionStyle}>
+        <h2>Slider</h2>
+        <div style={divStyle}>
+          <Slider defaultValue={30} onChange={(v) => console.log("Valor:", v)} />
+          <Slider defaultValue={75} showValue={false} />
+        </div>
+      </section>
+
+      <section style={sectionStyle}>
+        <h2>Spinner</h2>
+        <div style={divStyle}>
+          <Spinner variant="primary" size="large" />
+          <Spinner variant="success" />
+          <Spinner variant="warning" size="small" />
         </div>
       </section>
 
