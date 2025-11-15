@@ -1,5 +1,6 @@
 import type { ReactNode } from 'react'
 import './../styles/components/badge.css'
+import { getComponentColor } from '../models/get-component-color'
 
 type BadgeVariant = 'primary' | 'secondary' | 'success' | 'destructive' | 'warning'
 
@@ -14,7 +15,7 @@ interface IBadgeProps {
 
 export const Badge = ({ variant = 'primary', fullWidth = false, children }: IBadgeProps) => {
 
-    const getVariant = (): string => {
+    const getVariantMessage = (): string => {
         switch (variant) {
             case 'primary':
                 return 'Novo'
@@ -31,14 +32,14 @@ export const Badge = ({ variant = 'primary', fullWidth = false, children }: IBad
         }
     }
 
-    const variantClass = `badge-${variant}`
+    const colorClass = getComponentColor(variant, 'badge')
     const widthClass = fullWidth ? 'badge-full' : ''
 
-    const badgeClasses = `alert ${variantClass} ${widthClass}`.trim()
+    const badgeClasses = `alert ${colorClass} ${widthClass}`.trim()
 
     return (
         <>
-            <span className={badgeClasses}>{children || getVariant()}</span>
+            <span className={badgeClasses}>{children || getVariantMessage()}</span>
         </>
     )
 }

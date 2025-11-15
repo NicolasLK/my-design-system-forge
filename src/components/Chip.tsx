@@ -1,3 +1,4 @@
+import { getComponentColor } from "../models/get-component-color"
 import "../styles/components/chip.css"
 
 type ChipVariant = "default" | "primary" | "success" | "warning" | "destructive"
@@ -24,7 +25,7 @@ export const Chip = ({
 }: IChipProps) => {
     const classes = [
         "chip",
-        `chip-${variant}`,
+        getComponentColor(variant, 'chip'),
         selected && "chip-selected",
         disabled && "chip-disabled",
     ]

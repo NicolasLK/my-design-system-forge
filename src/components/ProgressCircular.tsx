@@ -1,6 +1,7 @@
+import { getComponentColor, type ComponentColor } from "../models/get-component-color"
 import "../styles/components/progressCircular.css"
 
-type ProgressVariant = "primary" | "secondary" | "success" | "destructive" | "warning"
+type ProgressVariant = ComponentColor
 
 interface IProgressCircularProps {
     /** Valor percentual (0–100) */
@@ -17,17 +18,17 @@ export const ProgressCircular = ({
     value,
     size = 64,
     strokeWidth = 6,
-    variant = "primary",
+    variant = "default",
 }: IProgressCircularProps) => {
     const radius = (size - strokeWidth) / 2
     const circumference = 2 * Math.PI * radius
     const offset = circumference - (value / 100) * circumference
 
-    const variantClass = `progress-${variant}`
+    const colorClass = getComponentColor(variant, 'progress')
 
     return (
         <>
-            <div className={`progress-circular ${variantClass}`} style={{ width: size, height: size }}>
+            <div className={`progress-circular ${colorClass}`} style={{ width: size, height: size }}>
                 <svg width={size} height={size}>
                     <circle
                         className="progress-bg"

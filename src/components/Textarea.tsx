@@ -1,4 +1,4 @@
-import { getComponentSize, type ComponentSize } from "../models/getComponentSize"
+import { getComponentSize, type ComponentSize } from "../models/get-component-size"
 import "../styles/components/textarea.css"
 
 interface ITextareaProps {

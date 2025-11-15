@@ -1,5 +1,5 @@
 import type { ChangeEvent } from 'react'
-import { getComponentSize, type ComponentSize } from '../models/getComponentSize'
+import { getComponentSize, type ComponentSize } from '../models/get-component-size'
 import { useControllableState } from '../models/hooks/useControllableState'
 import './../styles/components/switch.css'
 

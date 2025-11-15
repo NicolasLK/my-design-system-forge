@@ -1,5 +1,5 @@
 import { useEffect, type ReactNode } from 'react'
-import { getComponentSize, type ComponentSize } from '../models/getComponentSize'
+import { getComponentSize, type ComponentSize } from '../models/get-component-size'
 import './../styles/components/modal.css'
 import { Button } from './Button'
 

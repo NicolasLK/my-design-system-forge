@@ -4,6 +4,7 @@ export type ComponentColor =
     | "success"
     | "warning"
     | "destructive"
+    | "info"
     | "default";
 
 /**
@@ -16,7 +17,7 @@ export function getComponentColor(
     color: ComponentColor,
     prefix: string
 ): string {
-    if (!color || color === "default") return "";
+    if (!color || color === "default") return `${prefix}-primary`;
 
     return `${prefix}-${color}`;
 }

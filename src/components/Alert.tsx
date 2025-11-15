@@ -1,20 +1,24 @@
 import type { ReactNode } from 'react'
 import './../styles/components/alert.css'
+import { getComponentColor, type ComponentColor } from '../models/get-component-color'
+import { getComponentSize, type ComponentSize } from '../models/get-component-size'
 
-type AlertVariant = 'success' | 'warning' | 'destructive' | 'info'
+type AlertVariant = ComponentColor
 
 interface IAlertProps {
     // A variante define a classe CSS e o texto.
-    variant: AlertVariant
+    variant?: AlertVariant
+    // A prop para odefinir o tamanho. 'medium' será o padrão.
+    size?: ComponentSize
     // Opcional: fullWidth programatico.
     fullWidth?: boolean
     // Opcional: permite passar um conteúdo customizado, como um ícone.
     children?: ReactNode
 }
 
-export const Alert = ({ variant, fullWidth = false, children }: IAlertProps) => {
+export const Alert = ({ variant = 'default', size = 'medium', fullWidth = false, children }: IAlertProps) => {
 
-    const getVariant = () => {
+    const getVariantMessage = () => {
         switch (variant) {
             case 'success':
                 return '✔ Operação concluída com sucesso!'
@@ -24,20 +28,24 @@ export const Alert = ({ variant, fullWidth = false, children }: IAlertProps) => 
                 return '❌ Erro ao enviar formulário.'
             case 'info':
                 return 'ℹ Atualização disponível.'
+            case 'primary':
+            case 'secondary':
             default:
-                return 'Alert'
+                return 'ℹ Atualização disponível.'
         }
     }
 
-    const variantClass = `alert-${variant}`
+
+    const colorClass = getComponentColor(variant, 'alert')
+    const sizeClass = getComponentSize(size, 'alert')
     const widthClass = fullWidth ? 'alert-full' : ''
 
-    const alertClasses = `alert ${variantClass} ${widthClass}`.trim()
+    const alertClasses = `alert ${colorClass} ${sizeClass} ${widthClass}`.trim()
 
     return (
         <>
             <div className={alertClasses}>
-                {children || getVariant()}
+                {children || getVariantMessage()}
             </div>
         </>
     )

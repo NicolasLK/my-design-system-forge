@@ -1,6 +1,6 @@
 import type { ReactNode } from 'react'
-import { getComponentSize, type ComponentSize } from '../models/getComponentSize'
-import { getComponentColor, type ComponentColor } from '../models/getComponentColor'
+import { getComponentSize, type ComponentSize } from '../models/get-component-size'
+import { getComponentColor, type ComponentColor } from '../models/get-component-color'
 import './../styles/components/button.css'
 
 type ButtonVariant = ComponentColor

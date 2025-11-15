@@ -1,6 +1,6 @@
 import type { ChangeEvent } from "react"
-import { getComponentColor, type ComponentColor } from "../models/getComponentColor"
-import { getComponentSize, type ComponentSize } from "../models/getComponentSize"
+import { getComponentColor, type ComponentColor } from "../models/get-component-color"
+import { getComponentSize, type ComponentSize } from "../models/get-component-size"
 import "../styles/components/checkbox.css"
 
 interface ICheckboxProps {

@@ -88,13 +88,15 @@ function App() {
         <h2>Alerts</h2>
         <div style={divStyle}>
           {/* Alerts Normais */}
+          <Alert variant="primary" />
+          <Alert variant="secondary" />
           <Alert variant="success" />
           <Alert variant="warning" />
           <Alert variant="destructive" />
           <Alert variant="info" />
 
           {/* Alert com texto customizado */}
-          <Alert variant="info">
+          <Alert variant='default'>
             ℹ Alert
           </Alert>
         </div>
@@ -313,7 +315,7 @@ function App() {
       <section style={sectionStyle}>
         <h2>Toast</h2>
         <div style={divStyle}>
-          <Toast message="Erro ao enviar formulário." variant="error" />
+          <Toast message="Erro ao enviar formulário." variant="destructive" />
         </div>
       </section>
 

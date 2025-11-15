@@ -1,4 +1,5 @@
-import { getComponentSize, type ComponentSize } from "../models/getComponentSize"
+import { getComponentColor, type ComponentColor } from "../models/get-component-color"
+import { getComponentSize, type ComponentSize } from "../models/get-component-size"
 import "../styles/components/progress.css"
 
 interface IProgressProps {
@@ -7,7 +8,7 @@ interface IProgressProps {
     /** Texto descritivo opcional acima da barra */
     label?: string
     /** Cor/variante da barra */
-    variant?: "primary" | "secondary" | "success" | "warning" | "destructive"
+    variant?: ComponentColor
     /** Tamanho da barra */
     size?: ComponentSize
     /** Exibir porcentagem ao lado */
@@ -17,12 +18,13 @@ interface IProgressProps {
 export const Progress = ({
     value,
     label,
-    variant = "primary",
+    variant = "default",
     size = "medium",
     showPercentage = false,
 }: IProgressProps) => {
+
     const sizeClass = getComponentSize(size, "progress")
-    const variantClass = `progress-${variant}`
+    const colorClass = getComponentColor(variant, 'progress')
     const safeValue = Math.min(Math.max(value, 0), 100)
 
     return (
@@ -36,7 +38,7 @@ export const Progress = ({
                 )}
                 <div className={`progress-bar ${sizeClass}`}>
                     <div
-                        className={`progress-fill ${variantClass}`}
+                        className={`progress-fill ${colorClass}`}
                         style={{ width: `${safeValue}%` }}
                     />
                 </div>

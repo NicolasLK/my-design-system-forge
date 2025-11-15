@@ -1,4 +1,4 @@
-import { getComponentSize, type ComponentSize } from "../models/getComponentSize"
+import { getComponentSize, type ComponentSize } from "../models/get-component-size"
 import "../styles/components/radio.css"
 
 interface IRadioProps {
@@ -25,19 +25,21 @@ export const Radio = ({
     const finalSizeClass = sizeClass || "radio-md"
 
     return (
-        <label className={`radio-wrapper ${disabled ? "disabled" : ""}`}>
-            <input
-                type="radio"
-                value={value}
-                name={name}
-                checked={checked}
-                disabled={disabled}
-                onChange={() => onChange?.(value)}
-            />
+        <>
+            <label className={`radio-wrapper ${disabled ? "disabled" : ""}`}>
+                <input
+                    type="radio"
+                    value={value}
+                    name={name}
+                    checked={checked}
+                    disabled={disabled}
+                    onChange={() => onChange?.(value)}
+                />
 
-            <span className={`radio-circle ${finalSizeClass}`} />
+                <span className={`radio-circle ${finalSizeClass}`} />
 
-            {label && <span className="radio-label">{label}</span>}
-        </label>
+                {label && <span className="radio-label">{label}</span>}
+            </label>
+        </>
     )
 }

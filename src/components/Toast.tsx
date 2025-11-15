@@ -1,7 +1,8 @@
 import { useEffect } from "react"
 import "../styles/components/toast.css"
+import { getComponentColor, type ComponentColor } from "../models/get-component-color"
 
-type ToastVariant = "success" | "error" | "warning" | "info"
+type ToastVariant = ComponentColor
 
 interface IToastProps {
     /** Mensagem principal */
@@ -14,7 +15,9 @@ interface IToastProps {
     onClose?: () => void
 }
 
-export const Toast = ({ message, variant = "info", duration = 3000, onClose }: IToastProps) => {
+export const Toast = ({ message, variant = "default", duration = 3000, onClose }: IToastProps) => {
+    const colorClass = getComponentColor(variant, 'toast')
+
     useEffect(() => {
         const timer = setTimeout(() => {
             onClose?.()
@@ -24,7 +27,7 @@ export const Toast = ({ message, variant = "info", duration = 3000, onClose }: I
 
     return (
         <>
-            <div className={`toast toast-${variant}`}>
+            <div className={`tag ${colorClass}`.trim()}>
                 <span>{message}</span>
             </div>
         </>
