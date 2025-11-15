@@ -1,9 +1,8 @@
-import './styles/base.css'
-import { Button } from './components/Button'
+import { Alert } from '@/components/ui/alert'
+import { Button } from '@/components/ui/button'
 import { Card } from './components/Card'
-import { Alert } from './components/Alert'
 import { Badge } from './components/Badge'
-import { Input } from './components/Input'
+import { Input } from '@/components/ui/input'
 import { Switch } from './components/Switch'
 import { Modal } from './components/Modal'
 import { useState } from 'react'
@@ -58,14 +57,14 @@ function App() {
     <>
       <h1>Design System Preview</h1>
 
-      <section style={sectionStyle}>
+      <section className="u-mt-4">
         <h2>Botões</h2>
-        <div style={divStyle}>
+        <div className="u-flex u-flex-wrap u-gap-4">
           {/* Botões Normais */}
-          <Button variant="primary" />
-          <Button variant="secondary" />
-          <Button variant="success" />
-          <Button variant="destructive" />
+          <Button variant="primary" className="u-text-transform-capitalize">primary</Button>
+          <Button variant="secondary" className="u-text-transform-capitalize">secondary</Button>
+          <Button variant="success" className="u-text-transform-capitalize">success</Button>
+          <Button variant="destructive" className="u-text-transform-capitalize">destructive</Button>
 
           {/* Botão com texto customizado */}
           <Button variant="primary">
@@ -126,13 +125,13 @@ function App() {
           <Input label="E-mail" placeholder="usuario@exemplo.com" type="email" />
 
           {/* Input Grande */}
-          <Input label="Senha" placeholder="Digite sua senha" size="large" type="password" />
+          <Input label="Senha" placeholder="Digite sua senha" inputSize="large" type="password" />
 
           {/* Input de Erro com Mensagem */}
           <Input
             label="CEP"
             placeholder="99999-999"
-            size="small"
+            inputSize="small"
             error={true}
             errorMessage="O CEP informado é inválido."
           />

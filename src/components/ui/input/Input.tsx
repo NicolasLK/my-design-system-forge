@@ -1,13 +1,16 @@
-import { getComponentSize, type ComponentSize } from '../models/get-component-size'
-import './../styles/components/input.css'
+import type { InputHTMLAttributes } from 'react'
+import './input.css'
+import { getComponentSize, type ComponentSize } from '@/models/get-component-size'
+import { cn } from '@/lib/utils/cn'
 
-interface IInputProps {
+
+interface IInputProps extends InputHTMLAttributes<HTMLInputElement> {
     // Texto do rótulo
     label: string
     // Placeholder (texto de sugestão)
     placeholder?: string
     // Opcional: Define o tamanho. 'medium' será o padrão.
-    size?: ComponentSize
+    inputSize?: ComponentSize
     // Opcional: Ativa o estado de erro.
     error?: boolean
     // Opcional: Desabilita o campo.
@@ -20,20 +23,30 @@ interface IInputProps {
     type?: string
 }
 
-export const Input = ({ label,
+export const Input = ({
+    label,
     placeholder,
-    size = 'medium',
+    inputSize = 'medium',
     error = false,
     disabled = false,
     fullWidth = false,
     errorMessage,
-    type = 'text', }: IInputProps) => {
+    type = 'text',
+    className,
+    ...props
+}: IInputProps) => {
 
+    const sizeClass = getComponentSize(inputSize, 'input');
     const errorClass = error ? 'input-error' : ''
-    const sizeClass = getComponentSize(size, 'input');
-    const widthClass = fullWidth ? 'btn-full' : ''
 
-    const inputClasses = `input ${sizeClass} ${errorClass} ${widthClass}`.trim()
+    const inputClasses = cn(
+        'input',
+        sizeClass,
+        fullWidth && 'btn-full',
+        errorClass,
+        className
+    )
+
     const inputId = `input-${Math.random().toString(36).substring(2, 9)}`;
 
     return (
@@ -48,6 +61,7 @@ export const Input = ({ label,
                     placeholder={placeholder}
                     disabled={disabled}
                     aria-invalid={error}
+                    {...props}
                 />
 
                 {/* Mensagem de Erro Condicional */}

@@ -1,7 +1,7 @@
 import { useEffect, type ReactNode } from 'react'
 import { getComponentSize, type ComponentSize } from '../models/get-component-size'
 import './../styles/components/modal.css'
-import { Button } from './Button'
+import { Button } from './ui/button/Button'
 
 interface IModalProps {
     /** Controla se o modal está aberto */

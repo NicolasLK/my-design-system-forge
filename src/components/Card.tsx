@@ -1,5 +1,5 @@
 import './../styles/components/card.css'
-import { Button } from './Button'
+import { Button } from './ui/button/Button'
 
 interface ICardProps {
     // Opcional: fullWidth programatico.

@@ -1,7 +1,8 @@
 import type { ReactNode } from 'react'
-import './../styles/components/alert.css'
-import { getComponentColor, type ComponentColor } from '../models/get-component-color'
-import { getComponentSize, type ComponentSize } from '../models/get-component-size'
+import './alert.css'
+import { getComponentColor, type ComponentColor } from '@/models/get-component-color'
+import { getComponentSize, type ComponentSize } from '@/models/get-component-size'
+import { cn } from '@/lib/utils/cn'
 
 type AlertVariant = ComponentColor
 
@@ -38,9 +39,13 @@ export const Alert = ({ variant = 'default', size = 'medium', fullWidth = false,
 
     const colorClass = getComponentColor(variant, 'alert')
     const sizeClass = getComponentSize(size, 'alert')
-    const widthClass = fullWidth ? 'alert-full' : ''
 
-    const alertClasses = `alert ${colorClass} ${sizeClass} ${widthClass}`.trim()
+    const alertClasses = cn(
+        'alert',
+        colorClass,
+        sizeClass,
+        fullWidth && 'alert-full'
+    )
 
     return (
         <>
