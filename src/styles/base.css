@@ -10,7 +10,7 @@
 }
 
 html {
-  font-size: 16px; /* 1rem = 16px */
+  font-size: 16px;
   scroll-behavior: smooth;
 }
 
@@ -20,21 +20,20 @@ body {
   color: var(--color-black);
   background-color: var(--color-white);
   line-height: var(--line-height-text1);
-  min-height: 100vh;
-  margin: 0 auto;
+
+  /* substituído por utilities */
   padding: var(--space-4);
-  max-width: 100%;
 }
 
 /* Containers padrão */
 .container {
   width: 100%;
-  margin: 0 auto;
-  padding-inline: var(--space-4);
   max-width: 1280px;
+  margin-inline: auto;
+  padding-inline: var(--space-4);
 }
 
-/* Tipografia base */
+/* Tipografia base usando tokens */
 h1 {
   font-size: var(--font-heading1-size);
   line-height: var(--line-height-heading1);
@@ -56,22 +55,9 @@ h3 {
 p {
   font-size: var(--font-text1-size);
   line-height: var(--line-height-text1);
-  font-weight: var(--weight-regular);
 }
 
-small {
-  font-size: var(--font-text3-size);
-  line-height: var(--line-height-text3);
-}
-
-button {
-  cursor: pointer;
-  font-family: inherit;
-  font-size: var(--font-text2-size);
-  line-height: var(--line-height-text2);
-  font-weight: var(--weight-medium);
-}
-
+/* Links */
 a {
   color: var(--color-primary-default);
   text-decoration: none;
