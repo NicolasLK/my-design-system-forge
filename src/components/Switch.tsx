@@ -1,7 +1,7 @@
 import type { ChangeEvent } from 'react'
 import { getComponentSize, type ComponentSize } from '../models/getComponentSize'
+import { useControllableState } from '../models/hooks/useControllableState'
 import './../styles/components/switch.css'
-import { useControllableState } from '../models/useControllableState'
 
 interface ISwitchProps {
     // Texto do rótulo, essencial para acessibilidade

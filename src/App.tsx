@@ -26,6 +26,18 @@ import { Dropdown } from './components/Dropdown'
 import { Select } from './components/Select'
 import { Slider } from './components/Slider'
 import { Spinner } from './components/Spinner'
+import { AvatarGroup } from './components/AvatarGroup'
+import { Calendar } from './components/Calendar'
+import { Checkbox } from './components/Checkbox'
+import { Radio } from './components/Radio'
+import { Textarea } from './components/Textarea'
+import { Skeleton } from './components/Skeleton'
+import { FileInput } from './components/FileInput'
+import { TagInput } from './components/TagInput'
+import { TooltipAdvanced } from './components/TooltipAdvanced'
+import { Table } from './components/Table'
+import { LoadingOverlay } from './components/LoadingOverlay'
+import { DateRangePicker } from './components/DateRangePicker'
 
 const sectionStyle = {
   marginTop: "2rem"
@@ -39,6 +51,7 @@ const divStyle = {
 
 function App() {
   const [isModalOpen, setIsModalOpen] = useState(false)
+  const [isLoading, setIsLoading] = useState(false)
 
 
   return (
@@ -396,6 +409,155 @@ function App() {
           <Spinner variant="primary" size="large" />
           <Spinner variant="success" />
           <Spinner variant="warning" size="small" />
+        </div>
+      </section>
+
+      <section style={sectionStyle}>
+        <h2>Avatar Group</h2>
+        <div style={divStyle}>
+          <AvatarGroup
+            size="medium"
+            users={[
+              { name: "Nicolas Loffi", src: "https://i.pravatar.cc/150?img=11" },
+              { name: "Ana Clara", src: "https://i.pravatar.cc/150?img=22" },
+              { name: "João Pedro", src: "https://i.pravatar.cc/150?img=33" },
+              { name: "Marina Lopes", src: "https://i.pravatar.cc/150?img=44" },
+              { name: "Carlos Henrique", src: "https://i.pravatar.cc/150?img=55" },
+            ]}
+            maxVisible={3}
+          />
+        </div>
+      </section>
+
+      <section style={sectionStyle}>
+        <h2>Calendar</h2>
+        <div style={divStyle}>
+          <Calendar
+            onSelect={(date) => console.log("Data selecionada:", date)}
+          />
+        </div>
+      </section>
+
+      <section style={sectionStyle}>
+        <h2>Checkbox</h2>
+        <div style={divStyle}>
+          <Checkbox label="Padrão" />
+          <Checkbox label="Erro" error />
+          <Checkbox label="Sucesso" variant="success" />
+          <Checkbox label="Atenção" variant="warning" />
+          <Checkbox label="Destruído" variant="destructive" />
+          <Checkbox label="Pequeno" size="small" />
+          <Checkbox label="Desabilitado" disabled />
+        </div>
+      </section>
+
+      <section style={sectionStyle}>
+        <h2>Radio</h2>
+        <div style={divStyle}>
+          <Radio name="plan" value="basic" label="Básico" />
+          <Radio name="plan" value="pro" label="Profissional" checked />
+          <Radio name="plan" value="vip" label="VIP" />
+          <Radio name="plan" value="disabled" label="Desativado" disabled />
+          <Radio name="plan" value="small" label="Pequeno" size="small" />
+        </div>
+      </section>
+
+      <section style={sectionStyle}>
+        <h2>Textarea</h2>
+        <div style={divStyle}>
+          <Textarea label="Descrição" placeholder="Digite uma descrição..." />
+
+          <Textarea
+            label="Observações"
+            size="large"
+            error
+            errorMessage="Campo obrigatório"
+          />
+        </div>
+      </section>
+
+      <section style={sectionStyle}>
+        <h2>Skeleton</h2>
+        <div style={divStyle}>
+          <Skeleton height="20px" width="150px" />
+
+          <Skeleton height="40px" rounded />
+
+          <Skeleton width="60px" height="60px" circle />
+        </div>
+      </section>
+
+      <section style={sectionStyle}>
+        <h2>TagInput</h2>
+        <div style={divStyle}>
+          <TagInput
+            label="Tags"
+            defaultTags={["React", "UI"]}
+            onChange={(tags) => console.log(tags)}
+          />
+        </div>
+      </section>
+
+      <section style={sectionStyle}>
+        <h2>FileInput / FileUpload</h2>
+        <div style={divStyle}>
+          <FileInput
+            label="Envie um arquivo"
+            accept="image/*"
+            onChange={(files) => console.log(files)}
+          />
+        </div>
+      </section>
+
+      <section style={sectionStyle}>
+        <h2>TooltipAdvanced</h2>
+        <div style={divStyle}>
+          <TooltipAdvanced text="Informação útil" position="right" delay={250}>
+            <Button variant="primary">Hover aqui</Button>
+          </TooltipAdvanced>
+
+          <TooltipAdvanced text="Clique para abrir" trigger="click">
+            <Button variant="secondary">Click Tooltip</Button>
+          </TooltipAdvanced>
+        </div>
+      </section>
+
+      <section style={sectionStyle}>
+        <h2>Table</h2>
+        <div style={divStyle}>
+          <Table
+            striped
+            compact
+            columns={[
+              { key: "name", label: "Nome", sortable: true },
+              { key: "age", label: "Idade", sortable: true },
+              { key: "role", label: "Cargo" }
+            ]}
+            data={[
+              { name: "Nicolas", age: 29, role: "Dev" },
+              { name: "Ana", age: 31, role: "PM" },
+              { name: "João", age: 23, role: "Designer" }
+            ]}
+          />
+        </div>
+      </section>
+
+      <section style={{ position: "relative", height: 200 }}>
+        <h2>LoadingOverlay</h2>
+        <div style={divStyle}>
+          <LoadingOverlay active={isLoading} message="Carregando dados..." />
+          <p>Conteúdo da página</p>
+
+          <Button variant="primary" onClick={() => setIsLoading(true)}>
+            Ativar Loading
+          </Button>
+        </div>
+      </section>
+
+      <section style={sectionStyle}>
+        <h2>DateRangePicker</h2>
+        <div style={divStyle}>
+          <DateRangePicker onChange={(range) => console.log(range)} />
         </div>
       </section>
 

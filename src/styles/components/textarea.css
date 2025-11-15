@@ -1,0 +1,70 @@
+/* ===========================
+   📝 Textarea Component
+   =========================== */
+
+.textarea-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  width: 100%;
+}
+
+.textarea-label {
+  font-size: var(--font-text2-size);
+  font-weight: var(--weight-medium);
+}
+
+/* Caixa principal */
+.textarea {
+  width: 100%;
+  padding: var(--space-2) var(--space-3);
+  border: 1px solid var(--color-gray-default);
+  border-radius: var(--radius-md);
+  background-color: var(--color-white);
+  font-size: var(--font-text2-size);
+  resize: vertical;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.textarea:focus {
+  outline: none;
+  border-color: var(--color-primary-default);
+  box-shadow: 0 0 0 3px
+    color-mix(in srgb, var(--color-primary-default) 20%, transparent);
+}
+
+.textarea:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* Erro */
+.textarea-error {
+  border-color: var(--color-destructive-default);
+}
+
+.textarea-error:focus {
+  border-color: var(--color-destructive-default);
+  box-shadow: 0 0 0 3px
+    color-mix(in srgb, var(--color-destructive-default) 20%, transparent);
+}
+
+.textarea-error-message {
+  color: var(--color-destructive-default);
+  font-size: var(--font-text3-size);
+}
+
+/* Tamanhos */
+.textarea-sm {
+  font-size: var(--font-text3-size);
+  padding: var(--space-1) var(--space-2);
+}
+
+.textarea-md {
+  font-size: var(--font-text2-size);
+}
+
+.textarea-lg {
+  font-size: var(--font-text1-size);
+  padding: var(--space-3);
+}

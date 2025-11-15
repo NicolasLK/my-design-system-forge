@@ -1,8 +1,9 @@
 import type { ReactNode } from 'react'
-import './../styles/components/button.css'
 import { getComponentSize, type ComponentSize } from '../models/getComponentSize'
+import { getComponentColor, type ComponentColor } from '../models/getComponentColor'
+import './../styles/components/button.css'
 
-type ButtonVariant = 'primary' | 'secondary' | 'success' | 'destructive'
+type ButtonVariant = ComponentColor
 
 interface IButtonProps {
     // A variante define a classe CSS e o texto.
@@ -19,7 +20,14 @@ interface IButtonProps {
     children?: ReactNode
 }
 
-export const Button = ({ variant = 'primary', size = 'medium', onClick, disabled = false, fullWidth = false, children }: IButtonProps) => {
+export const Button = ({
+    variant = 'primary',
+    size = 'medium',
+    onClick,
+    disabled = false,
+    fullWidth = false,
+    children
+}: IButtonProps) => {
 
     const defaultText = (): string => {
         switch (variant) {
@@ -36,11 +44,11 @@ export const Button = ({ variant = 'primary', size = 'medium', onClick, disabled
         }
     }
 
-    const variantClass = `btn-${variant}`
-    const sizeClass = getComponentSize(size, 'btn')
-    const widthClass = fullWidth ? 'btn-full' : ''
+    const colorClass = getComponentColor(variant, "btn")
+    const sizeClass = getComponentSize(size, "btn")
+    const widthClass = fullWidth ? "btn-full" : ""
 
-    const buttonClasses = `btn ${variantClass} ${sizeClass} ${widthClass}`.trim()
+    const buttonClasses = `btn ${colorClass} ${sizeClass} ${widthClass}`.trim()
 
     return (
         <>

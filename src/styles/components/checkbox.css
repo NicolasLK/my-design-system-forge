@@ -1,0 +1,97 @@
+/* ===========================
+   ☑️ Checkbox Component
+   =========================== */
+
+.checkbox-wrapper {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  cursor: pointer;
+  user-select: none;
+}
+
+.checkbox-wrapper.disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* Ocultar input */
+.checkbox-wrapper input {
+  display: none;
+}
+
+/* Caixa base */
+.checkbox-box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 2px solid var(--color-gray-default);
+  border-radius: var(--radius-sm);
+  background-color: var(--color-white);
+  transition: all 0.2s ease;
+  position: relative;
+}
+
+/* Tamanhos */
+.checkbox-sm {
+  width: 14px;
+  height: 14px;
+}
+.checkbox-md {
+  width: 18px;
+  height: 18px;
+}
+.checkbox-lg {
+  width: 22px;
+  height: 22px;
+}
+
+/* --- VARIANTES DE COR ---------------------------------- */
+
+.checkbox-primary {
+  --checkbox-color: var(--color-primary-default);
+}
+
+.checkbox-secondary {
+  --checkbox-color: var(--color-secondary-default);
+}
+
+.checkbox-success {
+  --checkbox-color: var(--color-success-default);
+}
+
+.checkbox-warning {
+  --checkbox-color: var(--color-warning-default);
+}
+
+.checkbox-destructive {
+  --checkbox-color: var(--color-destructive-default);
+}
+
+/* Estado marcado */
+.checkbox-wrapper input:checked + .checkbox-box {
+  border-color: var(--checkbox-color);
+  background-color: var(--checkbox-color);
+}
+
+/* Marca ✔ */
+.checkbox-wrapper input:checked + .checkbox-box::after {
+  content: "✔";
+  color: var(--color-white);
+  font-size: 0.75rem;
+  position: absolute;
+}
+
+/* Hover */
+.checkbox-wrapper:not(.disabled):hover .checkbox-box {
+  border-color: var(--checkbox-color);
+}
+
+/* Erro (sobrescreve qualquer variante) */
+.checkbox-error {
+  border-color: var(--color-destructive-default) !important;
+}
+
+.checkbox-label {
+  font-size: var(--font-text2-size);
+}

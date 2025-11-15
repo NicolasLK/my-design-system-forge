@@ -1,0 +1,72 @@
+/* ===========================
+   🔘 Radio Component
+   =========================== */
+
+.radio-wrapper {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  cursor: pointer;
+  user-select: none;
+}
+
+.radio-wrapper.disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* Ocultar o input nativo */
+.radio-wrapper input {
+  display: none;
+}
+
+/* Círculo externo */
+.radio-circle {
+  border: 2px solid var(--color-gray-default);
+  border-radius: var(--radius-full);
+  background-color: white;
+  transition: all 0.2s ease;
+  position: relative;
+}
+
+/* Tamanhos */
+.radio-sm {
+  width: 14px;
+  height: 14px;
+}
+
+.radio-md {
+  width: 18px;
+  height: 18px;
+}
+
+.radio-lg {
+  width: 22px;
+  height: 22px;
+}
+
+/* Marcado */
+.radio-wrapper input:checked + .radio-circle {
+  border-color: var(--color-primary-default);
+}
+
+.radio-wrapper input:checked + .radio-circle::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 55%;
+  height: 55%;
+  background-color: var(--color-primary-default);
+  border-radius: var(--radius-full);
+  transform: translate(-50%, -50%);
+}
+
+/* Hover */
+.radio-wrapper:not(.disabled):hover .radio-circle {
+  border-color: var(--color-primary-default);
+}
+
+.radio-label {
+  font-size: var(--font-text2-size);
+}

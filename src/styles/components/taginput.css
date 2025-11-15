@@ -1,0 +1,70 @@
+/* ===========================
+   🏷 TagInput Component
+   =========================== */
+
+.taginput-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.taginput-wrapper.disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.taginput-label {
+  font-size: var(--font-text2-size);
+  font-weight: var(--weight-medium);
+}
+
+.taginput-box {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  align-items: center;
+  padding: var(--space-2);
+  border: 1px solid var(--color-gray-default);
+  border-radius: var(--radius-md);
+  background: var(--color-white);
+}
+
+.taginput-box:focus-within {
+  border-color: var(--color-primary-default);
+  box-shadow: 0 0 0 3px
+    color-mix(in srgb, var(--color-primary-default) 20%, transparent);
+}
+
+.taginput-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+  padding: var(--space-1) var(--space-2);
+  background: var(--color-primary-default);
+  color: var(--color-white);
+  font-size: var(--font-text3-size);
+  border-radius: var(--radius-full);
+}
+
+.taginput-remove {
+  background: none;
+  border: none;
+  color: white;
+  cursor: pointer;
+  font-size: 0.75rem;
+}
+
+.taginput-remove:hover {
+  opacity: 0.7;
+}
+
+.taginput-input {
+  border: none;
+  flex: 1;
+  min-width: 120px;
+  font-size: var(--font-text2-size);
+}
+
+.taginput-input:focus {
+  outline: none;
+}

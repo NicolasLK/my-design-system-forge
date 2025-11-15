@@ -1,0 +1,71 @@
+/* ===============================
+   💬 Tooltip Advanced Component
+   =============================== */
+
+.tooltip-adv-wrapper {
+  position: relative;
+  display: inline-block;
+}
+
+/* Tooltip base */
+.tooltip-adv {
+  position: absolute;
+  padding: var(--space-2) var(--space-3);
+  background: var(--color-black);
+  color: var(--color-white);
+  border-radius: var(--radius-sm);
+  font-size: var(--font-text3-size);
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(0);
+  transition: opacity 0.15s ease, transform 0.15s ease;
+  white-space: nowrap;
+  z-index: 50;
+}
+
+/* Visível */
+.tooltip-adv.visible {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* Posições */
+.tooltip-top {
+  bottom: 100%;
+  left: 50%;
+  transform: translate(-50%, -4px);
+}
+
+.tooltip-top.visible {
+  transform: translate(-50%, -8px);
+}
+
+.tooltip-bottom {
+  top: 100%;
+  left: 50%;
+  transform: translate(-50%, 4px);
+}
+
+.tooltip-bottom.visible {
+  transform: translate(-50%, 8px);
+}
+
+.tooltip-left {
+  right: 100%;
+  top: 50%;
+  transform: translate(-4px, -50%);
+}
+
+.tooltip-left.visible {
+  transform: translate(-8px, -50%);
+}
+
+.tooltip-right {
+  left: 100%;
+  top: 50%;
+  transform: translate(4px, -50%);
+}
+
+.tooltip-right.visible {
+  transform: translate(8px, -50%);
+}
