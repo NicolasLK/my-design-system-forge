@@ -3,7 +3,7 @@ import { Button } from '@/components/ui/button'
 import { Card } from './components/Card'
 import { Badge } from './components/Badge'
 import { Input } from '@/components/ui/input'
-import { Switch } from './components/Switch'
+import { Switch } from '@/components/ui/switch'
 import { Modal } from './components/Modal'
 import { useState } from 'react'
 import { Divider } from './components/Divider'
@@ -27,8 +27,8 @@ import { Slider } from './components/Slider'
 import { Spinner } from './components/Spinner'
 import { AvatarGroup } from './components/AvatarGroup'
 import { Calendar } from './components/Calendar'
-import { Checkbox } from './components/Checkbox'
-import { Radio } from './components/Radio'
+import { Checkbox } from '@/components/ui/checkbox'
+import { Radio } from '@/components/ui/radio'
 import { Textarea } from './components/Textarea'
 import { Skeleton } from './components/Skeleton'
 import { FileInput } from './components/FileInput'
@@ -51,6 +51,7 @@ const divStyle = {
 function App() {
   const [isModalOpen, setIsModalOpen] = useState(false)
   const [isLoading, setIsLoading] = useState(false)
+  const [selectedPlan, setSelectedPlan] = useState("")
 
 
   return (
@@ -146,7 +147,7 @@ function App() {
         <div style={divStyle}>
           <Switch
             label="Ativar notificações"
-            onChange={(state) => console.log('Switch agora está:', state)}
+            onCheckedChange={(state) => console.log('Switch agora está:', state)}
           />
           <Switch label="Ativar modo escuro" />
         </div>
@@ -447,7 +448,7 @@ function App() {
           <Checkbox label="Sucesso" variant="success" />
           <Checkbox label="Atenção" variant="warning" />
           <Checkbox label="Destruído" variant="destructive" />
-          <Checkbox label="Pequeno" size="small" />
+          <Checkbox label="Pequeno" checkboxSize="small" />
           <Checkbox label="Desabilitado" disabled />
         </div>
       </section>
@@ -455,11 +456,29 @@ function App() {
       <section style={sectionStyle}>
         <h2>Radio</h2>
         <div style={divStyle}>
-          <Radio name="plan" value="basic" label="Básico" />
-          <Radio name="plan" value="pro" label="Profissional" checked />
-          <Radio name="plan" value="vip" label="VIP" />
+          <Radio
+            name="plan"
+            value="basic"
+            label="Básico"
+            checked={selectedPlan === "basic"}
+            onChange={(v) => setSelectedPlan(v)}
+          />
+          <Radio
+            name="plan"
+            value="pro"
+            label="Profissional"
+            checked={selectedPlan === "pro"}
+            onChange={(v) => setSelectedPlan(v)}
+          />
+          <Radio
+            name="plan"
+            value="vip"
+            label="VIP"
+            checked={selectedPlan === "vip"}
+            onChange={(v) => setSelectedPlan(v)}
+          />
           <Radio name="plan" value="disabled" label="Desativado" disabled />
-          <Radio name="plan" value="small" label="Pequeno" size="small" />
+          <Radio name="plan" value="small" label="Pequeno" radioSize="small" />
         </div>
       </section>
 

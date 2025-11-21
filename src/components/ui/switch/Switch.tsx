@@ -1,46 +1,48 @@
-import type { ChangeEvent } from 'react'
-import { getComponentSize, type ComponentSize } from '../models/get-component-size'
-import { useControllableState } from '../models/hooks/useControllableState'
-import './../styles/components/switch.css'
+import type { ChangeEvent, InputHTMLAttributes } from 'react'
+import { getComponentSize, type ComponentSize } from '../../../models/get-component-size'
+import { useControllableState } from '../../../models/hooks/useControllableState'
+import './switch.css'
+import { cn } from '@/lib/utils/cn'
 
-interface ISwitchProps {
+interface ISwitchProps extends Omit<InputHTMLAttributes<HTMLInputElement>, "onChange"> {
     // Texto do rótulo, essencial para acessibilidade
     label?: string
     // Opcional: define o tamanho. 'medium' será o padrão.
-    size?: ComponentSize
+    switchSize?: ComponentSize
     // Opcional: estado checked inicial (controlado ou não)
     checked?: boolean
     // Opcional: desabilita o switch
     disabled?: boolean
     // Opcional: handler para mudança de estado
-    onChange?: (checked: boolean) => void
+    onCheckedChange?: (checked: boolean) => void
 }
 
 export const Switch = ({ label,
-    size = 'medium',
+    switchSize = 'medium',
     checked,
     disabled = false,
-    onChange }: ISwitchProps) => {
+    onCheckedChange,
+    className,
+    ...props
+}: ISwitchProps) => {
 
-    const sizeClass = getComponentSize(size, 'switch');
-
-    const containerClasses = `switch-container`.trim();
-    const coreClasses = `switch-core ${sizeClass}`.trim();
-    const switchId = `switch-${Math.random().toString(36).substring(2, 9)}`;
+    const sizeClass = getComponentSize(switchSize, 'switch');
 
     const [isChecked, setIsChecked] = useControllableState<boolean>(
         checked,
         false,
-        onChange
+        onCheckedChange
     )
 
     const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
         setIsChecked(e.target.checked)
     }
 
+    const switchId = `switch-${Math.random().toString(36).substring(2, 9)}`;
+
     return (
         <>
-            <label className={containerClasses}>
+            <label className={cn('switch-container', className)}>
 
                 <input
                     id={switchId}
@@ -48,9 +50,10 @@ export const Switch = ({ label,
                     checked={isChecked}
                     disabled={disabled}
                     onChange={handleChange}
+                    {...props}
                 />
 
-                <label htmlFor={switchId} className={coreClasses}>
+                <label htmlFor={switchId} className={cn("switch-core", sizeClass)}>
                     <span className="slider" aria-hidden="true"></span>
                 </label>
 
