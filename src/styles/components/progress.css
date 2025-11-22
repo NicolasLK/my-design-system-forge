@@ -21,7 +21,11 @@
 
 /* 📏 Barra base */
 .progress-bar {
-  background-color: color-mix(in srgb, var(--color-gray-default) 30%, var(--color-white));
+  background-color: color-mix(
+    in srgb,
+    var(--color-gray-500) 30%,
+    var(--color-white)
+  );
   border-radius: var(--radius-full);
   overflow: hidden;
   height: 8px;
@@ -37,23 +41,23 @@
 
 /* 🎨 Variantes */
 .progress-primary {
-  background-color: var(--color-primary-default);
+  background-color: var(--color-primary-500);
 }
 
 .progress-secondary {
-  background-color: var(--color-secondary-default);
+  background-color: var(--color-secondary-500);
 }
 
 .progress-success {
-  background-color: var(--color-success-default);
+  background-color: var(--color-success-500);
 }
 
 .progress-warning {
-  background-color: var(--color-warning-default);
+  background-color: var(--color-warning-500);
 }
 
 .progress-destructive {
-  background-color: var(--color-destructive-default);
+  background-color: var(--color-destructive-500);
 }
 
 /* 📏 Tamanhos via getComponentSize */

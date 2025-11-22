@@ -7,7 +7,7 @@
   align-items: center;
   justify-content: center;
   border-radius: var(--radius-full);
-  border: 1px solid var(--color-gray-default);
+  border: 1px solid var(--color-gray-500);
   background-color: var(--color-white);
   color: var(--color-black);
   font-size: var(--font-text2-size);
@@ -21,32 +21,32 @@
 /* 🟦 Variantes */
 .chip-default {
   background-color: var(--color-white);
-  border-color: var(--color-gray-default);
+  border-color: var(--color-gray-500);
 }
 
 .chip-primary {
-  border-color: var(--color-primary-default);
-  color: var(--color-primary-default);
+  border-color: var(--color-primary-500);
+  color: var(--color-primary-500);
 }
 
 .chip-success {
-  border-color: var(--color-success-default);
-  color: var(--color-success-default);
+  border-color: var(--color-success-500);
+  color: var(--color-success-500);
 }
 
 .chip-warning {
-  border-color: var(--color-warning-default);
-  color: var(--color-warning-default);
+  border-color: var(--color-warning-500);
+  color: var(--color-warning-500);
 }
 
 .chip-destructive {
-  border-color: var(--color-destructive-default);
-  color: var(--color-destructive-default);
+  border-color: var(--color-destructive-500);
+  color: var(--color-destructive-500);
 }
 
 /* 🎨 Hover mais suave */
 .chip:hover:not(.chip-disabled):not(.chip-selected) {
-  background-color: color-mix(in srgb, var(--color-primary-default) 6%, white);
+  background-color: color-mix(in srgb, var(--color-primary-500) 6%, white);
 }
 
 /* ✅ Estado selecionado */
@@ -55,24 +55,24 @@
 }
 
 .chip-selected.chip-primary {
-  background-color: var(--color-primary-default);
-  border-color: var(--color-primary-default);
+  background-color: var(--color-primary-500);
+  border-color: var(--color-primary-500);
 }
 
 .chip-selected.chip-success {
-  background-color: var(--color-success-default);
-  border-color: var(--color-success-default);
+  background-color: var(--color-success-500);
+  border-color: var(--color-success-500);
 }
 
 .chip-selected.chip-warning {
-  background-color: var(--color-warning-default);
-  border-color: var(--color-warning-default);
+  background-color: var(--color-warning-500);
+  border-color: var(--color-warning-500);
   color: var(--color-black);
 }
 
 .chip-selected.chip-destructive {
-  background-color: var(--color-destructive-default);
-  border-color: var(--color-destructive-default);
+  background-color: var(--color-destructive-500);
+  border-color: var(--color-destructive-500);
 }
 
 /* 🚫 Desabilitado */

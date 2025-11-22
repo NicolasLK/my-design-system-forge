@@ -59,7 +59,7 @@ p {
 
 /* Links */
 a {
-  color: var(--color-primary-default);
+  color: var(--color-primary-500);
   text-decoration: none;
 }
 

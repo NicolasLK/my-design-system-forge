@@ -1,23 +1,40 @@
 export type ComponentColor =
     | "primary"
     | "secondary"
+    | "tertiary"
     | "success"
     | "warning"
     | "destructive"
     | "info"
-    | "default";
+    | "default"
+    | string;
 
 /**
  * Retorna a classe CSS correspondente à variante do componente.
  * @param color Variante solicitada
+ * Aceita:
+ * - "primary"
+ * - "primary-600"
+ * - "success-300"
+ * - "default"
  * @param prefix Prefixo do componente (ex: checkbox, tag, badge)
- * @returns Classe CSS como: "checkbox-primary"
+ * @returns Retorna a classe: `${prefix}-${variant}` ou '' para default/no-op.
  */
 export function getComponentColor(
-    color: ComponentColor,
+    color: ComponentColor | string,
     prefix: string
 ): string {
-    if (!color || color === "default") return `${prefix}-primary`;
+    if (!color || color === "default") return "";
 
-    return `${prefix}-${color}`;
+    const normalized = String(color).trim();
+
+    /**
+     * Remove caracteres inválidos
+     */
+    const safe = normalized.replace(/[^a-z0-9\-_]/gi, "");
+
+    /**
+     * Retorna classe CSS: spinner-primary-600
+     */
+    return `${prefix}-${safe}`;
 }

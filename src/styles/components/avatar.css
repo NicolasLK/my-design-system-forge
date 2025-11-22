@@ -6,7 +6,7 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  background-color: var(--color-gray-default);
+  background-color: var(--color-gray-500);
   color: var(--color-white);
   font-family: var(--font-family-base);
   font-weight: var(--weight-medium);

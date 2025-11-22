@@ -20,7 +20,7 @@
   width: 42px;
   height: 24px;
   border-radius: var(--radius-full);
-  background-color: var(--color-gray-default);
+  background-color: var(--color-gray-500);
   transition: background-color 0.3s;
   cursor: pointer;
 }
@@ -39,7 +39,7 @@
 
 /* Quando o input está checked */
 .switch-container input:checked + .switch-core {
-  background-color: var(--color-primary-default);
+  background-color: var(--color-primary-500);
 }
 
 .switch-container input:checked + .switch-core .slider {
@@ -76,7 +76,6 @@
 .switch-container input:checked + .switch-core.switch-lg .slider {
   transform: translateX(20px);
 }
-
 
 /* 📱 Responsividade */
 @media (max-width: var(--screen-sm)) {

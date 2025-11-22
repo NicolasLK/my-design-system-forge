@@ -3,6 +3,7 @@ import './button.css'
 import { getComponentSize, type ComponentSize } from '../../../models/get-component-size'
 import { getComponentColor, type ComponentColor } from '../../../models/get-component-color'
 import { cn } from '../../../lib/utils/cn'
+import { isIconElement } from '@/models/is-icon-element'
 
 type ButtonVariant = ComponentColor
 
@@ -32,10 +33,21 @@ export const Button = ({
     const colorClass = getComponentColor(variant, "btn")
     const sizeClass = getComponentSize(size, "btn")
 
+    /**
+     * Converte children para array
+     */
+    const content = Array.isArray(children) ? children : [children];
+
+    /**
+     * Detecta ícone no primeiro child
+     */
+    const hasIcon = isIconElement(content[0]);
+
     const buttonClasses = cn(
         'btn',
         colorClass,
         sizeClass,
+        hasIcon && "btn-with-icon",
         fullWidth && "btn-full",
         className
     )
@@ -47,7 +59,7 @@ export const Button = ({
                 disabled={disabled}
                 {...props}
             >
-                {disabled ? 'Desabilitado' : children}
+                {children}
             </button>
         </>
     )

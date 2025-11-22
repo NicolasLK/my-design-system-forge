@@ -22,7 +22,7 @@
 
 /* Círculo externo */
 .radio-circle {
-  border: 2px solid var(--color-gray-default);
+  border: 2px solid var(--color-gray-500);
   border-radius: var(--radius-full);
   background-color: white;
   transition: all 0.2s ease;
@@ -47,7 +47,7 @@
 
 /* Marcado */
 .radio-wrapper input:checked + .radio-circle {
-  border-color: var(--color-primary-default);
+  border-color: var(--color-primary-500);
 }
 
 .radio-wrapper input:checked + .radio-circle::after {
@@ -57,14 +57,14 @@
   left: 50%;
   width: 55%;
   height: 55%;
-  background-color: var(--color-primary-default);
+  background-color: var(--color-primary-500);
   border-radius: var(--radius-full);
   transform: translate(-50%, -50%);
 }
 
 /* Hover */
 .radio-wrapper:not(.disabled):hover .radio-circle {
-  border-color: var(--color-primary-default);
+  border-color: var(--color-primary-500);
 }
 
 .radio-label {

@@ -21,26 +21,26 @@
   width: 2rem;
   height: 2rem;
   border-radius: 50%;
-  border: 2px solid var(--color-gray-default);
+  border: 2px solid var(--color-gray-500);
   display: flex;
   align-items: center;
   justify-content: center;
   font-weight: var(--weight-medium);
-  color: var(--color-gray-default);
+  color: var(--color-gray-500);
   background-color: var(--color-white);
   transition: all 0.3s ease;
 }
 
 .stepper-circle.active {
-  border-color: var(--color-primary-default);
-  color: var(--color-primary-default);
+  border-color: var(--color-primary-500);
+  color: var(--color-primary-500);
   font-weight: var(--weight-semi-bold);
 }
 
 .stepper-circle.completed {
-  background-color: var(--color-primary-default);
+  background-color: var(--color-primary-500);
   color: var(--color-white);
-  border-color: var(--color-primary-default);
+  border-color: var(--color-primary-500);
 }
 
 .stepper-label {
@@ -52,7 +52,7 @@
 .stepper-line {
   width: var(--space-8);
   height: 2px;
-  background-color: var(--color-gray-default);
+  background-color: var(--color-gray-500);
   margin: 0 var(--space-2);
 }
 

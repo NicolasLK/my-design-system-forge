@@ -1,5 +1,6 @@
 import "../styles/components/loading-overlay.css"
-import { Spinner } from "./Spinner"
+import { Spinner } from "@/components/ui/spinner"
+
 
 interface ILoadingOverlayProps {
     active: boolean

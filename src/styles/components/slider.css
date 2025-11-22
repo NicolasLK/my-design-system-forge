@@ -13,7 +13,7 @@
 .slider-input {
   width: 100%;
   height: 6px;
-  background: color-mix(in srgb, var(--color-primary-default) 30%, #ddd);
+  background: color-mix(in srgb, var(--color-primary-500) 30%, #ddd);
   border-radius: var(--radius-full);
   appearance: none;
   cursor: pointer;
@@ -21,7 +21,7 @@
 }
 
 .slider-input:hover {
-  background: color-mix(in srgb, var(--color-primary-default) 45%, #ccc);
+  background: color-mix(in srgb, var(--color-primary-500) 45%, #ccc);
 }
 
 /* 🟣 Thumb (controle) */
@@ -30,7 +30,7 @@
   width: 16px;
   height: 16px;
   border-radius: 50%;
-  background: var(--color-primary-default);
+  background: var(--color-primary-500);
   border: 2px solid var(--color-white);
   box-shadow: 0 0 3px rgba(0, 0, 0, 0.2);
   transition: transform 0.15s ease;
@@ -44,7 +44,7 @@
   width: 16px;
   height: 16px;
   border-radius: 50%;
-  background: var(--color-primary-default);
+  background: var(--color-primary-500);
   border: 2px solid var(--color-white);
   cursor: pointer;
 }

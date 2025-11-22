@@ -30,5 +30,5 @@
 
 .loading-message {
   font-size: var(--font-text2-size);
-  color: var(--color-gray-default);
+  color: var(--color-gray-500);
 }

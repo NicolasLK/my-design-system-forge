@@ -42,7 +42,8 @@
 				"esbenp.prettier-vscode",
 				"dbaeumer.vscode-eslint",
 				"kamikillerto.vscode-colorize",
-				"ms-ceintl.vscode-language-pack-pt-br"
+				"ms-ceintl.vscode-language-pack-pt-br",
+				"Zignd.html-css-class-completion"
 			]
 		}
 	}

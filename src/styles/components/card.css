@@ -31,7 +31,7 @@
 .card-content {
   font-size: var(--font-text2-size);
   line-height: var(--line-height-text2);
-  color: var(--color-gray-default);
+  color: var(--color-gray-500);
 }
 
 /* ⚙️ Rodapé */

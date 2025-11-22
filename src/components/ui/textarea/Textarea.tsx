@@ -1,7 +1,10 @@
-import { getComponentSize, type ComponentSize } from "../models/get-component-size"
-import "../styles/components/textarea.css"
 
-interface ITextareaProps {
+import { getComponentSize, type ComponentSize } from "@/models/get-component-size"
+import "./textarea.css"
+import type { TextareaHTMLAttributes } from "react"
+import { cn } from "@/lib/utils/cn"
+
+interface ITextareaProps extends TextareaHTMLAttributes<HTMLTextAreaElement> {
     label?: string
     value?: string
     defaultValue?: string
@@ -11,7 +14,6 @@ interface ITextareaProps {
     error?: boolean
     errorMessage?: string
     size?: ComponentSize
-    onChange?: (value: string) => void
 }
 
 export const Textarea = ({
@@ -24,25 +26,36 @@ export const Textarea = ({
     error = false,
     errorMessage,
     size = "medium",
-    onChange
+    onChange,
+    className,
+    ...props
 }: ITextareaProps) => {
 
     const sizeClass = getComponentSize(size, "textarea")
     const finalSizeClass = sizeClass || "textarea-md"
 
+    const textareaId = `textarea-${Math.random().toString(36).substring(2, 9)}`;
+
     return (
         <>
             <div className="textarea-wrapper">
-                {label && <label className="textarea-label">{label}</label>}
+                {label && <label htmlFor={textareaId} className="textarea-label">{label}</label>}
 
                 <textarea
-                    className={`textarea ${finalSizeClass} ${error ? "textarea-error" : ""}`}
+                    id={textareaId}
+                    className={cn(
+                        "textarea",
+                        finalSizeClass,
+                        error && "textarea-error",
+                        className
+                    )}
                     value={value}
                     defaultValue={defaultValue}
                     placeholder={placeholder}
                     disabled={disabled}
                     rows={rows}
-                    onChange={(e) => onChange?.(e.target.value)}
+                    onChange={onChange}
+                    {...props}
                 />
 
                 {error && errorMessage && (

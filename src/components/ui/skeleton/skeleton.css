@@ -5,14 +5,22 @@
 .skeleton {
   background: linear-gradient(
     90deg,
-    var(--color-gray-default) 0%,
-    color-mix(in srgb, var(--color-gray-default) 30%, white) 50%,
-    var(--color-gray-default) 100%
+    var(--color-gray-500) 0%,
+    color-mix(in srgb, var(--color-gray-500) 30%, white) 50%,
+    var(--color-gray-500) 100%
   );
   background-size: 200% 100%;
   animation: skeleton-loading 1.4s ease infinite;
+  display: block;
 }
 
+/* Versão estática (sem animação) */
+.skeleton-static {
+  animation: none !important;
+  background-size: 100% 100%;
+}
+
+/* Animação */
 @keyframes skeleton-loading {
   0% {
     background-position: 200% 0;

@@ -1,7 +1,7 @@
 .input {
   width: 100%;
   padding: var(--space-2) var(--space-3);
-  border: 1px solid var(--color-gray-default);
+  border: 1px solid var(--color-gray-500);
   border-radius: var(--radius-md);
   font-size: var(--font-text2-size);
   line-height: var(--line-height-text2);
@@ -10,8 +10,9 @@
 
 .input:focus {
   outline: none;
-  border-color: var(--color-primary-default);
-  box-shadow: 0 0 0 2px color-mix(in srgb, var(--color-primary-default) 25%, transparent);
+  border-color: var(--color-primary-500);
+  box-shadow: 0 0 0 2px
+    color-mix(in srgb, var(--color-primary-500) 25%, transparent);
 }
 
 /* 📏 Tamanhos */
@@ -21,7 +22,7 @@
 }
 
 .input-md {
-  padding: var(--space-2) var(--space-3); 
+  padding: var(--space-2) var(--space-3);
   font-size: var(--font-text2-size);
   line-height: var(--line-height-text2);
 }
@@ -39,26 +40,29 @@
 
 /* ❌ Estado de Erro */
 .input-error {
-  border-color: var(--color-destructive-default) !important; /* Força a cor da borda */
+  border-color: var(
+    --color-destructive-500
+  ) !important; /* Força a cor da borda */
 }
 
 .input-error:focus {
   /* Altera a sombra no foco para refletir o erro */
-  box-shadow: 0 0 0 2px color-mix(in srgb, var(--color-destructive-default) 25%, transparent);
+  box-shadow: 0 0 0 2px
+    color-mix(in srgb, var(--color-destructive-500) 25%, transparent);
 }
 
 /* 📝 Estilo da mensagem de erro e do rótulo */
 .input-error-message {
-    display: block;
-    margin-top: var(--space-1);
-    color: var(--color-destructive-default);
-    font-size: var(--font-text3-size);
+  display: block;
+  margin-top: var(--space-1);
+  color: var(--color-destructive-500);
+  font-size: var(--font-text3-size);
 }
 
 .input-label {
-    display: block;
-    margin-bottom: var(--space-1);
-    font-weight: var(--weight-medium);
+  display: block;
+  margin-bottom: var(--space-1);
+  font-weight: var(--weight-medium);
 }
 
 /* 🔁 Largura total */

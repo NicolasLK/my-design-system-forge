@@ -21,7 +21,7 @@
 /* Dropzone */
 .fileinput-dropzone {
   padding: var(--space-4);
-  border: 2px dashed var(--color-primary-default);
+  border: 2px dashed var(--color-primary-500);
   border-radius: var(--radius-md);
   text-align: center;
   cursor: pointer;
@@ -31,7 +31,7 @@
 }
 
 .fileinput-dropzone.dragactive {
-  background: color-mix(in srgb, var(--color-primary-default) 10%, white);
+  background: color-mix(in srgb, var(--color-primary-500) 10%, white);
 }
 
 .fileinput-dropzone input {
@@ -43,11 +43,11 @@
 
 .fileinput-text {
   font-size: var(--font-text2-size);
-  color: var(--color-secondary-default);
+  color: var(--color-secondary-500);
 }
 
 .fileinput-text span {
-  color: var(--color-primary-default);
+  color: var(--color-primary-500);
   font-weight: var(--weight-medium);
 }
 

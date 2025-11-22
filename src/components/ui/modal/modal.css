@@ -1,8 +1,8 @@
 /* 🔳 Overlay (fundo) */
 .modal {
+  display: grid; /* 👉 mais consistente que flex neste caso */
   position: fixed;
   inset: 0;
-  display: grid; /* 👉 mais consistente que flex neste caso */
   place-items: center; /* centraliza vertical e horizontalmente */
   background-color: rgba(0, 0, 0, 0.45);
   z-index: 1000;
@@ -23,7 +23,7 @@
 .modal-close {
   background: none;
   border: none;
-  color: var(--color-gray-default);
+  color: var(--color-gray-500);
   font-size: 1.5rem;
   font-weight: var(--weight-medium);
   cursor: pointer;
@@ -58,6 +58,14 @@
   margin: 0 auto; /* centraliza horizontalmente quando tem overflow */
 }
 
+.modal-closing {
+  animation: modal-fade-out 0.3s ease forwards;
+}
+
+.modal-content.modal-closing {
+  animation: modal-slide-down 0.3s ease forwards;
+}
+
 /* 📏 Tamanhos via getComponentSize */
 .modal-sm {
   max-width: 320px;
@@ -78,7 +86,7 @@
 .modal-description {
   font-size: var(--font-text2-size);
   line-height: var(--line-height-text2);
-  color: var(--color-gray-default);
+  color: var(--color-gray-500);
   margin: 0;
 }
 
@@ -122,5 +130,26 @@
   to {
     opacity: 1;
     transform: translateY(0);
+  }
+}
+
+@keyframes modal-slide-down {
+  from {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+}
+
+@keyframes modal-fade-out {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+    backdrop-filter: blur(0px);
   }
 }

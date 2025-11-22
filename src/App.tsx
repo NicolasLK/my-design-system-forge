@@ -1,14 +1,25 @@
-import { Alert } from '@/components/ui/alert'
+// ==== Components - Base Essentials ====
 import { Button } from '@/components/ui/button'
+import { Input } from '@/components/ui/input'
+import { Textarea } from '@/components/ui/textarea'
+import { Checkbox } from '@/components/ui/checkbox'
+import { Radio } from '@/components/ui/radio'
+import { Switch } from '@/components/ui/switch'
+//=======================================
+// ==== Components - Feedback ====
+import { Alert } from '@/components/ui/alert'
+import { Toast } from '@/components/ui/toast'
+import { Modal } from '@/components/ui/modal'
+import { Tooltip } from '@/components/ui/tooltip'
+import { Skeleton } from '@/components/ui/skeleton'
+import { Spinner } from '@/components/ui/spinner'
+//================================
+// ==== Components - Layout ====
 import { Card } from './components/Card'
 import { Badge } from './components/Badge'
-import { Input } from '@/components/ui/input'
-import { Switch } from '@/components/ui/switch'
-import { Modal } from './components/Modal'
 import { useState } from 'react'
 import { Divider } from './components/Divider'
 import { Tabs } from './components/Tabs'
-import { Tooltip } from './components/Tooltip'
 import { Accordion } from './components/Accordion'
 import { Typography } from './components/Typography'
 import { Avatar } from './components/Avatar'
@@ -17,20 +28,14 @@ import { Breadcrumb } from './components/Breadcrumb'
 import { Pagination } from './components/Pagination'
 import { Stepper } from './components/Stepper'
 import { ProgressCircular } from './components/ProgressCircular'
-import { Toast } from './components/Toast'
 import { BadgeGroup } from './components/BadgeGroup'
 import { Tag } from './components/Tag'
 import { Chip } from './components/Chip'
 import { Dropdown } from './components/Dropdown'
 import { Select } from './components/Select'
 import { Slider } from './components/Slider'
-import { Spinner } from './components/Spinner'
 import { AvatarGroup } from './components/AvatarGroup'
 import { Calendar } from './components/Calendar'
-import { Checkbox } from '@/components/ui/checkbox'
-import { Radio } from '@/components/ui/radio'
-import { Textarea } from './components/Textarea'
-import { Skeleton } from './components/Skeleton'
 import { FileInput } from './components/FileInput'
 import { TagInput } from './components/TagInput'
 import { TooltipAdvanced } from './components/TooltipAdvanced'
@@ -39,6 +44,10 @@ import { LoadingOverlay } from './components/LoadingOverlay'
 import { DateRangePicker } from './components/DateRangePicker'
 
 const sectionStyle = {
+  marginTop: "2rem"
+}
+
+const h2Style = {
   marginTop: "2rem"
 }
 
@@ -52,14 +61,16 @@ function App() {
   const [isModalOpen, setIsModalOpen] = useState(false)
   const [isLoading, setIsLoading] = useState(false)
   const [selectedPlan, setSelectedPlan] = useState("")
+  const [showToast, setShowToast] = useState(false);
 
 
   return (
     <>
       <h1>Design System Preview</h1>
 
+      <h2>Base Essentials Components</h2>
       <section className="u-mt-4">
-        <h2>Botões</h2>
+        <h3>Botões</h3>
         <div className="u-flex u-flex-wrap u-gap-4">
           {/* Botões Normais */}
           <Button variant="primary" className="u-text-transform-capitalize">primary</Button>
@@ -73,54 +84,14 @@ function App() {
           </Button>
 
           {/* Botão Desabilitado */}
-          <Button variant="primary" disabled />
+          <Button disabled>
+            Primary
+          </Button>
         </div>
       </section>
 
       <section style={sectionStyle}>
-        <h2>Cards</h2>
-        <div style={divStyle}>
-          <Card />
-        </div>
-      </section>
-
-      <section style={sectionStyle}>
-        <h2>Alerts</h2>
-        <div style={divStyle}>
-          {/* Alerts Normais */}
-          <Alert variant="primary" />
-          <Alert variant="secondary" />
-          <Alert variant="success" />
-          <Alert variant="warning" />
-          <Alert variant="destructive" />
-          <Alert variant="info" />
-
-          {/* Alert com texto customizado */}
-          <Alert variant='default'>
-            ℹ Alert
-          </Alert>
-        </div>
-      </section>
-
-      <section style={sectionStyle}>
-        <h2>Badges</h2>
-        <div style={divStyle}>
-          {/* Bagges Normais */}
-          <Badge variant="primary" />
-          <Badge variant="secondary" />
-          <Badge variant="success" />
-          <Badge variant="destructive" />
-          <Badge variant="warning" />
-
-          {/* Badge com texto customizado */}
-          <Badge>
-            Badge
-          </Badge>
-        </div>
-      </section>
-
-      <section style={sectionStyle}>
-        <h2>Inputs</h2>
+        <h3>Inputs</h3>
         <div style={divStyle}>
           {/* Input Padrão (Medium) */}
           <Input label="E-mail" placeholder="usuario@exemplo.com" type="email" />
@@ -143,7 +114,75 @@ function App() {
       </section>
 
       <section style={sectionStyle}>
-        <h2>Switchs</h2>
+        <h3>Textarea</h3>
+        <div style={divStyle}>
+          <Textarea label="Descrição" placeholder="Digite uma descrição..." />
+
+          <Textarea
+            label="Observações"
+            size="large"
+            error
+            errorMessage="Campo obrigatório"
+          />
+        </div>
+      </section>
+
+      <section style={sectionStyle}>
+        <h3>Checkbox</h3>
+        <div style={divStyle}>
+          <Checkbox label="Padrão" />
+          <Checkbox label="Erro" error />
+          <Checkbox label="Sucesso" variant="success" />
+          <Checkbox label="Atenção" variant="warning" />
+          <Checkbox label="Destruído" variant="destructive" />
+          <Checkbox label="Pequeno" checkboxSize="small" />
+          <Checkbox label="Desabilitado" disabled />
+        </div>
+      </section>
+
+      <section style={sectionStyle}>
+        <h3>Radio</h3>
+        <div style={divStyle}>
+          <Radio
+            name="plan"
+            value="basic"
+            label="Básico"
+            checked={selectedPlan === "basic"}
+            onChange={(v) => setSelectedPlan(v)}
+          />
+          <Radio
+            name="plan"
+            value="pro"
+            label="Profissional"
+            checked={selectedPlan === "pro"}
+            onChange={(v) => setSelectedPlan(v)}
+          />
+          <Radio
+            name="plan"
+            value="vip"
+            label="VIP"
+            checked={selectedPlan === "vip"}
+            onChange={(v) => setSelectedPlan(v)}
+          />
+          <Radio
+            name="plan"
+            value="disabled"
+            label="Desativado"
+            disabled
+          />
+          <Radio
+            name="plan"
+            value="small"
+            label="Pequeno"
+            radioSize="small"
+            checked={selectedPlan === "small"}
+            onChange={(v) => setSelectedPlan(v)}
+          />
+        </div>
+      </section>
+
+      <section style={sectionStyle}>
+        <h3>Switchs</h3>
         <div style={divStyle}>
           <Switch
             label="Ativar notificações"
@@ -153,8 +192,54 @@ function App() {
         </div>
       </section>
 
+      <h2 style={h2Style}>Feedback Components</h2>
+
       <section style={sectionStyle}>
-        <h2>Modal</h2>
+        <h3>Alerts</h3>
+        <div style={divStyle}>
+          {/* Alerts Normais */}
+          <Alert variant="primary" />
+          <Alert variant="success" />
+
+          {/* Alert Warning com título customizado */}
+          <Alert
+            variant="warning"
+            title="Atenção!"
+          />
+
+          {/* Alert Destructive com Título e Descrição */}
+          <Alert
+            variant="destructive"
+            title="Erro ao salvar"
+            description="Ocorreu um problema ao salvar suas informações."
+          />
+
+          {/* Alert com texto customizado usando children */}
+          <Alert variant="default">
+            <div>ℹ Alert</div>
+          </Alert>
+        </div>
+      </section>
+
+      <section style={sectionStyle}>
+        <h3>Toast</h3>
+        <div style={divStyle}>
+          <Button variant="primary" onClick={() => setShowToast(true)}>
+            Mostrar Toast
+          </Button>
+          <Toast
+            message="Formulário enviado."
+            variant='success'
+            duration={3000}
+            visible={showToast}
+            onClose={() => setShowToast(false)}
+          />
+          <Toast message="Erro ao enviar formulário." variant='destructive' />
+        </div>
+      </section>
+
+      <section style={sectionStyle}>
+        <h3>Modal</h3>
         <div style={divStyle}>
 
           <Button variant="primary" onClick={() => setIsModalOpen(true)}>
@@ -170,14 +255,87 @@ function App() {
       </section>
 
       <section style={sectionStyle}>
-        <h2>Divider</h2>
+        <h3>Tooltips</h3>
+        <div style={divStyle}>
+          <Tooltip text="Clique para mais informações">
+            <Button variant="primary">Info</Button>
+          </Tooltip>
+        </div>
+      </section>
+
+      <section style={sectionStyle}>
+        <h3>Skeleton</h3>
+        <div style={divStyle}>
+          <Skeleton height="20px" width="150px" />
+
+          <Skeleton width="60px" height="40px" rounded />
+
+          <Skeleton width="60px" height="60px" circle />
+        </div>
+      </section>
+
+      <section style={sectionStyle}>
+        <h3>Spinner</h3>
+        <div style={divStyle}>
+          {/* Spinners básicos */}
+          <Spinner variant="primary" size="large" />
+          <Spinner variant="success" />
+          <Spinner variant="warning" size="small" />
+
+          {/* Spinner com texto */}
+          <Spinner variant="primary">
+            <p>Carregando dados...</p>
+          </Spinner>
+
+          {/* Spinner sem animação */}
+          <Spinner animated={false} />
+
+          {/* Spinner com largura e altura customizadas */}
+          <Spinner width={50} height={50} variant="secondary" />
+
+          {/* Spinner dentro de botões ou componentes compostos */}
+          <Button disabled>
+            <Spinner size="small" />
+            Processando...
+          </Button>
+        </div>
+      </section>
+
+      <h2 style={h2Style}>Layout Components</h2>
+
+      <section style={sectionStyle}>
+        <h3>Cards</h3>
+        <div style={divStyle}>
+          <Card />
+        </div>
+      </section>
+
+      <section style={sectionStyle}>
+        <h3>Badges</h3>
+        <div style={divStyle}>
+          {/* Bagges Normais */}
+          <Badge variant="primary" />
+          <Badge variant="secondary" />
+          <Badge variant="success" />
+          <Badge variant="destructive" />
+          <Badge variant="warning" />
+
+          {/* Badge com texto customizado */}
+          <Badge>
+            Badge
+          </Badge>
+        </div>
+      </section>
+
+      <section style={sectionStyle}>
+        <h3>Divider</h3>
         <div style={divStyle}>
           <Divider />
         </div>
       </section>
 
       <section style={sectionStyle}>
-        <h2>Tabs</h2>
+        <h3>Tabs</h3>
         <div style={divStyle}>
           <Tabs tabs={[
             { label: "Geral", content: <p>Conteúdo da aba Geral</p> },
@@ -187,16 +345,7 @@ function App() {
       </section>
 
       <section style={sectionStyle}>
-        <h2>Tooltips</h2>
-        <div style={divStyle}>
-          <Tooltip text="Clique para mais informações">
-            <Button variant="primary">Info</Button>
-          </Tooltip>
-        </div>
-      </section>
-
-      <section style={sectionStyle}>
-        <h2>Accordion</h2>
+        <h3>Accordion</h3>
         <div style={divStyle}>
           <Accordion items={[
             {
@@ -219,21 +368,21 @@ function App() {
       </section>
 
       <section style={sectionStyle}>
-        <h2>Typography</h2>
+        <h3>Typography</h3>
         <div style={divStyle}>
           <Typography variant="h1" weight="bold">
             Título Principal (H1)
           </Typography>
 
-          <Typography variant="h2" weight="bold">
-            Subtítulo Secundário (H2)
+          <Typography variant="h3" weight="bold">
+            Subtítulo Secundário (H3)
           </Typography>
 
           <Typography variant="text1">
             Este é um texto padrão utilizado em descrições ou parágrafos.
           </Typography>
 
-          <Typography variant="text2" color="var(--color-gray-default)">
+          <Typography variant="text2" color="var(--color-gray-500)">
             Texto de apoio ou descrição
           </Typography>
 
@@ -244,7 +393,7 @@ function App() {
       </section>
 
       <section style={sectionStyle}>
-        <h2>Avatar</h2>
+        <h3>Avatar</h3>
         <div style={divStyle}>
           <Avatar name="Nicolas Loffi" size="large" />
           <Avatar src="https://i.pravatar.cc/150?img=3" name="Lucas Souza" size="medium" />
@@ -253,7 +402,7 @@ function App() {
       </section>
 
       <section style={sectionStyle}>
-        <h2>Progress</h2>
+        <h3>Progress</h3>
         <div style={divStyle}>
           <Progress value={45} label="Carregando dados" variant="primary" showPercentage />
           <Progress value={75} label="Upload concluído" variant="success" size="large" />
@@ -263,7 +412,7 @@ function App() {
       </section>
 
       <section style={sectionStyle}>
-        <h2>Breadcrumb</h2>
+        <h3>Breadcrumb</h3>
         <div style={divStyle}>
           <Breadcrumb
             items={[
@@ -277,7 +426,7 @@ function App() {
       </section>
 
       <section style={sectionStyle}>
-        <h2>Pagination</h2>
+        <h3>Pagination</h3>
         <div style={divStyle}>
           <Pagination
             totalPages={5}
@@ -288,7 +437,7 @@ function App() {
       </section>
 
       <section style={sectionStyle}>
-        <h2>Stepper</h2>
+        <h3>Stepper</h3>
         <div style={divStyle}>
           <Stepper
             currentStep={1}
@@ -302,7 +451,7 @@ function App() {
       </section>
 
       <section style={sectionStyle}>
-        <h2>ProgressCircular</h2>
+        <h3>ProgressCircular</h3>
         <div style={divStyle}>
           <ProgressCircular value={65} variant="primary" />
           <ProgressCircular value={90} variant="success" />
@@ -313,14 +462,7 @@ function App() {
       </section>
 
       <section style={sectionStyle}>
-        <h2>Toast</h2>
-        <div style={divStyle}>
-          <Toast message="Erro ao enviar formulário." variant="destructive" />
-        </div>
-      </section>
-
-      <section style={sectionStyle}>
-        <h2>Badgegroup</h2>
+        <h3>Badgegroup</h3>
         <div style={divStyle}>
           <BadgeGroup maxVisible={3}>
             <Badge variant="primary">Saúde</Badge>
@@ -333,7 +475,7 @@ function App() {
       </section>
 
       <section style={sectionStyle}>
-        <h2>Tag</h2>
+        <h3>Tag</h3>
         <div style={divStyle}>
           <Tag variant="success">Aprovado</Tag>
           <Tag variant="destructive" closable onClose={() => alert("Removido!")}>
@@ -343,7 +485,7 @@ function App() {
       </section>
 
       <section style={sectionStyle}>
-        <h2>Dropdown</h2>
+        <h3>Dropdown</h3>
         <div style={divStyle}>
           <Dropdown label="Opções">
             <button>Perfil</button>
@@ -354,7 +496,7 @@ function App() {
       </section>
 
       <section style={sectionStyle}>
-        <h2>Select</h2>
+        <h3>Select</h3>
         <div style={divStyle}>
           <Select
             label="Selecione o plano"
@@ -372,7 +514,7 @@ function App() {
       </section>
 
       <section style={sectionStyle}>
-        <h2>Chip</h2>
+        <h3>Chip</h3>
         <div style={divStyle}>
           {/* Padrão */}
           <Chip label="Padrão" />
@@ -398,7 +540,7 @@ function App() {
       </section>
 
       <section style={sectionStyle}>
-        <h2>Slider</h2>
+        <h3>Slider</h3>
         <div style={divStyle}>
           <Slider defaultValue={30} onChange={(v) => console.log("Valor:", v)} />
           <Slider defaultValue={75} showValue={false} />
@@ -406,16 +548,7 @@ function App() {
       </section>
 
       <section style={sectionStyle}>
-        <h2>Spinner</h2>
-        <div style={divStyle}>
-          <Spinner variant="primary" size="large" />
-          <Spinner variant="success" />
-          <Spinner variant="warning" size="small" />
-        </div>
-      </section>
-
-      <section style={sectionStyle}>
-        <h2>Avatar Group</h2>
+        <h3>Avatar Group</h3>
         <div style={divStyle}>
           <AvatarGroup
             size="medium"
@@ -432,7 +565,7 @@ function App() {
       </section>
 
       <section style={sectionStyle}>
-        <h2>Calendar</h2>
+        <h3>Calendar</h3>
         <div style={divStyle}>
           <Calendar
             onSelect={(date) => console.log("Data selecionada:", date)}
@@ -441,74 +574,7 @@ function App() {
       </section>
 
       <section style={sectionStyle}>
-        <h2>Checkbox</h2>
-        <div style={divStyle}>
-          <Checkbox label="Padrão" />
-          <Checkbox label="Erro" error />
-          <Checkbox label="Sucesso" variant="success" />
-          <Checkbox label="Atenção" variant="warning" />
-          <Checkbox label="Destruído" variant="destructive" />
-          <Checkbox label="Pequeno" checkboxSize="small" />
-          <Checkbox label="Desabilitado" disabled />
-        </div>
-      </section>
-
-      <section style={sectionStyle}>
-        <h2>Radio</h2>
-        <div style={divStyle}>
-          <Radio
-            name="plan"
-            value="basic"
-            label="Básico"
-            checked={selectedPlan === "basic"}
-            onChange={(v) => setSelectedPlan(v)}
-          />
-          <Radio
-            name="plan"
-            value="pro"
-            label="Profissional"
-            checked={selectedPlan === "pro"}
-            onChange={(v) => setSelectedPlan(v)}
-          />
-          <Radio
-            name="plan"
-            value="vip"
-            label="VIP"
-            checked={selectedPlan === "vip"}
-            onChange={(v) => setSelectedPlan(v)}
-          />
-          <Radio name="plan" value="disabled" label="Desativado" disabled />
-          <Radio name="plan" value="small" label="Pequeno" radioSize="small" />
-        </div>
-      </section>
-
-      <section style={sectionStyle}>
-        <h2>Textarea</h2>
-        <div style={divStyle}>
-          <Textarea label="Descrição" placeholder="Digite uma descrição..." />
-
-          <Textarea
-            label="Observações"
-            size="large"
-            error
-            errorMessage="Campo obrigatório"
-          />
-        </div>
-      </section>
-
-      <section style={sectionStyle}>
-        <h2>Skeleton</h2>
-        <div style={divStyle}>
-          <Skeleton height="20px" width="150px" />
-
-          <Skeleton height="40px" rounded />
-
-          <Skeleton width="60px" height="60px" circle />
-        </div>
-      </section>
-
-      <section style={sectionStyle}>
-        <h2>TagInput</h2>
+        <h3>TagInput</h3>
         <div style={divStyle}>
           <TagInput
             label="Tags"
@@ -519,7 +585,7 @@ function App() {
       </section>
 
       <section style={sectionStyle}>
-        <h2>FileInput / FileUpload</h2>
+        <h3>FileInput / FileUpload</h3>
         <div style={divStyle}>
           <FileInput
             label="Envie um arquivo"
@@ -530,7 +596,7 @@ function App() {
       </section>
 
       <section style={sectionStyle}>
-        <h2>TooltipAdvanced</h2>
+        <h3>TooltipAdvanced</h3>
         <div style={divStyle}>
           <TooltipAdvanced text="Informação útil" position="right" delay={250}>
             <Button variant="primary">Hover aqui</Button>
@@ -543,7 +609,7 @@ function App() {
       </section>
 
       <section style={sectionStyle}>
-        <h2>Table</h2>
+        <h3>Table</h3>
         <div style={divStyle}>
           <Table
             striped
@@ -563,7 +629,7 @@ function App() {
       </section>
 
       <section style={{ position: "relative", height: 200 }}>
-        <h2>LoadingOverlay</h2>
+        <h3>LoadingOverlay</h3>
         <div style={divStyle}>
           <LoadingOverlay active={isLoading} message="Carregando dados..." />
           <p>Conteúdo da página</p>
@@ -575,7 +641,7 @@ function App() {
       </section>
 
       <section style={sectionStyle}>
-        <h2>DateRangePicker</h2>
+        <h3>DateRangePicker</h3>
         <div style={divStyle}>
           <DateRangePicker onChange={(range) => console.log(range)} />
         </div>

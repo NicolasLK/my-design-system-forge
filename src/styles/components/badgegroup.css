@@ -11,8 +11,8 @@
 
 /* Contador de mais (+x) */
 .badge-more {
-  background-color: color-mix(in srgb, var(--color-gray-default) 20%, white);
-  color: var(--color-gray-default);
+  background-color: color-mix(in srgb, var(--color-gray-500) 20%, white);
+  color: var(--color-gray-500);
   border-radius: var(--radius-full);
   padding: var(--space-1) var(--space-3);
   font-size: var(--font-text3-size);

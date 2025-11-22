@@ -9,25 +9,25 @@
   color: var(--color-white);
 }
 
-.badge-primary { 
-    background: var(--color-primary-default); 
+.badge-primary {
+  background: var(--color-primary-500);
 }
 
-.badge-secondary { 
-    background: var(--color-secondary-default); 
+.badge-secondary {
+  background: var(--color-secondary-500);
 }
 
-.badge-success { 
-    background: var(--color-success-default); 
+.badge-success {
+  background: var(--color-success-500);
 }
 
-.badge-destructive { 
-    background: var(--color-destructive-default); 
+.badge-destructive {
+  background: var(--color-destructive-500);
 }
 
-.badge-warning { 
-    background: var(--color-warning-default); 
-    color: var(--color-black); 
+.badge-warning {
+  background: var(--color-warning-500);
+  color: var(--color-black);
 }
 
 /* 🔁 Largura total */

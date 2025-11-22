@@ -3,7 +3,7 @@
    =========================== */
 
 .divider {
-  background-color: var(--color-gray-default);
+  background-color: var(--color-gray-500);
   flex-shrink: 0;
   border-radius: var(--radius-full);
 }
@@ -21,7 +21,7 @@
 
 /* Variantes */
 .divider-strong {
-  background-color: color-mix(in srgb, var(--color-gray-default) 85%, black);
+  background-color: color-mix(in srgb, var(--color-gray-500) 85%, black);
 }
 
 /* Espaçamentos */

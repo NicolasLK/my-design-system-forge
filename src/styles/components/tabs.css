@@ -13,7 +13,7 @@
 .tabs {
   display: flex;
   flex-wrap: wrap;
-  border-bottom: 2px solid var(--color-gray-default);
+  border-bottom: 2px solid var(--color-gray-500);
   gap: var(--space-2);
 }
 
@@ -25,18 +25,18 @@
   font-size: var(--font-text2-size);
   font-weight: var(--weight-medium);
   cursor: pointer;
-  color: var(--color-gray-default);
+  color: var(--color-gray-500);
   border-bottom: 2px solid transparent;
   transition: color 0.2s ease, border-color 0.2s ease;
 }
 
 .tab:hover {
-  color: var(--color-primary-default);
+  color: var(--color-primary-500);
 }
 
 .tab.active {
-  border-color: var(--color-primary-default);
-  color: var(--color-primary-default);
+  border-color: var(--color-primary-500);
+  color: var(--color-primary-500);
 }
 
 /* Conteúdo */

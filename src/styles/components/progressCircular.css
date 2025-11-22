@@ -22,7 +22,7 @@
 /* Círculo de fundo */
 .progress-bg {
   fill: none;
-  stroke: var(--color-gray-default);
+  stroke: var(--color-gray-500);
   opacity: 0.25;
 }
 
@@ -35,23 +35,23 @@
 
 /* 🎨 Variantes de cor */
 .progress-primary .progress-bar {
-  stroke: var(--color-primary-default);
+  stroke: var(--color-primary-500);
 }
 
 .progress-secondary .progress-bar {
-  stroke: var(--color-secondary-default);
+  stroke: var(--color-secondary-500);
 }
 
 .progress-success .progress-bar {
-  stroke: var(--color-success-default);
+  stroke: var(--color-success-500);
 }
 
 .progress-destructive .progress-bar {
-  stroke: var(--color-destructive-default);
+  stroke: var(--color-destructive-500);
 }
 
 .progress-warning .progress-bar {
-  stroke: var(--color-warning-default);
+  stroke: var(--color-warning-500);
 }
 
 /* 📊 Valor no centro */
@@ -65,28 +65,28 @@
 
 /* 🎨 Cores principais do progresso circular */
 .progress-primary {
-  --progress-color: var(--color-primary-default);
-  --text-color: var(--color-primary-default);
+  --progress-color: var(--color-primary-500);
+  --text-color: var(--color-primary-500);
 }
 
 .progress-success {
-  --progress-color: var(--color-success-default);
-  --text-color: var(--color-success-default);
+  --progress-color: var(--color-success-500);
+  --text-color: var(--color-success-500);
 }
 
 .progress-destructive {
-  --progress-color: var(--color-destructive-default);
-  --text-color: var(--color-destructive-default);
+  --progress-color: var(--color-destructive-500);
+  --text-color: var(--color-destructive-500);
 }
 
 .progress-secondary {
-  --progress-color: var(--color-secondary-default);
-  --text-color: var(--color-secondary-default);
+  --progress-color: var(--color-secondary-500);
+  --text-color: var(--color-secondary-500);
 }
 
 .progress-warning {
-  --progress-color: var(--color-warning-default);
-  --text-color: var(--color-warning-default);
+  --progress-color: var(--color-warning-500);
+  --text-color: var(--color-warning-500);
 }
 
 /* 🌈 Aplicação das variáveis */

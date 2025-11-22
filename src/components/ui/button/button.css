@@ -19,39 +19,39 @@
 
 /* 🎨 Variantes */
 .btn-primary {
-  background: var(--color-primary-default);
+  background: var(--color-primary-500);
   color: var(--color-white);
 }
 
 .btn-primary:hover:not(:disabled) {
-  background: color-mix(in srgb, var(--color-primary-default) 85%, black);
+  background: color-mix(in srgb, var(--color-primary-500) 85%, black);
 }
 
 .btn-secondary {
-  background: var(--color-secondary-default);
+  background: var(--color-secondary-500);
   color: var(--color-white);
 }
 
 .btn-secondary:hover:not(:disabled) {
-  background: color-mix(in srgb, var(--color-secondary-default) 85%, black);
+  background: color-mix(in srgb, var(--color-secondary-500) 85%, black);
 }
 
 .btn-success {
-  background: var(--color-success-default);
+  background: var(--color-success-500);
   color: var(--color-white);
 }
 
 .btn-success:hover:not(:disabled) {
-  background: color-mix(in srgb, var(--color-success-default) 85%, black);
+  background: color-mix(in srgb, var(--color-success-500) 85%, black);
 }
 
 .btn-destructive {
-  background: var(--color-destructive-default);
+  background: var(--color-destructive-500);
   color: var(--color-white);
 }
 
 .btn-destructive:hover:not(:disabled) {
-  background: color-mix(in srgb, var(--color-destructive-default) 85%, black);
+  background: color-mix(in srgb, var(--color-destructive-500) 85%, black);
 }
 
 /* 📏 Tamanhos */
@@ -80,8 +80,25 @@
 
 /* 🚫 Estado desabilitado */
 .btn:disabled {
-  opacity: 0.6;
   cursor: not-allowed;
+  background-color: color-mix(
+    in srgb,
+    var(--color-primary-500) 60%,
+    var(--color-white)
+  );
+  opacity: 1;
+  filter: grayscale(0.4);
+}
+
+.btn-with-icon {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.btn-with-icon > *:first-child {
+  display: inline-flex;
+  align-items: center;
 }
 
 /* 🔁 Largura total */

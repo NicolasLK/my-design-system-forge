@@ -23,7 +23,7 @@
   align-items: center;
   justify-content: space-between;
   padding: var(--space-2) var(--space-3);
-  border: 1px solid var(--color-gray-default);
+  border: 1px solid var(--color-gray-500);
   border-radius: var(--radius-md);
   background-color: var(--color-white);
   font-size: var(--font-text2-size);
@@ -33,12 +33,13 @@
 }
 
 .select-input:hover:not(:disabled) {
-  border-color: var(--color-primary-default);
+  border-color: var(--color-primary-500);
 }
 
 .select-input.open {
-  border-color: var(--color-primary-default);
-  box-shadow: 0 0 0 3px color-mix(in srgb, var(--color-primary-default) 20%, transparent);
+  border-color: var(--color-primary-500);
+  box-shadow: 0 0 0 3px
+    color-mix(in srgb, var(--color-primary-500) 20%, transparent);
 }
 
 /* --- Seta --- */
@@ -57,7 +58,7 @@
   left: 0;
   width: 100%;
   background-color: var(--color-white);
-  border: 1px solid var(--color-gray-default);
+  border: 1px solid var(--color-gray-500);
   border-radius: var(--radius-md);
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
   list-style: none;
@@ -70,7 +71,7 @@
   max-height: 180px;
   overflow-y: auto;
   scrollbar-width: thin;
-  scrollbar-color: var(--color-gray-default) var(--color-white);
+  scrollbar-color: var(--color-gray-500) var(--color-white);
 }
 
 /* Scrollbar custom (para navegadores baseados em WebKit) */
@@ -84,7 +85,7 @@
 }
 
 .select-menu::-webkit-scrollbar-thumb {
-  background-color: var(--color-gray-default);
+  background-color: var(--color-gray-500);
   border-radius: var(--radius-md);
 }
 
@@ -99,11 +100,11 @@
 }
 
 .select-option:hover {
-  background-color: color-mix(in srgb, var(--color-primary-default) 10%, white);
+  background-color: color-mix(in srgb, var(--color-primary-500) 10%, white);
 }
 
 .select-option.selected {
-  background-color: color-mix(in srgb, var(--color-primary-default) 20%, white);
+  background-color: color-mix(in srgb, var(--color-primary-500) 20%, white);
   font-weight: var(--weight-medium);
 }
 

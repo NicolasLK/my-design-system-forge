@@ -6,7 +6,7 @@
   width: 100%;
   display: block;
   font-family: var(--font-family-base);
-  color: var(--color-gray-default);
+  color: var(--color-gray-500);
 }
 
 .breadcrumb-list {
@@ -27,7 +27,7 @@
 }
 
 .breadcrumb-link {
-  color: var(--color-primary-default);
+  color: var(--color-primary-500);
   text-decoration: none;
   transition: color 0.2s ease;
 }
@@ -43,7 +43,7 @@
 
 .breadcrumb-separator {
   margin: 0 var(--space-1);
-  color: var(--color-gray-default);
+  color: var(--color-gray-500);
   user-select: none;
 }
 
