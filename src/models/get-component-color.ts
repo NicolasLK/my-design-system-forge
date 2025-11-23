@@ -7,6 +7,7 @@ export type ComponentColor =
     | "destructive"
     | "info"
     | "default"
+    | "neutral"
     | string;
 
 /**

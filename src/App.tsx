@@ -71,22 +71,58 @@ function App() {
       <h2>Base Essentials Components</h2>
       <section className="u-mt-4">
         <h3>Botões</h3>
-        <div className="u-flex u-flex-wrap u-gap-4">
-          {/* Botões Normais */}
-          <Button variant="primary" className="u-text-transform-capitalize">primary</Button>
-          <Button variant="secondary" className="u-text-transform-capitalize">secondary</Button>
-          <Button variant="success" className="u-text-transform-capitalize">success</Button>
-          <Button variant="destructive" className="u-text-transform-capitalize">destructive</Button>
+        <div className="u-flex u-flex-col u-gap-4">
+          {/* Sólidos (Default Visual Variant) */}
+          <h3 className="u-mt-6 u-mb-3">1. Cores Sólidas (Default)</h3>
+          <div className="u-flex u-flex-wrap u-gap-3">
+            <Button colorVariant="primary" className="u-text-transform-capitalize">primary</Button>
+            <Button colorVariant="secondary" className="u-text-transform-capitalize">secondary</Button>
+            <Button colorVariant="tertiary" className="u-text-transform-capitalize">tertiary</Button>
+            <Button colorVariant="success" className="u-text-transform-capitalize">success</Button>
+            <Button colorVariant="warning" className="u-text-transform-capitalize">warning</Button>
+            <Button colorVariant="destructive" className="u-text-transform-capitalize">destructive</Button>
+            <Button colorVariant="neutral" className="u-text-transform-capitalize">neutral</Button>
+          </div>
 
-          {/* Botão com texto customizado */}
-          <Button variant="primary">
-            Salvar Alterações
-          </Button>
+          {/* Variantes Visuais (Outline) */}
+          <h3 className="u-mt-6 u-mb-3">2. Variante Outline</h3>
+          <div className="u-flex u-flex-wrap u-gap-3">
+            <Button colorVariant="primary" visualVariant="outline">Primary Outline</Button>
+            <Button colorVariant="secondary" visualVariant="outline">Secondary Outline</Button>
+            <Button colorVariant="destructive" visualVariant="outline">Destructive Outline</Button>
+            <Button colorVariant="neutral" visualVariant="outline">Neutral Outline</Button>
+          </div>
 
-          {/* Botão Desabilitado */}
-          <Button disabled>
-            Primary
-          </Button>
+          {/* Tamanhos */}
+          <h3 className="u-mt-6 u-mb-3">3. Tamanhos e Iconografia</h3>
+          <div className="u-flex u-items-end u-flex-wrap u-gap-3">
+            <Button colorVariant="primary" size="small">Small (sm)</Button>
+            <Button colorVariant="primary" size="medium">Medium (default)</Button>
+            <Button colorVariant="primary" size="large">Large (lg)</Button>
+
+            <Button disabled>
+              <Spinner size="small" />
+              Processando...
+            </Button>
+          </div>
+
+          {/* Estados  */}
+          <h3 className="u-mt-6 u-mb-3">4. Estados (Desabilitado e Ação)</h3>
+          <div className="u-flex u-flex-wrap u-gap-3">
+            {/* Botão Desabilitado Sólido */}
+            <Button colorVariant="primary" disabled>
+              Ação Primária (Disabled)
+            </Button>
+            {/* Botão Desabilitado Outline */}
+            <Button colorVariant="destructive" visualVariant="outline" disabled>
+              Excluir (Disabled)
+            </Button>
+
+            {/* Botão com texto customizado */}
+            <Button>
+              Salvar Alterações
+            </Button>
+          </div>
         </div>
       </section>
 
@@ -224,7 +260,7 @@ function App() {
       <section style={sectionStyle}>
         <h3>Toast</h3>
         <div style={divStyle}>
-          <Button variant="primary" onClick={() => setShowToast(true)}>
+          <Button colorVariant="primary" onClick={() => setShowToast(true)}>
             Mostrar Toast
           </Button>
           <Toast
@@ -242,7 +278,7 @@ function App() {
         <h3>Modal</h3>
         <div style={divStyle}>
 
-          <Button variant="primary" onClick={() => setIsModalOpen(true)}>
+          <Button colorVariant="primary" onClick={() => setIsModalOpen(true)}>
             Abrir Modal
           </Button>
           <Modal
@@ -258,7 +294,7 @@ function App() {
         <h3>Tooltips</h3>
         <div style={divStyle}>
           <Tooltip text="Clique para mais informações">
-            <Button variant="primary">Info</Button>
+            <Button colorVariant="primary">Info</Button>
           </Tooltip>
         </div>
       </section>
@@ -374,8 +410,12 @@ function App() {
             Título Principal (H1)
           </Typography>
 
+          <Typography variant="h2" weight="bold">
+            Subtítulo Secundário (H2)
+          </Typography>
+
           <Typography variant="h3" weight="bold">
-            Subtítulo Secundário (H3)
+            Subtítulo Terciário (H3)
           </Typography>
 
           <Typography variant="text1">
@@ -599,11 +639,11 @@ function App() {
         <h3>TooltipAdvanced</h3>
         <div style={divStyle}>
           <TooltipAdvanced text="Informação útil" position="right" delay={250}>
-            <Button variant="primary">Hover aqui</Button>
+            <Button colorVariant="primary">Hover aqui</Button>
           </TooltipAdvanced>
 
           <TooltipAdvanced text="Clique para abrir" trigger="click">
-            <Button variant="secondary">Click Tooltip</Button>
+            <Button colorVariant="secondary">Click Tooltip</Button>
           </TooltipAdvanced>
         </div>
       </section>
@@ -634,7 +674,7 @@ function App() {
           <LoadingOverlay active={isLoading} message="Carregando dados..." />
           <p>Conteúdo da página</p>
 
-          <Button variant="primary" onClick={() => setIsLoading(true)}>
+          <Button colorVariant="primary" onClick={() => setIsLoading(true)}>
             Ativar Loading
           </Button>
         </div>

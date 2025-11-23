@@ -1,15 +1,20 @@
 import type { ButtonHTMLAttributes, ReactNode } from 'react'
-import './button.css'
-import { getComponentSize, type ComponentSize } from '../../../models/get-component-size'
-import { getComponentColor, type ComponentColor } from '../../../models/get-component-color'
-import { cn } from '../../../lib/utils/cn'
+import { getComponentSize, type ComponentSize } from '@/models/get-component-size'
+import { getComponentColor, type ComponentColor } from '@/models/get-component-color'
+import { getComponentVariant, type ComponentVariant } from '@/models/get-component-variant'
 import { isIconElement } from '@/models/is-icon-element'
+import { cn } from '../../../lib/utils/cn'
+import './button.css'
+
 
 type ButtonVariant = ComponentColor
+type ButtonVisual = ComponentVariant;
 
 interface IButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
     // A variante define a classe CSS e o texto.
-    variant?: ButtonVariant
+    colorVariant?: ButtonVariant
+    // A variante visual (default/sólido é o padrão)
+    visualVariant?: ButtonVisual
     // A prop para odefinir o tamanho. 'medium' será o padrão.
     size?: ComponentSize
     // Opcional: define se o botão deve estar desabilitado
@@ -21,7 +26,8 @@ interface IButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 }
 
 export const Button = ({
-    variant = 'primary',
+    colorVariant = 'primary',
+    visualVariant = 'default',
     size = 'medium',
     disabled = false,
     fullWidth = false,
@@ -30,11 +36,23 @@ export const Button = ({
     ...props
 }: IButtonProps) => {
 
-    const colorClass = getComponentColor(variant, "btn")
+    /**
+     * Classe de Cor (ex: btn-primary)
+     */
+    const colorClass = getComponentColor(colorVariant, "btn")
+
+    /**
+     * Classe visual: default (solid), outline, ghost, text
+     */
+    const visualClass = getComponentVariant(visualVariant, "btn");
+
+    /**
+     * Classe de Tamanho (ex: btn-sm)
+     */
     const sizeClass = getComponentSize(size, "btn")
 
     /**
-     * Converte children para array
+     * Verifica se o primeiro child é ícone
      */
     const content = Array.isArray(children) ? children : [children];
 
@@ -46,6 +64,7 @@ export const Button = ({
     const buttonClasses = cn(
         'btn',
         colorClass,
+        visualClass,
         sizeClass,
         hasIcon && "btn-with-icon",
         fullWidth && "btn-full",

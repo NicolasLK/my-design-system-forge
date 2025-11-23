@@ -20,8 +20,6 @@ body {
   color: var(--color-black);
   background-color: var(--color-white);
   line-height: var(--line-height-text1);
-
-  /* substituído por utilities */
   padding: var(--space-4);
 }
 
