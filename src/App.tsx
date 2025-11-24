@@ -15,7 +15,7 @@ import { Skeleton } from '@/components/ui/skeleton'
 import { Spinner } from '@/components/ui/spinner'
 //================================
 // ==== Components - Layout ====
-import { Card } from './components/Card'
+import { Card } from '@/components/ui/card'
 import { Badge } from './components/Badge'
 import { useState } from 'react'
 import { Divider } from './components/Divider'
@@ -342,7 +342,21 @@ function App() {
       <section style={sectionStyle}>
         <h3>Cards</h3>
         <div style={divStyle}>
-          <Card />
+          <Card.Root>
+            <Card.Header>
+              <Card.Title>Informações do Usuário</Card.Title>
+              <Card.Description>Dados atualizados automaticamente.</Card.Description>
+            </Card.Header>
+
+            <Card.Content>
+              <p>Email: usuario@exemplo.com</p>
+              <p>Status: Ativo</p>
+            </Card.Content>
+
+            <Card.Footer>
+              <Button colorVariant="primary" size="small">Ação</Button>
+            </Card.Footer>
+          </Card.Root>
         </div>
       </section>
 
