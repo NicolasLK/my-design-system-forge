@@ -6,34 +6,40 @@
   background-color: var(--color-gray-500);
   flex-shrink: 0;
   border-radius: var(--radius-full);
+  opacity: 1;
+  transition: opacity 0.2s ease;
 }
 
 /* Orientações */
-.divider-horizontal {
+.divider[data-orientation="horizontal"] {
   width: 100%;
   height: 1px;
 }
 
-.divider-vertical {
+.divider[data-orientation="vertical"] {
   width: 1px;
   height: 100%;
 }
 
 /* Variantes */
-.divider-strong {
-  background-color: color-mix(in srgb, var(--color-gray-500) 85%, black);
+.divider[data-variant="strong"] {
+  background-color: color-mix(
+    in srgb,
+    var(--color-gray-500) 85%,
+    var(--color-black)
+  );
 }
 
 /* Espaçamentos */
-.divider-small {
+.divider[data-spacing="small"] {
   margin: var(--space-2) 0;
 }
 
-.divider-medium {
+.divider[data-spacing="medium"] {
   margin: var(--space-4) 0;
 }
 
-.divider-large {
+.divider[data-spacing="large"] {
   margin: var(--space-6) 0;
 }
 

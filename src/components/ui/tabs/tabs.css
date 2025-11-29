@@ -2,41 +2,42 @@
    🧭 Tabs
    =========================== */
 
-.tabs-container {
-  width: 100%;
+.tabs-root {
   display: flex;
   flex-direction: column;
   gap: var(--space-3);
+  width: 100%;
 }
 
-/* Cabeçalho de abas */
-.tabs {
+/* Lista de abas */
+.tabs-list {
   display: flex;
   flex-wrap: wrap;
-  border-bottom: 2px solid var(--color-gray-500);
+  border-bottom: 2px solid var(--color-gray-300);
   gap: var(--space-2);
+  padding-bottom: var(--space-1);
 }
 
-.tab {
+/* Aba */
+.tabs-trigger {
   background: transparent;
   border: none;
-  outline: none;
   padding: var(--space-2) var(--space-3);
   font-size: var(--font-text2-size);
   font-weight: var(--weight-medium);
   cursor: pointer;
-  color: var(--color-gray-500);
+  color: var(--color-gray-600);
   border-bottom: 2px solid transparent;
   transition: color 0.2s ease, border-color 0.2s ease;
 }
 
-.tab:hover {
+.tabs-trigger:hover {
   color: var(--color-primary-500);
 }
 
-.tab.active {
-  border-color: var(--color-primary-500);
-  color: var(--color-primary-500);
+.tabs-trigger[data-state="active"] {
+  color: var(--color-primary-600);
+  border-bottom-color: var(--color-primary-500);
 }
 
 /* Conteúdo */
@@ -44,18 +45,18 @@
   padding: var(--space-4) 0;
   font-size: var(--font-text2-size);
   line-height: var(--line-height-text2);
-  color: var(--color-black);
+  color: var(--color-gray-900);
 }
 
 /* 📱 Responsividade */
 @media (max-width: var(--screen-sm)) {
-  .tabs {
+  .tabs-list {
     gap: var(--space-1);
     overflow-x: auto;
     scrollbar-width: none;
   }
 
-  .tab {
+  .tabs-trigger {
     font-size: clamp(0.75rem, 1vw, 0.875rem);
     padding: var(--space-1) var(--space-2);
   }

@@ -332,17 +332,186 @@
 }
 
 /* ----- WIDTH & HEIGHT ----- */
+/* WIDTH — valores básicos */
+.u-w-0 {
+  width: 0;
+}
+.u-w-px {
+  width: 1px;
+}
+.u-w-1 {
+  width: var(--space-1);
+}
+.u-w-2 {
+  width: var(--space-2);
+}
+.u-w-3 {
+  width: var(--space-3);
+}
+.u-w-4 {
+  width: var(--space-4);
+}
+.u-w-5 {
+  width: var(--space-5);
+}
+.u-w-6 {
+  width: var(--space-6);
+}
+.u-w-8 {
+  width: var(--space-8);
+}
+.u-w-10 {
+  width: var(--space-10);
+}
+
 .u-w-full {
   width: 100%;
-}
-.u-h-full {
-  height: 100%;
 }
 .u-w-auto {
   width: auto;
 }
+
+/* WIDTH — percentuais */
+.u-w-1\/2 {
+  width: 50%;
+}
+.u-w-1\/3 {
+  width: 33.333%;
+}
+.u-w-2\/3 {
+  width: 66.666%;
+}
+.u-w-1\/4 {
+  width: 25%;
+}
+.u-w-2\/4 {
+  width: 50%;
+}
+.u-w-3\/4 {
+  width: 75%;
+}
+.u-w-1\/5 {
+  width: 20%;
+}
+.u-w-2\/5 {
+  width: 40%;
+}
+.u-w-3\/5 {
+  width: 60%;
+}
+.u-w-4\/5 {
+  width: 80%;
+}
+.u-w-1\/6 {
+  width: 16.666%;
+}
+.u-w-5\/6 {
+  width: 83.333%;
+}
+
+/* WIDTH — min e max */
+.u-min-w-0 {
+  min-width: 0;
+}
+.u-min-w-full {
+  min-width: 100%;
+}
+.u-max-w-none {
+  max-width: none;
+}
+.u-max-w-full {
+  max-width: 100%;
+}
+
+/* HEIGHT — valores básicos */
+.u-h-0 {
+  height: 0;
+}
+.u-h-px {
+  height: 1px;
+}
+.u-h-1 {
+  height: var(--space-1);
+}
+.u-h-2 {
+  height: var(--space-2);
+}
+.u-h-3 {
+  height: var(--space-3);
+}
+.u-h-4 {
+  height: var(--space-4);
+}
+.u-h-5 {
+  height: var(--space-5);
+}
+.u-h-6 {
+  height: var(--space-6);
+}
+.u-h-8 {
+  height: var(--space-8);
+}
+.u-h-10 {
+  height: var(--space-10);
+}
+
+.u-h-full {
+  height: 100%;
+}
 .u-h-auto {
   height: auto;
+}
+
+/* HEIGHT — percentuais */
+.u-h-1\/2 {
+  height: 50%;
+}
+.u-h-1\/3 {
+  height: 33.333%;
+}
+.u-h-2\/3 {
+  height: 66.666%;
+}
+.u-h-1\/4 {
+  height: 25%;
+}
+.u-h-2\/4 {
+  height: 50%;
+}
+.u-h-3\/4 {
+  height: 75%;
+}
+.u-h-1\/5 {
+  height: 20%;
+}
+.u-h-2\/5 {
+  height: 40%;
+}
+.u-h-3\/5 {
+  height: 60%;
+}
+.u-h-4\/5 {
+  height: 80%;
+}
+.u-h-1\/6 {
+  height: 16.666%;
+}
+.u-h-5\/6 {
+  height: 83.333%;
+}
+
+/* HEIGHT — min e max */
+.u-min-h-0 {
+  min-height: 0;
+}
+.u-min-h-full {
+  min-height: 100%;
+}
+.u-max-h-none {
+  max-height: none;
+}
+.u-max-h-full {
+  max-height: 100%;
 }
 
 /* ----- TEXT ----- */

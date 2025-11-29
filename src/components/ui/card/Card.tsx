@@ -1,7 +1,6 @@
 import type { ComponentProps } from 'react'
-import './card.css'
 import { cn } from '@/lib/utils/cn'
-
+import './card.css'
 
 interface ICardProps extends ComponentProps<"div"> {
     // Opcional: fullWidth programatico.

@@ -1,6 +1,6 @@
 import type { ReactNode } from 'react'
-import './../styles/components/badge.css'
-import { getComponentColor } from '../models/get-component-color'
+import './badge.css'
+import { getComponentColor } from '@/models/get-component-color'
 
 type BadgeVariant = 'primary' | 'secondary' | 'success' | 'destructive' | 'warning'
 

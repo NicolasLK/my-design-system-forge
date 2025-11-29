@@ -1,3 +1,4 @@
+import { useState } from 'react'
 // ==== Components - Base Essentials ====
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
@@ -16,11 +17,10 @@ import { Spinner } from '@/components/ui/spinner'
 //================================
 // ==== Components - Layout ====
 import { Card } from '@/components/ui/card'
-import { Badge } from './components/Badge'
-import { useState } from 'react'
-import { Divider } from './components/Divider'
-import { Tabs } from './components/Tabs'
+import { Divider } from '@/components/ui/divider'
+import { Tabs } from '@/components/ui/tabs'
 import { Accordion } from './components/Accordion'
+import { Badge } from '@/components/ui/badge'
 import { Typography } from './components/Typography'
 import { Avatar } from './components/Avatar'
 import { Progress } from './components/Progress'
@@ -58,10 +58,11 @@ const divStyle = {
 }
 
 function App() {
-  const [isModalOpen, setIsModalOpen] = useState(false)
-  const [isLoading, setIsLoading] = useState(false)
-  const [selectedPlan, setSelectedPlan] = useState("")
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  const [selectedPlan, setSelectedPlan] = useState("");
   const [showToast, setShowToast] = useState(false);
+  const [active, setActive] = useState("tab1")
 
 
   return (
@@ -361,6 +362,56 @@ function App() {
       </section>
 
       <section style={sectionStyle}>
+        <h3>Divider</h3>
+        <div className="u-flex u-flex-col u-gap-4">
+
+          {/* Default (horizontal) */}
+          <Divider />
+
+          {/* Vertical */}
+          <div className="u-flex u-h-5 u-items-center u-gap-4">
+            <span>Item A</span>
+            <Divider orientation="vertical" />
+            <span>Item B</span>
+          </div>
+
+          {/* Strong (mais contrastado) */}
+          <Divider variant="strong" />
+
+          {/* Inserindo espaçamentos */}
+          <Divider spacing="large" />
+
+          {/* Divider não-decorativo (acessível) */}
+          <Divider decorative={false} />
+        </div>
+      </section>
+
+      <section style={sectionStyle}>
+        <h3>Tabs</h3>
+        <div style={divStyle}>
+          <Tabs.Root>
+            <Tabs.List>
+              <Tabs.Trigger value="tab1" isActive={active === "tab1"} onSelect={setActive}>
+                Geral
+              </Tabs.Trigger>
+
+              <Tabs.Trigger value="tab2" isActive={active === "tab2"} onSelect={setActive}>
+                Configurações
+              </Tabs.Trigger>
+            </Tabs.List>
+
+            <Tabs.Content value="tab1" activeValue={active}>
+              <p>Conteúdo da aba Geral</p>
+            </Tabs.Content>
+
+            <Tabs.Content value="tab2" activeValue={active}>
+              <p>Conteúdo da aba de Configurações</p>
+            </Tabs.Content>
+          </Tabs.Root>
+        </div>
+      </section>
+
+      <section style={sectionStyle}>
         <h3>Badges</h3>
         <div style={divStyle}>
           {/* Bagges Normais */}
@@ -374,23 +425,6 @@ function App() {
           <Badge>
             Badge
           </Badge>
-        </div>
-      </section>
-
-      <section style={sectionStyle}>
-        <h3>Divider</h3>
-        <div style={divStyle}>
-          <Divider />
-        </div>
-      </section>
-
-      <section style={sectionStyle}>
-        <h3>Tabs</h3>
-        <div style={divStyle}>
-          <Tabs tabs={[
-            { label: "Geral", content: <p>Conteúdo da aba Geral</p> },
-            { label: "Configurações", content: <p>Conteúdo da aba Configurações</p> },
-          ]} />
         </div>
       </section>
 
