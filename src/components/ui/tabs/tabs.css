@@ -26,8 +26,14 @@
   font-size: var(--font-text2-size);
   font-weight: var(--weight-medium);
   cursor: pointer;
+
   color: var(--color-gray-600);
   border-bottom: 2px solid transparent;
+
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+
   transition: color 0.2s ease, border-color 0.2s ease;
 }
 
@@ -40,12 +46,61 @@
   border-bottom-color: var(--color-primary-500);
 }
 
-/* Conteúdo */
-.tab-content {
+.tabs-trigger-icon {
+  display: flex;
+  align-items: center;
+}
+
+/* Conteúdo + Animações */
+.tabs-content {
+  position: relative;
+  width: 100%;
   padding: var(--space-4) 0;
+
   font-size: var(--font-text2-size);
   line-height: var(--line-height-text2);
+
   color: var(--color-gray-900);
+  opacity: 1;
+  transform: none;
+  filter: none;
+
+  transition: opacity 0.25s ease, transform 0.25s ease, filter 0.25s ease;
+}
+
+/* Conteúdo INATIVO (sem animação) */
+.tabs-content[data-active="false"] {
+  position: absolute;
+  top: 0;
+  left: 0;
+
+  width: 100%;
+
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* Fade */
+.tabs-content[data-animation="fade"][data-active="false"] {
+  opacity: 0;
+}
+
+/* Slide */
+.tabs-content[data-animation="slide"][data-active="false"] {
+  opacity: 0;
+  transform: translateX(10px);
+}
+
+/* Scale */
+.tabs-content[data-animation="scale"][data-active="false"] {
+  opacity: 0;
+  transform: scale(0.96);
+}
+
+/* Dissolve (Fade + blur) */
+.tabs-content[data-animation="dissolve"][data-active="false"] {
+  opacity: 0;
+  filter: blur(6px);
 }
 
 /* 📱 Responsividade */

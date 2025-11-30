@@ -4,10 +4,10 @@
 
 .accordion {
   width: 100%;
-  border-radius: var(--radius-md);
   display: flex;
   flex-direction: column;
   gap: var(--space-3);
+  // border-radius: var(--radius-md);
 }
 
 /* 🧱 Item base */
@@ -16,34 +16,41 @@
   border-radius: var(--radius-md);
   background-color: var(--color-white);
   overflow: hidden;
-  transition: box-shadow 0.2s ease;
+  transition: box-shadow 0.25s ease;
 }
 
-.accordion-item.open {
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.08);
+.accordion-item[data-state="open"] {
+  box-shadow: var(--shadow-md);
 }
 
-/* 🎯 Cabeçalho */
-.accordion-header {
+/* 🧩 Trigger */
+.accordion-trigger {
   width: 100%;
   background: none;
   border: none;
   outline: none;
+
   display: flex;
   align-items: center;
   justify-content: space-between;
+
   cursor: pointer;
+
   padding: var(--space-3) var(--space-4);
-  color: var(--color-black);
-  font-family: var(--font-family-base);
+
   font-size: var(--font-text1-size);
-  line-height: var(--line-height-text1);
   font-weight: var(--weight-medium);
+
+  color: var(--color-gray-900);
   transition: background-color 0.2s ease;
 }
 
-.accordion-header:hover {
-  background-color: color-mix(in srgb, var(--color-gray-500) 12%, white);
+.accordion-trigger:hover {
+  background-color: color-mix(
+    in srgb,
+    var(--color-gray-500) 12%,
+    var(--color-white)
+  );
 }
 
 /* ➕ Ícone */
@@ -51,36 +58,59 @@
   font-size: 1.25rem;
   line-height: 1;
   font-weight: var(--weight-bold);
-  color: var(--color-gray-500);
-  transition: transform 0.2s ease, color 0.2s ease;
+  color: var(--color-gray-600);
+  transition: transform 0.25s ease, color 0.25s ease;
 }
 
-.accordion-item.open .accordion-icon {
-  color: var(--color-primary-500);
+.accordion-trigger[data-state="open"] .accordion-icon {
   transform: rotate(180deg);
+  color: var(--color-primary-500);
 }
 
-/* 📜 Conteúdo */
+/* 📜 Conteúdo + Animações*/
 .accordion-content {
   max-height: 0;
   overflow: hidden;
-  transition: max-height 0.3s ease, opacity 0.2s ease;
   opacity: 0;
-  background-color: var(--color-white);
+  transition: max-height 0.25s ease, opacity 0.2s ease;
 }
 
-.accordion-item.open .accordion-content {
-  max-height: 500px; /* valor suficiente para exibir conteúdo */
-  opacity: 1;
-}
-
-/* ✍️ Texto interno */
-.accordion-text {
+.accordion-content-inner {
   padding: 0 var(--space-4) var(--space-4);
   font-size: var(--font-text2-size);
+  color: var(--color-gray-700);
   line-height: var(--line-height-text2);
-  color: var(--color-gray-500);
-  margin-top: 1rem;
+}
+
+/* Animações */
+@keyframes accordion-down {
+  from {
+    max-height: 0;
+    opacity: 0;
+  }
+  to {
+    max-height: 500px;
+    opacity: 1;
+  }
+}
+
+@keyframes accordion-up {
+  from {
+    max-height: 500px;
+    opacity: 1;
+  }
+  to {
+    max-height: 0;
+    opacity: 0;
+  }
+}
+
+.accordion-content[data-state="open"] {
+  animation: accordion-down 0.3s ease forwards;
+}
+
+.accordion-content[data-state="closed"] {
+  animation: accordion-up 0.25s ease forwards;
 }
 
 /* 📱 Responsividade */

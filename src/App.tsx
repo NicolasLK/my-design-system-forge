@@ -19,7 +19,10 @@ import { Spinner } from '@/components/ui/spinner'
 import { Card } from '@/components/ui/card'
 import { Divider } from '@/components/ui/divider'
 import { Tabs } from '@/components/ui/tabs'
-import { Accordion } from './components/Accordion'
+import { Accordion } from '@/components/ui/accordion'
+//==============================
+// ==== Components - Advanced Forms ====
+//======================================
 import { Badge } from '@/components/ui/badge'
 import { Typography } from './components/Typography'
 import { Avatar } from './components/Avatar'
@@ -42,6 +45,8 @@ import { TooltipAdvanced } from './components/TooltipAdvanced'
 import { Table } from './components/Table'
 import { LoadingOverlay } from './components/LoadingOverlay'
 import { DateRangePicker } from './components/DateRangePicker'
+import { useTabs } from './models/hooks/useTabs'
+import { useAccordion } from './models/hooks/useAccordion'
 
 const sectionStyle = {
   marginTop: "2rem"
@@ -58,11 +63,30 @@ const divStyle = {
 }
 
 function App() {
+  // ==== Estados ====
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [selectedPlan, setSelectedPlan] = useState("");
   const [showToast, setShowToast] = useState(false);
-  const [active, setActive] = useState("tab1")
+  //==================
+
+  // ==== Hooks ====
+  const { active, setActive, isActive } = useTabs("tab1") // Tabs
+  const { isOpen, toggle } = useAccordion(["item-1"]) // Accordion
+  //================
+
+  // ==== Functions ====
+  // const singleToggle = (value: string) => {
+  //   if (isOpen(value)) {
+  //     toggle(value)          // fecha tudo
+  //   } else {
+  //     // abre somente um
+  //     toggle(value)
+  //     openItems.splice(0, openItems.length, value)
+  //   }
+  // }
+  //====================
+
 
 
   return (
@@ -391,23 +415,90 @@ function App() {
         <div style={divStyle}>
           <Tabs.Root>
             <Tabs.List>
-              <Tabs.Trigger value="tab1" isActive={active === "tab1"} onSelect={setActive}>
+              <Tabs.Trigger
+                value="tab1"
+                isActive={isActive("tab1")}
+                onSelect={setActive}
+              >
                 Geral
               </Tabs.Trigger>
 
-              <Tabs.Trigger value="tab2" isActive={active === "tab2"} onSelect={setActive}>
+              <Tabs.Trigger
+                value="tab2"
+                isActive={isActive("tab2")}
+                onSelect={setActive}
+              >
                 Configurações
+              </Tabs.Trigger>
+
+              <Tabs.Trigger
+                value="tab3"
+                isActive={isActive("tab3")}
+                onSelect={setActive}
+              >
+                Usuário
               </Tabs.Trigger>
             </Tabs.List>
 
-            <Tabs.Content value="tab1" activeValue={active}>
-              <p>Conteúdo da aba Geral</p>
+            <Tabs.Content
+              value="tab1"
+              activeValue={active}
+              animation="scale"
+            >
+              Conteúdo geral
             </Tabs.Content>
 
-            <Tabs.Content value="tab2" activeValue={active}>
-              <p>Conteúdo da aba de Configurações</p>
+            <Tabs.Content
+              value="tab2"
+              activeValue={active}
+              animation="fade"
+            >
+              Configurações do sistema
+            </Tabs.Content>
+
+            <Tabs.Content
+              value="tab3"
+              activeValue={active}
+              animation="slide"
+            >
+              Configurações do usuário
             </Tabs.Content>
           </Tabs.Root>
+        </div>
+      </section>
+
+      <section style={sectionStyle}>
+        <h3>Accordion</h3>
+        <div style={divStyle}>
+          <Accordion.Root>
+            {/* ITEM 1 */}
+            <Accordion.Item value="item-1" open={isOpen("item-1")}>
+              <Accordion.Trigger
+                open={isOpen("item-1")}
+                onToggle={() => toggle("item-1")}
+              >
+                Geral
+              </Accordion.Trigger>
+
+              <Accordion.Content open={isOpen("item-1")}>
+                Conteúdo da aba geral controlado via hook.
+              </Accordion.Content>
+            </Accordion.Item>
+
+            {/* ITEM 2 */}
+            <Accordion.Item value="item-2" open={isOpen("item-2")}>
+              <Accordion.Trigger
+                open={isOpen("item-2")}
+                onToggle={() => toggle("item-2")}
+              >
+                Configurações
+              </Accordion.Trigger>
+
+              <Accordion.Content open={isOpen("item-2")}>
+                Configurações técnicas controladas via hook.
+              </Accordion.Content>
+            </Accordion.Item>
+          </Accordion.Root>
         </div>
       </section>
 
@@ -425,29 +516,6 @@ function App() {
           <Badge>
             Badge
           </Badge>
-        </div>
-      </section>
-
-      <section style={sectionStyle}>
-        <h3>Accordion</h3>
-        <div style={divStyle}>
-          <Accordion items={[
-            {
-              title: "O que é a plataforma?",
-              content:
-                "Nossa plataforma de telessaúde conecta profissionais e pacientes de forma prática, segura e online.",
-            },
-            {
-              title: "Como realizo o cadastro?",
-              content:
-                "Você pode se cadastrar com seu e-mail e confirmar a conta via link enviado automaticamente.",
-            },
-            {
-              title: "Posso integrar outros serviços?",
-              content:
-                "Sim. A plataforma possui integrações com Stripe, Memed e Webex para garantir fluxo completo.",
-            },
-          ]} />
         </div>
       </section>
 

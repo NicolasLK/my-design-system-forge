@@ -16,6 +16,8 @@ export const TabsRoot = ({
         <>
             <div
                 data-slot="tabs"
+                role="tablist"
+                aria-orientation="horizontal"
                 className={cn("tabs-root", className)}
                 {...props}
             />
@@ -52,6 +54,7 @@ interface ITabsTriggerProps {
     onSelect?: (value: string) => void
     className?: string
     children?: ReactNode
+    icon?: ReactNode
     disabled?: boolean
 }
 
@@ -61,19 +64,30 @@ export const TabsTrigger = ({
     isActive,
     onSelect,
     children,
+    icon,
+    disabled,
     ...props
 }: ITabsTriggerProps) => {
 
     return (
         <>
             <button
+                id={`tab-${value}`}
                 role="tab"
+                aria-selected={isActive}
+                aria-controls={`panel-${value}`}
+                disabled={disabled}
                 data-slot="tabs-trigger"
                 data-state={isActive ? "active" : "inactive"}
-                onClick={() => onSelect?.(value)}
+                onClick={() => !disabled && onSelect?.(value)}
                 className={cn("tabs-trigger", className)}
                 {...props}
             >
+                {icon &&
+                    <span className="tabs-trigger-icon">
+                        {icon}
+                    </span>
+                }
                 {children}
             </button>
         </>
@@ -83,9 +97,12 @@ export const TabsTrigger = ({
 /* ============================================================
  * 🟦 CONTENT
  * ============================================================ */
+type AnimationTabsType = "none" | "fade" | "slide" | "scale" | "dissolve"
+
 interface ITabsContentProps extends ComponentProps<"div"> {
     value: string
     activeValue?: string
+    animation?: AnimationTabsType
 }
 
 export const TabsContent = ({
@@ -93,6 +110,7 @@ export const TabsContent = ({
     value,
     activeValue,
     children,
+    animation = "none",
     ...props
 }: ITabsContentProps) => {
     const isActive = value === activeValue
@@ -100,9 +118,12 @@ export const TabsContent = ({
     return (
         <>
             <div
+                id={`panel-${value}`}
                 role="tabpanel"
-                hidden={!isActive}
+                aria-labelledby={`tab-${value}`}
                 data-slot="tabs-content"
+                data-active={isActive}
+                data-animation={animation}
                 className={cn("tabs-content", className)}
                 {...props}
             >
