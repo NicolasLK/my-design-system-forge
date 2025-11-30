@@ -22,6 +22,12 @@ import { Tabs } from '@/components/ui/tabs'
 import { Accordion } from '@/components/ui/accordion'
 //==============================
 // ==== Components - Advanced Forms ====
+import { Select } from '@/components/ui/select'
+import { Dropdown } from './components/Dropdown'
+import { TagInput } from './components/TagInput'
+import { FileInput } from './components/FileInput'
+import { Slider } from './components/Slider'
+import { DateRangePicker } from './components/DateRangePicker'
 //======================================
 import { Badge } from '@/components/ui/badge'
 import { Typography } from './components/Typography'
@@ -34,17 +40,11 @@ import { ProgressCircular } from './components/ProgressCircular'
 import { BadgeGroup } from './components/BadgeGroup'
 import { Tag } from './components/Tag'
 import { Chip } from './components/Chip'
-import { Dropdown } from './components/Dropdown'
-import { Select } from './components/Select'
-import { Slider } from './components/Slider'
 import { AvatarGroup } from './components/AvatarGroup'
 import { Calendar } from './components/Calendar'
-import { FileInput } from './components/FileInput'
-import { TagInput } from './components/TagInput'
 import { TooltipAdvanced } from './components/TooltipAdvanced'
 import { Table } from './components/Table'
 import { LoadingOverlay } from './components/LoadingOverlay'
-import { DateRangePicker } from './components/DateRangePicker'
 import { useTabs } from './models/hooks/useTabs'
 import { useAccordion } from './models/hooks/useAccordion'
 
@@ -68,6 +68,8 @@ function App() {
   const [isLoading, setIsLoading] = useState(false);
   const [selectedPlan, setSelectedPlan] = useState("");
   const [showToast, setShowToast] = useState(false);
+  const [city, setCity] = useState("")
+  const [open, setOpen] = useState(false)
   //==================
 
   // ==== Hooks ====
@@ -502,6 +504,32 @@ function App() {
         </div>
       </section>
 
+      <h2 style={h2Style}>Advanced Forms Components</h2>
+
+      <section style={sectionStyle}>
+        <h3>Select</h3>
+        <div style={divStyle}>
+          <Select.Root
+            value={city}
+            onChange={setCity}
+            open={open}
+            onOpenChange={setOpen}
+          >
+            <Select.Label className='u-text-transform-capitalize'>Cidade: {city}</Select.Label>
+
+            <Select.Trigger>
+              <Select.Value placeholder="Selecione..." />
+            </Select.Trigger>
+
+            <Select.Content>
+              <Select.Option value="floripa">Florianópolis</Select.Option>
+              <Select.Option value="lisboa">Lisboa</Select.Option>
+              <Select.Option value="porto">Porto</Select.Option>
+            </Select.Content>
+          </Select.Root>
+        </div>
+      </section>
+
       <section style={sectionStyle}>
         <h3>Badges</h3>
         <div style={divStyle}>
@@ -648,24 +676,6 @@ function App() {
             <button>Configurações</button>
             <button>Sair</button>
           </Dropdown>
-        </div>
-      </section>
-
-      <section style={sectionStyle}>
-        <h3>Select</h3>
-        <div style={divStyle}>
-          <Select
-            label="Selecione o plano"
-            options={[
-              { value: "basic", label: "Básico" },
-              { value: "pro", label: "Profissional" },
-              { value: "enterprise", label: "Empresarial" },
-              { value: "family", label: "Família" },
-              { value: "couple", label: "Casal" },
-              { value: "children's", label: "Infantil" },
-            ]}
-            onChange={(val) => console.log("Selecionado:", val)}
-          />
         </div>
       </section>
 
