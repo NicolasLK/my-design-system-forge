@@ -1,5 +1,5 @@
 import { useState, type ReactNode } from "react"
-import "../styles/components/dropdown.css"
+import "./dropdown.css"
 
 interface IDropdownProps {
     label: string
