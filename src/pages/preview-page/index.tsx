@@ -24,7 +24,7 @@ import { Accordion } from '@/components/ui/accordion'
 // ==== Components - Advanced Forms ====
 import { Select } from '@/components/ui/select'
 import { Dropdown } from '@/components/ui/dropdown'
-import { TagInput } from '../../components/TagInput'
+import { TagInput } from '../../components/ui/tag-input/TagInput'
 import { FileInput } from '../../components/FileInput'
 import { Slider } from '../../components/Slider'
 import { DateRangePicker } from '../../components/DateRangePicker'

@@ -1,5 +1,5 @@
 import { useState, type KeyboardEvent } from "react"
-import "../styles/components/taginput.css"
+import "./tag-input.css"
 
 interface ITagInputProps {
     label?: string
