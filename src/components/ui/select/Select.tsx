@@ -2,8 +2,8 @@
 "use-client"
 
 import { Children, cloneElement, useEffect, useRef, type ComponentProps, type ReactNode } from "react"
-import "./select.css"
 import { cn } from "@/lib/utils/cn"
+import "./select.css"
 
 /* ============================================================
  * 🟦 ROOT
@@ -192,7 +192,7 @@ export const SelectOption = ({
 }
 
 /* ============================================================
- * 🧩 Helper: injeta automaticamente props nos filhos
+ * 🧩 Helpers: injeta automaticamente props nos filhos
  * para coletar opções e iniciar a injeção.
  * ============================================================ */
 function injectProps(

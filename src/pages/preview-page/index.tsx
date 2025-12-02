@@ -23,7 +23,7 @@ import { Accordion } from '@/components/ui/accordion'
 //==============================
 // ==== Components - Advanced Forms ====
 import { Select } from '@/components/ui/select'
-import { Dropdown } from '../../components/ui/dropdown/Dropdown'
+import { Dropdown } from '@/components/ui/dropdown'
 import { TagInput } from '../../components/TagInput'
 import { FileInput } from '../../components/FileInput'
 import { Slider } from '../../components/Slider'
@@ -73,6 +73,7 @@ function PreviewPage() {
     const [showToast, setShowToast] = useState(false);
     const [city, setCity] = useState("")
     const [open, setOpen] = useState(false)
+    const [openDropdown, setOpenDropdown] = useState(false);
     //==================
 
     // ==== Hooks ====
@@ -533,6 +534,34 @@ function PreviewPage() {
             </section>
 
             <section style={sectionStyle}>
+                <h3>Dropdown</h3>
+                <div style={divStyle}>
+                    <Dropdown.Root open={openDropdown} onOpenChange={setOpenDropdown}>
+                        <Dropdown.Trigger>
+                            Abrir Menu de Ações
+                        </Dropdown.Trigger>
+
+                        <Dropdown.Content>
+                            <Dropdown.Item>Perfil</Dropdown.Item>
+                            <Dropdown.Item>Configurações</Dropdown.Item>
+                            <Dropdown.Item variant="destructive">Sair</Dropdown.Item>
+                        </Dropdown.Content>
+                    </Dropdown.Root>
+                </div>
+            </section>
+
+            <section style={sectionStyle}>
+                <h3>TagInput</h3>
+                <div style={divStyle}>
+                    <TagInput
+                        label="Tags"
+                        defaultTags={["React", "UI"]}
+                        onChange={(tags) => console.log(tags)}
+                    />
+                </div>
+            </section>
+
+            <section style={sectionStyle}>
                 <h3>Badges</h3>
                 <div style={divStyle}>
                     {/* Bagges Normais */}
@@ -671,17 +700,6 @@ function PreviewPage() {
             </section>
 
             <section style={sectionStyle}>
-                <h3>Dropdown</h3>
-                <div style={divStyle}>
-                    <Dropdown label="Opções">
-                        <button>Perfil</button>
-                        <button>Configurações</button>
-                        <button>Sair</button>
-                    </Dropdown>
-                </div>
-            </section>
-
-            <section style={sectionStyle}>
                 <h3>Chip</h3>
                 <div style={divStyle}>
                     {/* Padrão */}
@@ -737,17 +755,6 @@ function PreviewPage() {
                 <div style={divStyle}>
                     <Calendar
                         onSelect={(date) => console.log("Data selecionada:", date)}
-                    />
-                </div>
-            </section>
-
-            <section style={sectionStyle}>
-                <h3>TagInput</h3>
-                <div style={divStyle}>
-                    <TagInput
-                        label="Tags"
-                        defaultTags={["React", "UI"]}
-                        onChange={(tags) => console.log(tags)}
                     />
                 </div>
             </section>
