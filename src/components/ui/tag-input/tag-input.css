@@ -2,69 +2,95 @@
    🏷 TagInput Component
    =========================== */
 
-.taginput-wrapper {
+/* ROOT & LABEL */
+.taginput-root {
   display: flex;
   flex-direction: column;
-  gap: var(--space-2);
+  gap: var(--space-1);
+  width: 100%;
 }
 
-.taginput-wrapper.disabled {
+.taginput-full {
+  width: 100%;
+}
+
+.taginput-root[data-disabled="true"] {
   opacity: 0.6;
   cursor: not-allowed;
 }
 
 .taginput-label {
-  font-size: var(--font-text2-size);
+  font-size: var(--font-text3-size);
   font-weight: var(--weight-medium);
+  color: var(--color-gray-700);
+  padding-left: var(--space-1);
 }
 
+/* Input Box Container */
 .taginput-box {
   display: flex;
   flex-wrap: wrap;
   gap: var(--space-2);
   align-items: center;
-  padding: var(--space-2);
-  border: 1px solid var(--color-gray-500);
+
+  padding: var(--space-1);
+
+  border: 1px solid var(--color-gray-300);
   border-radius: var(--radius-md);
   background: var(--color-white);
+
+  transition: border-color 0.2s, box-shadow 0.2s;
 }
 
 .taginput-box:focus-within {
   border-color: var(--color-primary-500);
-  box-shadow: 0 0 0 3px
-    color-mix(in srgb, var(--color-primary-500) 20%, transparent);
+  box-shadow: 0 0 0 2px var(--color-primary-200);
 }
 
-.taginput-tag {
-  display: inline-flex;
-  align-items: center;
-  gap: var(--space-1);
-  padding: var(--space-1) var(--space-2);
-  background: var(--color-primary-500);
-  color: var(--color-white);
+/* Sizes */
+/* Small */
+.taginput-box.taginput-sm {
+  padding: var(--space-1);
   font-size: var(--font-text3-size);
-  border-radius: var(--radius-full);
 }
 
-.taginput-remove {
-  background: none;
-  border: none;
-  color: white;
-  cursor: pointer;
-  font-size: 0.75rem;
+/* Large */
+.taginput-box.taginput-lg {
+  padding: var(--space-2);
+  font-size: var(--font-text1-size);
 }
 
-.taginput-remove:hover {
-  opacity: 0.7;
-}
-
-.taginput-input {
-  border: none;
+.taginput-box .input-label-container {
+  display: contents;
   flex: 1;
-  min-width: 120px;
-  font-size: var(--font-text2-size);
+  min-width: 100px;
 }
 
-.taginput-input:focus {
+.taginput-box .input-label,
+.taginput-box .input-error-message,
+.taginput-box .input-label-container > br {
+  display: none;
+}
+
+/* Input Field */
+.taginput-input-field {
+  border: none;
+  background: transparent;
+  padding: var(--space-1);
+  box-shadow: none;
+
+  flex: 1;
+  min-width: 100px;
+
+  font-size: var(--font-text2-size);
+  color: var(--color-text-default);
+}
+
+.taginput-input-field:focus {
   outline: none;
+  box-shadow: none;
+}
+
+.taginput-input-field::placeholder {
+  color: var(--color-gray-500);
 }

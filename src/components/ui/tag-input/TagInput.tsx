@@ -1,12 +1,22 @@
 import { useState, type KeyboardEvent } from "react"
+import { getComponentSize, type ComponentSize } from "@/models/get-component-size"
+import { Tag } from "@/components/ui/tag/Tag"
+import { cn } from "@/lib/utils/cn"
 import "./tag-input.css"
+import { Input } from "../input"
 
+/* ============================================================
+ * 🟦 ROOT
+ * ============================================================ */
 interface ITagInputProps {
     label?: string
     placeholder?: string
     defaultTags?: string[]
     disabled?: boolean
     onChange?: (tags: string[]) => void
+    size?: ComponentSize
+    className?: string
+    full?: boolean
 }
 
 export const TagInput = ({
@@ -14,11 +24,20 @@ export const TagInput = ({
     placeholder = "Digite e pressione Enter",
     defaultTags = [],
     disabled = false,
-    onChange
+    onChange,
+    size = 'medium',
+    className,
+    full = false
 }: ITagInputProps) => {
-
     const [tags, setTags] = useState<string[]>(defaultTags)
     const [inputValue, setInputValue] = useState("")
+
+    const classSize = getComponentSize(size, "taginput");
+
+    /**
+     * Verifica se o componente deve ser full width
+     */
+    const isFull = full || className?.includes('taginput-full');
 
     const addTag = (value: string) => {
         const tag = value.trim()
@@ -40,33 +59,62 @@ export const TagInput = ({
             e.preventDefault()
             addTag(inputValue)
             setInputValue("")
+        } else if (e.key === "Backspace" && inputValue === "" && tags.length > 0) {
+
+            // Se Backspace for pressionado sem input, remove a última tag (Comportamento comum)
+            e.preventDefault()
+            const lastTag = tags[tags.length - 1];
+            removeTag(lastTag);
         }
     }
 
+    const inputLabel = label || placeholder || "Tag Input";
+
     return (
         <>
-            <div className={`taginput-wrapper ${disabled ? "disabled" : ""}`}>
+            <div
+                data-slot="taginput-root"
+                data-disabled={disabled}
+                className={cn(
+                    "taginput-root",
+                    disabled && "disabled",
+                    isFull && "taginput-full",
+                    className
+                )}
+            >
                 {label && <label className="taginput-label">{label}</label>}
 
-                <div className="taginput-box">
+                <div
+                    data-slot="taginput-box"
+                    className={cn(
+                        "taginput-box",
+                        classSize,
+                    )}
+                >
                     {tags.map(tag => (
-                        <span key={tag} className="taginput-tag">
+                        // Utiliza o componente interno Tag (que será estilizado com tokens)
+                        <Tag
+                            key={tag}
+                            size={size}
+                            closable={!disabled}
+                            onClose={() => { removeTag(tag) }}
+                        >
                             {tag}
-                            {!disabled && (
-                                <button onClick={() => removeTag(tag)} className="taginput-remove">
-                                    ×
-                                </button>
-                            )}
-                        </span>
+                        </Tag>
                     ))}
 
-                    <input
-                        className="taginput-input"
-                        placeholder={placeholder}
+                    <Input
+                        label={inputLabel}
+                        inputSize={size}
+                        className="taginput-input-field"
+                        placeholder={tags.length === 0 ? placeholder : ""}
                         value={inputValue}
                         disabled={disabled}
-                        onChange={(e) => setInputValue(e.target.value)}
+                        onChange={(e) => { setInputValue(e.target.value) }}
                         onKeyDown={handleKeyDown}
+                        error={false}
+                        fullWidth={false}
+                        data-slot="taginput-input"
                     />
                 </div>
             </div>

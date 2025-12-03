@@ -1,74 +1,133 @@
-import type { InputHTMLAttributes } from 'react'
-import './input.css'
+import { forwardRef, type InputHTMLAttributes, type ReactNode } from 'react'
 import { getComponentSize, type ComponentSize } from '@/models/get-component-size'
+import { genUid } from '@/models/genUid'
 import { cn } from '@/lib/utils/cn'
+import './input.css'
+
 
 
 interface IInputProps extends InputHTMLAttributes<HTMLInputElement> {
-    // Texto do rótulo
+    /** Texto do rótulo */
     label: string
-    // Placeholder (texto de sugestão)
+    /** Placeholder (texto de sugestão) */
     placeholder?: string
-    // Opcional: Define o tamanho. 'medium' será o padrão.
+    /** Opcional: Define o tamanho. 'medium' será o padrão */
     inputSize?: ComponentSize
-    // Opcional: Ativa o estado de erro.
+    /** Opcional: Ativa o estado de erro */
     error?: boolean
-    // Opcional: Desabilita o campo.
+    /** Opcional: Desabilita o campo */
     disabled?: boolean
-    // Opcional: fullWidth programatico.
+    /** Opcional: fullWidth programatico */
     fullWidth?: boolean
-    // Opcional: mensagem de erro
+    /** Opcional: mensagem de erro */
     errorMessage?: string
-    // Opcional: Tipo do input (text, email, password, etc.)
+    /** Opcional: Tipo do input (text, email, password, etc.) */
     type?: string
+    /** Opcional: Ícone de prefixo (pode ser um elemento React) */
+    iconPrefix?: ReactNode
+    /** Opcional: Ícone de sufixo (pode ser um elemento React)*/
+    iconSuffix?: ReactNode
 }
 
-export const Input = ({
-    label,
-    placeholder,
-    inputSize = 'medium',
-    error = false,
-    disabled = false,
-    fullWidth = false,
-    errorMessage,
-    type = 'text',
-    className,
-    ...props
-}: IInputProps) => {
+export const Input = forwardRef<HTMLInputElement, IInputProps>(
+    ({
+        label,
+        placeholder,
+        inputSize = 'medium',
+        error = false,
+        disabled = false,
+        fullWidth = false,
+        errorMessage,
+        type = 'text',
+        className,
+        id: externalId,
+        iconPrefix,
+        iconSuffix,
+        ...props
+    }, ref) => {
 
-    const sizeClass = getComponentSize(inputSize, 'input');
-    const errorClass = error ? 'input-error' : ''
+        /**
+         * Gera um ID único apenas se não houver um ID externo
+         */
+        const inputId = externalId || (label ? genUid(8) : undefined);
 
-    const inputClasses = cn(
-        'input',
-        sizeClass,
-        fullWidth && 'btn-full',
-        errorClass,
-        className
-    )
+        const sizeClass = getComponentSize(inputSize, 'input');
+        const errorClass = error ? 'input-error' : '';
 
-    const inputId = `input-${Math.random().toString(36).substring(2, 9)}`;
+        const inputClasses = cn(
+            'input-field',
+            sizeClass,
+            errorClass,
+            className
+        );
 
-    return (
-        <>
-            {/* Container opcional para facilitar CSS do label */}
-            <label className="input-label-container" htmlFor={inputId}>
-                <span className="input-label">{label}</span><br />
-                <input
-                    id={inputId}
-                    className={inputClasses}
-                    type={type}
-                    placeholder={placeholder}
-                    disabled={disabled}
-                    aria-invalid={error}
-                    {...props}
-                />
+        // Define se há ícones para adicionar classes de padding
+        const hasPrefix = !!iconPrefix;
+        const hasSuffix = !!iconSuffix;
 
-                {/* Mensagem de Erro Condicional */}
-                {error && errorMessage && (
-                    <span className="input-error-message">{errorMessage}</span>
-                )}
-            </label>
-        </>
-    )
-}
+        return (
+            <>
+                <div data-slot="input-container" className={cn(
+                    "input-container",
+                    fullWidth && 'input-full',
+                    errorClass,
+                    sizeClass,
+                )}>
+                    {/* 1. Rótulo (Label) */}
+                    {label && (
+                        <label className="input-label" htmlFor={inputId}>
+                            {label}
+                        </label>
+                    )}
+
+                    {/* 2. Wrapper do Input com Ícones */}
+                    <div data-slot="input-wrapper" className={cn(
+                        "input-wrapper",
+                        hasPrefix && "input-has-prefix",
+                        hasSuffix && "input-has-suffix",
+                    )}>
+                        {hasPrefix &&
+                            <span
+                                data-slot="input-prefix"
+                                className="input-icon input-prefix"
+                            >
+                                {iconPrefix}
+                            </span>
+                        }
+
+                        <input
+                            id={inputId}
+                            data-slot="input-field"
+                            className={inputClasses}
+                            type={type}
+                            placeholder={placeholder}
+                            disabled={disabled}
+                            aria-invalid={error}
+                            ref={ref}
+                            {...props}
+                        />
+
+                        {hasSuffix &&
+                            <span
+                                data-slot="input-suffix"
+                                className="input-icon input-suffix"
+                            >
+                                {iconSuffix}
+                            </span>
+                        }
+                    </div>
+
+                    {/* 3. Mensagem de Erro Condicional */}
+                    {error && errorMessage && (
+                        <span
+                            data-slot="input-error-message"
+                            className="input-error-message"
+                        >
+                            {errorMessage}
+                        </span>
+                    )}
+                </div>
+            </>
+        )
+    }
+)
