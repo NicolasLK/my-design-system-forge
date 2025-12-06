@@ -26,29 +26,36 @@ import { Select } from '@/components/ui/select'
 import { Dropdown } from '@/components/ui/dropdown'
 import { TagInput } from '@/components/ui/tag-input'
 import { FileInput } from '@/components/ui/file-input'
-import { Slider } from '../../components/Slider'
-import { DateRangePicker } from '../../components/DateRangePicker'
+import { Slider } from '@/components/ui/slider'
+import { DateRangePicker } from "@/components/ui/date-range-picker";
 //======================================
+// ==== Components - Data / Presentation ====
+import { Table } from '../../components/Table'
+import { Progress } from '../../components/Progress'
+import { Stepper } from '../../components/Stepper'
+import { Pagination } from '../../components/Pagination'
+import { Breadcrumb } from '../../components/Breadcrumb'
+//===========================================
+// ==== Components - Users ====
+import { Avatar } from '../../components/Avatar'
+import { AvatarGroup } from '../../components/AvatarGroup'
+import { Chip } from '../../components/Chip'
+import { Tag } from '@/components/ui/tag'
+//=============================
 import { Badge } from '@/components/ui/badge'
 import { Typography } from '../../components/Typography'
-import { Avatar } from '../../components/Avatar'
-import { Progress } from '../../components/Progress'
-import { Breadcrumb } from '../../components/Breadcrumb'
-import { Pagination } from '../../components/Pagination'
-import { Stepper } from '../../components/Stepper'
 import { ProgressCircular } from '../../components/ProgressCircular'
 import { BadgeGroup } from '../../components/BadgeGroup'
-import { Tag } from '@/components/ui/tag'
-import { Chip } from '../../components/Chip'
-import { AvatarGroup } from '../../components/AvatarGroup'
-import { Calendar } from '../../components/Calendar'
+import { Calendar } from '@/components/ui/calendar'
 import { TooltipAdvanced } from '../../components/TooltipAdvanced'
-import { Table } from '../../components/Table'
 import { LoadingOverlay } from '../../components/LoadingOverlay'
 // ==== Functions and Hooks ====
 import { useTabs } from "@/models/hooks/useTabs";
 import { useAccordion } from "@/models/hooks/useAccordion";
 //==============================
+// ==== Interfaces and Types ====
+import type { IDateRange } from "@/components/ui/date-range-picker/DateRangePicker";
+//===============================
 
 
 const sectionStyle = {
@@ -74,6 +81,7 @@ function PreviewPage() {
     const [city, setCity] = useState("")
     const [open, setOpen] = useState(false)
     const [openDropdown, setOpenDropdown] = useState(false);
+    const [selectedRange, setSelectedRange] = useState<IDateRange>({ start: null, end: null });
     //==================
 
     // ==== Hooks ====
@@ -573,6 +581,169 @@ function PreviewPage() {
             </section>
 
             <section style={sectionStyle}>
+                <h3>Slider</h3>
+                <div style={divStyle}>
+                    <Slider
+                        defaultValue={30}
+                        onValueChange={(v) => console.log("Valor:", v)}
+                    />
+                    <Slider defaultValue={75} showValue={false} />
+                </div>
+            </section>
+
+            <section style={sectionStyle}>
+                <h3>DateRangePicker</h3>
+                <div style={divStyle}>
+                    <DateRangePicker
+                        onChange={(range: IDateRange) => {
+                            console.log("Range selecionado:", range);
+                            setSelectedRange(range);
+                        }}
+                    />
+                    {selectedRange.start && selectedRange.end && (
+                        <p style={{ marginTop: '10px' }}>
+                            De: {selectedRange.start.toLocaleDateString()} Até: {selectedRange.end.toLocaleDateString()}
+                        </p>
+                    )}
+                </div>
+            </section>
+
+            <h2 style={h2Style}>Data / Presentation</h2>
+
+            <section style={sectionStyle}>
+                <h3>Table</h3>
+                <div style={divStyle}>
+                    <Table
+                        striped
+                        compact
+                        columns={[
+                            { key: "name", label: "Nome", sortable: true },
+                            { key: "age", label: "Idade", sortable: true },
+                            { key: "role", label: "Cargo" }
+                        ]}
+                        data={[
+                            { name: "Nicolas", age: 29, role: "Dev" },
+                            { name: "Ana", age: 31, role: "PM" },
+                            { name: "João", age: 23, role: "Designer" }
+                        ]}
+                    />
+                </div>
+            </section>
+
+            <section style={sectionStyle}>
+                <h3>Progress</h3>
+                <div style={divStyle}>
+                    <Progress value={45} label="Carregando dados" variant="primary" showPercentage />
+                    <Progress value={75} label="Upload concluído" variant="success" size="large" />
+                    <Progress value={30} label="Aguardando resposta" variant="warning" size="small" />
+                    <Progress value={90} variant="secondary" />
+                </div>
+            </section>
+
+            <section style={sectionStyle}>
+                <h3>Stepper</h3>
+                <div style={divStyle}>
+                    <Stepper
+                        currentStep={1}
+                        steps={[
+                            { label: "Informações" },
+                            { label: "Pagamento" },
+                            { label: "Confirmação" },
+                        ]}
+                    />
+                </div>
+            </section>
+
+            <section style={sectionStyle}>
+                <h3>Pagination</h3>
+                <div style={divStyle}>
+                    <Pagination
+                        totalPages={5}
+                        currentPage={2}
+                        onPageChange={(page) => console.log("Página:", page)}
+                    />
+                </div>
+            </section>
+
+            <section style={sectionStyle}>
+                <h3>Breadcrumb</h3>
+                <div style={divStyle}>
+                    <Breadcrumb
+                        items={[
+                            { label: "Início", href: "#" },
+                            { label: "Usuários", href: "#" },
+                            { label: "Perfil", href: "#" },
+                            { label: "Configurações" },
+                        ]}
+                    />
+                </div>
+            </section>
+
+            <h2 style={h2Style}>Users</h2>
+
+            <section style={sectionStyle}>
+                <h3>Avatar</h3>
+                <div style={divStyle}>
+                    <Avatar name="Nicolas Loffi" size="large" />
+                    <Avatar src="https://i.pravatar.cc/150?img=3" name="Lucas Souza" size="medium" />
+                    <Avatar size="small" />
+                </div>
+            </section>
+
+            <section style={sectionStyle}>
+                <h3>Avatar Group</h3>
+                <div style={divStyle}>
+                    <AvatarGroup
+                        size="medium"
+                        users={[
+                            { name: "Nicolas Loffi", src: "https://i.pravatar.cc/150?img=11" },
+                            { name: "Ana Clara", src: "https://i.pravatar.cc/150?img=22" },
+                            { name: "João Pedro", src: "https://i.pravatar.cc/150?img=33" },
+                            { name: "Marina Lopes", src: "https://i.pravatar.cc/150?img=44" },
+                            { name: "Carlos Henrique", src: "https://i.pravatar.cc/150?img=55" },
+                        ]}
+                        maxVisible={3}
+                    />
+                </div>
+            </section>
+
+            <section style={sectionStyle}>
+                <h3>Chip</h3>
+                <div style={divStyle}>
+                    {/* Padrão */}
+                    <Chip label="Padrão" />
+
+                    {/* Selecionável */}
+                    <Chip label="Padrão" selected />
+
+                    {/* Com variantes de cor */}
+                    <Chip label="Ativo" variant="primary" />
+                    <Chip label="Sucesso" variant="success" />
+                    <Chip label="Aviso" variant="warning" />
+                    <Chip label="Erro" variant="destructive" />
+
+                    {/* Com interação */}
+                    <Chip
+                        label="Filtro ativo"
+                        onClick={() => console.log("Filtro clicado!")}
+                    />
+
+                    {/* Desabilitado */}
+                    <Chip label="Indisponível" disabled />
+                </div>
+            </section>
+
+            <section style={sectionStyle}>
+                <h3>Tag</h3>
+                <div style={divStyle}>
+                    <Tag variant="success">Aprovado</Tag>
+                    <Tag variant="destructive" closable onClose={() => alert("Removido!")}>
+                        Erro crítico
+                    </Tag>
+                </div>
+            </section>
+
+            <section style={sectionStyle}>
                 <h3>Badges</h3>
                 <div style={divStyle}>
                     {/* Bagges Normais */}
@@ -618,63 +789,7 @@ function PreviewPage() {
                 </div>
             </section>
 
-            <section style={sectionStyle}>
-                <h3>Avatar</h3>
-                <div style={divStyle}>
-                    <Avatar name="Nicolas Loffi" size="large" />
-                    <Avatar src="https://i.pravatar.cc/150?img=3" name="Lucas Souza" size="medium" />
-                    <Avatar size="small" />
-                </div>
-            </section>
 
-            <section style={sectionStyle}>
-                <h3>Progress</h3>
-                <div style={divStyle}>
-                    <Progress value={45} label="Carregando dados" variant="primary" showPercentage />
-                    <Progress value={75} label="Upload concluído" variant="success" size="large" />
-                    <Progress value={30} label="Aguardando resposta" variant="warning" size="small" />
-                    <Progress value={90} variant="secondary" />
-                </div>
-            </section>
-
-            <section style={sectionStyle}>
-                <h3>Breadcrumb</h3>
-                <div style={divStyle}>
-                    <Breadcrumb
-                        items={[
-                            { label: "Início", href: "#" },
-                            { label: "Usuários", href: "#" },
-                            { label: "Perfil", href: "#" },
-                            { label: "Configurações" },
-                        ]}
-                    />
-                </div>
-            </section>
-
-            <section style={sectionStyle}>
-                <h3>Pagination</h3>
-                <div style={divStyle}>
-                    <Pagination
-                        totalPages={5}
-                        currentPage={2}
-                        onPageChange={(page) => console.log("Página:", page)}
-                    />
-                </div>
-            </section>
-
-            <section style={sectionStyle}>
-                <h3>Stepper</h3>
-                <div style={divStyle}>
-                    <Stepper
-                        currentStep={1}
-                        steps={[
-                            { label: "Informações" },
-                            { label: "Pagamento" },
-                            { label: "Confirmação" },
-                        ]}
-                    />
-                </div>
-            </section>
 
             <section style={sectionStyle}>
                 <h3>ProgressCircular</h3>
@@ -701,67 +816,6 @@ function PreviewPage() {
             </section>
 
             <section style={sectionStyle}>
-                <h3>Tag</h3>
-                <div style={divStyle}>
-                    <Tag variant="success">Aprovado</Tag>
-                    <Tag variant="destructive" closable onClose={() => alert("Removido!")}>
-                        Erro crítico
-                    </Tag>
-                </div>
-            </section>
-
-            <section style={sectionStyle}>
-                <h3>Chip</h3>
-                <div style={divStyle}>
-                    {/* Padrão */}
-                    <Chip label="Padrão" />
-
-                    {/* Selecionável */}
-                    <Chip label="Padrão" selected />
-
-                    {/* Com variantes de cor */}
-                    <Chip label="Ativo" variant="primary" />
-                    <Chip label="Sucesso" variant="success" />
-                    <Chip label="Aviso" variant="warning" />
-                    <Chip label="Erro" variant="destructive" />
-
-                    {/* Com interação */}
-                    <Chip
-                        label="Filtro ativo"
-                        onClick={() => console.log("Filtro clicado!")}
-                    />
-
-                    {/* Desabilitado */}
-                    <Chip label="Indisponível" disabled />
-                </div>
-            </section>
-
-            <section style={sectionStyle}>
-                <h3>Slider</h3>
-                <div style={divStyle}>
-                    <Slider defaultValue={30} onChange={(v) => console.log("Valor:", v)} />
-                    <Slider defaultValue={75} showValue={false} />
-                </div>
-            </section>
-
-            <section style={sectionStyle}>
-                <h3>Avatar Group</h3>
-                <div style={divStyle}>
-                    <AvatarGroup
-                        size="medium"
-                        users={[
-                            { name: "Nicolas Loffi", src: "https://i.pravatar.cc/150?img=11" },
-                            { name: "Ana Clara", src: "https://i.pravatar.cc/150?img=22" },
-                            { name: "João Pedro", src: "https://i.pravatar.cc/150?img=33" },
-                            { name: "Marina Lopes", src: "https://i.pravatar.cc/150?img=44" },
-                            { name: "Carlos Henrique", src: "https://i.pravatar.cc/150?img=55" },
-                        ]}
-                        maxVisible={3}
-                    />
-                </div>
-            </section>
-
-            <section style={sectionStyle}>
                 <h3>Calendar</h3>
                 <div style={divStyle}>
                     <Calendar
@@ -769,8 +823,6 @@ function PreviewPage() {
                     />
                 </div>
             </section>
-
-
 
             <section style={sectionStyle}>
                 <h3>TooltipAdvanced</h3>
@@ -785,26 +837,6 @@ function PreviewPage() {
                 </div>
             </section>
 
-            <section style={sectionStyle}>
-                <h3>Table</h3>
-                <div style={divStyle}>
-                    <Table
-                        striped
-                        compact
-                        columns={[
-                            { key: "name", label: "Nome", sortable: true },
-                            { key: "age", label: "Idade", sortable: true },
-                            { key: "role", label: "Cargo" }
-                        ]}
-                        data={[
-                            { name: "Nicolas", age: 29, role: "Dev" },
-                            { name: "Ana", age: 31, role: "PM" },
-                            { name: "João", age: 23, role: "Designer" }
-                        ]}
-                    />
-                </div>
-            </section>
-
             <section style={{ position: "relative", height: 200 }}>
                 <h3>LoadingOverlay</h3>
                 <div style={divStyle}>
@@ -814,13 +846,6 @@ function PreviewPage() {
                     <Button colorVariant="primary" onClick={() => setIsLoading(true)}>
                         Ativar Loading
                     </Button>
-                </div>
-            </section>
-
-            <section style={sectionStyle}>
-                <h3>DateRangePicker</h3>
-                <div style={divStyle}>
-                    <DateRangePicker onChange={(range) => console.log(range)} />
                 </div>
             </section>
         </>

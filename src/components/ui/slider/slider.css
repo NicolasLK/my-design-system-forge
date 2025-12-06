@@ -1,0 +1,130 @@
+/* ===========================
+   🎚 Slider Component
+   =========================== */
+
+.slider-root {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  width: 100%;
+  max-width: 20rem;
+}
+
+/* Largura total */
+.slider-root.slider-full {
+  max-width: 100%;
+}
+
+/* Input */
+.slider-input {
+  width: 100%;
+
+  height: var(--slider-track-height-md);
+
+  border-radius: var(--radius-full);
+  appearance: none;
+  cursor: pointer;
+
+  transition: box-shadow 0.2s ease;
+}
+
+.slider-input::-webkit-slider-runnable-track {
+  background: none;
+}
+.slider-input::-moz-range-track {
+  background: none;
+}
+
+/* 🟣 Thumb (Controle) */
+.slider-input::-webkit-slider-thumb {
+  appearance: none;
+  width: var(--slider-thumb-size-md);
+  height: var(--slider-thumb-size-md);
+  border-radius: 50%;
+  background: var(--color-white);
+
+  border: 2px solid var(--color-primary-500);
+
+  box-shadow: var(--shadow-sm);
+  cursor: grab;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+/* Foco e Hover: Thumb */
+.slider-input:focus::-webkit-slider-thumb,
+.slider-input::-webkit-slider-thumb:hover {
+  /* Efeito de anel de foco/hover no thumb */
+  box-shadow: 0 0 0 4px var(--color-primary-100);
+  transform: scale(1.05);
+}
+
+/* Mozilla (Firefox) */
+.slider-input::-moz-range-thumb {
+  width: var(--slider-thumb-size-md);
+  height: var(--slider-thumb-size-md);
+  border-radius: 50%;
+  background: var(--color-white);
+  border: 2px solid var(--color-primary-500);
+  cursor: grab;
+  transition: all 0.15s ease;
+}
+
+.slider-input:focus::-moz-range-thumb,
+.slider-input::-moz-range-thumb:hover {
+  box-shadow: 0 0 0 4px var(--color-primary-100);
+}
+
+/* Valor atual */
+.slider-value {
+  font-size: var(--font-text2-size);
+  font-weight: var(--weight-medium);
+  color: var(--color-gray-900);
+  min-width: 2rem;
+  text-align: right;
+  user-select: none;
+}
+
+/* Sizes */
+/* Small */
+.slider-root.slider-sm {
+  gap: var(--space-2);
+}
+.slider-root.slider-sm .slider-input {
+  height: 4px; /* Trilha mais fina */
+}
+.slider-root.slider-sm .slider-input::-webkit-slider-thumb,
+.slider-root.slider-sm .slider-input::-moz-range-thumb {
+  width: 12px;
+  height: 12px;
+}
+.slider-root.slider-sm .slider-value {
+  font-size: var(--font-text3-size);
+}
+
+/* Large */
+.slider-root.slider-lg {
+  gap: var(--space-4);
+}
+.slider-root.slider-lg .slider-input {
+  height: 8px; /* Trilha mais grossa */
+}
+.slider-root.slider-lg .slider-input::-webkit-slider-thumb,
+.slider-root.slider-lg .slider-input::-moz-range-thumb {
+  width: 20px;
+  height: 20px;
+}
+.slider-root.slider-lg .slider-value {
+  font-size: var(--font-text1-size);
+}
+
+/* 📱 Responsividade */
+/* @media (max-width: var(--screen-sm)) {
+  .slider {
+    gap: var(--space-2);
+  }
+
+  .slider-input::-webkit-slider-thumb {
+    width: 14px;
+    height: 14px;
+  }
+} */
