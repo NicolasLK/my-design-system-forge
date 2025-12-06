@@ -1,0 +1,27 @@
+/* ===========================
+   🏷️ Label Component
+   =========================== */
+
+.label {
+  display: flex;
+  align-items: center;
+  gap: var(--space-1);
+
+  /* Tipografia baseada em tokens */
+  font-size: var(--font-text3-size);
+  line-height: var(--line-height-text3);
+  font-weight: var(--weight-medium);
+
+  color: var(--color-gray-700);
+  user-select: none;
+  cursor: default;
+
+  /* Transições simples */
+  transition: color 0.2s ease;
+}
+
+/* Marca de campo obrigatório */
+.label-required {
+  color: var(--color-destructive-500);
+  margin-left: var(--space-0);
+}

@@ -5,7 +5,6 @@ import { cn } from '@/lib/utils/cn'
 import './input.css'
 
 
-
 interface IInputProps extends InputHTMLAttributes<HTMLInputElement> {
     /** Texto do rótulo */
     label: string
@@ -13,6 +12,8 @@ interface IInputProps extends InputHTMLAttributes<HTMLInputElement> {
     placeholder?: string
     /** Opcional: Define o tamanho. 'medium' será o padrão */
     inputSize?: ComponentSize
+    /** Opcional: Classe aplicada diretamente no <input> */
+    inputClassName?: string
     /** Opcional: Ativa o estado de erro */
     error?: boolean
     /** Opcional: Desabilita o campo */
@@ -34,6 +35,7 @@ export const Input = forwardRef<HTMLInputElement, IInputProps>(
         label,
         placeholder,
         inputSize = 'medium',
+        inputClassName,
         error = false,
         disabled = false,
         fullWidth = false,
@@ -67,55 +69,71 @@ export const Input = forwardRef<HTMLInputElement, IInputProps>(
 
         return (
             <>
-                <div data-slot="input-container" className={cn(
-                    "input-container",
-                    fullWidth && 'input-full',
-                    errorClass,
-                    sizeClass,
-                )}>
-                    {/* 1. Rótulo (Label) */}
-                    {label && (
-                        <label className="input-label" htmlFor={inputId}>
-                            {label}
-                        </label>
-                    )}
-
-                    {/* 2. Wrapper do Input com Ícones */}
-                    <div data-slot="input-wrapper" className={cn(
-                        "input-wrapper",
-                        hasPrefix && "input-has-prefix",
-                        hasSuffix && "input-has-suffix",
+                <div data-slot="input-container"
+                    className={cn(
+                        "input-container",
+                        fullWidth && 'input-full',
+                        errorClass,
+                        sizeClass,
                     )}>
-                        {hasPrefix &&
-                            <span
-                                data-slot="input-prefix"
-                                className="input-icon input-prefix"
-                            >
-                                {iconPrefix}
-                            </span>
-                        }
 
+                    {type === "file" ? (
                         <input
                             id={inputId}
-                            data-slot="input-field"
-                            className={inputClasses}
-                            type={type}
-                            placeholder={placeholder}
-                            disabled={disabled}
-                            aria-invalid={error}
                             ref={ref}
+                            type="file"
+                            data-slot="input-field"
+                            className={cn(inputClassName)}
+                            disabled={disabled}
                             {...props}
                         />
+                    ) : (
+                        <>
+                            {/* 1. Rótulo (Label) */}
+                            {label && (
+                                <label className="input-label" htmlFor={inputId}>
+                                    {label}
+                                </label>
+                            )}
 
-                        {hasSuffix &&
-                            <span
-                                data-slot="input-suffix"
-                                className="input-icon input-suffix"
-                            >
-                                {iconSuffix}
-                            </span>
-                        }
-                    </div>
+                            {/* 2. Wrapper do Input com Ícones */}
+                            <div data-slot="input-wrapper" className={cn(
+                                "input-wrapper",
+                                hasPrefix && "input-has-prefix",
+                                hasSuffix && "input-has-suffix",
+                            )}>
+                                {hasPrefix &&
+                                    <span
+                                        data-slot="input-prefix"
+                                        className="input-icon input-prefix"
+                                    >
+                                        {iconPrefix}
+                                    </span>
+                                }
+
+                                <input
+                                    id={inputId}
+                                    ref={ref}
+                                    type={type}
+                                    data-slot="input-field"
+                                    className={cn(inputClasses, inputClassName)}
+                                    placeholder={placeholder}
+                                    disabled={disabled}
+                                    aria-invalid={error}
+                                    {...props}
+                                />
+
+                                {hasSuffix &&
+                                    <span
+                                        data-slot="input-suffix"
+                                        className="input-icon input-suffix"
+                                    >
+                                        {iconSuffix}
+                                    </span>
+                                }
+                            </div>
+                        </>
+                    )}
 
                     {/* 3. Mensagem de Erro Condicional */}
                     {error && errorMessage && (

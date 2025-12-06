@@ -179,12 +179,13 @@
   --screen-lg: 1024px;
   --screen-xl: 1280px;
 
+  /* Controls (botões, inputs, selects, etc.) */
+  --control-height-sm: clamp(1.75rem, 2.2vw, 2rem); /* 28px → 32px */
+  --control-height-md: clamp(2.25rem, 2.8vw, 2.5rem); /* 36px → 40px */
+  --control-height-lg: clamp(2.75rem, 3.4vw, 3rem); /* 44px → 48px */
+
   /* Componente: Button Specific Tokens */
   --button-border-radius: var(--radius-md);
   --button-focus-ring-color: var(--color-primary-800);
   --button-focus-ring-offset: 2px;
-
-  --button-height-sm: clamp(1.75rem, 2.2vw, 2rem); /* 28px → 32px */
-  --button-height-md: clamp(2.25rem, 2.8vw, 2.5rem); /* 36px → 40px */
-  --button-height-lg: clamp(2.75rem, 3.4vw, 3rem); /* 44px → 48px */
 }

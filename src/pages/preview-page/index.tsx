@@ -25,7 +25,7 @@ import { Accordion } from '@/components/ui/accordion'
 import { Select } from '@/components/ui/select'
 import { Dropdown } from '@/components/ui/dropdown'
 import { TagInput } from '@/components/ui/tag-input'
-import { FileInput } from '../../components/FileInput'
+import { FileInput } from '@/components/ui/file-input'
 import { Slider } from '../../components/Slider'
 import { DateRangePicker } from '../../components/DateRangePicker'
 //======================================
@@ -562,6 +562,17 @@ function PreviewPage() {
             </section>
 
             <section style={sectionStyle}>
+                <h3>FileInput / FileUpload</h3>
+                <div style={divStyle}>
+                    <FileInput
+                        label="Envie um arquivo"
+                        accept="image/*"
+                        onChange={(files) => console.log(files)}
+                    />
+                </div>
+            </section>
+
+            <section style={sectionStyle}>
                 <h3>Badges</h3>
                 <div style={divStyle}>
                     {/* Bagges Normais */}
@@ -759,16 +770,7 @@ function PreviewPage() {
                 </div>
             </section>
 
-            <section style={sectionStyle}>
-                <h3>FileInput / FileUpload</h3>
-                <div style={divStyle}>
-                    <FileInput
-                        label="Envie um arquivo"
-                        accept="image/*"
-                        onChange={(files) => console.log(files)}
-                    />
-                </div>
-            </section>
+
 
             <section style={sectionStyle}>
                 <h3>TooltipAdvanced</h3>
