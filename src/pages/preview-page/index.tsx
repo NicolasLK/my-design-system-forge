@@ -30,7 +30,7 @@ import { Slider } from '@/components/ui/slider'
 import { DateRangePicker } from "@/components/ui/date-range-picker";
 //======================================
 // ==== Components - Data / Presentation ====
-import { Table } from '../../components/Table'
+import { Table } from '@/components/ui/table'
 import { Progress } from '../../components/Progress'
 import { Stepper } from '../../components/Stepper'
 import { Pagination } from '../../components/Pagination'
@@ -52,14 +52,26 @@ import { LoadingOverlay } from '../../components/LoadingOverlay'
 // ==== Functions and Hooks ====
 import { useTabs } from "@/models/hooks/useTabs";
 import { useAccordion } from "@/models/hooks/useAccordion";
+import { useTableSort } from "@/models/hooks/useTableSort";
+import { cn } from "@/lib/utils/cn";
+import { useCurrencyFormatter } from "@/models/hooks/useCurrencyFormatter";
 //==============================
 // ==== Interfaces and Types ====
 import type { IDateRange } from "@/components/ui/date-range-picker/DateRangePicker";
 //===============================
 
+// --- 1. Estruturas de Dados ---
+interface Project {
+    id: number;
+    name: string;
+    status: string;
+    deadline: string;
+    value: number;
+}
+
 
 const sectionStyle = {
-    marginTop: "2rem"
+    margin: '20px 0'
 }
 
 const h2Style = {
@@ -69,8 +81,24 @@ const h2Style = {
 const divStyle = {
     display: "flex",
     gap: "1rem",
-    FlexWrap: "wrap"
+    FlexWrap: "wrap",
 }
+
+// === Dados de Exemplo - Table ===
+const PROJECT_COLUMNS = [
+    { key: 'nome', label: 'Nome do Projeto', sortable: true },
+    { key: 'status', label: 'Status', sortable: true },
+    { key: 'prazo', label: 'Prazo Final', sortable: false },
+    { key: 'valor', label: 'Valor Estimado', sortable: true },
+];
+
+const PROJECT_DATA: Project[] = [
+    { id: 1, name: 'E-commerce Redesign', status: 'Em Progresso', deadline: '15/12/2025', value: 15000 },
+    { id: 2, name: 'App Mobile Beta', status: 'Concluído', deadline: '01/11/2025', value: 8000 },
+    { id: 3, name: 'Infra Cloud Mig.', status: 'Pendente', deadline: '30/01/2026', value: 22000 },
+    { id: 4, name: 'Relatórios Mensais', status: 'Em Progresso', deadline: '05/12/2025', value: 3500 },
+];
+//=================================
 
 function PreviewPage() {
     // ==== Estados ====
@@ -87,18 +115,17 @@ function PreviewPage() {
     // ==== Hooks ====
     const { active, setActive, isActive } = useTabs("tab1") // Tabs
     const { isOpen, toggle } = useAccordion(["item-1"]) // Accordion
+
+    // Lógica de Ordenação: Recebe os dados e retorna o estado de ordenação e os dados ordenados.
+    const { sortedData, sortKey, sortDir, toggleSort } = useTableSort({
+        data: PROJECT_DATA,
+        initialSortKey: 'name'
+    }); // Table
+
+    const { formatCurrency } = useCurrencyFormatter();
     //================
 
     // ==== Functions ====
-    // const singleToggle = (value: string) => {
-    //   if (isOpen(value)) {
-    //     toggle(value)          // fecha tudo
-    //   } else {
-    //     // abre somente um
-    //     toggle(value)
-    //     openItems.splice(0, openItems.length, value)
-    //   }
-    // }
     //====================
 
     return (
@@ -612,21 +639,82 @@ function PreviewPage() {
 
             <section style={sectionStyle}>
                 <h3>Table</h3>
-                <div style={divStyle}>
-                    <Table
-                        striped
-                        compact
-                        columns={[
-                            { key: "name", label: "Nome", sortable: true },
-                            { key: "age", label: "Idade", sortable: true },
-                            { key: "role", label: "Cargo" }
-                        ]}
-                        data={[
-                            { name: "Nicolas", age: 29, role: "Dev" },
-                            { name: "Ana", age: 31, role: "PM" },
-                            { name: "João", age: 23, role: "Designer" }
-                        ]}
-                    />
+                <div style={{ maxWidth: '900px', margin: '20px auto' }}>
+                    <h4>Tabela Avançada (Composta e Ordenável)</h4>
+
+                    {/* Componente Raiz: Define o container e o estilo (striped/compact) */}
+                    <Table.Root striped compact className="mt-4">
+
+                        {/* Cabeçalho */}
+                        <Table.Header>
+                            <Table.Row>
+                                {PROJECT_COLUMNS.map(col => (
+                                    // Table.Head com lógica de ordenação e estilo
+                                    <Table.Head
+                                        key={col.key}
+                                        onClick={() => col.sortable && toggleSort(col.key)}
+                                        className={cn(
+                                            col.sortable && "table-head-sortable",
+                                            col.sortable && sortKey === col.key && "table-head-sorted"
+                                        )}
+                                    >
+                                        {col.label}
+                                        {/* Indicador de ordenação */}
+                                        {col.sortable && sortKey === col.key && (
+                                            <span data-slot="sort-indicator" className="sort-indicator">
+                                                {sortDir === "asc" ? "▲" : "▼"}
+                                            </span>
+                                        )}
+                                    </Table.Head>
+                                ))}
+                            </Table.Row>
+                        </Table.Header>
+
+                        {/* Corpo: Itera sobre os dados ordenados */}
+                        <Table.Body>
+                            {sortedData.map((row) => (
+                                // Table.Row para o estilo de linha
+                                <Table.Row key={row.id}>
+                                    {/* Table.Cell para o estilo da célula */}
+                                    <Table.Cell>{row.name}</Table.Cell>
+
+                                    {/* Renderização Avançada na célula de Status */}
+                                    <Table.Cell>
+                                        {row.status === 'Concluído'
+                                            ? <span style={{ color: 'var(--color-success-600)' }}>{row.status}</span>
+                                            : row.status
+                                        }
+                                    </Table.Cell>
+
+                                    <Table.Cell>{row.deadline}</Table.Cell>
+
+                                    {/* Renderização de Formato (Moeda) */}
+                                    <Table.Cell>{formatCurrency(row.value)}</Table.Cell>
+                                </Table.Row>
+                            ))}
+                            {sortedData.length === 0 && (
+                                <Table.Row>
+                                    <Table.Cell colSpan={PROJECT_COLUMNS.length} style={{ textAlign: 'center' }}>
+                                        Nenhum dado encontrado.
+                                    </Table.Cell>
+                                </Table.Row>
+                            )}
+                        </Table.Body>
+
+                        {/* Legenda (Caption) para acessibilidade */}
+                        <Table.Caption>
+                            Lista de projetos em andamento no sistema. Clique nos cabeçalhos para ordenar.
+                        </Table.Caption>
+
+                        {/* Opcional: Rodapé (Footer) */}
+                        <Table.Footer>
+                            <Table.Row>
+                                <Table.Cell colSpan={3}>Total</Table.Cell>
+                                <Table.Cell>{formatCurrency(PROJECT_DATA.reduce((sum, item) => sum + item.value, 0))}</Table.Cell>
+                            </Table.Row>
+                        </Table.Footer>
+
+                    </Table.Root>
                 </div>
             </section>
 
