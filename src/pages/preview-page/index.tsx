@@ -31,8 +31,8 @@ import { DateRangePicker } from "@/components/ui/date-range-picker";
 //======================================
 // ==== Components - Data / Presentation ====
 import { Table } from '@/components/ui/table'
-import { Progress } from '../../components/Progress'
-import { Stepper } from '../../components/Stepper'
+import { Progress } from "@/components/ui/progress/Progress";
+import { Stepper } from '@/components/ui/stepper'
 import { Pagination } from '../../components/Pagination'
 import { Breadcrumb } from '../../components/Breadcrumb'
 //===========================================
@@ -58,6 +58,7 @@ import { useCurrencyFormatter } from "@/models/hooks/useCurrencyFormatter";
 //==============================
 // ==== Interfaces and Types ====
 import type { IDateRange } from "@/components/ui/date-range-picker/DateRangePicker";
+
 //===============================
 
 // --- 1. Estruturas de Dados ---

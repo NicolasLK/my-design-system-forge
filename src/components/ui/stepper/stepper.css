@@ -1,0 +1,150 @@
+/* ===========================
+   🪜 Stepper
+   =========================== */
+
+.stepper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-4);
+  flex-wrap: wrap;
+  width: 100%;
+}
+
+.stepper-item {
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+/* Círculo (Indicador de passo) */
+.stepper-circle {
+  --circle-size: 2rem;
+  width: var(--circle-size);
+  height: var(--circle-size);
+
+  border-radius: var(--radius-full);
+  border: 2px solid var(--color-gray-400); /* Pending/Default */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: var(--weight-medium);
+  color: var(--color-gray-500);
+  background-color: var(--color-white);
+  font-size: var(--font-text3-size);
+  transition: all 0.3s ease;
+}
+
+/* Estado Ativo (Active) */
+.stepper-circle.active {
+  border-color: var(--color-primary-500);
+  color: var(--color-primary-500);
+  font-weight: var(--weight-semi-bold);
+  box-shadow: 0 0 0 4px var(--color-primary-100);
+}
+
+/* Estado Concluído (Completed) */
+.stepper-circle.completed {
+  background-color: var(--color-success-500);
+  color: var(--color-white);
+  border-color: var(--color-success-500);
+  font-size: var(--font-text2-size);
+}
+
+/* Rótulo */
+.stepper-label {
+  font-size: var(--font-text3-size);
+  margin-left: var(--space-2);
+  color: var(--color-gray-700);
+  transition: color 0.3s ease;
+}
+
+.stepper-label[data-status="active"] {
+  color: var(--color-primary-600);
+  font-weight: var(--weight-semi-bold);
+}
+.stepper-label[data-status="completed"] {
+  color: var(--color-success-600);
+  font-weight: var(--weight-medium);
+}
+
+/* Linha de conexão */
+.stepper-line {
+  --line-width: var(--space-8);
+  width: var(--line-width);
+  height: 3px;
+  background-color: var(--color-gray-300);
+  margin: 0 var(--space-2);
+  transition: background-color 0.3s ease;
+}
+
+/* Linha Concluída (Completed) */
+.stepper-line.completed {
+  background-color: var(--color-success-500);
+}
+
+.stepper-item:last-child .stepper-line {
+  display: none;
+}
+
+/* Tamanhos */
+/* Small (sm) */
+.stepper.stepper-sm .stepper-circle {
+  --circle-size: 1.6rem;
+  font-size: var(--font-text4-size);
+}
+.stepper.stepper-sm .stepper-line {
+  --line-width: var(--space-6);
+  height: 2px;
+}
+.stepper.stepper-sm .stepper-label {
+  font-size: var(--font-text4-size);
+}
+
+/* Large (lg) */
+.stepper.stepper-lg .stepper-circle {
+  --circle-size: 2.5rem;
+  font-size: var(--font-text2-size);
+}
+.stepper.stepper-lg .stepper-line {
+  --line-width: var(--space-10);
+  height: 4px;
+}
+.stepper.stepper-lg .stepper-label {
+  font-size: var(--font-text2-size);
+}
+
+/* 📱 Responsividade (Vertical em Mobile) */
+@media (max-width: var(--screen-sm)) {
+  .stepper {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-3);
+  }
+
+  .stepper-item {
+    align-items: flex-start;
+    padding-left: var(--space-1);
+  }
+
+  .stepper-label {
+    margin-left: var(--space-3);
+    margin-top: 0;
+  }
+
+  .stepper-line {
+    position: absolute;
+    top: var(--circle-size);
+    left: calc(var(--circle-size) / 2 + 1px);
+    transform: translateX(-50%);
+
+    width: 3px;
+    height: 100%;
+    margin: 0;
+    z-index: -1;
+  }
+
+  .stepper-item:last-child .stepper-line {
+    display: none;
+  }
+}
