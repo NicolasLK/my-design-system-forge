@@ -1,18 +1,24 @@
-import { getComponentSize, type ComponentSize } from "../models/get-component-size"
-import "../styles/components/pagination.css"
+import { getComponentSize, type ComponentSize } from "@/models/get-component-size"
+import "./pagination.css"
 
 interface IPaginationProps {
     totalPages: number
     currentPage: number
     onPageChange: (page: number) => void
     size?: ComponentSize
+    siblingCount?: number
+    className?: string
 }
+
+const DOTS = '...';
 
 export const Pagination = ({
     totalPages,
     currentPage,
     onPageChange,
     size = "medium",
+    siblingCount,
+    className,
 }: IPaginationProps) => {
     const sizeClass = getComponentSize(size, "pagination")
 
