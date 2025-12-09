@@ -45,7 +45,7 @@ export const BreadcrumbList = forwardRef<HTMLOListElement, ComponentProps<"ol">>
 )
 
 /* ============================================================
- * 🟦 ITEM / LINK / PAGE / SEPARATOR
+ * 🟦 ITEM / LINK / PAGE / SEPARATOR / ELLIPSIS
  * ============================================================ */
 
 export const BreadcrumbItem = forwardRef<HTMLLIElement, ComponentProps<"li">>(
@@ -113,6 +113,26 @@ export const BreadcrumbSeparator = forwardRef<HTMLSpanElement, ComponentProps<"s
                     {...props}
                 >
                     {children || "›"}
+                </span>
+            </>
+        )
+    }
+)
+
+export const BreadcrumbEllipsis = forwardRef<HTMLSpanElement, ComponentProps<"span">>(
+    ({ children, className, ...props }, ref) => {
+
+        return (
+            <>
+                <span
+                    data-slot="breadcrumb-ellipsis"
+                    role="presentation"
+                    aria-hidden="true"
+                    className={cn("breadcrumb-ellipsis", className)}
+                    ref={ref}
+                    {...props}
+                >
+                    {children || "..."}
                 </span>
             </>
         )

@@ -1,4 +1,4 @@
-import { BreadcrumbItem, BreadcrumbLink, BreadcrumbList, BreadcrumbPage, BreadcrumbRoot, BreadcrumbSeparator } from "./Breadcrumb";
+import { BreadcrumbEllipsis, BreadcrumbItem, BreadcrumbLink, BreadcrumbList, BreadcrumbPage, BreadcrumbRoot, BreadcrumbSeparator } from "./Breadcrumb";
 
 
 export const Breadcrumb = {
@@ -8,4 +8,5 @@ export const Breadcrumb = {
     Link: BreadcrumbLink,
     Page: BreadcrumbPage,
     Separator: BreadcrumbSeparator,
+    Ellipsis: BreadcrumbEllipsis
 }
