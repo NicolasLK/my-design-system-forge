@@ -37,7 +37,7 @@ import { Pagination } from "@/components/ui/pagination";
 import { Breadcrumb } from '@/components/ui/breadcrumb'
 //===========================================
 // ==== Components - Users ====
-import { Avatar } from '../../components/Avatar'
+import { Avatar } from "@/components/ui/avatar/Avatar";
 import { AvatarGroup } from '../../components/AvatarGroup'
 import { Chip } from '../../components/Chip'
 import { Tag } from '@/components/ui/tag'

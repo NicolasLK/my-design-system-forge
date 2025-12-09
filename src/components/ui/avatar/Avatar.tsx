@@ -1,6 +1,7 @@
 import type { ReactNode } from "react"
-import { getComponentSize, type ComponentSize } from "../models/get-component-size"
-import "../styles/components/avatar.css"
+import { getComponentSize, type ComponentSize } from "@/models/get-component-size"
+import "./avatar.css"
+
 
 interface IAvatarProps {
     /** URL da imagem do avatar */
