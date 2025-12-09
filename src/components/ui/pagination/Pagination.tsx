@@ -1,4 +1,7 @@
 import { getComponentSize, type ComponentSize } from "@/models/get-component-size"
+import { usePaginationRange } from "@/models/hooks/usePaginationRange"
+import { cn } from "@/lib/utils/cn"
+import { Button } from "../button"
 import "./pagination.css"
 
 interface IPaginationProps {
@@ -17,10 +20,17 @@ export const Pagination = ({
     currentPage,
     onPageChange,
     size = "medium",
-    siblingCount,
+    siblingCount = 1,
     className,
 }: IPaginationProps) => {
     const sizeClass = getComponentSize(size, "pagination")
+
+    const paginationRange = usePaginationRange(totalPages, currentPage, siblingCount);
+
+    /**
+     * Define o tamanho dos botões de navegação
+     */
+    const navButtonSize = size === 'large' ? 'medium' : 'small';
 
     const handleClick = (page: number) => {
         if (page >= 1 && page <= totalPages) {
@@ -29,43 +39,74 @@ export const Pagination = ({
     }
 
     const renderPages = () => {
-        const pages = []
-        for (let i = 1; i <= totalPages; i++) {
-            pages.push(
-                <button
-                    key={i}
-                    className={`pagination-button ${i === currentPage ? "active" : ""
-                        } ${sizeClass}`}
-                    onClick={() => handleClick(i)}
+        return paginationRange.map((item, index) => {
+            if (item === DOTS) {
+                return (
+                    <span key={index} className={cn("pagination-ellipsis", sizeClass)}>
+                        ...
+                    </span>
+                );
+            }
+
+            const page = item as number;
+            const isActive = page === currentPage;
+
+            return (
+                <Button
+                    key={index}
+                    visualVariant={isActive ? "default" : "ghost"}
+                    colorVariant="primary" // Cor primária para os números
+                    size={navButtonSize}
+                    className={cn(
+                        "pagination-button",
+                        isActive && "active" // Mantém a classe ativa para o CSS
+                    )}
+                    onClick={() => handleClick(page)}
+                    aria-label={`Página ${page}`}
+                    aria-current={isActive ? "page" : undefined}
                 >
-                    {i}
-                </button>
-            )
-        }
-        return pages
-    }
+                    {page}
+                </Button>
+            );
+        });
+    };
 
     return (
         <>
-            <div className="pagination">
-                <button
-                    className="pagination-nav"
+            <nav
+                role="navigation"
+                aria-label="Paginação"
+                data-slot="pagination-root"
+                className={cn("pagination", sizeClass, className)}
+            >
+                {/* Botão Anterior */}
+                <Button
+                    visualVariant="ghost"
+                    colorVariant="neutral"
+                    size={navButtonSize}
                     onClick={() => handleClick(currentPage - 1)}
                     disabled={currentPage === 1}
+                    aria-label="Página Anterior"
+                    className="pagination-nav-button"
                 >
                     ‹
-                </button>
+                </Button>
 
                 {renderPages()}
 
-                <button
-                    className="pagination-nav"
+                {/* Botão Próximo */}
+                <Button
+                    visualVariant="ghost"
+                    colorVariant="neutral"
+                    size={navButtonSize}
                     onClick={() => handleClick(currentPage + 1)}
                     disabled={currentPage === totalPages}
+                    aria-label="Próxima Página"
+                    className="pagination-nav-button"
                 >
                     ›
-                </button>
-            </div>
+                </Button>
+            </nav>
         </>
     )
 }

@@ -33,8 +33,8 @@ import { DateRangePicker } from "@/components/ui/date-range-picker";
 import { Table } from '@/components/ui/table'
 import { Progress } from "@/components/ui/progress";
 import { Stepper } from '@/components/ui/stepper'
-import { Pagination } from "@/components/ui/pagination/Pagination";
-import { Breadcrumb } from '../../components/Breadcrumb'
+import { Pagination } from "@/components/ui/pagination";
+import { Breadcrumb } from '@/components/ui/breadcrumb'
 //===========================================
 // ==== Components - Users ====
 import { Avatar } from '../../components/Avatar'
@@ -756,14 +756,35 @@ function PreviewPage() {
             <section style={sectionStyle}>
                 <h3>Breadcrumb</h3>
                 <div style={divStyle}>
-                    <Breadcrumb
-                        items={[
-                            { label: "Início", href: "#" },
-                            { label: "Usuários", href: "#" },
-                            { label: "Perfil", href: "#" },
-                            { label: "Configurações" },
-                        ]}
-                    />
+                    <Breadcrumb.Root className="mt-4">
+                        <Breadcrumb.List>
+
+                            {/* 1. Item Inicial Navegável */}
+                            <Breadcrumb.Item>
+                                <Breadcrumb.Link href="/dashboard">Dashboard</Breadcrumb.Link>
+                                <Breadcrumb.Separator />
+                            </Breadcrumb.Item>
+
+                            {/* 2. Item Intermediário Navegável */}
+                            <Breadcrumb.Item>
+                                <Breadcrumb.Link href="/dashboard/forms">Forms Avançados</Breadcrumb.Link>
+                                <Breadcrumb.Separator />
+                            </Breadcrumb.Item>
+
+                            {/* Opcional: Item de Reticências (Ellipsis) — Se implementado */}
+                            {/* <Breadcrumb.Item>
+                                <Breadcrumb.Ellipsis />
+                                <Breadcrumb.Separator />
+                            </Breadcrumb.Item> */}
+
+                            {/* 3. Item Final (Página Atual) */}
+                            <Breadcrumb.Item>
+                                {/* Breadcrumb.Page é um <span> não clicável, indica a página atual */}
+                                <Breadcrumb.Page>DateRangePicker</Breadcrumb.Page>
+                            </Breadcrumb.Item>
+
+                        </Breadcrumb.List>
+                    </Breadcrumb.Root>
                 </div>
             </section>
 
