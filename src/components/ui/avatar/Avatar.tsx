@@ -1,59 +1,126 @@
-import type { ReactNode } from "react"
+import { forwardRef, useState, type ComponentProps, type ReactNode, type SyntheticEvent } from "react"
 import { getComponentSize, type ComponentSize } from "@/models/get-component-size"
+import { cn } from "@/lib/utils/cn"
+import { getInitials } from "@/models/get-initials"
 import "./avatar.css"
 
 
-interface IAvatarProps {
-    /** URL da imagem do avatar */
-    src?: string
-    /** Texto alternativo (acessibilidade) */
-    alt?: string
-    /** Nome do usuário, usado para gerar iniciais se não houver imagem */
-    name?: string
+/* ============================================================
+ * 🟦 Shared Types
+ * ============================================================ */
+
+interface IAvatarRootProps extends ComponentProps<"div"> {
     /** Tamanho do avatar (small, medium, large) */
     size?: ComponentSize
     /** Se deve ser circular ou quadrado */
     shape?: "circle" | "square"
+}
+
+interface IAvatarImageProps extends ComponentProps<"img"> {
+    /** Opcional: Handlers de erro/carregamento para melhor UX */
+    onLoadingStatusChange?: (loaded: boolean) => void;
+}
+
+interface IAvatarFallbackProps extends ComponentProps<"span"> {
+    /** Nome do usuário, usado para gerar iniciais */
+    name?: string
     /** Ícone ou elemento customizado opcional */
     icon?: ReactNode
-    /** Classe CSS adicional */
-    className?: string
 }
 
-export const Avatar = ({
-    src,
-    alt = "Avatar",
-    name,
-    size = "medium",
-    shape = "circle",
-    icon,
-    className = "",
-}: IAvatarProps) => {
-    const sizeClass = getComponentSize(size, "avatar")
-    const shapeClass = shape === "circle" ? "avatar-circle" : "avatar-square"
+/* ============================================================
+ * 🟦 ROOT
+ * ============================================================ */
 
-    /** Gera iniciais a partir do nome (fallback) */
-    const getInitials = (fullName?: string): string => {
-        if (!fullName) return "?"
-        const parts = fullName.trim().split(" ")
-        if (parts.length === 1) return parts[0].charAt(0).toUpperCase()
+export const AvatarRoot = forwardRef<HTMLDivElement, IAvatarRootProps>(
+    ({ size = "medium", shape = "circle", className, ...props }, ref) => {
+
+        const sizeClass = getComponentSize(size, "avatar");
+        const shapeClass = shape === "circle" ? "avatar-circle" : "avatar-square";
+
         return (
-            parts[0].charAt(0).toUpperCase() +
-            parts[parts.length - 1].charAt(0).toUpperCase()
+            <>
+                <div
+                    data-slot="avatar-root"
+                    data-shape={shape}
+                    className={cn(
+                        "avatar-root",
+                        sizeClass,
+                        shapeClass,
+                        className
+                    )}
+                    ref={ref}
+                    {...props}
+                />
+            </>
         )
     }
+)
 
-    return (
-        <>
-            <div className={`avatar ${sizeClass} ${shapeClass} ${className}`.trim()}>
-                {src ? (
-                    <img src={src} alt={alt} className="avatar-image" />
-                ) : icon ? (
-                    <span className="avatar-icon">{icon}</span>
-                ) : (
-                    <span className="avatar-initials">{getInitials(name)}</span>
-                )}
-            </div>
-        </>
-    )
-}
+/* ============================================================
+ * 🟦 IMAGE
+ * ============================================================ */
+
+export const AvatarImage = forwardRef<HTMLImageElement, IAvatarImageProps>(
+    ({ className, onError, onLoad, ...props }, ref) => {
+        const [imageError, setImageError] = useState(false);
+        const [imageLoaded, setImageLoaded] = useState(false);
+
+        const handleLoad = (e: SyntheticEvent<HTMLImageElement, Event>) => {
+            setImageLoaded(true);
+            setImageError(false);
+            onLoad?.(e);
+        };
+
+        const handleError = (e: SyntheticEvent<HTMLImageElement, Event>) => {
+            setImageError(true);
+            setImageLoaded(false);
+            onError?.(e);
+        };
+
+        // Se a imagem falhou, não a renderizamos, forçando o Fallback a aparecer.
+        if (imageError || !props.src) {
+            return null;
+        }
+
+        return (
+            <>
+                <img
+                    data-slot="avatar-image"
+                    className={cn("avatar-image", imageLoaded && 'avatar-image-loaded', className)}
+                    ref={ref}
+                    loading="lazy"
+                    onLoad={handleLoad}
+                    onError={handleError}
+                    {...props}
+                    style={{ opacity: imageLoaded ? 1 : 0 }} // Esconde enquanto não carrega
+                />
+            </>
+        )
+    }
+)
+
+/* ============================================================
+ * 🟦 FALLBACK
+ * ============================================================ */
+
+export const AvatarFallback = forwardRef<HTMLSpanElement, IAvatarFallbackProps>(
+    ({ className, name, icon, ...props }, ref) => {
+
+        const content = icon ? icon : getInitials(name);
+
+        return (
+            <>
+                <span
+                    data-slot="avatar-fallback"
+                    data-has-icon={!!icon}
+                    className={cn("avatar-fallback", className)}
+                    ref={ref}
+                    {...props}
+                >
+                    {content}
+                </span>
+            </>
+        )
+    }
+)

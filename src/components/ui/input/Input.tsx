@@ -1,6 +1,6 @@
 import { forwardRef, type InputHTMLAttributes, type ReactNode } from 'react'
 import { getComponentSize, type ComponentSize } from '@/models/get-component-size'
-import { genUid } from '@/models/genUid'
+import { genUid } from '@/models/gen-uid'
 import { cn } from '@/lib/utils/cn'
 import './input.css'
 

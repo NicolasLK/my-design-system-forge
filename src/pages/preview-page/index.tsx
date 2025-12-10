@@ -37,8 +37,8 @@ import { Pagination } from "@/components/ui/pagination";
 import { Breadcrumb } from '@/components/ui/breadcrumb'
 //===========================================
 // ==== Components - Users ====
-import { Avatar } from "@/components/ui/avatar/Avatar";
-import { AvatarGroup } from '../../components/AvatarGroup'
+import { Avatar } from "@/components/ui/avatar";
+import { AvatarGroup } from "@/components/ui/avatar-group";
 import { Chip } from '../../components/Chip'
 import { Tag } from '@/components/ui/tag'
 //=============================
@@ -99,6 +99,19 @@ const PROJECT_DATA: Project[] = [
     { id: 4, name: 'Relatórios Mensais', status: 'Em Progresso', deadline: '05/12/2025', value: 3500 },
 ];
 //=================================
+
+const CogIcon = () => <svg width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="3" /><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0-.33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09a1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0 .33 1.82 1.65 1.65 0 0 0 1 1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1.82.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0 .33 1.82 1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2z" /></svg>;
+
+// === Dados de Exemplo - AvatarGroup ===
+const USER_LIST = [
+    { name: 'Alex Mota', src: 'https://i.pravatar.cc/150?img=4', alt: 'Alex Mota' },
+    { name: 'Bruce Wayne', src: 'https://i.pravatar.cc/150?img=12', alt: 'Bruce Wayne' },
+    { name: 'Catarina Silva', src: 'https://i.pravatar.cc/150?img=15', alt: 'Catarina Silva' },
+    { name: 'David Jones', src: 'https://i.pravatar.cc/150?img=16', alt: 'David Jones' },
+    { name: 'Eve Lima', src: 'https://i.pravatar.cc/150?img=17', alt: 'Eve Lima' },
+    { name: 'Frank N.' }, // Fallback
+];
+//=======================================
 
 function PreviewPage() {
     // ==== Estados ====
@@ -793,26 +806,65 @@ function PreviewPage() {
             <section style={sectionStyle}>
                 <h3>Avatar</h3>
                 <div style={divStyle}>
-                    <Avatar name="Nicolas Loffi" size="large" />
-                    <Avatar src="https://i.pravatar.cc/150?img=3" name="Lucas Souza" size="medium" />
-                    <Avatar size="small" />
+                    {/* 1. Large: Fallback de Iniciais (Formato Circular Padrão) */}
+                    <Avatar.Root size="large">
+                        {/* Não há <Avatar.Image>, então o Fallback é exibido */}
+                        <Avatar.Fallback name="Nicolas Loffi" />
+                    </Avatar.Root>
+
+                    {/* 2. Medium: Com Imagem (Fallback de Iniciais como segurança) */}
+                    <Avatar.Root size="medium">
+                        <Avatar.Image
+                            src="https://i.pravatar.cc/150?img=3"
+                            alt="Lucas Souza"
+                        />
+                        <Avatar.Fallback name="Lucas Souza" />
+                    </Avatar.Root>
+
+                    {/* 3. Small: Fallback de Ícone (Sem nome/imagem) */}
+                    <Avatar.Root size="small">
+                        <Avatar.Fallback icon={<CogIcon />} />
+                    </Avatar.Root>
+
+                    {/* 4. Medium: Quadrado com Iniciais */}
+                    <Avatar.Root size="medium" shape="square">
+                        <Avatar.Fallback name="TS" />
+                    </Avatar.Root>
                 </div>
             </section>
 
             <section style={sectionStyle}>
                 <h3>Avatar Group</h3>
                 <div style={divStyle}>
-                    <AvatarGroup
-                        size="medium"
-                        users={[
-                            { name: "Nicolas Loffi", src: "https://i.pravatar.cc/150?img=11" },
-                            { name: "Ana Clara", src: "https://i.pravatar.cc/150?img=22" },
-                            { name: "João Pedro", src: "https://i.pravatar.cc/150?img=33" },
-                            { name: "Marina Lopes", src: "https://i.pravatar.cc/150?img=44" },
-                            { name: "Carlos Henrique", src: "https://i.pravatar.cc/150?img=55" },
-                        ]}
-                        maxVisible={3}
-                    />
+                    <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
+
+                        <div>
+                            <h4>Padrão (Medium, Max 4)</h4>
+                            <AvatarGroup
+                                users={USER_LIST}
+                                maxVisible={4}
+                                size="medium"
+                            />
+                        </div>
+
+                        <div>
+                            <h4>Pequeno (Max 6, Sem Contador)</h4>
+                            <AvatarGroup
+                                users={USER_LIST.slice(0, 6)}
+                                maxVisible={6}
+                                size="small"
+                            />
+                        </div>
+
+                        <div>
+                            <h4>Grande (Max 3, Com Contador +3)</h4>
+                            <AvatarGroup
+                                users={USER_LIST}
+                                maxVisible={3}
+                                size="large"
+                            />
+                        </div>
+                    </div>
                 </div>
             </section>
 
