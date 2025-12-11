@@ -39,7 +39,7 @@ import { Breadcrumb } from '@/components/ui/breadcrumb'
 // ==== Components - Users ====
 import { Avatar } from "@/components/ui/avatar";
 import { AvatarGroup } from "@/components/ui/avatar-group";
-import { Chip } from '../../components/Chip'
+import { Chip } from "@/components/ui/chip";
 import { Tag } from '@/components/ui/tag'
 //=============================
 import { Badge } from '@/components/ui/badge'
@@ -123,6 +123,8 @@ function PreviewPage() {
     const [open, setOpen] = useState(false)
     const [openDropdown, setOpenDropdown] = useState(false);
     const [selectedRange, setSelectedRange] = useState<IDateRange>({ start: null, end: null });
+    const [selectedTag, setSelectedTag] = useState('react');
+    const [removableTags, setRemovableTags] = useState(['TypeScript', 'GraphQL', 'Redux']);
     //==================
 
     // ==== Hooks ====
@@ -139,6 +141,10 @@ function PreviewPage() {
     //================
 
     // ==== Functions ====
+    const handleRemove = (tag: string) => {
+        setRemovableTags(removableTags.filter(t => t !== tag));
+        console.log(`Removendo: ${tag}`);
+    };
     //====================
 
     return (
@@ -871,26 +877,85 @@ function PreviewPage() {
             <section style={sectionStyle}>
                 <h3>Chip</h3>
                 <div style={divStyle}>
-                    {/* Padrão */}
-                    <Chip label="Padrão" />
 
-                    {/* Selecionável */}
-                    <Chip label="Padrão" selected />
+                    <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
+                        <div>
+                            {/* 1. Chips de Seleção (Outline) */}
+                            <h4 style={{ width: '100%' }}>Chips de Filtro (Outline)</h4>
 
-                    {/* Com variantes de cor */}
-                    <Chip label="Ativo" variant="primary" />
-                    <Chip label="Sucesso" variant="success" />
-                    <Chip label="Aviso" variant="warning" />
-                    <Chip label="Erro" variant="destructive" />
+                            <Chip
+                                visualVariant="outline"
+                                color="primary"
+                                onClick={() => setSelectedTag('react')}
+                                selected={selectedTag === 'react'}
+                            >
+                                React
+                            </Chip>
 
-                    {/* Com interação */}
-                    <Chip
-                        label="Filtro ativo"
-                        onClick={() => console.log("Filtro clicado!")}
-                    />
+                            <Chip
+                                visualVariant="outline"
+                                color="secondary"
+                                onClick={() => setSelectedTag('js')}
+                                selected={selectedTag === 'js'}
+                            >
+                                JavaScript
+                            </Chip>
 
-                    {/* Desabilitado */}
-                    <Chip label="Indisponível" disabled />
+                            <Chip
+                                visualVariant="outline"
+                                color="tertiary"
+                                onClick={() => setSelectedTag('css')}
+                                selected={selectedTag === 'css'}
+                            >
+                                CSS/Tokens
+                            </Chip>
+
+                            <Chip
+                                visualVariant="outline"
+                                color="neutral"
+                                onClick={() => setSelectedTag('nodeJs')}
+                                selected={selectedTag === 'nodeJs'}
+                                disabled={true}
+                            >
+                                NodeJs
+                            </Chip>
+                        </div>
+
+                        <div>
+                            {/* 2. Chips Sólidos (Indicadores de Status) */}
+                            <h4 style={{ width: '100%', marginTop: '20px' }}>Chips Sólidos (Status)</h4>
+
+                            <Chip color="success" size="small">
+                                Ativo
+                            </Chip>
+
+                            <Chip color="warning" size="medium">
+                                Aguardando
+                            </Chip>
+
+                            <Chip color="destructive" size="large">
+                                Arquivado
+                            </Chip>
+                        </div>
+
+                        <div>
+                            {/* 3. Chips Removíveis (Closable) */}
+                            <h4 style={{ width: '100%', marginTop: '20px' }}>Chips Removíveis</h4>
+
+                            {removableTags.map(tag => (
+                                <Chip
+                                    key={tag}
+                                    color="neutral"
+                                    // visualVariant="outline"
+                                    closable
+                                    onClose={() => handleRemove(tag)}
+                                    size="medium"
+                                >
+                                    {tag}
+                                </Chip>
+                            ))}
+                        </div>
+                    </div>
                 </div>
             </section>
 
