@@ -2,6 +2,7 @@ export type ComponentVariant =
     | "default"
     | "outline"
     | "ghost"
+    | 'light'
     | "text"
     | string;
 

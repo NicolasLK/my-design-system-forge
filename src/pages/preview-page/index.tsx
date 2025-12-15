@@ -42,13 +42,15 @@ import { AvatarGroup } from "@/components/ui/avatar-group";
 import { Chip } from "@/components/ui/chip";
 import { Tag } from '@/components/ui/tag'
 //=============================
+// ==== Components - Extra ====
+import { Calendar } from '@/components/ui/calendar'
+import { TooltipAdvanced } from '../../components/TooltipAdvanced'
+import { LoadingOverlay } from '../../components/LoadingOverlay'
+//=============================
 import { Badge } from '@/components/ui/badge'
 import { Typography } from '../../components/Typography'
 import { ProgressCircular } from '../../components/ProgressCircular'
 import { BadgeGroup } from '../../components/BadgeGroup'
-import { Calendar } from '@/components/ui/calendar'
-import { TooltipAdvanced } from '../../components/TooltipAdvanced'
-import { LoadingOverlay } from '../../components/LoadingOverlay'
 // ==== Functions and Hooks ====
 import { useTabs } from "@/models/hooks/useTabs";
 import { useAccordion } from "@/models/hooks/useAccordion";
@@ -125,6 +127,7 @@ function PreviewPage() {
     const [selectedRange, setSelectedRange] = useState<IDateRange>({ start: null, end: null });
     const [selectedTag, setSelectedTag] = useState('react');
     const [removableTags, setRemovableTags] = useState(['TypeScript', 'GraphQL', 'Redux']);
+    const [statusTags, setStatusTags] = useState(['pending', 'urgent']);
     //==================
 
     // ==== Hooks ====
@@ -144,6 +147,11 @@ function PreviewPage() {
     const handleRemove = (tag: string) => {
         setRemovableTags(removableTags.filter(t => t !== tag));
         console.log(`Removendo: ${tag}`);
+    };
+
+    const handleRemoveTag = (tag: string) => {
+        setStatusTags(statusTags.filter(t => t !== tag));
+        console.log(`Tag removida: ${tag}`);
     };
     //====================
 
@@ -962,12 +970,92 @@ function PreviewPage() {
             <section style={sectionStyle}>
                 <h3>Tag</h3>
                 <div style={divStyle}>
-                    <Tag variant="success">Aprovado</Tag>
-                    <Tag variant="destructive" closable onClose={() => alert("Removido!")}>
-                        Erro crítico
+
+                    {/* Sólida e Grande (default/solid) */}
+                    <Tag color="primary" size="large">
+                        Serviço Principal
                     </Tag>
+
+                    {/* Sólida e Clicável */}
+                    <Tag color="secondary" onClick={() => alert('Abrir detalhe!')}>
+                        Clicar para Ação
+                    </Tag>
+
+                    {/* Sólida e Removível */}
+                    <Tag color="destructive" size="medium" closable onClose={() => console.log('Removido!')}>
+                        Inválido
+                    </Tag>
+
+                    {/* -------------------------------------------------------------------------- */}
+
+                    {/* Light e Pequena */}
+                    <Tag color="warning" visualVariant="light" size="small">
+                        Em Revisão
+                    </Tag>
+
+                    {/* Light e Média */}
+                    <Tag color="tertiary" visualVariant="light">
+                        Feature Nova
+                    </Tag>
+
+                    {/* Light e Clicável (Primária) */}
+                    <Tag color="primary" visualVariant="light" onClick={() => console.log('Light clicked')}>
+                        Abrir Documentação
+                    </Tag>
+
+                    {/* -------------------------------------------------------------------------- */}
+
+                    {statusTags.map(tag => (
+                        <Tag
+                            key={tag}
+                            color={tag === 'urgent' ? 'destructive' : 'neutral'}
+                            visualVariant={tag === 'urgent' ? 'solid' : 'light'}
+                            closable
+                            onClose={() => handleRemoveTag(tag)}
+                        >
+                            {tag.toUpperCase()}
+                        </Tag>
+                    ))}
                 </div>
             </section>
+
+            <h2 style={h2Style}>Extra</h2>
+
+            <section style={sectionStyle}>
+                <h3>Calendar</h3>
+                <div style={divStyle}>
+                    <Calendar
+                        onSelect={(date) => console.log("Data selecionada:", date)}
+                    />
+                </div>
+            </section>
+
+            <section style={sectionStyle}>
+                <h3>TooltipAdvanced</h3>
+                <div style={divStyle}>
+                    <TooltipAdvanced text="Informação útil" position="right" delay={250}>
+                        <Button colorVariant="primary">Hover aqui</Button>
+                    </TooltipAdvanced>
+
+                    <TooltipAdvanced text="Clique para abrir" trigger="click">
+                        <Button colorVariant="secondary">Click Tooltip</Button>
+                    </TooltipAdvanced>
+                </div>
+            </section>
+
+            <section style={{ position: "relative", height: 200 }}>
+                <h3>LoadingOverlay</h3>
+                <div style={divStyle}>
+                    <LoadingOverlay active={isLoading} message="Carregando dados..." />
+                    <p>Conteúdo da página</p>
+
+                    <Button colorVariant="primary" onClick={() => setIsLoading(true)}>
+                        Ativar Loading
+                    </Button>
+                </div>
+            </section>
+
+            <h2 style={h2Style}>....</h2>
 
             <section style={sectionStyle}>
                 <h3>Badges</h3>
@@ -1015,8 +1103,6 @@ function PreviewPage() {
                 </div>
             </section>
 
-
-
             <section style={sectionStyle}>
                 <h3>ProgressCircular</h3>
                 <div style={divStyle}>
@@ -1038,40 +1124,6 @@ function PreviewPage() {
                         <Badge variant="warning">Premium</Badge>
                         <Badge variant="destructive">Inativo</Badge>
                     </BadgeGroup>
-                </div>
-            </section>
-
-            <section style={sectionStyle}>
-                <h3>Calendar</h3>
-                <div style={divStyle}>
-                    <Calendar
-                        onSelect={(date) => console.log("Data selecionada:", date)}
-                    />
-                </div>
-            </section>
-
-            <section style={sectionStyle}>
-                <h3>TooltipAdvanced</h3>
-                <div style={divStyle}>
-                    <TooltipAdvanced text="Informação útil" position="right" delay={250}>
-                        <Button colorVariant="primary">Hover aqui</Button>
-                    </TooltipAdvanced>
-
-                    <TooltipAdvanced text="Clique para abrir" trigger="click">
-                        <Button colorVariant="secondary">Click Tooltip</Button>
-                    </TooltipAdvanced>
-                </div>
-            </section>
-
-            <section style={{ position: "relative", height: 200 }}>
-                <h3>LoadingOverlay</h3>
-                <div style={divStyle}>
-                    <LoadingOverlay active={isLoading} message="Carregando dados..." />
-                    <p>Conteúdo da página</p>
-
-                    <Button colorVariant="primary" onClick={() => setIsLoading(true)}>
-                        Ativar Loading
-                    </Button>
                 </div>
             </section>
         </>
