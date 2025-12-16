@@ -45,7 +45,7 @@ import { Tag } from '@/components/ui/tag'
 // ==== Components - Extra ====
 import { Calendar } from '@/components/ui/calendar'
 import { TooltipAdvanced } from '@/components/ui/tooltip-advanced'
-import { LoadingOverlay } from '../../components/LoadingOverlay'
+import { LoadingOverlay } from '@/components/ui/loading-overlay'
 //=============================
 import { Badge } from '@/components/ui/badge'
 import { Typography } from '../../components/Typography'
