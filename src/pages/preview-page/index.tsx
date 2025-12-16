@@ -44,7 +44,7 @@ import { Tag } from '@/components/ui/tag'
 //=============================
 // ==== Components - Extra ====
 import { Calendar } from '@/components/ui/calendar'
-import { TooltipAdvanced } from '../../components/ui/tooltip-advanced/TooltipAdvanced'
+import { TooltipAdvanced } from '@/components/ui/tooltip-advanced'
 import { LoadingOverlay } from '../../components/LoadingOverlay'
 //=============================
 import { Badge } from '@/components/ui/badge'
@@ -1033,13 +1033,51 @@ function PreviewPage() {
             <section style={sectionStyle}>
                 <h3>TooltipAdvanced</h3>
                 <div style={divStyle}>
-                    <TooltipAdvanced text="Informação útil" position="right" delay={250}>
-                        <Button colorVariant="primary">Hover aqui</Button>
+
+                    {/* 1. Trigger: HOVER (Padrão) - Posição TOP */}
+                    <TooltipAdvanced text="Dica: Salvar alterações no banco de dados." position="top">
+                        <Button visualVariant="outline" color="primary">
+                            Salvar (Hover Top)
+                        </Button>
                     </TooltipAdvanced>
 
-                    <TooltipAdvanced text="Clique para abrir" trigger="click">
-                        <Button colorVariant="secondary">Click Tooltip</Button>
+                    {/* 2. Trigger: HOVER - Posição BOTTOM com Atraso */}
+                    <TooltipAdvanced
+                        text="Exibir detalhes do perfil após 500ms."
+                        position="bottom"
+                        delay={500}
+                    >
+                        <Button visualVariant="ghost" color="neutral">
+                            Detalhes (Hover Bottom, Delay 500ms)
+                        </Button>
                     </TooltipAdvanced>
+
+                    {/* 3. Trigger: CLICK - Posição RIGHT */}
+                    <TooltipAdvanced
+                        text={
+                            <div>
+                                <strong>Clique Ativo:</strong> Clique novamente para fechar.
+                                Ou clique fora da caixa.
+                            </div>
+                        }
+                        trigger="click"
+                        position="right"
+                    >
+                        <Button visualVariant="default" color="secondary">
+                            Configurações (Hover Right, Click)
+                        </Button>
+                    </TooltipAdvanced>
+
+                    {/* 4. Trigger: HOVER - Posição LEFT */}
+                    <TooltipAdvanced
+                        text="Alerta: A bateria está fraca."
+                        position="left"
+                    >
+                        <Button visualVariant="solid" color="destructive">
+                            Alerta (Hover Left)
+                        </Button>
+                    </TooltipAdvanced>
+
                 </div>
             </section>
 

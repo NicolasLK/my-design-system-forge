@@ -38,9 +38,13 @@ export const TooltipAdvanced = ({
     className
 }: ITooltipAdvancedProps) => {
 
-    const [visible, setVisible] = useState(false)
-    const [timer, setTimer] = useState<TimeoutId>(null)
-    const wrapperRef = useRef<HTMLDivElement | null>(null)
+    const [visible, setVisible] = useState(false);
+    const [timer, setTimer] = useState<TimeoutId>(null);
+    const wrapperRef = useRef<HTMLDivElement | null>(null);
+
+    /**
+     * Criar um ID único para acessibilidade (aria-describedby)
+     */
     const tooltipId = useRef(`tooltip-${genUid(8)}`);
 
     // Fecha ao clicar fora (apenas trigger: click)
