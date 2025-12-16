@@ -103,6 +103,8 @@ const PROJECT_DATA: Project[] = [
 //=================================
 
 const CogIcon = () => <svg width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="3" /><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0-.33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09a1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0 .33 1.82 1.65 1.65 0 0 0 1 1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1.82.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0 .33 1.82 1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2z" /></svg>;
+const InfoIcon = () => <span style={{ fontSize: '1.2em' }}>ⓘ</span>;
+const SuccessIcon = () => <span style={{ fontSize: '1.2em' }}>✓</span>;
 
 // === Dados de Exemplo - AvatarGroup ===
 const USER_LIST = [
@@ -325,27 +327,57 @@ function PreviewPage() {
             <section style={sectionStyle}>
                 <h3>Alerts</h3>
                 <div style={divStyle}>
-                    {/* Alerts Normais */}
-                    <Alert variant="primary" />
-                    <Alert variant="success" />
 
-                    {/* Alert Warning com título customizado */}
-                    <Alert
-                        variant="warning"
-                        title="Atenção!"
-                    />
+                    <Alert.Root color="primary">
+                        <Alert.Icon>
+                            <InfoIcon />
+                        </Alert.Icon>
+                        <Alert.Title>Atenção do Sistema</Alert.Title>
+                        <Alert.Description>
+                            Esta é uma notificação informativa padrão com fundo e borda sutis.
+                        </Alert.Description>
+                    </Alert.Root>
 
-                    {/* Alert Destructive com Título e Descrição */}
-                    <Alert
-                        variant="destructive"
-                        title="Erro ao salvar"
-                        description="Ocorreu um problema ao salvar suas informações."
-                    />
+                    <div>
+                        <Alert.Root color="success" size="small">
+                            <Alert.Icon>
+                                <SuccessIcon />
+                            </Alert.Icon>
+                            <Alert.Title>Sucesso!</Alert.Title>
+                        </Alert.Root>
+                    </div>
 
-                    {/* Alert com texto customizado usando children */}
-                    <Alert variant="default">
-                        <div>ℹ Alert</div>
-                    </Alert>
+                    {/* <div>
+                        <Alert.Root color="warning">
+                            <Alert.Icon>
+                                <InfoIcon />
+                            </Alert.Icon>
+                            <Alert.Title>Dados Pendentes</Alert.Title>
+                            <Alert.Description>
+                                Seu perfil requer validação de segurança. Clique aqui para completar o processo antes do fim do dia.
+                            </Alert.Description>
+                        </Alert.Root>
+                    </div> */}
+
+                    {/* <div>
+                        <Alert.Root color="destructive" variant="solid" fullWidth>
+                            <Alert.Icon>
+                                <InfoIcon />
+                            </Alert.Icon>
+                            <Alert.Title>Erro Crítico na Conexão</Alert.Title>
+                            <Alert.Description>
+                                Não foi possível estabelecer a comunicação com o servidor principal. Tente novamente mais tarde.
+                            </Alert.Description>
+                        </Alert.Root>
+                    </div> */}
+
+                    <Alert.Root color="neutral" variant="solid" size="large">
+                        <Alert.Icon>
+                            <InfoIcon />
+                        </Alert.Icon>
+                        <Alert.Title>Manutenção Agendada</Alert.Title>
+                    </Alert.Root>
+
                 </div>
             </section>
 

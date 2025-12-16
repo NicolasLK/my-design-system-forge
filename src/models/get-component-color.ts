@@ -1,4 +1,6 @@
 export type ComponentColor =
+    | "default"
+    | "neutral"
     | "primary"
     | "secondary"
     | "tertiary"
@@ -6,8 +8,6 @@ export type ComponentColor =
     | "warning"
     | "destructive"
     | "info"
-    | "default"
-    | "neutral"
     | string;
 
 /**

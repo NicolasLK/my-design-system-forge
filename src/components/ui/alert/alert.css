@@ -1,104 +1,168 @@
 .alert {
-  display: flex;
+  display: grid;
+  grid-template-columns: auto 1fr;
   align-items: center;
-  gap: var(--space-2);
 
-  padding: var(--space-3) var(--space-4);
+  gap: var(--space-2);
+  row-gap: var(--space-0);
+
+  padding: var(--space-3);
   border-radius: var(--radius-md);
 
   font-size: var(--font-text2-size);
   line-height: var(--line-height-text2);
   font-weight: var(--weight-medium);
-  color: var(--color-white);
+
+  border: 1px solid transparent;
+
+  background-color: var(--color-background-default);
+  color: var(--color-gray-900);
 }
 
-/* ----- VARIANTES (geradas por getComponentColor) ----- */
+/* ----- SIZES ----- */
 
-.alert-primary {
-  background-color: var(--color-primary-500);
-}
-.alert-secondary {
-  background-color: var(--color-secondary-500);
-}
-.alert-success {
-  background-color: var(--color-success-500);
-}
-.alert-warning {
-  background-color: var(--color-warning-500);
-  color: var(--color-black);
-}
-.alert-destructive {
-  background-color: var(--color-destructive-500);
-}
-.alert-info {
-  background-color: var(--color-tertiary-500);
-  color: var(--color-white);
-}
-
-/* ----- ELEMENTOS DE CONTEÚDO ----- */
-
-/* O container do AlertContent para conteúdo estruturado */
-.alert-content-wrapper {
-  /* Transforma o Alert de flex (padrão) para block quando há title/description */
-  display: block;
-}
-
-/* Wrapper para o ícone e o título */
-.alert-title-wrapper {
-  display: flex;
-  align-items: flex-start;
-  gap: var(--space-2);
-  margin-bottom: var(--space-0-5);
-}
-
-/* Container que envolve o título/mensagem principal, permitindo quebrar */
-.alert-text-container {
-  display: block;
-  flex-grow: 1;
-}
-
-/* Ícone (Sempre presente, seja para alerta simples ou estruturado) */
-.alert-icon {
-  font-size: var(--font-text1-size);
-  font-weight: var(--weight-semi-bold);
-  flex-shrink: 0;
-}
-
-/* Título Customizado (Estruturado) */
-.alert-title {
-  font-weight: var(--weight-semi-bold);
-  font-size: var(--font-text1-size);
-  display: block;
-}
-
-/* Mensagem Padrão (Usado no modo simples e no Warning/Destructive sem title) */
-.alert-message {
-  font-size: var(--font-text2-size);
-  font-weight: var(--weight-medium);
-  opacity: 1;
-  display: block;
-}
-
-/* Descrição (O texto abaixo do título) */
-.alert-description {
-  font-size: var(--font-text2-size);
-  opacity: 0.9;
-  margin-top: 0;
-  margin-left: calc(var(--font-text1-size) + var(--space-2));
-}
-
-/* ----- SIZE ----- */
+/* SM */
 .alert-sm {
   padding: var(--space-2) var(--space-3);
   font-size: var(--font-text3-size);
 }
 
+/* LG */
 .alert-lg {
   padding: var(--space-4) var(--space-5);
   font-size: var(--font-text1-size);
 }
 
-/* ----- FULL WIDTH ----- */
+/* FULL WIDTH */
 .alert-full {
   width: 100%;
+}
+
+/* ----- ELEMENTOS INTERNOS ----- */
+
+/* Ícone */
+.alert-icon {
+  grid-column: 1;
+
+  grid-row: 1 / span 2;
+  font-size: var(--font-text1-size);
+  flex-shrink: 0;
+
+  margin-top: var(--space-0);
+
+  line-height: 1;
+  color: inherit;
+}
+
+/* Título */
+.alert-title {
+  grid-column: 2;
+  grid-row: 1;
+  font-weight: var(--weight-semi-bold);
+
+  line-height: line-height: 1.2;
+  margin: var(--space-0);
+}
+
+/* Descrição */
+.alert-description {
+  grid-column: 2;
+  grid-row: 2;
+  font-size: var(--font-text2-size);
+  opacity: 0.9;
+  margin: var(--space-0);
+
+  color: var(--color-gray-700);
+}
+
+/* ----- VARIANTES ----- */
+
+/* Light - Padrão */
+.alert-default,
+.alert-neutral {
+  background-color: var(--color-gray-100);
+  border-color: var(--color-gray-200);
+  color: var(--color-gray-800);
+}
+.alert-primary {
+  background-color: var(--color-primary-50);
+  border-color: var(--color-primary-200);
+  color: var(--color-primary-700);
+}
+.alert-secondary {
+  background-color: var(--color-secondary-50);
+  border-color: var(--color-secondary-200);
+  color: var(--color-secondary-700);
+}
+.alert-success {
+  background-color: var(--color-success-50);
+  border-color: var(--color-success-200);
+  color: var(--color-success-700);
+}
+.alert-destructive {
+  background-color: var(--color-destructive-50);
+  border-color: var(--color-destructive-200);
+  color: var(--color-destructive-700);
+}
+
+.alert-warning {
+  background-color: var(--color-warning-100);
+  border-color: var(--color-warning-300);
+  color: var(--color-warning-800);
+}
+
+.alert-primary .alert-description, 
+.alert-secondary .alert-description,
+.alert-success .alert-description,
+.alert-destructive .alert-description { 
+  color: color-mix(in srgb, currentColor 60%, var(--color-gray-900)); 
+  opacity: 0.8;
+}
+.alert-warning .alert-description {
+  color: var(--color-warning-700);
+}
+
+
+/* Solid */
+.alert-solid {
+  color: var(--color-white);
+  border-width: var(--space-0);
+}
+
+.alert-solid.alert-primary {
+  background-color: var(--color-primary-600);
+  border-color: var(--color-primary-700);
+}
+.alert-solid.alert-secondary {
+  background-color: var(--color-secondary-600);
+  border-color: var(--color-secondary-700);
+}
+.alert-solid.alert-success {
+  background-color: var(--color-success-600);
+  border-color: var(--color-success-700);
+}
+.alert-solid.alert-destructive {
+  background-color: var(--color-destructive-600);
+  border-color: var(--color-destructive-700);
+}
+.alert-solid.alert-default, .alert-solid.alert-neutral { 
+  background-color: var(--color-gray-700); 
+  border-color: var(--color-gray-800); 
+}
+
+.alert-solid .alert-description {
+  color: var(--color-white);
+  opacity: 0.9;
+}
+
+.alert-solid.alert-warning {
+  background-color: var(--color-warning-500);
+  border-color: var(--color-warning-600);
+  color: var(--color-black);
+}
+.alert-solid.alert-warning .alert-description { 
+  color: var(--color-gray-900); 
+}
+.alert-solid.alert-warning .alert-icon {
+  color: var(--color-black);
 }

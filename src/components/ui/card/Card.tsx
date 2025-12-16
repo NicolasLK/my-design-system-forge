@@ -10,7 +10,7 @@ interface ICardProps extends ComponentProps<"div"> {
 /* ============================================================
  * 🟦 BASE ROOT
  * ============================================================ */
-export function CardRoot({ fullWidth = false, className, ...props }: ICardProps) {
+export const CardRoot = ({ fullWidth = false, className, ...props }: ICardProps) => {
 
 
     return (
@@ -31,7 +31,7 @@ export function CardRoot({ fullWidth = false, className, ...props }: ICardProps)
 /* ============================================================
  * 🟦 HEADER
  * ============================================================ */
-export function CardHeader({ className, ...props }: ComponentProps<"div">) {
+export const CardHeader = ({ className, ...props }: ComponentProps<"div">) => {
 
     return (
         <>
@@ -47,7 +47,7 @@ export function CardHeader({ className, ...props }: ComponentProps<"div">) {
 /* ============================================================
  * 🟦 TITLE
  * ============================================================ */
-export function CardTitle({ className, ...props }: ComponentProps<"div">) {
+export const CardTitle = ({ className, ...props }: ComponentProps<"div">) => {
 
     return (
         <>
@@ -63,7 +63,7 @@ export function CardTitle({ className, ...props }: ComponentProps<"div">) {
 /* ============================================================
  * 🟦 DESCRIPTION
  * ============================================================ */
-export function CardDescription({ className, ...props }: ComponentProps<"div">) {
+export const CardDescription = ({ className, ...props }: ComponentProps<"div">) => {
 
     return (
         <>
@@ -79,7 +79,7 @@ export function CardDescription({ className, ...props }: ComponentProps<"div">) 
 /* ============================================================
  * 🟦 ACTION (Botão no cabeçalho)
  * ============================================================ */
-export function CardAction({ className, ...props }: ComponentProps<"div">) {
+export const CardAction = ({ className, ...props }: ComponentProps<"div">) => {
 
     return (
         <>
@@ -95,7 +95,7 @@ export function CardAction({ className, ...props }: ComponentProps<"div">) {
 /* ============================================================
  * 🟦 CONTENT
  * ============================================================ */
-export function CardContent({ className, ...props }: ComponentProps<"div">) {
+export const CardContent = ({ className, ...props }: ComponentProps<"div">) => {
 
     return (
         <>
@@ -111,7 +111,7 @@ export function CardContent({ className, ...props }: ComponentProps<"div">) {
 /* ============================================================
  * 🟦 FOOTER
  * ============================================================ */
-export function CardFooter({ className, ...props }: ComponentProps<"div">) {
+export const CardFooter = ({ className, ...props }: ComponentProps<"div">) => {
 
     return (
         <>
