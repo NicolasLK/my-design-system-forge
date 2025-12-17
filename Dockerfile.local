@@ -1,0 +1,12 @@
+# Usa imagem base Debian/Ubuntu (glibc)
+FROM mcr.microsoft.com/devcontainers/javascript-node:20
+
+# Atualiza pacotes e instala bash (libc6 já vem com glibc por padrão)
+RUN apt-get update && apt-get install -y bash && rm -rf /var/lib/apt/lists/*
+
+# Define o usuário padrão (não root)
+USER node
+WORKDIR /home/node/app
+
+# Mantém o container rodando (útil para Dev Containers VS Code)
+CMD [ "tail","-f","/dev/null" ]
