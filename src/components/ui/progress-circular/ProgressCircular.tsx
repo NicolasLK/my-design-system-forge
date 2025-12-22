@@ -1,34 +1,38 @@
-import { getComponentColor, type ComponentColor } from "../models/get-component-color"
-import "../styles/components/progressCircular.css"
-
-type ProgressVariant = ComponentColor
+import {
+    getComponentColor,
+    type ComponentColor,
+} from '@/models/get-component-color';
+import './progress-circular.css';
 
 interface IProgressCircularProps {
     /** Valor percentual (0–100) */
-    value: number
+    value: number;
     /** Tamanho do círculo em px */
-    size?: number
+    size?: number;
     /** Espessura do traço */
-    strokeWidth?: number
+    strokeWidth?: number;
     /** Variante de cor padrão do sistema */
-    variant?: ProgressVariant
+    variant?: ComponentColor;
 }
 
 export const ProgressCircular = ({
     value,
     size = 64,
     strokeWidth = 6,
-    variant = "default",
+    variant = 'default',
 }: IProgressCircularProps) => {
-    const radius = (size - strokeWidth) / 2
-    const circumference = 2 * Math.PI * radius
-    const offset = circumference - (value / 100) * circumference
+    const radius = (size - strokeWidth) / 2;
+    const circumference = 2 * Math.PI * radius;
+    const offset = circumference - (value / 100) * circumference;
 
-    const colorClass = getComponentColor(variant, 'progress')
+    const colorClass = getComponentColor(variant, 'progress');
 
     return (
         <>
-            <div className={`progress-circular ${colorClass}`} style={{ width: size, height: size }}>
+            <div
+                className={`progress-circular ${colorClass}`}
+                style={{ width: size, height: size }}
+            >
                 <svg width={size} height={size}>
                     <circle
                         className="progress-bg"
@@ -50,5 +54,5 @@ export const ProgressCircular = ({
                 <span className="progress-value">{Math.round(value)}%</span>
             </div>
         </>
-    )
-}
+    );
+};

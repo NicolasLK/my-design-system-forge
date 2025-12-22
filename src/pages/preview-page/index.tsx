@@ -1,65 +1,65 @@
-import { useState } from "react";
+import { useState } from 'react';
 // ==== Components - Base Essentials ====
-import { Button } from '@/components/ui/button'
-import { Input } from "@/components/ui/input";
-import { Textarea } from '@/components/ui/textarea'
-import { Checkbox } from '@/components/ui/checkbox'
-import { Radio } from '@/components/ui/radio'
-import { Switch } from '@/components/ui/switch'
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
+import { Textarea } from '@/components/ui/textarea';
+import { Checkbox } from '@/components/ui/checkbox';
+import { Radio } from '@/components/ui/radio';
+import { Switch } from '@/components/ui/switch';
 //=======================================
 // ==== Components - Feedback ====
-import { Alert } from '@/components/ui/alert'
-import { Toast } from '@/components/ui/toast'
-import { Modal } from '@/components/ui/modal'
-import { Tooltip } from '@/components/ui/tooltip'
-import { Skeleton } from '@/components/ui/skeleton'
-import { Spinner } from '@/components/ui/spinner'
+import { Alert } from '@/components/ui/alert';
+import { Toast } from '@/components/ui/toast';
+import { Modal } from '@/components/ui/modal';
+import { Tooltip } from '@/components/ui/tooltip';
+import { Skeleton } from '@/components/ui/skeleton';
+import { Spinner } from '@/components/ui/spinner';
 //================================
 // ==== Components - Layout ====
-import { Card } from '@/components/ui/card'
-import { Divider } from '@/components/ui/divider'
-import { Tabs } from '@/components/ui/tabs'
-import { Accordion } from '@/components/ui/accordion'
+import { Card } from '@/components/ui/card';
+import { Divider } from '@/components/ui/divider';
+import { Tabs } from '@/components/ui/tabs';
+import { Accordion } from '@/components/ui/accordion';
 //==============================
 // ==== Components - Advanced Forms ====
-import { Select } from '@/components/ui/select'
-import { Dropdown } from '@/components/ui/dropdown'
-import { TagInput } from '@/components/ui/tag-input'
-import { FileInput } from '@/components/ui/file-input'
-import { Slider } from '@/components/ui/slider'
-import { DateRangePicker } from "@/components/ui/date-range-picker";
+import { Select } from '@/components/ui/select';
+import { Dropdown } from '@/components/ui/dropdown';
+import { TagInput } from '@/components/ui/tag-input';
+import { FileInput } from '@/components/ui/file-input';
+import { Slider } from '@/components/ui/slider';
+import { DateRangePicker } from '@/components/ui/date-range-picker';
 //======================================
 // ==== Components - Data / Presentation ====
-import { Table } from '@/components/ui/table'
-import { Progress } from "@/components/ui/progress";
-import { Stepper } from '@/components/ui/stepper'
-import { Pagination } from "@/components/ui/pagination";
-import { Breadcrumb } from '@/components/ui/breadcrumb'
+import { Table } from '@/components/ui/table';
+import { Progress } from '@/components/ui/progress';
+import { Stepper } from '@/components/ui/stepper';
+import { Pagination } from '@/components/ui/pagination';
+import { Breadcrumb } from '@/components/ui/breadcrumb';
 //===========================================
 // ==== Components - Users ====
-import { Avatar } from "@/components/ui/avatar";
-import { AvatarGroup } from "@/components/ui/avatar-group";
-import { Chip } from "@/components/ui/chip";
-import { Tag } from '@/components/ui/tag'
+import { Avatar } from '@/components/ui/avatar';
+import { AvatarGroup } from '@/components/ui/avatar-group';
+import { Chip } from '@/components/ui/chip';
+import { Tag } from '@/components/ui/tag';
 //=============================
 // ==== Components - Extra ====
-import { Calendar } from '@/components/ui/calendar'
-import { TooltipAdvanced } from '@/components/ui/tooltip-advanced'
-import { LoadingOverlay } from '@/components/ui/loading-overlay'
+import { Calendar } from '@/components/ui/calendar';
+import { TooltipAdvanced } from '@/components/ui/tooltip-advanced';
+import { LoadingOverlay } from '@/components/ui/loading-overlay';
 //=============================
-import { Badge } from '@/components/ui/badge'
-import { Typography } from "@/components/ui/typography";
-import { ProgressCircular } from '../../components/ProgressCircular'
-import { BadgeGroup } from '../../components/BadgeGroup'
+import { Badge } from '@/components/ui/badge';
+import { Typography } from '@/components/ui/typography';
+import { ProgressCircular } from '../../components/ui//progress-circular/ProgressCircular';
+import { BadgeGroup } from '../../components/ui/badge-group/BadgeGroup';
 // ==== Functions and Hooks ====
-import { useTabs } from "@/models/hooks/useTabs";
-import { useAccordion } from "@/models/hooks/useAccordion";
-import { useTableSort } from "@/models/hooks/useTableSort";
-import { cn } from "@/lib/utils/cn";
-import { useCurrencyFormatter } from "@/models/hooks/useCurrencyFormatter";
+import { useTabs } from '@/models/hooks/useTabs';
+import { useAccordion } from '@/models/hooks/useAccordion';
+import { useTableSort } from '@/models/hooks/useTableSort';
+import { cn } from '@/lib/utils/cn';
+import { useCurrencyFormatter } from '@/models/hooks/useCurrencyFormatter';
 //==============================
 // ==== Interfaces and Types ====
-import type { IDateRange } from "@/components/ui/date-range-picker/DateRangePicker";
+import type { IDateRange } from '@/components/ui/date-range-picker/DateRangePicker';
 //===============================
 
 // --- 1. Estruturas de Dados ---
@@ -71,20 +71,19 @@ interface Project {
     value: number;
 }
 
-
 const sectionStyle = {
-    margin: '20px 0'
-}
+    margin: '20px 0',
+};
 
 const h2Style = {
-    marginTop: "2rem"
-}
+    marginTop: '2rem',
+};
 
 const divStyle = {
-    display: "flex",
-    gap: "1rem",
-    FlexWrap: "wrap",
-}
+    display: 'flex',
+    gap: '1rem',
+    FlexWrap: 'wrap',
+};
 
 // === Dados de Exemplo - Table ===
 const PROJECT_COLUMNS = [
@@ -95,24 +94,82 @@ const PROJECT_COLUMNS = [
 ];
 
 const PROJECT_DATA: Project[] = [
-    { id: 1, name: 'E-commerce Redesign', status: 'Em Progresso', deadline: '15/12/2025', value: 15000 },
-    { id: 2, name: 'App Mobile Beta', status: 'Concluído', deadline: '01/11/2025', value: 8000 },
-    { id: 3, name: 'Infra Cloud Mig.', status: 'Pendente', deadline: '30/01/2026', value: 22000 },
-    { id: 4, name: 'Relatórios Mensais', status: 'Em Progresso', deadline: '05/12/2025', value: 3500 },
+    {
+        id: 1,
+        name: 'E-commerce Redesign',
+        status: 'Em Progresso',
+        deadline: '15/12/2025',
+        value: 15000,
+    },
+    {
+        id: 2,
+        name: 'App Mobile Beta',
+        status: 'Concluído',
+        deadline: '01/11/2025',
+        value: 8000,
+    },
+    {
+        id: 3,
+        name: 'Infra Cloud Mig.',
+        status: 'Pendente',
+        deadline: '30/01/2026',
+        value: 22000,
+    },
+    {
+        id: 4,
+        name: 'Relatórios Mensais',
+        status: 'Em Progresso',
+        deadline: '05/12/2025',
+        value: 3500,
+    },
 ];
 //=================================
 
-const CogIcon = () => <svg width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="3" /><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0-.33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09a1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0 .33 1.82 1.65 1.65 0 0 0 1 1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1.82.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0 .33 1.82 1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2z" /></svg>;
+const CogIcon = () => (
+    <svg
+        width="1em"
+        height="1em"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+    >
+        <circle cx="12" cy="12" r="3" />
+        <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0-.33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09a1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0 .33 1.82 1.65 1.65 0 0 0 1 1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1.82.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0 .33 1.82 1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2z" />
+    </svg>
+);
 const InfoIcon = () => <span style={{ fontSize: '1.2em' }}>ⓘ</span>;
 const SuccessIcon = () => <span style={{ fontSize: '1.2em' }}>✓</span>;
 
 // === Dados de Exemplo - AvatarGroup ===
 const USER_LIST = [
-    { name: 'Alex Mota', src: 'https://i.pravatar.cc/150?img=4', alt: 'Alex Mota' },
-    { name: 'Bruce Wayne', src: 'https://i.pravatar.cc/150?img=12', alt: 'Bruce Wayne' },
-    { name: 'Catarina Silva', src: 'https://i.pravatar.cc/150?img=15', alt: 'Catarina Silva' },
-    { name: 'David Jones', src: 'https://i.pravatar.cc/150?img=16', alt: 'David Jones' },
-    { name: 'Eve Lima', src: 'https://i.pravatar.cc/150?img=17', alt: 'Eve Lima' },
+    {
+        name: 'Alex Mota',
+        src: 'https://i.pravatar.cc/150?img=4',
+        alt: 'Alex Mota',
+    },
+    {
+        name: 'Bruce Wayne',
+        src: 'https://i.pravatar.cc/150?img=12',
+        alt: 'Bruce Wayne',
+    },
+    {
+        name: 'Catarina Silva',
+        src: 'https://i.pravatar.cc/150?img=15',
+        alt: 'Catarina Silva',
+    },
+    {
+        name: 'David Jones',
+        src: 'https://i.pravatar.cc/150?img=16',
+        alt: 'David Jones',
+    },
+    {
+        name: 'Eve Lima',
+        src: 'https://i.pravatar.cc/150?img=17',
+        alt: 'Eve Lima',
+    },
     { name: 'Frank N.' }, // Fallback
 ];
 //=======================================
@@ -121,25 +178,32 @@ function PreviewPage() {
     // ==== Estados ====
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
-    const [selectedPlan, setSelectedPlan] = useState("");
+    const [selectedPlan, setSelectedPlan] = useState('');
     const [showToast, setShowToast] = useState(false);
-    const [city, setCity] = useState("")
-    const [open, setOpen] = useState(false)
+    const [city, setCity] = useState('');
+    const [open, setOpen] = useState(false);
     const [openDropdown, setOpenDropdown] = useState(false);
-    const [selectedRange, setSelectedRange] = useState<IDateRange>({ start: null, end: null });
+    const [selectedRange, setSelectedRange] = useState<IDateRange>({
+        start: null,
+        end: null,
+    });
     const [selectedTag, setSelectedTag] = useState('react');
-    const [removableTags, setRemovableTags] = useState(['TypeScript', 'GraphQL', 'Redux']);
+    const [removableTags, setRemovableTags] = useState([
+        'TypeScript',
+        'GraphQL',
+        'Redux',
+    ]);
     const [statusTags, setStatusTags] = useState(['pending', 'urgent']);
     //==================
 
     // ==== Hooks ====
-    const { active, setActive, isActive } = useTabs("tab1") // Tabs
-    const { isOpen, toggle } = useAccordion(["item-1"]) // Accordion
+    const { active, setActive, isActive } = useTabs('tab1'); // Tabs
+    const { isOpen, toggle } = useAccordion(['item-1']); // Accordion
 
     // Lógica de Ordenação: Recebe os dados e retorna o estado de ordenação e os dados ordenados.
     const { sortedData, sortKey, sortDir, toggleSort } = useTableSort({
         data: PROJECT_DATA,
-        initialSortKey: 'name'
+        initialSortKey: 'name',
     }); // Table
 
     const { formatCurrency } = useCurrencyFormatter();
@@ -147,12 +211,12 @@ function PreviewPage() {
 
     // ==== Functions ====
     const handleRemove = (tag: string) => {
-        setRemovableTags(removableTags.filter(t => t !== tag));
+        setRemovableTags(removableTags.filter((t) => t !== tag));
         console.log(`Removendo: ${tag}`);
     };
 
     const handleRemoveTag = (tag: string) => {
-        setStatusTags(statusTags.filter(t => t !== tag));
+        setStatusTags(statusTags.filter((t) => t !== tag));
         console.log(`Tag removida: ${tag}`);
     };
     //====================
@@ -167,32 +231,89 @@ function PreviewPage() {
                 <h3>Botões</h3>
                 <div className="u-flex u-flex-col u-gap-4">
                     {/* Sólidos (Default Visual Variant) */}
-                    <h3 className="u-mt-6 u-mb-3">1. Cores Sólidas (Default)</h3>
+                    <h3 className="u-mt-6 u-mb-3">
+                        1. Cores Sólidas (Default)
+                    </h3>
                     <div className="u-flex u-flex-wrap u-gap-3">
-                        <Button colorVariant="primary" className="u-text-transform-capitalize">primary</Button>
-                        <Button colorVariant="secondary" className="u-text-transform-capitalize">secondary</Button>
-                        <Button colorVariant="tertiary" className="u-text-transform-capitalize">tertiary</Button>
-                        <Button colorVariant="success" className="u-text-transform-capitalize">success</Button>
-                        <Button colorVariant="warning" className="u-text-transform-capitalize">warning</Button>
-                        <Button colorVariant="destructive" className="u-text-transform-capitalize">destructive</Button>
-                        <Button colorVariant="neutral" className="u-text-transform-capitalize">neutral</Button>
+                        <Button
+                            colorVariant="primary"
+                            className="u-text-transform-capitalize"
+                        >
+                            primary
+                        </Button>
+                        <Button
+                            colorVariant="secondary"
+                            className="u-text-transform-capitalize"
+                        >
+                            secondary
+                        </Button>
+                        <Button
+                            colorVariant="tertiary"
+                            className="u-text-transform-capitalize"
+                        >
+                            tertiary
+                        </Button>
+                        <Button
+                            colorVariant="success"
+                            className="u-text-transform-capitalize"
+                        >
+                            success
+                        </Button>
+                        <Button
+                            colorVariant="warning"
+                            className="u-text-transform-capitalize"
+                        >
+                            warning
+                        </Button>
+                        <Button
+                            colorVariant="destructive"
+                            className="u-text-transform-capitalize"
+                        >
+                            destructive
+                        </Button>
+                        <Button
+                            colorVariant="neutral"
+                            className="u-text-transform-capitalize"
+                        >
+                            neutral
+                        </Button>
                     </div>
 
                     {/* Variantes Visuais (Outline) */}
                     <h3 className="u-mt-6 u-mb-3">2. Variante Outline</h3>
                     <div className="u-flex u-flex-wrap u-gap-3">
-                        <Button colorVariant="primary" visualVariant="outline">Primary Outline</Button>
-                        <Button colorVariant="secondary" visualVariant="outline">Secondary Outline</Button>
-                        <Button colorVariant="destructive" visualVariant="outline">Destructive Outline</Button>
-                        <Button colorVariant="neutral" visualVariant="outline">Neutral Outline</Button>
+                        <Button colorVariant="primary" visualVariant="outline">
+                            Primary Outline
+                        </Button>
+                        <Button
+                            colorVariant="secondary"
+                            visualVariant="outline"
+                        >
+                            Secondary Outline
+                        </Button>
+                        <Button
+                            colorVariant="destructive"
+                            visualVariant="outline"
+                        >
+                            Destructive Outline
+                        </Button>
+                        <Button colorVariant="neutral" visualVariant="outline">
+                            Neutral Outline
+                        </Button>
                     </div>
 
                     {/* Tamanhos */}
                     <h3 className="u-mt-6 u-mb-3">3. Tamanhos e Iconografia</h3>
                     <div className="u-flex u-items-end u-flex-wrap u-gap-3">
-                        <Button colorVariant="primary" size="small">Small (sm)</Button>
-                        <Button colorVariant="primary" size="medium">Medium (default)</Button>
-                        <Button colorVariant="primary" size="large">Large (lg)</Button>
+                        <Button colorVariant="primary" size="small">
+                            Small (sm)
+                        </Button>
+                        <Button colorVariant="primary" size="medium">
+                            Medium (default)
+                        </Button>
+                        <Button colorVariant="primary" size="large">
+                            Large (lg)
+                        </Button>
 
                         <Button disabled>
                             <Spinner size="small" />
@@ -201,21 +322,25 @@ function PreviewPage() {
                     </div>
 
                     {/* Estados  */}
-                    <h3 className="u-mt-6 u-mb-3">4. Estados (Desabilitado e Ação)</h3>
+                    <h3 className="u-mt-6 u-mb-3">
+                        4. Estados (Desabilitado e Ação)
+                    </h3>
                     <div className="u-flex u-flex-wrap u-gap-3">
                         {/* Botão Desabilitado Sólido */}
                         <Button colorVariant="primary" disabled>
                             Ação Primária (Disabled)
                         </Button>
                         {/* Botão Desabilitado Outline */}
-                        <Button colorVariant="destructive" visualVariant="outline" disabled>
+                        <Button
+                            colorVariant="destructive"
+                            visualVariant="outline"
+                            disabled
+                        >
                             Excluir (Disabled)
                         </Button>
 
                         {/* Botão com texto customizado */}
-                        <Button>
-                            Salvar Alterações
-                        </Button>
+                        <Button>Salvar Alterações</Button>
                     </div>
                 </div>
             </section>
@@ -224,10 +349,19 @@ function PreviewPage() {
                 <h3>Inputs</h3>
                 <div style={divStyle}>
                     {/* Input Padrão (Medium) */}
-                    <Input label="E-mail" placeholder="usuario@exemplo.com" type="email" />
+                    <Input
+                        label="E-mail"
+                        placeholder="usuario@exemplo.com"
+                        type="email"
+                    />
 
                     {/* Input Grande */}
-                    <Input label="Senha" placeholder="Digite sua senha" inputSize="large" type="password" />
+                    <Input
+                        label="Senha"
+                        placeholder="Digite sua senha"
+                        inputSize="large"
+                        type="password"
+                    />
 
                     {/* Input de Erro com Mensagem */}
                     <Input
@@ -239,14 +373,21 @@ function PreviewPage() {
                     />
 
                     {/* Input Desabilitado */}
-                    <Input label="Telefone" placeholder="Apenas para administradores" disabled={true} />
+                    <Input
+                        label="Telefone"
+                        placeholder="Apenas para administradores"
+                        disabled={true}
+                    />
                 </div>
             </section>
 
             <section style={sectionStyle}>
                 <h3>Textarea</h3>
                 <div style={divStyle}>
-                    <Textarea label="Descrição" placeholder="Digite uma descrição..." />
+                    <Textarea
+                        label="Descrição"
+                        placeholder="Digite uma descrição..."
+                    />
 
                     <Textarea
                         label="Observações"
@@ -277,21 +418,21 @@ function PreviewPage() {
                         name="plan"
                         value="basic"
                         label="Básico"
-                        checked={selectedPlan === "basic"}
+                        checked={selectedPlan === 'basic'}
                         onChange={(v) => setSelectedPlan(v)}
                     />
                     <Radio
                         name="plan"
                         value="pro"
                         label="Profissional"
-                        checked={selectedPlan === "pro"}
+                        checked={selectedPlan === 'pro'}
                         onChange={(v) => setSelectedPlan(v)}
                     />
                     <Radio
                         name="plan"
                         value="vip"
                         label="VIP"
-                        checked={selectedPlan === "vip"}
+                        checked={selectedPlan === 'vip'}
                         onChange={(v) => setSelectedPlan(v)}
                     />
                     <Radio
@@ -305,7 +446,7 @@ function PreviewPage() {
                         value="small"
                         label="Pequeno"
                         radioSize="small"
-                        checked={selectedPlan === "small"}
+                        checked={selectedPlan === 'small'}
                         onChange={(v) => setSelectedPlan(v)}
                     />
                 </div>
@@ -316,7 +457,9 @@ function PreviewPage() {
                 <div style={divStyle}>
                     <Switch
                         label="Ativar notificações"
-                        onCheckedChange={(state) => console.log('Switch agora está:', state)}
+                        onCheckedChange={(state) =>
+                            console.log('Switch agora está:', state)
+                        }
                     />
                     <Switch label="Ativar modo escuro" />
                 </div>
@@ -327,14 +470,14 @@ function PreviewPage() {
             <section style={sectionStyle}>
                 <h3>Alerts</h3>
                 <div style={divStyle}>
-
                     <Alert.Root color="primary">
                         <Alert.Icon>
                             <InfoIcon />
                         </Alert.Icon>
                         <Alert.Title>Atenção do Sistema</Alert.Title>
                         <Alert.Description>
-                            Esta é uma notificação informativa padrão com fundo e borda sutis.
+                            Esta é uma notificação informativa padrão com fundo
+                            e borda sutis.
                         </Alert.Description>
                     </Alert.Root>
 
@@ -377,32 +520,39 @@ function PreviewPage() {
                         </Alert.Icon>
                         <Alert.Title>Manutenção Agendada</Alert.Title>
                     </Alert.Root>
-
                 </div>
             </section>
 
             <section style={sectionStyle}>
                 <h3>Toast</h3>
                 <div style={divStyle}>
-                    <Button colorVariant="primary" onClick={() => setShowToast(true)}>
+                    <Button
+                        colorVariant="primary"
+                        onClick={() => setShowToast(true)}
+                    >
                         Mostrar Toast
                     </Button>
                     <Toast
                         message="Formulário enviado."
-                        variant='success'
+                        variant="success"
                         duration={3000}
                         visible={showToast}
                         onClose={() => setShowToast(false)}
                     />
-                    <Toast message="Erro ao enviar formulário." variant='destructive' />
+                    <Toast
+                        message="Erro ao enviar formulário."
+                        variant="destructive"
+                    />
                 </div>
             </section>
 
             <section style={sectionStyle}>
                 <h3>Modal</h3>
                 <div style={divStyle}>
-
-                    <Button colorVariant="primary" onClick={() => setIsModalOpen(true)}>
+                    <Button
+                        colorVariant="primary"
+                        onClick={() => setIsModalOpen(true)}
+                    >
                         Abrir Modal
                     </Button>
                     <Modal
@@ -410,7 +560,8 @@ function PreviewPage() {
                         onClose={() => setIsModalOpen(false)}
                         size="large"
                         title="Confirmação"
-                        description="Deseja realmente realizar esta ação?" />
+                        description="Deseja realmente realizar esta ação?"
+                    />
                 </div>
             </section>
 
@@ -469,7 +620,9 @@ function PreviewPage() {
                     <Card.Root>
                         <Card.Header>
                             <Card.Title>Informações do Usuário</Card.Title>
-                            <Card.Description>Dados atualizados automaticamente.</Card.Description>
+                            <Card.Description>
+                                Dados atualizados automaticamente.
+                            </Card.Description>
                         </Card.Header>
 
                         <Card.Content>
@@ -478,7 +631,9 @@ function PreviewPage() {
                         </Card.Content>
 
                         <Card.Footer>
-                            <Button colorVariant="primary" size="small">Ação</Button>
+                            <Button colorVariant="primary" size="small">
+                                Ação
+                            </Button>
                         </Card.Footer>
                     </Card.Root>
                 </div>
@@ -487,7 +642,6 @@ function PreviewPage() {
             <section style={sectionStyle}>
                 <h3>Divider</h3>
                 <div className="u-flex u-flex-col u-gap-4">
-
                     {/* Default (horizontal) */}
                     <Divider />
 
@@ -516,7 +670,7 @@ function PreviewPage() {
                         <Tabs.List>
                             <Tabs.Trigger
                                 value="tab1"
-                                isActive={isActive("tab1")}
+                                isActive={isActive('tab1')}
                                 onSelect={setActive}
                             >
                                 Geral
@@ -524,7 +678,7 @@ function PreviewPage() {
 
                             <Tabs.Trigger
                                 value="tab2"
-                                isActive={isActive("tab2")}
+                                isActive={isActive('tab2')}
                                 onSelect={setActive}
                             >
                                 Configurações
@@ -532,7 +686,7 @@ function PreviewPage() {
 
                             <Tabs.Trigger
                                 value="tab3"
-                                isActive={isActive("tab3")}
+                                isActive={isActive('tab3')}
                                 onSelect={setActive}
                             >
                                 Usuário
@@ -571,29 +725,29 @@ function PreviewPage() {
                 <div style={divStyle}>
                     <Accordion.Root>
                         {/* ITEM 1 */}
-                        <Accordion.Item value="item-1" open={isOpen("item-1")}>
+                        <Accordion.Item value="item-1" open={isOpen('item-1')}>
                             <Accordion.Trigger
-                                open={isOpen("item-1")}
-                                onToggle={() => toggle("item-1")}
+                                open={isOpen('item-1')}
+                                onToggle={() => toggle('item-1')}
                             >
                                 Geral
                             </Accordion.Trigger>
 
-                            <Accordion.Content open={isOpen("item-1")}>
+                            <Accordion.Content open={isOpen('item-1')}>
                                 Conteúdo da aba geral controlado via hook.
                             </Accordion.Content>
                         </Accordion.Item>
 
                         {/* ITEM 2 */}
-                        <Accordion.Item value="item-2" open={isOpen("item-2")}>
+                        <Accordion.Item value="item-2" open={isOpen('item-2')}>
                             <Accordion.Trigger
-                                open={isOpen("item-2")}
-                                onToggle={() => toggle("item-2")}
+                                open={isOpen('item-2')}
+                                onToggle={() => toggle('item-2')}
                             >
                                 Configurações
                             </Accordion.Trigger>
 
-                            <Accordion.Content open={isOpen("item-2")}>
+                            <Accordion.Content open={isOpen('item-2')}>
                                 Configurações técnicas controladas via hook.
                             </Accordion.Content>
                         </Accordion.Item>
@@ -612,14 +766,18 @@ function PreviewPage() {
                         open={open}
                         onOpenChange={setOpen}
                     >
-                        <Select.Label className='u-text-transform-capitalize'>Cidade: {city}</Select.Label>
+                        <Select.Label className="u-text-transform-capitalize">
+                            Cidade: {city}
+                        </Select.Label>
 
                         <Select.Trigger>
                             <Select.Value placeholder="Selecione..." />
                         </Select.Trigger>
 
                         <Select.Content>
-                            <Select.Option value="floripa">Florianópolis</Select.Option>
+                            <Select.Option value="floripa">
+                                Florianópolis
+                            </Select.Option>
                             <Select.Option value="lisboa">Lisboa</Select.Option>
                             <Select.Option value="porto">Porto</Select.Option>
                         </Select.Content>
@@ -630,15 +788,18 @@ function PreviewPage() {
             <section style={sectionStyle}>
                 <h3>Dropdown</h3>
                 <div style={divStyle}>
-                    <Dropdown.Root open={openDropdown} onOpenChange={setOpenDropdown}>
-                        <Dropdown.Trigger>
-                            Abrir Menu de Ações
-                        </Dropdown.Trigger>
+                    <Dropdown.Root
+                        open={openDropdown}
+                        onOpenChange={setOpenDropdown}
+                    >
+                        <Dropdown.Trigger>Abrir Menu de Ações</Dropdown.Trigger>
 
                         <Dropdown.Content>
                             <Dropdown.Item>Perfil</Dropdown.Item>
                             <Dropdown.Item>Configurações</Dropdown.Item>
-                            <Dropdown.Item variant="destructive">Sair</Dropdown.Item>
+                            <Dropdown.Item variant="destructive">
+                                Sair
+                            </Dropdown.Item>
                         </Dropdown.Content>
                     </Dropdown.Root>
                 </div>
@@ -649,7 +810,7 @@ function PreviewPage() {
                 <div style={divStyle}>
                     <TagInput
                         label="Tags"
-                        defaultTags={["React", "UI"]}
+                        defaultTags={['React', 'UI']}
                         onChange={(tags) => console.log(tags)}
                     />
                 </div>
@@ -671,7 +832,7 @@ function PreviewPage() {
                 <div style={divStyle}>
                     <Slider
                         defaultValue={30}
-                        onValueChange={(v) => console.log("Valor:", v)}
+                        onValueChange={(v) => console.log('Valor:', v)}
                     />
                     <Slider defaultValue={75} showValue={false} />
                 </div>
@@ -682,13 +843,14 @@ function PreviewPage() {
                 <div style={divStyle}>
                     <DateRangePicker
                         onChange={(range: IDateRange) => {
-                            console.log("Range selecionado:", range);
+                            console.log('Range selecionado:', range);
                             setSelectedRange(range);
                         }}
                     />
                     {selectedRange.start && selectedRange.end && (
                         <p style={{ marginTop: '10px' }}>
-                            De: {selectedRange.start.toLocaleDateString()} Até: {selectedRange.end.toLocaleDateString()}
+                            De: {selectedRange.start.toLocaleDateString()} Até:{' '}
+                            {selectedRange.end.toLocaleDateString()}
                         </p>
                     )}
                 </div>
@@ -703,27 +865,37 @@ function PreviewPage() {
 
                     {/* Componente Raiz: Define o container e o estilo (striped/compact) */}
                     <Table.Root striped compact className="mt-4">
-
                         {/* Cabeçalho */}
                         <Table.Header>
                             <Table.Row>
-                                {PROJECT_COLUMNS.map(col => (
+                                {PROJECT_COLUMNS.map((col) => (
                                     // Table.Head com lógica de ordenação e estilo
                                     <Table.Head
                                         key={col.key}
-                                        onClick={() => col.sortable && toggleSort(col.key)}
+                                        onClick={() =>
+                                            col.sortable && toggleSort(col.key)
+                                        }
                                         className={cn(
-                                            col.sortable && "table-head-sortable",
-                                            col.sortable && sortKey === col.key && "table-head-sorted"
+                                            col.sortable &&
+                                                'table-head-sortable',
+                                            col.sortable &&
+                                                sortKey === col.key &&
+                                                'table-head-sorted',
                                         )}
                                     >
                                         {col.label}
                                         {/* Indicador de ordenação */}
-                                        {col.sortable && sortKey === col.key && (
-                                            <span data-slot="sort-indicator" className="sort-indicator">
-                                                {sortDir === "asc" ? "▲" : "▼"}
-                                            </span>
-                                        )}
+                                        {col.sortable &&
+                                            sortKey === col.key && (
+                                                <span
+                                                    data-slot="sort-indicator"
+                                                    className="sort-indicator"
+                                                >
+                                                    {sortDir === 'asc'
+                                                        ? '▲'
+                                                        : '▼'}
+                                                </span>
+                                            )}
                                     </Table.Head>
                                 ))}
                             </Table.Row>
@@ -739,21 +911,33 @@ function PreviewPage() {
 
                                     {/* Renderização Avançada na célula de Status */}
                                     <Table.Cell>
-                                        {row.status === 'Concluído'
-                                            ? <span style={{ color: 'var(--color-success-600)' }}>{row.status}</span>
-                                            : row.status
-                                        }
+                                        {row.status === 'Concluído' ? (
+                                            <span
+                                                style={{
+                                                    color: 'var(--color-success-600)',
+                                                }}
+                                            >
+                                                {row.status}
+                                            </span>
+                                        ) : (
+                                            row.status
+                                        )}
                                     </Table.Cell>
 
                                     <Table.Cell>{row.deadline}</Table.Cell>
 
                                     {/* Renderização de Formato (Moeda) */}
-                                    <Table.Cell>{formatCurrency(row.value)}</Table.Cell>
+                                    <Table.Cell>
+                                        {formatCurrency(row.value)}
+                                    </Table.Cell>
                                 </Table.Row>
                             ))}
                             {sortedData.length === 0 && (
                                 <Table.Row>
-                                    <Table.Cell colSpan={PROJECT_COLUMNS.length} style={{ textAlign: 'center' }}>
+                                    <Table.Cell
+                                        colSpan={PROJECT_COLUMNS.length}
+                                        style={{ textAlign: 'center' }}
+                                    >
                                         Nenhum dado encontrado.
                                     </Table.Cell>
                                 </Table.Row>
@@ -762,17 +946,24 @@ function PreviewPage() {
 
                         {/* Legenda (Caption) para acessibilidade */}
                         <Table.Caption>
-                            Lista de projetos em andamento no sistema. Clique nos cabeçalhos para ordenar.
+                            Lista de projetos em andamento no sistema. Clique
+                            nos cabeçalhos para ordenar.
                         </Table.Caption>
 
                         {/* Opcional: Rodapé (Footer) */}
                         <Table.Footer>
                             <Table.Row>
                                 <Table.Cell colSpan={3}>Total</Table.Cell>
-                                <Table.Cell>{formatCurrency(PROJECT_DATA.reduce((sum, item) => sum + item.value, 0))}</Table.Cell>
+                                <Table.Cell>
+                                    {formatCurrency(
+                                        PROJECT_DATA.reduce(
+                                            (sum, item) => sum + item.value,
+                                            0,
+                                        ),
+                                    )}
+                                </Table.Cell>
                             </Table.Row>
                         </Table.Footer>
-
                     </Table.Root>
                 </div>
             </section>
@@ -780,9 +971,24 @@ function PreviewPage() {
             <section style={sectionStyle}>
                 <h3>Progress</h3>
                 <div style={divStyle}>
-                    <Progress value={45} label="Carregando dados" variant="primary" showPercentage />
-                    <Progress value={75} label="Upload concluído" variant="success" size="large" />
-                    <Progress value={30} label="Aguardando resposta" variant="warning" size="small" />
+                    <Progress
+                        value={45}
+                        label="Carregando dados"
+                        variant="primary"
+                        showPercentage
+                    />
+                    <Progress
+                        value={75}
+                        label="Upload concluído"
+                        variant="success"
+                        size="large"
+                    />
+                    <Progress
+                        value={30}
+                        label="Aguardando resposta"
+                        variant="warning"
+                        size="small"
+                    />
                     <Progress value={90} variant="secondary" />
                 </div>
             </section>
@@ -793,9 +999,9 @@ function PreviewPage() {
                     <Stepper
                         currentStep={1}
                         steps={[
-                            { label: "Informações" },
-                            { label: "Pagamento" },
-                            { label: "Confirmação" },
+                            { label: 'Informações' },
+                            { label: 'Pagamento' },
+                            { label: 'Confirmação' },
                         ]}
                     />
                 </div>
@@ -807,7 +1013,7 @@ function PreviewPage() {
                     <Pagination
                         totalPages={5}
                         currentPage={2}
-                        onPageChange={(page) => console.log("Página:", page)}
+                        onPageChange={(page) => console.log('Página:', page)}
                     />
                 </div>
             </section>
@@ -817,16 +1023,19 @@ function PreviewPage() {
                 <div style={divStyle}>
                     <Breadcrumb.Root className="mt-4">
                         <Breadcrumb.List>
-
                             {/* 1. Item Inicial Navegável */}
                             <Breadcrumb.Item>
-                                <Breadcrumb.Link href="/dashboard">Dashboard</Breadcrumb.Link>
+                                <Breadcrumb.Link href="/dashboard">
+                                    Dashboard
+                                </Breadcrumb.Link>
                                 <Breadcrumb.Separator />
                             </Breadcrumb.Item>
 
                             {/* 2. Item Intermediário Navegável */}
                             <Breadcrumb.Item>
-                                <Breadcrumb.Link href="/dashboard/forms">Forms Avançados</Breadcrumb.Link>
+                                <Breadcrumb.Link href="/dashboard/forms">
+                                    Forms Avançados
+                                </Breadcrumb.Link>
                                 <Breadcrumb.Separator />
                             </Breadcrumb.Item>
 
@@ -839,9 +1048,10 @@ function PreviewPage() {
                             {/* 3. Item Final (Página Atual) */}
                             <Breadcrumb.Item>
                                 {/* Breadcrumb.Page é um <span> não clicável, indica a página atual */}
-                                <Breadcrumb.Page>DateRangePicker</Breadcrumb.Page>
+                                <Breadcrumb.Page>
+                                    DateRangePicker
+                                </Breadcrumb.Page>
                             </Breadcrumb.Item>
-
                         </Breadcrumb.List>
                     </Breadcrumb.Root>
                 </div>
@@ -882,8 +1092,13 @@ function PreviewPage() {
             <section style={sectionStyle}>
                 <h3>Avatar Group</h3>
                 <div style={divStyle}>
-                    <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
-
+                    <div
+                        style={{
+                            display: 'flex',
+                            flexDirection: 'column',
+                            gap: '20px',
+                        }}
+                    >
                         <div>
                             <h4>Padrão (Medium, Max 4)</h4>
                             <AvatarGroup
@@ -917,11 +1132,18 @@ function PreviewPage() {
             <section style={sectionStyle}>
                 <h3>Chip</h3>
                 <div style={divStyle}>
-
-                    <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
+                    <div
+                        style={{
+                            display: 'flex',
+                            flexDirection: 'column',
+                            gap: '20px',
+                        }}
+                    >
                         <div>
                             {/* 1. Chips de Seleção (Outline) */}
-                            <h4 style={{ width: '100%' }}>Chips de Filtro (Outline)</h4>
+                            <h4 style={{ width: '100%' }}>
+                                Chips de Filtro (Outline)
+                            </h4>
 
                             <Chip
                                 visualVariant="outline"
@@ -963,7 +1185,9 @@ function PreviewPage() {
 
                         <div>
                             {/* 2. Chips Sólidos (Indicadores de Status) */}
-                            <h4 style={{ width: '100%', marginTop: '20px' }}>Chips Sólidos (Status)</h4>
+                            <h4 style={{ width: '100%', marginTop: '20px' }}>
+                                Chips Sólidos (Status)
+                            </h4>
 
                             <Chip color="success" size="small">
                                 Ativo
@@ -980,9 +1204,11 @@ function PreviewPage() {
 
                         <div>
                             {/* 3. Chips Removíveis (Closable) */}
-                            <h4 style={{ width: '100%', marginTop: '20px' }}>Chips Removíveis</h4>
+                            <h4 style={{ width: '100%', marginTop: '20px' }}>
+                                Chips Removíveis
+                            </h4>
 
-                            {removableTags.map(tag => (
+                            {removableTags.map((tag) => (
                                 <Chip
                                     key={tag}
                                     color="neutral"
@@ -1002,19 +1228,26 @@ function PreviewPage() {
             <section style={sectionStyle}>
                 <h3>Tag</h3>
                 <div style={divStyle}>
-
                     {/* Sólida e Grande (default/solid) */}
                     <Tag color="primary" size="large">
                         Serviço Principal
                     </Tag>
 
                     {/* Sólida e Clicável */}
-                    <Tag color="secondary" onClick={() => alert('Abrir detalhe!')}>
+                    <Tag
+                        color="secondary"
+                        onClick={() => alert('Abrir detalhe!')}
+                    >
                         Clicar para Ação
                     </Tag>
 
                     {/* Sólida e Removível */}
-                    <Tag color="destructive" size="medium" closable onClose={() => console.log('Removido!')}>
+                    <Tag
+                        color="destructive"
+                        size="medium"
+                        closable
+                        onClose={() => console.log('Removido!')}
+                    >
                         Inválido
                     </Tag>
 
@@ -1031,13 +1264,17 @@ function PreviewPage() {
                     </Tag>
 
                     {/* Light e Clicável (Primária) */}
-                    <Tag color="primary" visualVariant="light" onClick={() => console.log('Light clicked')}>
+                    <Tag
+                        color="primary"
+                        visualVariant="light"
+                        onClick={() => console.log('Light clicked')}
+                    >
                         Abrir Documentação
                     </Tag>
 
                     {/* -------------------------------------------------------------------------- */}
 
-                    {statusTags.map(tag => (
+                    {statusTags.map((tag) => (
                         <Tag
                             key={tag}
                             color={tag === 'urgent' ? 'destructive' : 'neutral'}
@@ -1057,7 +1294,9 @@ function PreviewPage() {
                 <h3>Calendar</h3>
                 <div style={divStyle}>
                     <Calendar
-                        onSelect={(date) => console.log("Data selecionada:", date)}
+                        onSelect={(date) =>
+                            console.log('Data selecionada:', date)
+                        }
                     />
                 </div>
             </section>
@@ -1065,9 +1304,11 @@ function PreviewPage() {
             <section style={sectionStyle}>
                 <h3>TooltipAdvanced</h3>
                 <div style={divStyle}>
-
                     {/* 1. Trigger: HOVER (Padrão) - Posição TOP */}
-                    <TooltipAdvanced text="Dica: Salvar alterações no banco de dados." position="top">
+                    <TooltipAdvanced
+                        text="Dica: Salvar alterações no banco de dados."
+                        position="top"
+                    >
                         <Button visualVariant="outline" color="primary">
                             Salvar (Hover Top)
                         </Button>
@@ -1088,8 +1329,8 @@ function PreviewPage() {
                     <TooltipAdvanced
                         text={
                             <div>
-                                <strong>Clique Ativo:</strong> Clique novamente para fechar.
-                                Ou clique fora da caixa.
+                                <strong>Clique Ativo:</strong> Clique novamente
+                                para fechar. Ou clique fora da caixa.
                             </div>
                         }
                         trigger="click"
@@ -1109,17 +1350,22 @@ function PreviewPage() {
                             Alerta (Hover Left)
                         </Button>
                     </TooltipAdvanced>
-
                 </div>
             </section>
 
-            <section style={{ position: "relative", height: 200 }}>
+            <section style={{ position: 'relative', height: 200 }}>
                 <h3>LoadingOverlay</h3>
                 <div style={divStyle}>
-                    <LoadingOverlay active={isLoading} message="Carregando dados..." />
+                    <LoadingOverlay
+                        active={isLoading}
+                        message="Carregando dados..."
+                    />
                     <p>Conteúdo da página</p>
 
-                    <Button colorVariant="primary" onClick={() => setIsLoading(true)}>
+                    <Button
+                        colorVariant="primary"
+                        onClick={() => setIsLoading(true)}
+                    >
                         Ativar Loading
                     </Button>
                 </div>
@@ -1138,9 +1384,7 @@ function PreviewPage() {
                     <Badge variant="warning" />
 
                     {/* Badge com texto customizado */}
-                    <Badge>
-                        Badge
-                    </Badge>
+                    <Badge>Badge</Badge>
                 </div>
             </section>
 
@@ -1160,7 +1404,8 @@ function PreviewPage() {
                     </Typography>
 
                     <Typography>
-                        Este é um texto padrão utilizado em descrições ou parágrafos.
+                        Este é um texto padrão utilizado em descrições ou
+                        parágrafos.
                     </Typography>
 
                     <Typography variant="lead" color="var(--color-gray-500)">
@@ -1197,7 +1442,7 @@ function PreviewPage() {
                 </div>
             </section>
         </>
-    )
+    );
 }
 
-export default PreviewPage
+export default PreviewPage;

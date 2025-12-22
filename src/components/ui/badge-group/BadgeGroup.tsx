@@ -1,5 +1,5 @@
 import type { ReactNode } from "react"
-import "../styles/components/badgegroup.css"
+import "./badge-group.css"
 
 interface IBadgeGroupProps {
     /** Elementos de badge */
