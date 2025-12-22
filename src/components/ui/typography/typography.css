@@ -1,0 +1,131 @@
+/* ===========================
+   🧩 Typography System
+   =========================== */
+
+.typography-root {
+    font-family: var(--font-family-base);
+    color: var(--color-gray-900);
+    margin: var(--space-0);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* 🪶 Títulos */
+.typography-h1 {
+    font-size: var(--font-heading1-size);
+    line-height: var(--line-height-heading1);
+    font-weight: var(--weight-extrabold);
+    letter-spacing: -0.025em;
+    scroll-margin: var(--space-10);
+}
+
+.typography-h2 {
+    font-size: var(--font-heading2-size);
+    line-height: var(--line-height-heading2);
+    font-weight: var(--weight-semi-bold);
+    letter-spacing: -0.025em;
+    border-bottom: 1px solid var(--color-gray-200);
+    padding-bottom: var(--space-2);
+    margin-top: var(--space-10);
+    scroll-margin: var(--space-10);
+}
+.typography-h2:first-child {
+    margin-top: var(--space-0);
+}
+
+.typography-h3 {
+    font-size: var(--font-heading3-size);
+    line-height: var(--line-height-heading3);
+    font-weight: var(--weight-semi-bold);
+    letter-spacing: -0.025em;
+    margin-top: var(--space-8);
+    scroll-margin: var(--space-10);
+}
+
+.typography-h4 {
+    font-size: var(--font-text1-size);
+    line-height: var(--line-height-text1);
+    font-weight: var(--weight-semi-bold);
+    letter-spacing: -0.025em;
+}
+
+/* 📄 Text elements */
+.typography-p {
+    font-size: var(--font-text2-size);
+    line-height: var(--line-height-text2);
+    font-weight: var(--weight-regular);
+}
+
+/* Automatic spacing for consecutive paragraphs */
+.typography-p:not(:first-child),
+.typography-blockquote:not(:first-child),
+.typography-lead:not(:first-child) {
+    margin-top: var(--space-6);
+}
+
+.typography-lead {
+    font-size: var(--font-text1-size);
+    color: var(--color-gray-500);
+    line-height: var(--line-height-text1);
+}
+
+.typography-blockquote {
+    border-left: 2px solid var(--color-gray-300);
+    padding-left: var(--space-6);
+    font-style: italic;
+    color: var(--color-gray-700);
+}
+
+.typography-large {
+    font-size: var(--font-text1-size);
+    font-weight: var(--weight-semi-bold);
+}
+
+.typography-small {
+    font-size: var(--font-text3-size);
+    font-weight: var(--weight-medium);
+    line-height: 1;
+}
+
+.typography-muted {
+    font-size: var(--font-text3-size);
+    color: var(--color-gray-500);
+}
+
+.typography-code {
+    position: relative;
+    background-color: var(--color-gray-100);
+    border-radius: var(--radius-sm);
+    padding: var(--space-1) var(--space-1_5);
+    font-family: monospace;
+    font-size: var(--font-text2-size);
+    font-weight: var(--weight-semi-bold);
+}
+
+/* 🧱 Font weights */
+.font-weight-regular {
+    font-weight: var(--weight-regular);
+}
+.font-weight-medium {
+    font-weight: var(--weight-medium);
+}
+.font-weight-semi-bold {
+    font-weight: var(--weight-semi-bold);
+}
+.font-weight-bold {
+    font-weight: var(--weight-bold);
+}
+.font-weight-extrabold {
+    font-weight: var(--weight-extrabold);
+}
+
+/* 📱 Responsividade */
+@media (max-width: var(--screen-md)) {
+    .typography-h2 {
+        margin-top: var(--space-6);
+    }
+
+    .typography-h3 {
+        margin-top: var(--space-4);
+    }
+}

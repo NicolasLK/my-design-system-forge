@@ -48,7 +48,7 @@ import { TooltipAdvanced } from '@/components/ui/tooltip-advanced'
 import { LoadingOverlay } from '@/components/ui/loading-overlay'
 //=============================
 import { Badge } from '@/components/ui/badge'
-import { Typography } from '../../components/Typography'
+import { Typography } from "@/components/ui/typography";
 import { ProgressCircular } from '../../components/ProgressCircular'
 import { BadgeGroup } from '../../components/BadgeGroup'
 // ==== Functions and Hooks ====
@@ -1159,15 +1159,15 @@ function PreviewPage() {
                         Subtítulo Terciário (H3)
                     </Typography>
 
-                    <Typography variant="text1">
+                    <Typography>
                         Este é um texto padrão utilizado em descrições ou parágrafos.
                     </Typography>
 
-                    <Typography variant="text2" color="var(--color-gray-500)">
+                    <Typography variant="lead" color="var(--color-gray-500)">
                         Texto de apoio ou descrição
                     </Typography>
 
-                    <Typography variant="caption" as="span">
+                    <Typography variant="small" as="span">
                         Texto pequeno em linha
                     </Typography>
                 </div>

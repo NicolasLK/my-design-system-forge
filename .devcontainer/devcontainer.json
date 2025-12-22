@@ -39,6 +39,7 @@
 		"vscode": {
 			"extensions": [
 				"docker.docker",
+				"redhat.fabric8-analytics",
 				"esbenp.prettier-vscode",
 				"dbaeumer.vscode-eslint",
 				"kamikillerto.vscode-colorize",
@@ -46,7 +47,7 @@
 				"Zignd.html-css-class-completion"
 			]
 		}
-	}
+	},
 	// Uncomment to connect as an existing user other than the container default. More info: https://aka.ms/dev-containers-non-root.
-	// "remoteUser": "devcontainer"
+	"remoteUser": "node"
 }
