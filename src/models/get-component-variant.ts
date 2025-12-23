@@ -1,5 +1,6 @@
 export type ComponentVariant =
     | "default"
+    | "solid"
     | "outline"
     | "ghost"
     | "light"

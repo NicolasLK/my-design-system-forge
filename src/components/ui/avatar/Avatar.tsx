@@ -1,31 +1,39 @@
-import { forwardRef, useState, type ComponentProps, type ReactNode, type SyntheticEvent } from "react"
-import { getComponentSize, type ComponentSize } from "@/models/get-component-size"
-import { cn } from "@/lib/utils/cn"
-import { getInitials } from "@/models/get-initials"
-import "./avatar.css"
-
+import {
+    forwardRef,
+    useState,
+    type ComponentProps,
+    type ReactNode,
+    type SyntheticEvent,
+} from 'react';
+import {
+    getComponentSize,
+    type ComponentSize,
+} from '@/models/get-component-size';
+import { cn } from '@/lib/utils/cn';
+import { getInitials } from '@/models/get-initials';
+import './avatar.css';
 
 /* ============================================================
  * 🟦 Shared Types
  * ============================================================ */
 
-interface IAvatarRootProps extends ComponentProps<"div"> {
+interface IAvatarRootProps extends ComponentProps<'div'> {
     /** Tamanho do avatar (small, medium, large) */
-    size?: ComponentSize
+    size?: ComponentSize;
     /** Se deve ser circular ou quadrado */
-    shape?: "circle" | "square"
+    shape?: 'circle' | 'square';
 }
 
-interface IAvatarImageProps extends ComponentProps<"img"> {
+interface IAvatarImageProps extends ComponentProps<'img'> {
     /** Opcional: Handlers de erro/carregamento para melhor UX */
     onLoadingStatusChange?: (loaded: boolean) => void;
 }
 
-interface IAvatarFallbackProps extends ComponentProps<"span"> {
+interface IAvatarFallbackProps extends ComponentProps<'span'> {
     /** Nome do usuário, usado para gerar iniciais */
-    name?: string
+    name?: string;
     /** Ícone ou elemento customizado opcional */
-    icon?: ReactNode
+    icon?: ReactNode;
 }
 
 /* ============================================================
@@ -33,10 +41,10 @@ interface IAvatarFallbackProps extends ComponentProps<"span"> {
  * ============================================================ */
 
 export const AvatarRoot = forwardRef<HTMLDivElement, IAvatarRootProps>(
-    ({ size = "medium", shape = "circle", className, ...props }, ref) => {
-
-        const sizeClass = getComponentSize(size, "avatar");
-        const shapeClass = shape === "circle" ? "avatar-circle" : "avatar-square";
+    ({ size = 'medium', shape = 'circle', className, ...props }, ref) => {
+        const sizeClass = getComponentSize(size, 'avatar');
+        const shapeClass =
+            shape === 'circle' ? 'avatar-circle' : 'avatar-square';
 
         return (
             <>
@@ -44,18 +52,18 @@ export const AvatarRoot = forwardRef<HTMLDivElement, IAvatarRootProps>(
                     data-slot="avatar-root"
                     data-shape={shape}
                     className={cn(
-                        "avatar-root",
+                        'avatar-root',
                         sizeClass,
                         shapeClass,
-                        className
+                        className,
                     )}
                     ref={ref}
                     {...props}
                 />
             </>
-        )
-    }
-)
+        );
+    },
+);
 
 /* ============================================================
  * 🟦 IMAGE
@@ -87,7 +95,11 @@ export const AvatarImage = forwardRef<HTMLImageElement, IAvatarImageProps>(
             <>
                 <img
                     data-slot="avatar-image"
-                    className={cn("avatar-image", imageLoaded && 'avatar-image-loaded', className)}
+                    className={cn(
+                        'avatar-image',
+                        imageLoaded && 'avatar-image-loaded',
+                        className,
+                    )}
                     ref={ref}
                     loading="lazy"
                     onLoad={handleLoad}
@@ -96,9 +108,9 @@ export const AvatarImage = forwardRef<HTMLImageElement, IAvatarImageProps>(
                     style={{ opacity: imageLoaded ? 1 : 0 }} // Esconde enquanto não carrega
                 />
             </>
-        )
-    }
-)
+        );
+    },
+);
 
 /* ============================================================
  * 🟦 FALLBACK
@@ -106,7 +118,6 @@ export const AvatarImage = forwardRef<HTMLImageElement, IAvatarImageProps>(
 
 export const AvatarFallback = forwardRef<HTMLSpanElement, IAvatarFallbackProps>(
     ({ className, name, icon, ...props }, ref) => {
-
         const content = icon ? icon : getInitials(name);
 
         return (
@@ -114,13 +125,13 @@ export const AvatarFallback = forwardRef<HTMLSpanElement, IAvatarFallbackProps>(
                 <span
                     data-slot="avatar-fallback"
                     data-has-icon={!!icon}
-                    className={cn("avatar-fallback", className)}
+                    className={cn('avatar-fallback', className)}
                     ref={ref}
                     {...props}
                 >
                     {content}
                 </span>
             </>
-        )
-    }
-)
+        );
+    },
+);

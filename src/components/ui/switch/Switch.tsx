@@ -1,23 +1,28 @@
-import type { ChangeEvent, InputHTMLAttributes } from 'react'
-import { getComponentSize, type ComponentSize } from '../../../models/get-component-size'
-import { useControllableState } from '../../../models/hooks/useControllableState'
-import './switch.css'
-import { cn } from '@/lib/utils/cn'
+import type { ChangeEvent, InputHTMLAttributes } from 'react';
+import {
+    getComponentSize,
+    type ComponentSize,
+} from '../../../models/get-component-size';
+import { useControllableState } from '../../../models/hooks/useControllableState';
+import { cn } from '@/lib/utils/cn';
+import './switch.css';
 
-interface ISwitchProps extends Omit<InputHTMLAttributes<HTMLInputElement>, "onChange"> {
+interface ISwitchProps
+    extends Omit<InputHTMLAttributes<HTMLInputElement>, 'onChange'> {
     // Texto do rótulo, essencial para acessibilidade
-    label?: string
+    label?: string;
     // Opcional: define o tamanho. 'medium' será o padrão.
-    switchSize?: ComponentSize
+    switchSize?: ComponentSize;
     // Opcional: estado checked inicial (controlado ou não)
-    checked?: boolean
+    checked?: boolean;
     // Opcional: desabilita o switch
-    disabled?: boolean
+    disabled?: boolean;
     // Opcional: handler para mudança de estado
-    onCheckedChange?: (checked: boolean) => void
+    onCheckedChange?: (checked: boolean) => void;
 }
 
-export const Switch = ({ label,
+export const Switch = ({
+    label,
     switchSize = 'medium',
     checked,
     disabled = false,
@@ -25,25 +30,23 @@ export const Switch = ({ label,
     className,
     ...props
 }: ISwitchProps) => {
-
     const sizeClass = getComponentSize(switchSize, 'switch');
 
     const [isChecked, setIsChecked] = useControllableState<boolean>(
         checked,
         false,
-        onCheckedChange
-    )
+        onCheckedChange,
+    );
 
     const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
-        setIsChecked(e.target.checked)
-    }
+        setIsChecked(e.target.checked);
+    };
 
     const switchId = `switch-${Math.random().toString(36).substring(2, 9)}`;
 
     return (
         <>
             <label className={cn('switch-container', className)}>
-
                 <input
                     id={switchId}
                     type="checkbox"
@@ -53,12 +56,15 @@ export const Switch = ({ label,
                     {...props}
                 />
 
-                <label htmlFor={switchId} className={cn("switch-core", sizeClass)}>
+                <label
+                    htmlFor={switchId}
+                    className={cn('switch-core', sizeClass)}
+                >
                     <span className="slider" aria-hidden="true"></span>
                 </label>
 
                 {label && <span className="switch-label">{label}</span>}
             </label>
         </>
-    )
-}
+    );
+};

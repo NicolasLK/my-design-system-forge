@@ -47,10 +47,12 @@ import { Calendar } from '@/components/ui/calendar';
 import { TooltipAdvanced } from '@/components/ui/tooltip-advanced';
 import { LoadingOverlay } from '@/components/ui/loading-overlay';
 //=============================
+// ==== Components - Others ====
 import { Badge } from '@/components/ui/badge';
+import { BadgeGroup } from '@/components/ui/badge-group';
 import { Typography } from '@/components/ui/typography';
-import { ProgressCircular } from '../../components/ui//progress-circular/ProgressCircular';
-import { BadgeGroup } from '../../components/ui/badge-group/BadgeGroup';
+import { ProgressCircular } from '@/components/ui//progress-circular';
+//==============================
 // ==== Functions and Hooks ====
 import { useTabs } from '@/models/hooks/useTabs';
 import { useAccordion } from '@/models/hooks/useAccordion';
@@ -173,6 +175,31 @@ const USER_LIST = [
     { name: 'Frank N.' }, // Fallback
 ];
 //=======================================
+
+// === Dados de Exemplo - BadgeGroup ===
+const PROJECT_TAGS_LIST = [
+    {
+        text: 'React',
+    },
+    {
+        text: 'TypeScript',
+    },
+    {
+        text: 'Java',
+        color: 'destructive',
+    },
+    {
+        text: 'Rust',
+    },
+    {
+        text: 'Python',
+        color: 'secondary',
+    },
+    {
+        text: 'Delphi',
+    },
+];
+//======================================
 
 function PreviewPage() {
     // ==== Estados ====
@@ -1377,14 +1404,26 @@ function PreviewPage() {
                 <h3>Badges</h3>
                 <div style={divStyle}>
                     {/* Bagges Normais */}
-                    <Badge variant="primary" />
-                    <Badge variant="secondary" />
-                    <Badge variant="success" />
-                    <Badge variant="destructive" />
-                    <Badge variant="warning" />
+                    <Badge text="Primary" />
+                    <Badge color="secondary" text="Secondary" />
+                    <Badge color="success" text="Success" />
+                    <Badge color="destructive" text="Destructive" />
+                    <Badge variant="outline" text="Outline primary" />
+                    <Badge
+                        variant="outline"
+                        color="warning"
+                        text="Outline warning"
+                    />
 
                     {/* Badge com texto customizado */}
                     <Badge>Badge</Badge>
+                </div>
+            </section>
+
+            <section style={sectionStyle}>
+                <h3>Badge Group</h3>
+                <div style={divStyle}>
+                    <BadgeGroup items={PROJECT_TAGS_LIST} maxVisible={3} />
                 </div>
             </section>
 
@@ -1426,19 +1465,6 @@ function PreviewPage() {
                     <ProgressCircular value={45} variant="destructive" />
                     <ProgressCircular value={70} variant="secondary" />
                     <ProgressCircular value={30} variant="warning" />
-                </div>
-            </section>
-
-            <section style={sectionStyle}>
-                <h3>Badgegroup</h3>
-                <div style={divStyle}>
-                    <BadgeGroup maxVisible={3}>
-                        <Badge variant="primary">Saúde</Badge>
-                        <Badge variant="secondary">Psicologia</Badge>
-                        <Badge variant="success">Online</Badge>
-                        <Badge variant="warning">Premium</Badge>
-                        <Badge variant="destructive">Inativo</Badge>
-                    </BadgeGroup>
                 </div>
             </section>
         </>
