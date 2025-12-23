@@ -1408,6 +1408,7 @@ function PreviewPage() {
                     <Badge color="secondary" text="Secondary" />
                     <Badge color="success" text="Success" />
                     <Badge color="destructive" text="Destructive" />
+                    <Badge color="warning" text="Warning" />
                     <Badge variant="outline" text="Outline primary" />
                     <Badge
                         variant="outline"
@@ -1460,11 +1461,11 @@ function PreviewPage() {
             <section style={sectionStyle}>
                 <h3>ProgressCircular</h3>
                 <div style={divStyle}>
-                    <ProgressCircular value={65} variant="primary" />
-                    <ProgressCircular value={90} variant="success" />
-                    <ProgressCircular value={45} variant="destructive" />
-                    <ProgressCircular value={70} variant="secondary" />
-                    <ProgressCircular value={30} variant="warning" />
+                    <ProgressCircular value={65} />
+                    <ProgressCircular value={70} color="secondary" />
+                    <ProgressCircular value={90} color="success" />
+                    <ProgressCircular value={45} color="destructive" />
+                    <ProgressCircular value={30} color="warning" />
                 </div>
             </section>
         </>

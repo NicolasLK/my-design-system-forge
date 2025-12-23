@@ -2,109 +2,96 @@
    🌀 Progress Circular
    =========================== */
 
+.progress-circular-root {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-2);
+}
+
 .progress-circular {
-  position: relative;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  background: transparent; /* 🧹 remove fundo */
-  border-radius: 50%;
-  overflow: visible;
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: transparent;
+    border-radius: 50%;
+    overflow: visible;
 }
 
 /* SVG centralizado e limpo */
 .progress-circular svg {
-  display: block;
-  transform: rotate(-90deg);
-  overflow: visible;
+    display: block;
+    transform: rotate(-90deg);
 }
 
 /* Círculo de fundo */
 .progress-bg {
-  fill: none;
-  stroke: var(--color-gray-500);
-  opacity: 0.25;
+    fill: none;
+    stroke: var(--color-gray-200);
 }
 
 /* Círculo de progresso */
 .progress-bar {
-  fill: none;
-  stroke-linecap: round;
-  transition: stroke-dashoffset 0.35s ease, stroke 0.3s ease;
+    fill: none;
+    stroke: var(--color-primary-500);
+    stroke-linecap: round;
+    transition: stroke-dashoffset 0.6s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* 🎨 Variantes de cor */
-.progress-primary .progress-bar {
-  stroke: var(--color-primary-500);
-}
-
-.progress-secondary .progress-bar {
-  stroke: var(--color-secondary-500);
-}
-
-.progress-success .progress-bar {
-  stroke: var(--color-success-500);
-}
-
-.progress-destructive .progress-bar {
-  stroke: var(--color-destructive-500);
-}
-
-.progress-warning .progress-bar {
-  stroke: var(--color-warning-500);
+.progress-content {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    pointer-events: none;
 }
 
 /* 📊 Valor no centro */
 .progress-value {
-  position: absolute;
-  font-size: var(--font-text2-size);
-  font-weight: var(--weight-bold);
-  color: var(--color-black);
-  line-height: 1;
+    position: absolute;
+    font-size: var(--font-text3-size);
+    font-weight: var(--weight-bold);
+    color: var(--color-text-default);
+    line-height: 1;
 }
 
-/* 🎨 Cores principais do progresso circular */
-.progress-primary {
-  --progress-color: var(--color-primary-500);
-  --text-color: var(--color-primary-500);
+.progress-custom-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-.progress-success {
-  --progress-color: var(--color-success-500);
-  --text-color: var(--color-success-500);
+.progress-label {
+    font-size: var(--font-text4-size);
+    font-weight: var(--weight-medium);
+    color: var(--color-text-default);
+    text-align: center;
+    max-width: 120px;
 }
 
-.progress-destructive {
-  --progress-color: var(--color-destructive-500);
-  --text-color: var(--color-destructive-500);
+/* 🎨 Variantes de cor */
+.progress-secondary .progress-bar {
+    stroke: var(--color-secondary-500);
 }
 
-.progress-secondary {
-  --progress-color: var(--color-secondary-500);
-  --text-color: var(--color-secondary-500);
+.progress-success .progress-bar {
+    stroke: var(--color-success-500);
 }
 
-.progress-warning {
-  --progress-color: var(--color-warning-500);
-  --text-color: var(--color-warning-500);
+.progress-destructive .progress-bar {
+    stroke: var(--color-destructive-500);
 }
 
-/* 🌈 Aplicação das variáveis */
-.progress-ring circle {
-  stroke: var(--progress-color);
-}
-
-.progress-value {
-  fill: var(--text-color);
-  font-weight: var(--weight-bold);
-  font-size: var(--font-text2-size);
-  text-anchor: middle;
-  dominant-baseline: middle;
+.progress-warning .progress-bar {
+    stroke: var(--color-warning-500);
 }
 
 /* 📱 Responsividade */
 @media (max-width: var(--screen-sm)) {
-  .progress-value {
-    font-size: var(--font-text3-size);
-  }
+    .progress-value {
+        font-size: var(--font-text3-size);
+    }
 }

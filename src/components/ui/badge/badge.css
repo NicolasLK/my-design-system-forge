@@ -43,22 +43,19 @@
 
 .badge-secondary {
     background: var(--color-secondary-500);
-    color: var(--color-text-on-colored);
 }
 
 .badge-success {
     background: var(--color-success-500);
-    color: var(--color-text-on-colored);
 }
 
 .badge-destructive {
     background: var(--color-destructive-500);
-    color: var(--color-white);
 }
 
 .badge-warning {
     background: var(--color-warning-500);
-    color: var(--color-black);
+    color: var(--color-text-default);
 }
 
 .badge-outline {
