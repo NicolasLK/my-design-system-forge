@@ -39,7 +39,7 @@
 .stepper-circle.active {
   border-color: var(--color-primary-500);
   color: var(--color-primary-500);
-  font-weight: var(--weight-semi-bold);
+  font-weight: var(--weight-semibold);
   box-shadow: 0 0 0 4px var(--color-primary-100);
 }
 
@@ -61,7 +61,7 @@
 
 .stepper-label[data-status="active"] {
   color: var(--color-primary-600);
-  font-weight: var(--weight-semi-bold);
+  font-weight: var(--weight-semibold);
 }
 .stepper-label[data-status="completed"] {
   color: var(--color-success-600);

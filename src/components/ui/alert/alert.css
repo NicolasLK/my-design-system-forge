@@ -58,7 +58,7 @@
 .alert-title {
   grid-column: 2;
   grid-row: 1;
-  font-weight: var(--weight-semi-bold);
+  font-weight: var(--weight-semibold);
 
   line-height: line-height: 1.2;
   margin: var(--space-0);

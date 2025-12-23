@@ -79,7 +79,7 @@
 .modal-title {
   font-size: var(--font-heading3-size);
   line-height: var(--line-height-heading3);
-  font-weight: var(--weight-semi-bold);
+  font-weight: var(--weight-semibold);
   margin: 0;
 }
 

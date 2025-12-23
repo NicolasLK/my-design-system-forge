@@ -118,7 +118,40 @@
 
     /* 🪶 Typography */
     --font-family-base: 'Inter', system-ui, sans-serif;
-    --font-size-base: clamp(14px, 1.2vw, 16px); /* 14px → 16px */
+    --font-family-mono: 'JetBrains Mono', 'Fira Code', monospace;
+
+    /* Font Sizes com Escala Responsiva (clamp) */
+    --font-xs: clamp(0.65rem, 0.7rem, 0.75rem); /* 10.4px → 12px */
+    --font-sm: clamp(0.8rem, 0.85rem, 0.875rem); /* 12.8px → 14px */
+    --font-base: clamp(0.9rem, 0.95rem, 1rem); /* 14.4px → 16px */
+    --font-lg: clamp(1rem, 1.05rem, 1.125rem); /* 16px   → 18px */
+    --font-xl: clamp(1.125rem, 1.2rem, 1.25rem); /* 18px   → 20px */
+    --font-2xl: clamp(1.25rem, 1.4vw + 1rem, 1.5rem); /* 20px   → 24px */
+    --font-3xl: clamp(1.5rem, 2vw + 1.2rem, 1.875rem); /* 24px   → 30px */
+    --font-4xl: clamp(1.875rem, 3vw + 1.5rem, 2.25rem); /* 30px   → 36px */
+    --font-5xl: clamp(2.25rem, 4vw + 1.8rem, 3rem); /* 36px   → 48px */
+    --font-6xl: clamp(2.75rem, 5vw + 2rem, 3.75rem); /* 44px   → 60px */
+    --font-7xl: clamp(3.25rem, 7vw + 2.5rem, 4.5rem); /* 52px   → 72px */
+    --font-8xl: clamp(4rem, 9vw + 3rem, 6rem); /* 64px   → 96px */
+    --font-9xl: clamp(5rem, 12vw + 3.5rem, 8rem); /* 80px   → 128px */
+
+    /* Line Heights */
+    --leading-none: 1;
+    --leading-tight: 1.2; /* Ideal para h1, h2, h3 */
+    --leading-snug: 1.375; /* Ideal para h4 e leads */
+    --leading-normal: 1.5; /* Ideal para parágrafos (p) */
+    --leading-relaxed: 1.625; /* Leitura longa */
+    --leading-loose: 2;
+
+    /* Font Weights */
+    --weight-thin: 100;
+    --weight-extralight: 200;
+    --weight-light: 300;
+    --weight-regular: 400;
+    --weight-medium: 500;
+    --weight-semibold: 600;
+    --weight-bold: 700;
+    --weight-extrabold: 800;
 
     --font-heading1-size: clamp(
         1.75rem,
@@ -147,12 +180,6 @@
     --line-height-text1: 1.6;
     --line-height-text2: 1.6;
     --line-height-text3: 1.5;
-
-    --weight-regular: 400;
-    --weight-medium: 500;
-    --weight-semi-bold: 600;
-    --weight-bold: 700;
-    --weight-extrabold: 800;
 
     /* 📏 Spacing (escala Tailwind-like) */
     --space-0: 0;

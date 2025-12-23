@@ -55,7 +55,7 @@
 /* Item Atual (BreadcrumbPage) */
 .breadcrumb-current {
   color: var(--color-gray-900);
-  font-weight: var(--weight-semi-bold);
+  font-weight: var(--weight-semibold);
 }
 
 /* Separador */

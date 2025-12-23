@@ -94,7 +94,7 @@
    Variante Visual: LIGHT (Fundo claro da cor, texto escuro)
    ============================================================================ */
 .tag-light {
-  font-weight: var(--weight-semi-bold);
+  font-weight: var(--weight-semibold);
 }
 
 /* Light: Cores */

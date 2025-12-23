@@ -139,7 +139,7 @@
 
 /* Estado Selecionado (Override do hover/base) */
 .chip-selected {
-  font-weight: var(--weight-semi-bold);
+  font-weight: var(--weight-semibold);
   box-shadow: 0 0 0 2px var(--color-primary-300);
 }
 /* Se for outline e selecionado, preenche! */

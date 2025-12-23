@@ -82,7 +82,11 @@ export const Typography = ({
     const classes = [
         'typography-root',
         `typography-${variant}`,
-        weight ? `font-weight-${weight}` : '',
+        weight === 'semi-bold'
+            ? 'font-weight-semibold'
+            : weight
+            ? `font-weight-${weight}`
+            : '',
         className,
     ]
         .filter(Boolean)

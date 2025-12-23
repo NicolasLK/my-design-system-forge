@@ -201,7 +201,7 @@ const PROJECT_TAGS_LIST = [
 ];
 //======================================
 
-function PreviewPage() {
+export default function PreviewPage() {
     // ==== Estados ====
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
@@ -1471,5 +1471,3 @@ function PreviewPage() {
         </>
     );
 }
-
-export default PreviewPage;

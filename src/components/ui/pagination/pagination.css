@@ -21,7 +21,7 @@
 
 .pagination-button.active {
   color: var(--color-white);
-  font-weight: var(--weight-semi-bold);
+  font-weight: var(--weight-semibold);
 }
 
 /* Botões de Navegação (‹ e ›) */

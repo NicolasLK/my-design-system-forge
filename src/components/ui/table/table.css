@@ -28,7 +28,7 @@
   padding: var(--space-2) var(--space-3);
 
   color: var(--color-gray-700);
-  font-weight: var(--weight-semi-bold);
+  font-weight: var(--weight-semibold);
   user-select: none;
   white-space: nowrap;
 }
