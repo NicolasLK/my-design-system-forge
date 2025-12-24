@@ -1,17 +1,20 @@
+import type { InputHTMLAttributes } from 'react';
+import {
+    getComponentSize,
+    type ComponentSize,
+} from '@/models/get-component-size';
+import { cn } from '@/lib/utils/cn';
+import './radio.css';
 
-import { getComponentSize, type ComponentSize } from "@/models/get-component-size"
-import "./radio.css"
-import type { InputHTMLAttributes } from "react"
-import { cn } from "@/lib/utils/cn"
-
-interface IRadioProps extends Omit<InputHTMLAttributes<HTMLInputElement>, 'onChange'> {
-    label?: string
-    value: string
-    name: string
-    checked?: boolean
-    disabled?: boolean
-    radioSize?: ComponentSize
-    onChange?: (value: string) => void
+interface IRadioProps
+    extends Omit<InputHTMLAttributes<HTMLInputElement>, 'onChange'> {
+    label?: string;
+    value: string;
+    name: string;
+    checked?: boolean;
+    disabled?: boolean;
+    radioSize?: ComponentSize;
+    onChange?: (value: string) => void;
 }
 
 export const Radio = ({
@@ -21,21 +24,22 @@ export const Radio = ({
     checked,
     onChange,
     disabled = false,
-    radioSize = "medium",
+    radioSize = 'medium',
     className,
     ...props
 }: IRadioProps) => {
-
-    const sizeClass = getComponentSize(radioSize, "radio")
-    const finalSizeClass = sizeClass || "radio-md"
+    const sizeClass = getComponentSize(radioSize, 'radio');
+    const finalSizeClass = sizeClass || 'radio-md';
 
     return (
         <>
-            <label className={cn(
-                "radio-wrapper",
-                disabled && "disabled",
-                className
-            )}>
+            <label
+                className={cn(
+                    'radio-wrapper',
+                    disabled && 'disabled',
+                    className,
+                )}
+            >
                 <input
                     type="radio"
                     value={value}
@@ -46,10 +50,10 @@ export const Radio = ({
                     {...props}
                 />
 
-                <span className={cn("radio-circle", finalSizeClass)} />
+                <span className={cn('radio-circle', finalSizeClass)} />
 
                 {label && <span className="radio-label">{label}</span>}
             </label>
         </>
-    )
-}
+    );
+};

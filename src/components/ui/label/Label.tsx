@@ -1,14 +1,14 @@
-import type { LabelHTMLAttributes, ReactNode } from "react";
-import { cn } from "@/lib/utils/cn";
-import "./label.css"
+import type { LabelHTMLAttributes, ReactNode } from 'react';
+import { cn } from '@/lib/utils/cn';
+import './label.css';
 
 interface ILabelProps extends LabelHTMLAttributes<HTMLLabelElement> {
     /** Conteúdo do rótulo (texto ou ReactNode) */
-    children: ReactNode
+    children: ReactNode;
     /** Se o campo associado é obrigatório */
-    required?: boolean
+    required?: boolean;
     /** Classe CSS adicional */
-    className?: string
+    className?: string;
 }
 
 export const Label = ({
@@ -17,15 +17,11 @@ export const Label = ({
     className,
     ...props
 }: ILabelProps) => {
-
     return (
         <>
             <label
                 data-slot="label"
-                className={cn(
-                    "label",
-                    className
-                )}
+                className={cn('label', className)}
                 {...props}
             >
                 {children}
@@ -37,5 +33,5 @@ export const Label = ({
                 )}
             </label>
         </>
-    )
-}
+    );
+};

@@ -1,7 +1,8 @@
 import { type ComponentProps, type ReactNode } from "react"
 import { cn } from "@/lib/utils/cn"
-import "./accordion.css"
 import { Divider } from "../divider"
+import "./accordion.css"
+
 
 /* ============================================================
  * 🟦 ROOT

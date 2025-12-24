@@ -62,6 +62,8 @@ import { useCurrencyFormatter } from '@/models/hooks/useCurrencyFormatter';
 //==============================
 // ==== Interfaces and Types ====
 import type { IDateRange } from '@/components/ui/date-range-picker/DateRangePicker';
+import { Label } from '@/components/ui/label';
+import { RadioGroup } from '@/components/ui/form/radio-group';
 //===============================
 
 // --- 1. Estruturas de Dados ---
@@ -221,6 +223,7 @@ export default function PreviewPage() {
         'Redux',
     ]);
     const [statusTags, setStatusTags] = useState(['pending', 'urgent']);
+    const [radioGroupPlans, setRadioGroupPlans] = useState('Free');
     //==================
 
     // ==== Hooks ====
@@ -1466,6 +1469,36 @@ export default function PreviewPage() {
                     <ProgressCircular value={90} color="success" />
                     <ProgressCircular value={45} color="destructive" />
                     <ProgressCircular value={30} color="warning" />
+                </div>
+            </section>
+
+            <section>
+                <h3>Carousel</h3>
+                {/* ................ */}
+            </section>
+
+            <section style={sectionStyle}>
+                <h3>RadioGroup</h3>
+                <div style={divStyle}>
+                    <Label id="plan-label" required>
+                        Plano
+                    </Label>
+
+                    <RadioGroup
+                        name="plan"
+                        labelId="plan-label"
+                        value={radioGroupPlans}
+                        onChange={setRadioGroupPlans}
+                        items={[
+                            { label: 'Free', value: 'free' },
+                            { label: 'Pro', value: 'pro' },
+                            {
+                                label: 'Enterprise',
+                                value: 'enterprise',
+                                disabled: true,
+                            },
+                        ]}
+                    />
                 </div>
             </section>
         </>

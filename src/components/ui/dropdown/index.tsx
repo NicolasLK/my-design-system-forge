@@ -1,5 +1,11 @@
-import { DropdownContent, DropdownItem, DropdownRoot, DropdownSubContent, DropdownSubTrigger, DropdownTrigger } from "./Dropdown";
-
+import {
+    DropdownContent,
+    DropdownItem,
+    DropdownRoot,
+    DropdownSubContent,
+    DropdownSubTrigger,
+    DropdownTrigger,
+} from './Dropdown';
 
 export const Dropdown = {
     Root: DropdownRoot,
@@ -8,4 +14,4 @@ export const Dropdown = {
     Item: DropdownItem,
     SubTrigger: DropdownSubTrigger,
     SubContent: DropdownSubContent,
-}
+};

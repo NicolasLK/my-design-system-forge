@@ -1,0 +1,22 @@
+/* ===========================
+   🔘 Radio Group
+   =========================== */
+
+.radio-group {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+}
+
+/* Sizes */
+.radio-group-sm {
+    gap: var(--space-1);
+}
+
+.radio-group-md {
+    gap: var(--space-2);
+}
+
+.radio-group-lg {
+    gap: var(--space-3);
+}
