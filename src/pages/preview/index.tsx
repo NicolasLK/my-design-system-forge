@@ -1,40 +1,40 @@
 import { useState } from 'react';
 // ==== Components - Base Essentials ====
 import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-import { Textarea } from '@/components/ui/textarea';
 import { Checkbox } from '@/components/ui/checkbox';
+import { Input } from '@/components/ui/input';
 import { Radio } from '@/components/ui/radio';
 import { Switch } from '@/components/ui/switch';
+import { Textarea } from '@/components/ui/textarea';
 //=======================================
 // ==== Components - Feedback ====
 import { Alert } from '@/components/ui/alert';
-import { Toast } from '@/components/ui/toast';
 import { Modal } from '@/components/ui/modal';
-import { Tooltip } from '@/components/ui/tooltip';
 import { Skeleton } from '@/components/ui/skeleton';
 import { Spinner } from '@/components/ui/spinner';
+import { Toast } from '@/components/ui/toast';
+import { Tooltip } from '@/components/ui/tooltip';
 //================================
 // ==== Components - Layout ====
+import { Accordion } from '@/components/ui/accordion';
 import { Card } from '@/components/ui/card';
 import { Divider } from '@/components/ui/divider';
 import { Tabs } from '@/components/ui/tabs';
-import { Accordion } from '@/components/ui/accordion';
 //==============================
 // ==== Components - Advanced Forms ====
-import { Select } from '@/components/ui/select';
-import { Dropdown } from '@/components/ui/dropdown';
-import { TagInput } from '@/components/ui/tag-input';
-import { FileInput } from '@/components/ui/file-input';
-import { Slider } from '@/components/ui/slider';
 import { DateRangePicker } from '@/components/ui/date-range-picker';
+import { Dropdown } from '@/components/ui/dropdown';
+import { FileInput } from '@/components/ui/file-input';
+import { Select } from '@/components/ui/select';
+import { Slider } from '@/components/ui/slider';
+import { TagInput } from '@/components/ui/tag-input';
 //======================================
 // ==== Components - Data / Presentation ====
-import { Table } from '@/components/ui/table';
+import { Breadcrumb } from '@/components/ui/breadcrumb';
+import { Pagination } from '@/components/ui/pagination';
 import { Progress } from '@/components/ui/progress';
 import { Stepper } from '@/components/ui/stepper';
-import { Pagination } from '@/components/ui/pagination';
-import { Breadcrumb } from '@/components/ui/breadcrumb';
+import { Table } from '@/components/ui/table';
 //===========================================
 // ==== Components - Users ====
 import { Avatar } from '@/components/ui/avatar';
@@ -44,26 +44,27 @@ import { Tag } from '@/components/ui/tag';
 //=============================
 // ==== Components - Extra ====
 import { Calendar } from '@/components/ui/calendar';
-import { TooltipAdvanced } from '@/components/ui/tooltip-advanced';
 import { LoadingOverlay } from '@/components/ui/loading-overlay';
+import { TooltipAdvanced } from '@/components/ui/tooltip-advanced';
 //=============================
 // ==== Components - Others ====
+import { ProgressCircular } from '@/components/ui//progress-circular';
 import { Badge } from '@/components/ui/badge';
 import { BadgeGroup } from '@/components/ui/badge-group';
 import { Typography } from '@/components/ui/typography';
-import { ProgressCircular } from '@/components/ui//progress-circular';
 //==============================
 // ==== Functions and Hooks ====
-import { useTabs } from '@/models/hooks/useTabs';
-import { useAccordion } from '@/models/hooks/useAccordion';
-import { useTableSort } from '@/models/hooks/useTableSort';
 import { cn } from '@/lib/utils/cn';
+import { useAccordion } from '@/models/hooks/useAccordion';
 import { useCurrencyFormatter } from '@/models/hooks/useCurrencyFormatter';
+import { useTableSort } from '@/models/hooks/useTableSort';
+import { useTabs } from '@/models/hooks/useTabs';
 //==============================
 // ==== Interfaces and Types ====
+import { Carousel } from '@/components/ui/carousel';
 import type { IDateRange } from '@/components/ui/date-range-picker/DateRangePicker';
-import { Label } from '@/components/ui/label';
 import { RadioGroup } from '@/components/ui/form/radio-group';
+import { Label } from '@/components/ui/label';
 //===============================
 
 // --- 1. Estruturas de Dados ---
@@ -1474,7 +1475,18 @@ export default function PreviewPage() {
 
             <section>
                 <h3>Carousel</h3>
-                {/* ................ */}
+                <Carousel.Root autoplay loop>
+                    <Carousel.Content>
+                        <Carousel.Item>Slide 1</Carousel.Item>
+                        <Carousel.Item>Slide 2</Carousel.Item>
+                        <Carousel.Item>Slide 3</Carousel.Item>
+                        <Carousel.Item>Slide 4</Carousel.Item>
+                    </Carousel.Content>
+
+                    <Carousel.Previous />
+                    <Carousel.Next />
+                    <Carousel.Dots />
+                </Carousel.Root>
             </section>
 
             <section style={sectionStyle}>

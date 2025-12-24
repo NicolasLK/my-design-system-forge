@@ -1,306 +1,233 @@
-// 'use client';
+'use client';
 
-// import {
-//     Children,
-//     useCallback,
-//     useEffect,
-//     useState,
-//     type KeyboardEvent,
-//     type ReactNode,
-// } from 'react';
-// import { createComponentInjection } from '@/models/create-component-injection';
-// import { cn } from '@/lib/utils/cn';
-// import './carousel.css';
+import { CarouselContext, useCarousel } from '@/contexts/CarouselContext';
+import { cn } from '@/lib/utils/cn';
+import type {
+    ICarouselDotsProps,
+    ICarouselRootProps,
+} from '@/typings/carousel.types';
+import {
+    Children,
+    useCallback,
+    useEffect,
+    useState,
+    type ComponentProps,
+    type KeyboardEvent,
+} from 'react';
+import { Button } from '../button';
+import './carousel.css';
 
-// /* ===========================
-//    🧠 Tipos
-// =========================== */
+/* ===========================
+   🎠 Carousel Root
+=========================== */
 
-// interface ICarouselControlProps {
-//     currentIndex?: number;
-//     setCurrentIndex?: (index: number) => void;
-//     itemsCount?: number;
-//     className?: string;
-// }
+export const CarouselRoot = ({
+    children,
+    autoplay = false,
+    autoplayDelay = 4000,
+    loop = false,
+    className,
+}: ICarouselRootProps) => {
+    const [currentIndex, setCurrentIndex] = useState(0);
+    const [itemsCount, setItemsCount] = useState(0);
 
-// // interface CarouselInjectedProps {
-// //     currentIndex?: number;
-// //     setCurrentIndex?: (index: number) => void;
-// //     itemsCount?: number;
-// //     setItemsCount?: (count: number) => void;
-// // }
+    const scrollPrev = useCallback(() => {
+        setCurrentIndex((prev) =>
+            prev - 1 < 0 ? (loop ? itemsCount - 1 : 0) : prev - 1,
+        );
+    }, [itemsCount, loop]);
 
-// /* ===========================
-//    🎠 Carousel Root
-// =========================== */
-// interface ICarouselRootProps {
-//     children: ReactNode;
-//     loop?: boolean;
-//     initialIndex?: number;
-//     autoplay?: boolean;
-//     autoplayDelay?: number;
-//     className?: string;
-// }
+    const scrollNext = useCallback(() => {
+        setCurrentIndex((prev) =>
+            prev + 1 >= itemsCount ? (loop ? 0 : prev) : prev + 1,
+        );
+    }, [itemsCount, loop]);
 
-// export const CarouselRoot = ({
-//     children,
-//     loop = false,
-//     initialIndex = 0,
-//     autoplay = true,
-//     autoplayDelay = 2000,
-//     className,
-// }: ICarouselRootProps) => {
-//     const [currentIndex, setCurrentIndex] = useState(initialIndex);
-//     const [itemsCount, setItemsCount] = useState(0);
+    const goTo = useCallback(
+        (index: number) => {
+            if (itemsCount === 0) return;
 
-//     const goTo = useCallback(
-//         (index: number) => {
-//             if (itemsCount === 0) return;
-//             let next = index;
-//             if (index < 0) next = loop ? itemsCount - 1 : 0;
-//             if (index >= itemsCount) next = loop ? 0 : itemsCount - 1;
-//             setCurrentIndex(next);
-//         },
-//         [itemsCount, loop],
-//     );
+            if (index < 0) {
+                setCurrentIndex(loop ? itemsCount - 1 : 0);
+                return;
+            }
 
-//     const handleKeyDown = (e: KeyboardEvent<HTMLDivElement>) => {
-//         if (e.key === 'ArrowRight') goTo(currentIndex + 1);
-//         if (e.key === 'ArrowLeft') goTo(currentIndex - 1);
-//     };
+            if (index >= itemsCount) {
+                setCurrentIndex(loop ? 0 : itemsCount - 1);
+                return;
+            }
 
-//     // UseEffect para controlar o autoplay
-//     useEffect(() => {
-//         if (!autoplay || itemsCount === 0) return;
+            setCurrentIndex(index);
+        },
+        [itemsCount, loop],
+    );
 
-//         const id = setInterval(() => goTo(currentIndex + 1), autoplayDelay);
+    // ⏱ Autoplay
+    useEffect(() => {
+        if (!autoplay || itemsCount <= 1) return;
 
-//         return () => clearInterval(id);
-//     }, [autoplay, autoplayDelay, itemsCount, currentIndex, goTo]);
+        const id = setInterval(scrollNext, autoplayDelay);
 
-//     // const injected = {
-//     //     currentIndex,
-//     //     setCurrentIndex: goTo,
-//     //     itemsCount,
-//     //     setItemsCount,
-//     // };
+        return () => clearInterval(id);
+    }, [autoplay, autoplayDelay, scrollNext, itemsCount]);
 
-//     return (
-//         <div
-//             role="region"
-//             aria-roledescription="carousel"
-//             tabIndex={0}
-//             onKeyDown={handleKeyDown}
-//             data-slot="carousel-root"
-//             className={cn('carousel', className)}
-//         >
-//             {createComponentInjection({
-//                 children,
-//                 injected: {
-//                     currentIndex,
-//                     setCurrentIndex: goTo,
-//                     itemsCount,
-//                     setItemsCount,
-//                 },
-//                 transformer: carouselTransformer,
-//             })}
-//         </div>
-//     );
-// };
+    // ⌨ Teclado
+    const handleKeyDown = (e: KeyboardEvent<HTMLDivElement>) => {
+        if (e.key === 'ArrowLeft') scrollPrev();
+        if (e.key === 'ArrowRight') scrollNext();
+    };
 
-// /* ===========================
-//    📦 Content
-// =========================== */
-// interface ICarouselContentProps {
-//     children: ReactNode;
-//     className?: string;
-//     currentIndex?: number;
-//     setItemsCount?: (count: number) => void;
-// }
+    return (
+        <>
+            <CarouselContext.Provider
+                value={{
+                    currentIndex,
+                    itemsCount,
+                    setItemsCount,
+                    scrollPrev,
+                    scrollNext,
+                    goTo,
+                }}
+            >
+                <div
+                    tabIndex={0}
+                    onKeyDown={handleKeyDown}
+                    role="region"
+                    aria-roledescription="carousel"
+                    className={cn('carousel', className)}
+                >
+                    {children}
+                </div>
+            </CarouselContext.Provider>
+        </>
+    );
+};
 
-// export const CarouselContent = ({
-//     children,
-//     className,
-//     currentIndex = 0,
-//     setItemsCount,
-//     ...props
-// }: ICarouselContentProps) => {
-//     const itemsArray = Children.toArray(children);
+/* ===========================
+   📦 Content
+=========================== */
 
-//     useEffect(() => {
-//         if (itemsArray.length > 0 && setItemsCount) {
-//             setItemsCount(itemsArray.length);
-//         }
-//     }, [itemsArray.length, setItemsCount]);
+export const CarouselContent = ({
+    children,
+    className,
+}: ComponentProps<'div'>) => {
+    const { currentIndex, setItemsCount } = useCarousel();
 
-//     // const mappedChildren = Children.map(children, (child) => {
-//     //     if (!isValidElement(child)) {
-//     //         return child;
-//     //     }
+    const items = Children.toArray(children);
 
-//     //     if (child.type === CarouselItem) {
-//     //         return cloneElement(child as ReactElement, {
-//     //             // Injeções extras se necessário
-//     //         });
-//     //     }
+    useEffect(() => {
+        setItemsCount(items.length);
+    }, [items.length, setItemsCount]);
 
-//     //     return child;
-//     // });
+    return (
+        <>
+            <div className="carousel-viewport">
+                <div
+                    className={cn('carousel-track', className)}
+                    style={{
+                        transform: `translateX(-${currentIndex * 100}%)`,
+                    }}
+                >
+                    {items}
+                </div>
+            </div>
+        </>
+    );
+};
 
-//     const { itemsCount: _, ...filteredProps } = props as any;
+/* ===========================
+   🧱 Item
+=========================== */
 
-//     return (
-//         <div className="carousel-viewport">
-//             <div
-//                 className={cn('carousel-track', className)}
-//                 style={{
-//                     display: 'flex',
-//                     transform: `translateX(-${currentIndex * 100}%)`,
-//                     transition: 'transform 0.5s ease-in-out',
-//                 }}
-//                 {...filteredProps}
-//             >
-//                 {children}
-//             </div>
-//         </div>
-//     );
-// };
+export const CarouselItem = ({
+    className,
+    ...props
+}: ComponentProps<'div'>) => {
+    return (
+        <>
+            <div
+                role="group"
+                aria-roledescription="slide"
+                className={cn('carousel-item', className)}
+                {...props}
+            />
+        </>
+    );
+};
 
-// /* ===========================
-//    🧱 Item
-// =========================== */
-// interface ICarouselItemProps {
-//     children: ReactNode;
-//     className?: string;
-// }
+/* ===========================
+   ◀ Previous
+=========================== */
 
-// export const CarouselItem = ({ children, className }: ICarouselItemProps) => {
-//     return (
-//         <div
-//             role="group"
-//             aria-roledescription="slide"
-//             data-slot="carousel-item"
-//             className={cn('carousel-item', className)}
-//         >
-//             {children}
-//         </div>
-//     );
-// };
+export const CarouselPrevious = ({
+    className,
+    ...props
+}: ComponentProps<typeof Button>) => {
+    const { scrollPrev } = useCarousel();
 
-// /* ===========================
-//    ◀ Previous
-// =========================== */
+    return (
+        <>
+            <Button
+                type="button"
+                onClick={scrollPrev}
+                className={cn('carousel-control carousel-prev', className)}
+                {...props}
+            >
+                ‹
+            </Button>
+        </>
+    );
+};
 
-// export const CarouselPrevious = ({
-//     currentIndex,
-//     setCurrentIndex,
-//     itemsCount,
-//     className,
-//     ...props
-// }: ICarouselControlProps) => {
-//     if (!itemsCount) return null;
+/* ===========================
+   ▶ Next
+=========================== */
 
-//     return (
-//         <button
-//             type="button"
-//             data-slot="carousel-prev"
-//             className={cn('carousel-control carousel-prev', className)}
-//             onClick={() => setCurrentIndex?.((currentIndex ?? 0) - 1)}
-//             {...props}
-//         >
-//             ‹
-//         </button>
-//     );
-// };
+export const CarouselNext = ({
+    className,
+    ...props
+}: ComponentProps<typeof Button>) => {
+    const { scrollNext } = useCarousel();
 
-// /* ===========================
-//    ▶ Next
-// =========================== */
+    return (
+        <>
+            <Button
+                type="button"
+                onClick={scrollNext}
+                className={cn('carousel-control carousel-next', className)}
+                {...props}
+            >
+                ›
+            </Button>
+        </>
+    );
+};
 
-// export const CarouselNext = ({
-//     currentIndex,
-//     setCurrentIndex,
-//     itemsCount,
-//     className,
-//     ...props
-// }: ICarouselControlProps) => {
-//     if (!itemsCount) return null;
+/* ===========================
+   🔵 Dots
+=========================== */
 
-//     return (
-//         <button
-//             type="button"
-//             data-slot="carousel-next"
-//             className={cn('carousel-control carousel-next', className)}
-//             onClick={() => setCurrentIndex?.((currentIndex ?? 0) + 1)}
-//             {...props}
-//         >
-//             ›
-//         </button>
-//     );
-// };
+export const CarouselDots = ({ className }: ICarouselDotsProps) => {
+    const { itemsCount, currentIndex, goTo } = useCarousel();
 
-// interface ICarouselDotsProps {
-//     currentIndex?: number;
-//     setCurrentIndex?: (index: number) => void;
-//     itemsCount?: number;
-//     className?: string;
-// }
+    if (itemsCount <= 1) return null;
 
-// export const CarouselDots = ({
-//     currentIndex,
-//     setCurrentIndex,
-//     itemsCount = 0,
-//     className,
-//     ...props
-// }: ICarouselDotsProps) => {
-//     if (!itemsCount) return null;
-
-//     return (
-//         <div className={cn('carousel-dots', className)}>
-//             {Array.from({ length: itemsCount }).map((_, index) => (
-//                 <button
-//                     key={index}
-//                     type="button"
-//                     className={cn(
-//                         'carousel-dot',
-//                         index === currentIndex && 'active',
-//                     )}
-//                     onClick={() => setCurrentIndex?.(index)}
-//                     aria-label={`Go to slide ${index + 1}`}
-//                     {...props}
-//                 />
-//             ))}
-//         </div>
-//     );
-// };
-
-// /* ============================================================
-//  * 🧩 TRANSFORMER
-//  * ============================================================ */
-// function carouselTransformer(
-//     elementType: any,
-//     _props: Record<string, unknown>,
-//     injected: Record<string, unknown>,
-// ) {
-//     if (elementType === CarouselContent) {
-//         return {
-//             currentIndex: injected.currentIndex,
-//             setItemsCount: injected.setItemsCount,
-//             itemsCount: injected.itemsCount,
-//         };
-//     }
-
-//     if (
-//         elementType === CarouselPrevious ||
-//         elementType === CarouselNext ||
-//         elementType === CarouselDots
-//     ) {
-//         return {
-//             currentIndex: injected.currentIndex,
-//             setCurrentIndex: injected.setCurrentIndex,
-//             itemsCount: injected.itemsCount,
-//         };
-//     }
-
-//     return null;
-// }
+    return (
+        <>
+            <div className={cn('carousel-dots', className)}>
+                {Array.from({ length: itemsCount }).map((_, index) => (
+                    <button
+                        key={index}
+                        type="button"
+                        className={cn(
+                            'carousel-dot',
+                            index === currentIndex && 'active',
+                        )}
+                        onClick={() => goTo(index)}
+                        aria-label={`Go to slide ${index + 1}`}
+                    />
+                ))}
+            </div>
+        </>
+    );
+};

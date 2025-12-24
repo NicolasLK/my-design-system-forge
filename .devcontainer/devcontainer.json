@@ -37,6 +37,14 @@
 	// Configure tool-specific properties.
 	"customizations": {
 		"vscode": {
+			"settings": {
+				"editor.defaultFormatter": "esbenp.prettier-vscode",
+				"editor.formatOnSave": true,
+				"editor.codeActionsOnSave": {
+					"source.fixAll": "always",
+					"source.organizeImports": "explicit"
+				}
+			},
 			"extensions": [
 				"docker.docker",
 				"redhat.fabric8-analytics",
