@@ -2,63 +2,198 @@
    🎠 Carousel
 =========================== */
 
-.carousel {
+.carousel-wrapper {
     position: relative;
-    width: 100%;
-    outline: none;
+    display: grid;
+    grid-template-areas: 'stack';
+    width: 85%;
+    margin: var(--space-0) auto;
+    justify-items: center;
+    align-items: center;
 }
 
-/* Viewport */
+.carousel {
+    display: contents;
+}
+
+/* Área de recorte - Viewport */
 .carousel-viewport {
-    overflow: hidden;
+    grid-area: stack;
     width: 100%;
+    height: clamp(17.5rem, 50vh, 32.5rem);
+    overflow: hidden;
+    border-radius: var(--radius-lg);
+    z-index: 1;
 }
 
 /* Track */
 .carousel-track {
     display: flex;
     width: 100%;
-    transition: transform 0.4s ease-in-out;
+    height: 100%;
+    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.carousel-track-vertical {
+    flex-direction: column;
 }
 
 /* Slide */
 .carousel-item {
     flex: 0 0 100%;
+    height: 100%;
+}
+
+.carousel-banner {
+    position: relative;
     width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    background-color: var(--color-gray-50);
+}
+
+.carousel-banner-image {
+    position: absolute;
+    right: var(--space-0);
+    top: var(--space-0);
+    width: 60%;
+    height: 100%;
+    object-fit: cover;
+    mask-image: linear-gradient(to right, transparent, var(--color-black) 20%);
+}
+
+.carousel-banner-overlay {
+    position: relative;
+    z-index: 2;
+    width: 50%;
+    padding: var(--space-6) var(--space-10);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+    color: var(--color-gray-900);
+}
+
+.carousel-banner-overlay h4 {
+    margin: var(--space-0);
+    font-size: var(--font-2xl);
+    font-weight: var(--weight-bold);
+    color: var(--color-secondary-500);
+    line-height: var(--leading-tight);
+}
+
+.carousel-banner-overlay p {
+    margin: var(--space-0);
+    font-size: var(--font-base);
+    color: var(--color-gray-700);
+    line-height: var(--leading-normal);
+    max-width: 45ch;
+}
+
+.carousel-banner-actions {
+    display: flex;
+    gap: var(--space-2);
+    margin-top: var(--space-4);
 }
 
 /* ===========================
    🎛 Controls
 =========================== */
 .carousel-control {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 36px;
-    height: 36px;
-    border-radius: var(--radius-full);
-    background: var(--color-gray-800);
+    grid-area: stack;
+    z-index: 10;
+    width: 2.25rem;
+    height: 2.25rem;
+    background: var(--color-gray-900);
+    border: 1px solid var(--color-gray-200);
     color: var(--color-white);
-    border: none;
+    border-radius: var(--radius-full);
+    box-shadow: var(--shadow-sm);
     cursor: pointer;
-    opacity: 0.85;
-    transition: opacity 0.2s ease;
+
+    transition: all 0.2s ease;
+    outline: none;
 }
 
 .carousel-control:hover {
-    opacity: 1;
+    background: var(--color-black);
+    border-color: var(--color-gray-500);
+    box-shadow: var(--shadow-md);
+    transform: scale(1.05);
 }
 
 .carousel-prev {
-    left: var(--space-3);
+    justify-self: start;
+    margin-left: -3.25rem;
 }
 
 .carousel-next {
-    right: var(--space-3);
+    justify-self: end;
+    margin-right: -3.25rem;
+}
+
+.carousel-control-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-family-base);
+    font-size: var(--font-2xl);
+    line-height: var(--leading-none);
+    transform: translateY(-1px);
+
+    place-self: center;
 }
 
 /* ===========================
-   🔵 Dots
+   🎛 Controls Vertical
+=========================== */
+.carousel-control-vertical {
+    justify-self: center;
+    margin-left: var(--space-0);
+    margin-right: var(--space-0);
+    transform: none;
+}
+
+.carousel-prev.carousel-control-vertical {
+    align-self: start;
+    margin-top: -3rem;
+}
+
+.carousel-next.carousel-control-vertical {
+    align-self: end;
+    margin-bottom: -3rem;
+}
+
+/* ===========================
+   🧭 Carousel UI Bar - Horizontal
+=========================== */
+.carousel-ui {
+    grid-area: stack;
+    width: 100%;
+    align-self: end;
+    z-index: 5;
+    padding-bottom: var(--space-4);
+    pointer-events: none;
+    border-radius: var(--radius-lg);
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0));
+}
+
+/* ===========================
+   🧭 Carousel UI Bar - Vertical
+=========================== */
+.carousel-ui-vertical {
+    width: auto;
+    height: 100%;
+    margin-left: auto;
+    margin-right: var(--space-0);
+    padding: var(--space-0) var(--space-2);
+    background: linear-gradient(to left, rgba(0, 0, 0, 0.4), transparent);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* ===========================
+   🔵 Dots - Horizontal
 =========================== */
 .carousel-dots {
     display: flex;
@@ -68,18 +203,120 @@
 }
 
 .carousel-dot {
-    width: var(--space-2);
-    height: var(--space-2);
-    border-radius: var(--radius-full);
     background: var(--color-gray-400);
     border: none;
     cursor: pointer;
     transition: background 0.2s ease, transform 0.2s ease;
+    width: var(--space-2);
+    height: var(--space-2);
+    border-radius: var(--radius-full);
 }
-
 .carousel-dot.active {
     background: var(--color-primary-500);
     transform: scale(1.2);
+}
+
+.carousel-dot-rectangular {
+    width: var(--space-3);
+    height: var(--space-1);
+    border-radius: var(--radius-sm);
+}
+.carousel-dot-rectangular.active {
+    background: var(--color-primary-500);
+    width: var(--space-6);
+    transform: scale(1.2);
+}
+
+.carousel-dot-progress {
+    width: var(--space-6);
+    height: var(--space-1);
+    position: relative;
+    overflow: hidden;
+}
+.carousel-dot-progress.active::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: var(--color-primary-500);
+    animation: carousel-progress 4s linear;
+}
+
+@keyframes carousel-progress {
+    from {
+        transform: translateX(-100%);
+    }
+    to {
+        transform: translateX(0);
+    }
+}
+
+/* 🔢 Numeric Dots */
+.carousel-dots-numeric {
+    color: var(--color-white);
+    font-size: var(--font-sm);
+    font-weight: var(--weight-medium);
+    letter-spacing: 0.04em;
+
+    pointer-events: none;
+    user-select: none;
+}
+
+.carousel-dots-numeric--floating {
+    position: absolute;
+    right: var(--space-4);
+    bottom: var(--space-4);
+
+    padding: var(--space-1) var(--space-3);
+    border-radius: var(--radius-md);
+
+    background: rgba(0, 0, 0, 0.55);
+    backdrop-filter: blur(var(--space-1));
+
+    color: var(--color-white);
+    font-size: var(--font-sm);
+    font-weight: var(--weight-medium);
+    letter-spacing: 0.08em;
+
+    pointer-events: none;
+    user-select: none;
+
+    z-index: 3;
+}
+
+/* ===========================
+   🔵 Dots - Vertical
+=========================== */
+.carousel-dots-vertical {
+    flex-direction: column;
+    margin-top: var(--space-0);
+}
+
+.carousel-dots-vertical .carousel-dot-rectangular {
+    width: var(--space-1);
+    height: var(--space-3);
+}
+
+.carousel-dots-vertical .carousel-dot-rectangular.active {
+    height: var(--space-6);
+    width: var(--space-1);
+}
+
+.carousel-dots-vertical .carousel-dot-progress {
+    width: var(--space-1);
+    height: var(--space-6);
+}
+
+@keyframes carousel-progress-vertical {
+    from {
+        transform: translateY(-100%);
+    }
+    to {
+        transform: translateY(0);
+    }
+}
+
+.carousel-dots-vertical .carousel-dot-progress.active::after {
+    animation: carousel-progress-vertical 4s linear;
 }
 
 /* ===========================
@@ -91,10 +328,24 @@
 }
 
 /* 📱 Responsividade */
-@media (max-width: var(--screen-sm)) {
-    .carousel-control {
-        width: var(--space-6);
-        height: var(--space-6);
+@media (max-width: var(--screen-md)) {
+    .carousel-wrapper {
+        width: 100%;
+    }
+
+    .carousel-banner {
+        flex-direction: column-reverse;
+        justify-content: flex-end;
+    }
+    .carousel-banner-image {
+        position: relative;
+        width: 100%;
+        height: 45%;
+        mask-image: none;
+    }
+    .carousel-banner-overlay {
+        width: 100%;
+        padding: var(--space-4);
     }
 
     .carousel-prev,

@@ -204,6 +204,35 @@ const PROJECT_TAGS_LIST = [
 ];
 //======================================
 
+// === Dados de Exemplo - Carousel ===
+const CAROUSEL_PREVIEW_ITEMS = [
+    {
+        id: 'slide-1',
+        title: 'Entrega Rápida',
+        description: 'Receba seus produtos em até 24h em regiões selecionadas.',
+        image: 'https://picsum.photos/800/400?random=1',
+    },
+    {
+        id: 'slide-2',
+        title: 'Produtos Sustentáveis',
+        description: 'Linha completa com foco em sustentabilidade e economia.',
+        image: 'https://picsum.photos/800/400?random=2',
+    },
+    {
+        id: 'slide-3',
+        title: 'Ofertas da Semana',
+        description: 'Descontos exclusivos para clientes cadastrados.',
+        image: 'https://picsum.photos/800/400?random=3',
+    },
+    {
+        id: 'slide-4',
+        title: 'Atendimento Especializado',
+        description: 'Suporte humanizado pronto para te ajudar.',
+        image: 'https://picsum.photos/800/400?random=4',
+    },
+];
+//====================================
+
 export default function PreviewPage() {
     // ==== Estados ====
     const [isModalOpen, setIsModalOpen] = useState(false);
@@ -1477,15 +1506,20 @@ export default function PreviewPage() {
                 <h3>Carousel</h3>
                 <Carousel.Root autoplay loop>
                     <Carousel.Content>
-                        <Carousel.Item>Slide 1</Carousel.Item>
-                        <Carousel.Item>Slide 2</Carousel.Item>
-                        <Carousel.Item>Slide 3</Carousel.Item>
-                        <Carousel.Item>Slide 4</Carousel.Item>
+                        {CAROUSEL_PREVIEW_ITEMS.map((item) => (
+                            <Carousel.Item key={item.id}>
+                                <Carousel.Banner
+                                    image={item.image}
+                                    title={item.title}
+                                    description={item.description}
+                                />
+                            </Carousel.Item>
+                        ))}
                     </Carousel.Content>
 
                     <Carousel.Previous />
                     <Carousel.Next />
-                    <Carousel.Dots />
+                    <Carousel.Dots type="rectangular" />
                 </Carousel.Root>
             </section>
 

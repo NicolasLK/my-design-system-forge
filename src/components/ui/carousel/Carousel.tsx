@@ -2,7 +2,10 @@
 
 import { CarouselContext, useCarousel } from '@/contexts/CarouselContext';
 import { cn } from '@/lib/utils/cn';
+import { getCarouselDotsVariant } from '@/models/get-carousel-dots-variant';
+import { useBreakpoint } from '@/models/hooks/useBreakpoint';
 import type {
+    ICarouselBannerProps,
     ICarouselDotsProps,
     ICarouselRootProps,
 } from '@/typings/carousel.types';
@@ -26,52 +29,72 @@ export const CarouselRoot = ({
     autoplay = false,
     autoplayDelay = 4000,
     loop = false,
+    slidesPerView = { md: 1 },
+    axis = 'horizontal',
     className,
 }: ICarouselRootProps) => {
     const [currentIndex, setCurrentIndex] = useState(0);
     const [itemsCount, setItemsCount] = useState(0);
 
+    const isXs = useBreakpoint('xs');
+    const isSm = useBreakpoint('sm');
+    const isMd = useBreakpoint('md');
+    const isLg = useBreakpoint('lg');
+    const isXl = useBreakpoint('xl');
+
+    const slides =
+        (isXl && slidesPerView.xl) ||
+        (isLg && slidesPerView.lg) ||
+        (isMd && slidesPerView.md) ||
+        (isSm && slidesPerView.sm) ||
+        (isXs && slidesPerView.xs) ||
+        1;
+
+    const pagesCount = Math.ceil(itemsCount / slides);
+
+    /* ---------- Navegação ---------- */
+
     const scrollPrev = useCallback(() => {
         setCurrentIndex((prev) =>
-            prev - 1 < 0 ? (loop ? itemsCount - 1 : 0) : prev - 1,
+            prev - 1 < 0 ? (loop ? pagesCount - 1 : 0) : prev - 1,
         );
-    }, [itemsCount, loop]);
+    }, [pagesCount, loop]);
 
     const scrollNext = useCallback(() => {
         setCurrentIndex((prev) =>
-            prev + 1 >= itemsCount ? (loop ? 0 : prev) : prev + 1,
+            prev + 1 >= pagesCount ? (loop ? 0 : prev) : prev + 1,
         );
-    }, [itemsCount, loop]);
+    }, [pagesCount, loop]);
 
     const goTo = useCallback(
         (index: number) => {
-            if (itemsCount === 0) return;
-
             if (index < 0) {
-                setCurrentIndex(loop ? itemsCount - 1 : 0);
+                setCurrentIndex(loop ? pagesCount - 1 : 0);
                 return;
             }
 
-            if (index >= itemsCount) {
-                setCurrentIndex(loop ? 0 : itemsCount - 1);
+            if (index >= pagesCount) {
+                setCurrentIndex(loop ? 0 : pagesCount - 1);
                 return;
             }
 
             setCurrentIndex(index);
         },
-        [itemsCount, loop],
+        [pagesCount, loop],
     );
 
-    // ⏱ Autoplay
+    /* ---------- Autoplay ---------- */
+
     useEffect(() => {
-        if (!autoplay || itemsCount <= 1) return;
+        if (!autoplay || pagesCount <= 1) return;
 
         const id = setInterval(scrollNext, autoplayDelay);
 
         return () => clearInterval(id);
-    }, [autoplay, autoplayDelay, scrollNext, itemsCount]);
+    }, [autoplay, autoplayDelay, scrollNext, pagesCount]);
 
-    // ⌨ Teclado
+    /* ---------- Keyboard ---------- */
+
     const handleKeyDown = (e: KeyboardEvent<HTMLDivElement>) => {
         if (e.key === 'ArrowLeft') scrollPrev();
         if (e.key === 'ArrowRight') scrollNext();
@@ -81,22 +104,27 @@ export const CarouselRoot = ({
         <>
             <CarouselContext.Provider
                 value={{
+                    axis,
                     currentIndex,
                     itemsCount,
+                    slidesPerView: slides,
+                    pagesCount,
                     setItemsCount,
                     scrollPrev,
                     scrollNext,
                     goTo,
                 }}
             >
-                <div
-                    tabIndex={0}
-                    onKeyDown={handleKeyDown}
-                    role="region"
-                    aria-roledescription="carousel"
-                    className={cn('carousel', className)}
-                >
-                    {children}
+                <div className={cn('carousel-wrapper', className)}>
+                    <div
+                        tabIndex={0}
+                        role="region"
+                        aria-roledescription="carousel"
+                        onKeyDown={handleKeyDown}
+                        className={cn('carousel', className)}
+                    >
+                        {children}
+                    </div>
                 </div>
             </CarouselContext.Provider>
         </>
@@ -111,7 +139,7 @@ export const CarouselContent = ({
     children,
     className,
 }: ComponentProps<'div'>) => {
-    const { currentIndex, setItemsCount } = useCarousel();
+    const { currentIndex, setItemsCount, slidesPerView, axis } = useCarousel();
 
     const items = Children.toArray(children);
 
@@ -119,16 +147,34 @@ export const CarouselContent = ({
         setItemsCount(items.length);
     }, [items.length, setItemsCount]);
 
+    const isVertical = axis === 'vertical';
+
     return (
         <>
             <div className="carousel-viewport">
                 <div
-                    className={cn('carousel-track', className)}
+                    className={cn(
+                        'carousel-track',
+                        isVertical && 'carousel-track-vertical',
+                        className,
+                    )}
                     style={{
-                        transform: `translateX(-${currentIndex * 100}%)`,
+                        transform: isVertical
+                            ? `translateY(-${currentIndex * 100}%)`
+                            : `translateX(-${currentIndex * 100}%)`,
                     }}
                 >
-                    {items}
+                    {items.map((child, index) => (
+                        <div
+                            key={index}
+                            className="carousel-item"
+                            style={{
+                                flex: `0 0 ${100 / slidesPerView}%`,
+                            }}
+                        >
+                            {child}
+                        </div>
+                    ))}
                 </div>
             </div>
         </>
@@ -156,6 +202,42 @@ export const CarouselItem = ({
 };
 
 /* ===========================
+   🖼️ Banner (Padrão com Imagem + Texto)
+=========================== */
+
+export const CarouselBanner = ({
+    children,
+    image,
+    title,
+    description,
+    alt,
+}: ICarouselBannerProps) => {
+    return (
+        <>
+            <div className="carousel-banner">
+                {(title || description) && (
+                    <div className="carousel-banner-overlay">
+                        {title && <h4>{title}</h4>}
+                        {description && <p>{description}</p>}
+
+                        {children && (
+                            <div className="carousel-banner-actions">
+                                {children}
+                            </div>
+                        )}
+                    </div>
+                )}
+                <img
+                    src={image}
+                    alt={alt || title}
+                    className="carousel-banner-image"
+                />
+            </div>
+        </>
+    );
+};
+
+/* ===========================
    ◀ Previous
 =========================== */
 
@@ -163,18 +245,25 @@ export const CarouselPrevious = ({
     className,
     ...props
 }: ComponentProps<typeof Button>) => {
-    const { scrollPrev } = useCarousel();
+    const { scrollPrev, axis } = useCarousel();
+    const isVertical = axis === 'vertical';
 
     return (
         <>
-            <Button
+            <button
                 type="button"
                 onClick={scrollPrev}
-                className={cn('carousel-control carousel-prev', className)}
+                className={cn(
+                    'carousel-control carousel-prev',
+                    isVertical && 'carousel-control-vertical',
+                    className,
+                )}
                 {...props}
             >
-                ‹
-            </Button>
+                <span className="carousel-control-icon">
+                    {isVertical ? '⬆' : '⬅'}
+                </span>
+            </button>
         </>
     );
 };
@@ -187,18 +276,25 @@ export const CarouselNext = ({
     className,
     ...props
 }: ComponentProps<typeof Button>) => {
-    const { scrollNext } = useCarousel();
+    const { scrollNext, axis } = useCarousel();
+    const isVertical = axis === 'vertical';
 
     return (
         <>
-            <Button
+            <button
                 type="button"
                 onClick={scrollNext}
-                className={cn('carousel-control carousel-next', className)}
+                className={cn(
+                    'carousel-control carousel-next',
+                    isVertical && 'carousel-control-vertical',
+                    className,
+                )}
                 {...props}
             >
-                ›
-            </Button>
+                <span className="carousel-control-icon">
+                    {isVertical ? '⬇' : '➡'}
+                </span>
+            </button>
         </>
     );
 };
@@ -207,26 +303,59 @@ export const CarouselNext = ({
    🔵 Dots
 =========================== */
 
-export const CarouselDots = ({ className }: ICarouselDotsProps) => {
-    const { itemsCount, currentIndex, goTo } = useCarousel();
+export const CarouselDots = ({
+    className,
+    type = 'rounded',
+}: ICarouselDotsProps) => {
+    const { pagesCount, currentIndex, goTo, axis } = useCarousel();
+    const isVertical = axis === 'vertical';
 
-    if (itemsCount <= 1) return null;
+    if (pagesCount <= 1) return null;
 
+    /* 🔢 Numeric */
+    if (type === 'numeric') {
+        return (
+            <span
+                className={cn(
+                    'carousel-dots-numeric',
+                    'carousel-dots-numeric--floating',
+                    className,
+                )}
+            >
+                {currentIndex + 1} / {pagesCount}
+            </span>
+        );
+    }
+
+    /* 🔵 Visual dots */
     return (
         <>
-            <div className={cn('carousel-dots', className)}>
-                {Array.from({ length: itemsCount }).map((_, index) => (
-                    <button
-                        key={index}
-                        type="button"
-                        className={cn(
-                            'carousel-dot',
-                            index === currentIndex && 'active',
-                        )}
-                        onClick={() => goTo(index)}
-                        aria-label={`Go to slide ${index + 1}`}
-                    />
-                ))}
+            <div
+                className={cn(
+                    'carousel-ui',
+                    isVertical && 'carousel-ui-vertical',
+                    className,
+                )}
+            >
+                <div
+                    className={cn(
+                        'carousel-dots',
+                        isVertical && 'carousel-dots-vertical',
+                    )}
+                >
+                    {Array.from({ length: pagesCount }).map((_, index) => (
+                        <button
+                            key={index}
+                            type="button"
+                            className={cn(
+                                'carousel-dot',
+                                getCarouselDotsVariant(type),
+                                index === currentIndex && 'active',
+                            )}
+                            onClick={() => goTo(index)}
+                        />
+                    ))}
+                </div>
             </div>
         </>
     );
