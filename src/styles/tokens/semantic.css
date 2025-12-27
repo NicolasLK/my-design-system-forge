@@ -1,0 +1,22 @@
+:root {
+    /* ===============================
+   📄 Semantics Tokens
+   =============================== */
+
+    /* Text */
+    --text-default: var(--color-gray-900);
+    --text-muted: var(--color-gray-500);
+    --text-inverse: var(--color-white);
+    --text-brand: var(--color-primary-500);
+
+    /* Text on colored backgrounds */
+    --text-on-colored: var(--color-white);
+
+    /* ===============================
+     📄 Background Semantics
+     =============================== */
+
+    --bg-default: var(--color-white);
+    --bg-muted: var(--color-gray-50);
+    --bg-brand: var(--color-primary-500);
+}

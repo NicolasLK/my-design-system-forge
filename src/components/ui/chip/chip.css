@@ -3,52 +3,52 @@
    =========================== */
 
 .chip {
-  display: inline-flex;
-  align-items: center;
-  gap: var(--space-1);
-  justify-content: center;
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-1);
+    justify-content: center;
 
-  border-radius: var(--radius-full);
-  border: 1px solid transparent;
+    border-radius: var(--radius-full);
+    border: 1px solid transparent;
 
-  font-weight: var(--weight-medium);
-  cursor: pointer;
+    font-weight: var(--weight-medium);
+    cursor: pointer;
 
-  transition: background-color 0.25s ease, border-color 0.25s ease,
-    color 0.25s ease, opacity 0.25s ease, box-shadow 0.15s ease;
+    transition: background-color 0.25s ease, border-color 0.25s ease,
+        color 0.25s ease, opacity 0.25s ease, box-shadow 0.15s ease;
 
-  appearance: none;
-  -webkit-appearance: none;
+    appearance: none;
+    -webkit-appearance: none;
 
-  white-space: nowrap;
+    white-space: nowrap;
 
-  color: var(--color-gray-800);
-  background-color: var(--color-white);
+    color: var(--color-gray-800);
+    background-color: var(--color-white);
 }
 
 .chip-content {
-  line-height: 1;
+    line-height: 1;
 }
 
 /* Size Variants */
 
 /* Medium (Default) */
 .chip {
-  font-size: var(--font-text3-size);
-  padding: var(--space-1) var(--space-2);
-  height: auto;
+    font-size: var(--font-xs);
+    padding: var(--space-1) var(--space-2);
+    height: auto;
 }
 
 /* Small (sm) */
 .chip.chip-sm {
-  font-size: var(--font-text4-size);
-  padding: var(--space-1) var(--space-1_5);
+    font-size: var(--font-xs);
+    padding: var(--space-1) var(--space-1_5);
 }
 
 /* Large (lg) */
 .chip.chip-lg {
-  font-size: var(--font-text2-size);
-  padding: var(--space-1_5) var(--space-3);
+    font-size: var(--font-sm);
+    padding: var(--space-1_5) var(--space-3);
 }
 
 /* Define a cor de fundo e texto para o padrão SÓLIDO (DEFAULT) */
@@ -58,137 +58,137 @@
 .chip-success,
 .chip-destructive,
 .chip-neutral {
-  color: var(--color-white);
+    color: var(--color-white);
 }
 
 /* Sólido: Cores de Fundo e Borda */
 .chip-primary {
-  background-color: var(--color-primary-500);
-  border-color: var(--color-primary-500);
+    background-color: var(--color-primary-500);
+    border-color: var(--color-primary-500);
 }
 .chip-secondary {
-  background-color: var(--color-secondary-500);
-  border-color: var(--color-secondary-500);
+    background-color: var(--color-secondary-500);
+    border-color: var(--color-secondary-500);
 }
 .chip-tertiary {
-  background-color: var(--color-tertiary-500);
-  border-color: var(--color-tertiary-500);
+    background-color: var(--color-tertiary-500);
+    border-color: var(--color-tertiary-500);
 }
 .chip-success {
-  background-color: var(--color-success-500);
-  border-color: var(--color-success-500);
+    background-color: var(--color-success-500);
+    border-color: var(--color-success-500);
 }
 .chip-destructive {
-  background-color: var(--color-destructive-500);
-  border-color: var(--color-destructive-500);
+    background-color: var(--color-destructive-500);
+    border-color: var(--color-destructive-500);
 }
 .chip-neutral {
-  background-color: var(--color-gray-700);
-  border-color: var(--color-gray-700);
+    background-color: var(--color-gray-700);
+    border-color: var(--color-gray-700);
 }
 
 /* Exceção Sólida (Fundo Claro) */
 .chip-warning {
-  background-color: var(--color-warning-500);
-  border-color: var(--color-warning-500);
-  color: var(--color-gray-900);
+    background-color: var(--color-warning-500);
+    border-color: var(--color-warning-500);
+    color: var(--color-gray-900);
 }
 
 /* Outline */
 .chip-outline {
-  background-color: var(--color-white);
-  color: var(--color-gray-700);
+    background-color: var(--color-white);
+    color: var(--color-gray-700);
 }
 
 /* Cores ativas (Outline) */
 .chip-outline.chip-primary {
-  border-color: var(--color-primary-500);
-  color: var(--color-primary-600);
+    border-color: var(--color-primary-500);
+    color: var(--color-primary-600);
 }
 .chip-outline.chip-secondary {
-  border-color: var(--color-secondary-500);
-  color: var(--color-secondary-600);
+    border-color: var(--color-secondary-500);
+    color: var(--color-secondary-600);
 }
 .chip-outline.chip-tertiary {
-  border-color: var(--color-tertiary-500);
-  color: var(--color-tertiary-600);
+    border-color: var(--color-tertiary-500);
+    color: var(--color-tertiary-600);
 }
 .chip-outline.chip-success {
-  border-color: var(--color-success-500);
-  color: var(--color-success-600);
+    border-color: var(--color-success-500);
+    color: var(--color-success-600);
 }
 .chip-outline.chip-warning {
-  border-color: var(--color-warning-500);
-  color: var(--color-warning-700);
+    border-color: var(--color-warning-500);
+    color: var(--color-warning-700);
 }
 .chip-outline.chip-destructive {
-  border-color: var(--color-destructive-500);
-  color: var(--color-destructive-600);
+    border-color: var(--color-destructive-500);
+    color: var(--color-destructive-600);
 }
 .chip-outline.chip-neutral {
-  border-color: var(--color-gray-400);
-  color: var(--color-gray-700);
+    border-color: var(--color-gray-400);
+    color: var(--color-gray-700);
 }
 /* ... Adicionar outras cores conforme necessário ... */
 
 .chip-outline:hover:not(.chip-disabled):not(.chip-selected) {
-  background-color: var(--color-gray-50);
+    background-color: var(--color-gray-50);
 }
 
 /* Estados (Selected / Disabled) */
 
 /* Estado Selecionado (Override do hover/base) */
 .chip-selected {
-  font-weight: var(--weight-semibold);
-  box-shadow: 0 0 0 2px var(--color-primary-300);
+    font-weight: var(--weight-semibold);
+    box-shadow: 0 0 0 2px var(--color-primary-300);
 }
 /* Se for outline e selecionado, preenche! */
 .chip-outline.chip-selected {
-  background-color: var(--color-primary-500);
-  border-color: var(--color-primary-500);
-  color: var(--color-white);
-  box-shadow: 0 0 0 2px var(--color-primary-300);
+    background-color: var(--color-primary-500);
+    border-color: var(--color-primary-500);
+    color: var(--color-white);
+    box-shadow: 0 0 0 2px var(--color-primary-300);
 }
 
 /* Estado Desabilitado */
 .chip-disabled {
-  opacity: 0.55;
-  cursor: not-allowed;
+    opacity: 0.55;
+    cursor: not-allowed;
 }
 
 /* Fechar (Closable) */
 .chip-closable {
-  padding-right: var(--space-2);
+    padding-right: var(--space-2);
 }
 
 .chip-close-button {
-  padding: 0;
-  margin: 0;
+    padding: 0;
+    margin: 0;
 
-  background: none;
-  border: none;
-  cursor: pointer;
+    background: none;
+    border: none;
+    cursor: pointer;
 
-  font-size: 1em;
-  line-height: 1;
-  font-weight: var(--weight-bold);
+    font-size: 1em;
+    line-height: 1;
+    font-weight: var(--weight-bold);
 
-  opacity: 0.9;
-  transition: opacity 0.2s;
+    opacity: 0.9;
+    transition: opacity 0.2s;
 
-  color: inherit;
+    color: inherit;
 
-  width: auto;
-  height: auto;
+    width: auto;
+    height: auto;
 }
 .chip-close-button:hover {
-  opacity: 1;
+    opacity: 1;
 }
 
 /* 📱 Responsividade */
 @media (max-width: var(--screen-sm)) {
-  .chip {
-    font-size: var(--font-text4-size);
-    padding: var(--space-0_5) var(--space-2);
-  }
+    .chip {
+        font-size: var(--font-xs);
+        padding: var(--space-0_5) var(--space-2);
+    }
 }

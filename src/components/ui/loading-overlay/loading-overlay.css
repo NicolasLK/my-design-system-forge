@@ -3,36 +3,36 @@
    =========================== */
 
 .loading-overlay {
-  position: absolute;
-  inset: 0;
+    position: absolute;
+    inset: 0;
 
-  display: flex;
-  justify-content: center;
-  align-items: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 0.2s ease;
-  z-index: 200;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.2s ease;
+    z-index: 200;
 }
 
 .loading-overlay.active {
-  opacity: 1;
-  pointer-events: auto;
+    opacity: 1;
+    pointer-events: auto;
 }
 
 .loading-overlay-content {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: var(--space-3);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-3);
 
-  z-index: 1;
+    z-index: 1;
 }
 
 .loading-message {
-  font-size: var(--font-text2-size);
-  color: var(--color-gray-700);
-  font-weight: var(--weight-medium);
-  text-align: center;
+    font-size: var(--font-sm);
+    color: var(--color-gray-700);
+    font-weight: var(--weight-medium);
+    text-align: center;
 }

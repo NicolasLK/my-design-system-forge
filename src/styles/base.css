@@ -22,46 +22,43 @@ body {
     color: var(--color-gray-900);
     background-color: var(--color-white);
     -webkit-font-smoothing: antialiased;
-    /* padding: var(--space-4); */
 }
 
 /* Containers padrão */
 .container {
     width: 100%;
-    max-width: 1280px;
+    max-width: 80rem;
     margin-inline: auto;
     padding-inline: var(--space-4);
 }
 
 /* Tipografia base usando tokens */
+p {
+    line-height: var(--leading-normal);
+    margin-bottom: var(--space-4);
+    color: var(--color-gray-700);
+}
+
 h1 {
     font-size: var(--font-4xl);
     line-height: var(--leading-tight);
     letter-spacing: -0.025em;
+    color: var(--text-default);
 }
 
 h2 {
-    font-size: var(--font-3xl);
+    font-size: var(--font-2xl);
     line-height: var(--leading-tight);
     border-bottom: 1px solid var(--color-gray-200);
-    padding-bottom: var(--space-1);
+    padding-bottom: var(--space-2);
+    margin-top: var(--space-8);
+    margin-bottom: var(--space-4);
 }
 
 h3 {
-    font-size: var(--font-2xl);
+    font-size: var(--font-lg);
     font-weight: var(--weight-semibold);
     line-height: var(--leading-tight);
-}
-
-h4 {
-    font-size: var(--font-xl);
-    font-weight: var(--weight-semibold);
-    line-height: var(--leading-tight);
-}
-
-p {
-    /* font-size: var(--font-base); */
-    line-height: var(--leading-normal);
 }
 
 blockquote {
@@ -74,10 +71,13 @@ blockquote {
 
 /* Links */
 a {
-    color: var(--color-primary-500);
+    color: var(--text-brand);
+    font-weight: var(--weight-medium);
+    transition: color 0.2s;
     text-decoration: none;
 }
 
 a:hover {
+    filter: brightness(0.8);
     text-decoration: underline;
 }

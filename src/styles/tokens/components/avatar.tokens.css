@@ -1,0 +1,5 @@
+:root {
+    --avatar-size-sm: clamp(1.5rem, 2.5vw, 2rem); /* 24px → 32px */
+    --avatar-size-md: clamp(2rem, 3.5vw, 2.75rem); /* 32px → 44px */
+    --avatar-size-lg: clamp(2.75rem, 5vw, 3.75rem); /* 44px → 60px */
+}

@@ -1,0 +1,13 @@
+/* ---------- General Tokens ---------- */
+@import './foundation.css';
+@import './semantic.css';
+/* ----------------------------------- */
+
+/* ---------- Components Tokens ---------- */
+@import './components/avatar.tokens.css';
+@import './components/button.tokens.css';
+/* @import './components/input.tokens.css'; */
+/* @import './components/modal.tokens.css'; */
+@import './components/sidebar.tokens.css';
+@import './components/slider.tokens.css';
+/* -------------------------------------- */

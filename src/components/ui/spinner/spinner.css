@@ -4,58 +4,58 @@
 
 /* Wrapper: Não pode girar */
 .spinner-wrapper {
-  display: inline-flex;
-  align-items: center;
-  gap: var(--space-2);
-  align-self: center;
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    align-self: center;
 }
 
 /* Anel: Deve girar sozinho */
 .spinner {
-  display: inline-block;
-  border: 4px solid var(--color-gray-200);
-  border-radius: 50%;
-  border-top-color: var(--color-primary-500);
-  animation: spinnerRotate 0.6s linear infinite;
-  box-sizing: border-box;
+    display: inline-block;
+    border: 4px solid var(--color-gray-200);
+    border-radius: 50%;
+    border-top-color: var(--color-primary-500);
+    animation: spinnerRotate 0.6s linear infinite;
+    box-sizing: border-box;
 }
 
 /* Desliga animação */
 .spinner-static {
-  animation: none;
+    animation: none;
 }
 
 /* 📏 Tamanhos */
 .spinner-sm {
-  width: 20px;
-  height: 20px;
-  border-width: 3px;
+    width: 20px;
+    height: 20px;
+    border-width: 3px;
 }
 
 .spinner-md {
-  width: 32px;
-  height: 32px;
-  border-width: 4px;
+    width: 32px;
+    height: 32px;
+    border-width: 4px;
 }
 
 .spinner-lg {
-  width: 48px;
-  height: 48px;
-  border-width: 5px;
+    width: 48px;
+    height: 48px;
+    border-width: 5px;
 }
 
 /* 🎨 Variantes com CSS variables */
-[class*="spinner-"] {
-  --spinner-color: var(--color-primary-500);
+[class*='spinner-'] {
+    --spinner-color: var(--color-primary-500);
 }
 
 /* Aplica cor no topo (o que gira) */
 .spinner {
-  border-top-color: var(--spinner-color);
+    border-top-color: var(--spinner-color);
 }
 
 .spinner-primary {
-  --spinner-color: var(--color-primary-500);
+    --spinner-color: var(--color-primary-500);
 }
 
 /* .spinner-primary-600 {
@@ -63,43 +63,43 @@
 } */
 
 .spinner-secondary {
-  --spinner-color: var(--color-secondary-500);
+    --spinner-color: var(--color-secondary-500);
 }
 
 .spinner-success {
-  --spinner-color: var(--color-success-500);
+    --spinner-color: var(--color-success-500);
 }
 
 .spinner-warning {
-  --spinner-color: var(--color-warning-500);
+    --spinner-color: var(--color-warning-500);
 }
 
 .spinner-destructive {
-  --spinner-color: var(--color-destructive-500);
+    --spinner-color: var(--color-destructive-500);
 }
 
 /* ♻️ Animação */
 @keyframes spinnerRotate {
-  to {
-    transform: rotate(360deg);
-  }
+    to {
+        transform: rotate(360deg);
+    }
 }
 
 /* Texto opcional */
 .spinner-text {
-  font-size: var(--font-text2-size);
-  color: var(--color-gray-700);
+    font-size: var(--font-sm);
+    color: var(--color-gray-700);
 }
 
 /* Acessibilidade */
 .visually-hidden {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  padding: 0;
-  margin: -1px;
-  overflow: hidden;
-  clip: rect(0 0 0 0);
-  white-space: nowrap;
-  border: 0;
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
+    border: 0;
 }

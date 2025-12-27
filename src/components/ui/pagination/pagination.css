@@ -3,71 +3,71 @@
    =========================== */
 
 .pagination {
-  display: flex;
-  align-items: center;
-  gap: var(--space-1_5);
-  justify-content: center;
-  flex-wrap: wrap;
-  width: 100%;
+    display: flex;
+    align-items: center;
+    gap: var(--space-1_5);
+    justify-content: center;
+    flex-wrap: wrap;
+    width: 100%;
 }
 
 /* Estilos dos Botões (Usando a classe Button base) */
 .pagination-button {
-  width: var(--control-height-md);
-  min-width: var(--control-height-md);
-  padding-left: 0;
-  padding-right: 0;
+    width: var(--control-height-md);
+    min-width: var(--control-height-md);
+    padding-left: 0;
+    padding-right: 0;
 }
 
 .pagination-button.active {
-  color: var(--color-white);
-  font-weight: var(--weight-semibold);
+    color: var(--color-white);
+    font-weight: var(--weight-semibold);
 }
 
 /* Botões de Navegação (‹ e ›) */
 .pagination-nav-button {
-  min-width: calc(var(--control-height-md) + var(--space-2));
+    min-width: calc(var(--control-height-md) + var(--space-2));
 }
 
 /* Reticências */
 .pagination-ellipsis {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: var(--color-gray-500);
-  font-weight: var(--weight-medium);
-  padding: var(--space-1) var(--space-2);
-  user-select: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--color-gray-500);
+    font-weight: var(--weight-medium);
+    padding: var(--space-1) var(--space-2);
+    user-select: none;
 }
 
 /* 📏 Tamanhos (Ajustando apenas os elementos internos que o Button não controla) */
 
 /* Small */
 .pagination.pagination-sm {
-  gap: var(--space-1);
+    gap: var(--space-1);
 }
 .pagination.pagination-sm .pagination-button {
-  width: var(--control-height-sm);
-  min-width: var(--control-height-sm);
+    width: var(--control-height-sm);
+    min-width: var(--control-height-sm);
 }
 
 /* Large */
 .pagination.pagination-lg .pagination-button {
-  width: var(--control-height-lg);
-  min-width: var(--control-height-lg);
+    width: var(--control-height-lg);
+    min-width: var(--control-height-lg);
 }
 
 .pagination.pagination-lg .pagination-nav-button {
-  min-width: calc(var(--control-height-lg) + var(--space-4));
+    min-width: calc(var(--control-height-lg) + var(--space-4));
 }
 
 .pagination.pagination-lg .pagination-ellipsis {
-  font-size: var(--font-text1-size);
+    font-size: var(--font-base);
 }
 
 /* 📱 Responsividade */
 @media (max-width: var(--screen-sm)) {
-  .pagination {
-    gap: var(--space-1);
-  }
+    .pagination {
+        gap: var(--space-1);
+    }
 }

@@ -1,102 +1,102 @@
 /* 🌳 Contêiner */
 .switch-container {
-  display: inline-flex;
-  align-items: center;
-  gap: var(--space-2);
-  cursor: pointer;
-  position: relative;
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    cursor: pointer;
+    position: relative;
 }
 
-.switch-container input[type="checkbox"] {
-  position: absolute;
-  opacity: 0;
-  width: 0;
-  height: 0;
+.switch-container input[type='checkbox'] {
+    position: absolute;
+    opacity: 0;
+    width: 0;
+    height: 0;
 }
 
 /* 📐 Núcleo do Switch (Core) - Define o estilo base */
 .switch-core {
-  position: relative;
-  width: 42px;
-  height: 24px;
-  border-radius: var(--radius-full);
-  background-color: var(--color-gray-500);
-  transition: background-color 0.3s;
-  cursor: pointer;
+    position: relative;
+    width: 42px;
+    height: 24px;
+    border-radius: var(--radius-full);
+    background-color: var(--color-gray-500);
+    transition: background-color 0.3s;
+    cursor: pointer;
 }
 
 .switch-core .slider {
-  position: absolute;
-  content: "";
-  left: 3px;
-  bottom: 3px;
-  height: 18px;
-  width: 18px;
-  background-color: var(--color-white);
-  border-radius: 50%;
-  transition: transform 0.3s;
+    position: absolute;
+    content: '';
+    left: 3px;
+    bottom: 3px;
+    height: 18px;
+    width: 18px;
+    background-color: var(--color-white);
+    border-radius: 50%;
+    transition: transform 0.3s;
 }
 
 /* Quando o input está checked */
 .switch-container input:checked + .switch-core {
-  background-color: var(--color-primary-500);
+    background-color: var(--color-primary-500);
 }
 
 .switch-container input:checked + .switch-core .slider {
-  transform: translateX(18px);
+    transform: translateX(18px);
 }
 
 /* Estado desabilitado */
 .switch-container input:disabled + .switch-core {
-  opacity: 0.6;
-  cursor: not-allowed;
+    opacity: 0.6;
+    cursor: not-allowed;
 }
 
 /* 📏 Tamanhos */
 .switch-core.switch-sm {
-  width: 34px;
-  height: 20px;
+    width: 34px;
+    height: 20px;
 }
 .switch-core.switch-sm .slider {
-  height: 14px;
-  width: 14px;
+    height: 14px;
+    width: 14px;
 }
 .switch-container input:checked + .switch-core.switch-sm .slider {
-  transform: translateX(14px);
+    transform: translateX(14px);
 }
 
 .switch-core.switch-lg {
-  width: 50px;
-  height: 30px;
+    width: 50px;
+    height: 30px;
 }
 .switch-core.switch-lg .slider {
-  height: 24px;
-  width: 24px;
+    height: 24px;
+    width: 24px;
 }
 .switch-container input:checked + .switch-core.switch-lg .slider {
-  transform: translateX(20px);
+    transform: translateX(20px);
 }
 
 /* 📱 Responsividade */
 @media (max-width: var(--screen-sm)) {
-  .switch-core {
-    width: 42px;
-    height: 24px;
-  }
-  .switch-core .slider {
-    height: 18px;
-    width: 18px;
-    transform: none;
-    left: 3px;
-    bottom: 3px;
-  }
-  .switch-container input:checked + .switch-core .slider {
-    transform: translateX(18px);
-  }
+    .switch-core {
+        width: 42px;
+        height: 24px;
+    }
+    .switch-core .slider {
+        height: 18px;
+        width: 18px;
+        transform: none;
+        left: 3px;
+        bottom: 3px;
+    }
+    .switch-container input:checked + .switch-core .slider {
+        transform: translateX(18px);
+    }
 }
 
 /* Label de texto */
 .switch-label {
-  font-size: var(--font-text2-size);
-  user-select: none;
+    font-size: var(--font-sm);
+    user-select: none;
 }

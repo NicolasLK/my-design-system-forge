@@ -1,5 +1,8 @@
 :root {
-    /* 🔵 Colors */
+    /* ===============================
+   🎨 Color Palettes
+  =============================== */
+
     /* ===============================
      🎨 PRIMARY — #348abf
      =============================== */
@@ -85,7 +88,7 @@
     --color-warning-900: #4d3902;
 
     /* ===============================
-     🎨 GRAY — baseado em:
+     🎨 GRAY/NEUTRAL — baseado em:
          - gray-light: #d6d8db
          - gray-default: #9aa2a8
          - gray-dark: #6c757d
@@ -105,22 +108,13 @@
     --color-white: #ffffff;
 
     /* ===============================
-     🎨 Cores de Texto e Fundo Genéricas
-     =============================== */
-    /* Texto sobre cores primárias/secundárias */
-    --color-text-on-colored: var(--color-white);
+   🪶 Typography – RAW SCALE
+  =============================== */
 
-    /* Cor primária para texto e ícones */
-    --color-text-primary: var(--color-primary-500);
-
-    --color-text-default: var(--color-gray-900);
-    --color-background-default: var(--color-white);
-
-    /* 🪶 Typography */
     --font-family-base: 'Inter', system-ui, sans-serif;
     --font-family-mono: 'JetBrains Mono', 'Fira Code', monospace;
 
-    /* Font Sizes com Escala Responsiva (clamp) */
+    /* Font Sizes (Genéricos) com Escala Responsiva (clamp) */
     --font-xs: clamp(0.65rem, 0.7rem, 0.75rem); /* 10.4px → 12px */
     --font-sm: clamp(0.8rem, 0.85rem, 0.875rem); /* 12.8px → 14px */
     --font-base: clamp(0.9rem, 0.95rem, 1rem); /* 14.4px → 16px */
@@ -153,46 +147,11 @@
     --weight-bold: 700;
     --weight-extrabold: 800;
 
-    /* Border Radius */
-    --radius-none: 0px;
-    --radius-sm: 0.125rem; /* 2px */
-    --radius-default: 0.25rem; /* 4px */
-    --radius-md: 0.375rem; /* 6px */
-    --radius-lg: 0.5rem; /* 8px */
-    --radius-xl: 0.75rem; /* 12px */
-    --radius-2xl: 1rem; /* 16px */
-    --radius-3xl: 1.5rem; /* 24px */
-    --radius-full: 9999px;
+    /* ===============================
+   📏 Spacing – Tailwind-like
+  =============================== */
 
-    --font-heading1-size: clamp(
-        1.75rem,
-        2vw + 1rem,
-        2.5rem
-    ); /* 1.75rem → 2.5rem */
-    --font-heading2-size: clamp(
-        1.5rem,
-        1.8vw + 0.5rem,
-        2rem
-    ); /* 1.5rem → 2rem */
-    --font-heading3-size: clamp(
-        1.25rem,
-        1.2vw + 0.25rem,
-        1.5rem
-    ); /* 1.25rem → 1.5rem */
-
-    --font-text1-size: clamp(1rem, 0.8vw, 1.125rem); /* 1rem → 1.125rem */
-    --font-text2-size: clamp(0.875rem, 0.6vw, 1rem); /* 0.875rem → 1rem */
-    --font-text3-size: clamp(0.75rem, 0.5vw, 0.875rem); /* 0.75rem → 0.875rem */
-    --font-text4-size: clamp(0.625rem, 0.4vw, 0.75rem); /* 0.625rem → 0.75rem */
-
-    --line-height-heading1: 1.4;
-    --line-height-heading2: 1.4;
-    --line-height-heading3: 1.4;
-    --line-height-text1: 1.6;
-    --line-height-text2: 1.6;
-    --line-height-text3: 1.5;
-
-    /* 📏 Spacing (escala Tailwind-like) */
+    /* Spacing */
     --space-0: 0;
     --space-1: clamp(0.25rem, 0.5vw, 0.5rem); /* 0.25rem → 0.5rem */
     --space-1_5: clamp(0.375rem, 0.75vw, 0.625rem); /* 0.375rem → 0.625rem */
@@ -204,7 +163,18 @@
     --space-8: clamp(2rem, 4vw, 3rem); /* 2rem → 3rem */
     --space-10: clamp(3rem, 5vw, 4rem); /* 3rem → 4rem */
 
-    /* Sombras inspiradas no tailwind */
+    /* Border Radius */
+    --radius-none: 0px;
+    --radius-sm: 0.125rem; /* 2px */
+    --radius-default: 0.25rem; /* 4px */
+    --radius-md: 0.375rem; /* 6px */
+    --radius-lg: 0.5rem; /* 8px */
+    --radius-xl: 0.75rem; /* 12px */
+    --radius-2xl: 1rem; /* 16px */
+    --radius-3xl: 1.5rem; /* 24px */
+    --radius-full: 9999px;
+
+    /* Shadows */
     --shadow-sm: 0 1px 2px rgb(0 0 0 / 0.05);
     --shadow-md: 0 4px 6px rgb(0 0 0 / 0.1);
     --shadow-lg: 0 10px 15px rgb(0 0 0 / 0.15);
@@ -216,32 +186,11 @@
     --screen-lg: 1024px;
     --screen-xl: 1280px;
 
-    /* Controls (botões, inputs, selects, etc.) */
+    /* ===============================
+    🎛 Controls – Physical Scale
+    =============================== */
+
     --control-height-sm: clamp(1.75rem, 2.2vw, 2rem); /* 28px → 32px */
     --control-height-md: clamp(2.25rem, 2.8vw, 2.5rem); /* 36px → 40px */
     --control-height-lg: clamp(2.75rem, 3.4vw, 3rem); /* 44px → 48px */
-
-    /* Component: Button Specific Tokens */
-    --button-border-radius: var(--radius-md);
-    --button-focus-ring-color: var(--color-primary-800);
-    --button-focus-ring-offset: 2px;
-
-    /* Component: Slider Specific Tokens */
-    --slider-track-color: var(--color-gray-300);
-    --slider-range-color: var(--color-primary-500);
-    --slider-thumb-size-md: clamp(
-        0.75rem,
-        1rem + 0.5vw,
-        1.25rem
-    ); /* 12px → 20px */
-    --slider-track-height-md: clamp(
-        0.25rem,
-        0.375rem + 0.3vw,
-        0.5rem
-    ); /* 4px → 8px */
-
-    /* Component: Avatar Specific Tokens */
-    --avatar-size-sm: clamp(24px, 2.5vw, 32px); /* 32px */
-    --avatar-size-md: clamp(32px, 3.5vw, 44px); /* 44px */
-    --avatar-size-lg: clamp(44px, 5vw, 60px); /* 60px */
 }

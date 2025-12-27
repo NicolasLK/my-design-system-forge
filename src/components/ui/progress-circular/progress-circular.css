@@ -52,7 +52,7 @@
 /* 📊 Valor no centro */
 .progress-value {
     position: absolute;
-    font-size: var(--font-text3-size);
+    font-size: var(--font-xs);
     font-weight: var(--weight-bold);
     color: var(--color-text-default);
     line-height: 1;
@@ -65,7 +65,7 @@
 }
 
 .progress-label {
-    font-size: var(--font-text4-size);
+    font-size: var(--font-xs);
     font-weight: var(--weight-medium);
     color: var(--color-text-default);
     text-align: center;
@@ -92,6 +92,6 @@
 /* 📱 Responsividade */
 @media (max-width: var(--screen-sm)) {
     .progress-value {
-        font-size: var(--font-text3-size);
+        font-size: var(--font-xs);
     }
 }

@@ -1,100 +1,38 @@
 'use client';
 
-import { CarouselContext, useCarousel } from '@/contexts/CarouselContext';
+import { useCarousel } from '@/contexts/components/carousel/CarouselContext';
+import { CarouselProvider } from '@/contexts/components/carousel/CarouselProvider';
 import { cn } from '@/lib/utils/cn';
 import { getCarouselDotsVariant } from '@/models/get-carousel-dots-variant';
-import { useBreakpoint } from '@/models/hooks/useBreakpoint';
 import type {
     ICarouselBannerProps,
     ICarouselDotsProps,
-    ICarouselRootProps,
+    ICarouselProviderProps,
 } from '@/typings/carousel.types';
 import {
     Children,
-    useCallback,
     useEffect,
-    useState,
     type ComponentProps,
     type KeyboardEvent,
+    type ReactNode,
 } from 'react';
 import { Button } from '../button';
 import './carousel.css';
 
 /* ===========================
-   🎠 Carousel Root
+   📦 Carousel Wrapper
 =========================== */
 
-export const CarouselRoot = ({
+const CarouselWrapper = ({
     children,
-    autoplay = false,
-    autoplayDelay = 4000,
-    loop = false,
-    slidesPerView = { md: 1 },
-    axis = 'horizontal',
     className,
-}: ICarouselRootProps) => {
-    const [currentIndex, setCurrentIndex] = useState(0);
-    const [itemsCount, setItemsCount] = useState(0);
-
-    const isXs = useBreakpoint('xs');
-    const isSm = useBreakpoint('sm');
-    const isMd = useBreakpoint('md');
-    const isLg = useBreakpoint('lg');
-    const isXl = useBreakpoint('xl');
-
-    const slides =
-        (isXl && slidesPerView.xl) ||
-        (isLg && slidesPerView.lg) ||
-        (isMd && slidesPerView.md) ||
-        (isSm && slidesPerView.sm) ||
-        (isXs && slidesPerView.xs) ||
-        1;
-
-    const pagesCount = Math.ceil(itemsCount / slides);
-
-    /* ---------- Navegação ---------- */
-
-    const scrollPrev = useCallback(() => {
-        setCurrentIndex((prev) =>
-            prev - 1 < 0 ? (loop ? pagesCount - 1 : 0) : prev - 1,
-        );
-    }, [pagesCount, loop]);
-
-    const scrollNext = useCallback(() => {
-        setCurrentIndex((prev) =>
-            prev + 1 >= pagesCount ? (loop ? 0 : prev) : prev + 1,
-        );
-    }, [pagesCount, loop]);
-
-    const goTo = useCallback(
-        (index: number) => {
-            if (index < 0) {
-                setCurrentIndex(loop ? pagesCount - 1 : 0);
-                return;
-            }
-
-            if (index >= pagesCount) {
-                setCurrentIndex(loop ? 0 : pagesCount - 1);
-                return;
-            }
-
-            setCurrentIndex(index);
-        },
-        [pagesCount, loop],
-    );
-
-    /* ---------- Autoplay ---------- */
-
-    useEffect(() => {
-        if (!autoplay || pagesCount <= 1) return;
-
-        const id = setInterval(scrollNext, autoplayDelay);
-
-        return () => clearInterval(id);
-    }, [autoplay, autoplayDelay, scrollNext, pagesCount]);
+}: {
+    children: ReactNode;
+    className?: string;
+}) => {
+    const { scrollNext, scrollPrev } = useCarousel();
 
     /* ---------- Keyboard ---------- */
-
     const handleKeyDown = (e: KeyboardEvent<HTMLDivElement>) => {
         if (e.key === 'ArrowLeft') scrollPrev();
         if (e.key === 'ArrowRight') scrollNext();
@@ -102,31 +40,37 @@ export const CarouselRoot = ({
 
     return (
         <>
-            <CarouselContext.Provider
-                value={{
-                    axis,
-                    currentIndex,
-                    itemsCount,
-                    slidesPerView: slides,
-                    pagesCount,
-                    setItemsCount,
-                    scrollPrev,
-                    scrollNext,
-                    goTo,
-                }}
-            >
-                <div className={cn('carousel-wrapper', className)}>
-                    <div
-                        tabIndex={0}
-                        role="region"
-                        aria-roledescription="carousel"
-                        onKeyDown={handleKeyDown}
-                        className={cn('carousel', className)}
-                    >
-                        {children}
-                    </div>
+            <div className={cn('carousel-wrapper', className)}>
+                <div
+                    tabIndex={0}
+                    role="region"
+                    aria-roledescription="carousel"
+                    onKeyDown={handleKeyDown}
+                    className={cn('carousel', className)}
+                >
+                    {children}
                 </div>
-            </CarouselContext.Provider>
+            </div>
+        </>
+    );
+};
+
+/* ===========================
+   🎠 Carousel Root
+=========================== */
+
+export const CarouselRoot = ({
+    children,
+    className,
+    ...providerProps
+}: ICarouselProviderProps) => {
+    return (
+        <>
+            <CarouselProvider {...providerProps}>
+                <CarouselWrapper className={className}>
+                    {children}
+                </CarouselWrapper>
+            </CarouselProvider>
         </>
     );
 };

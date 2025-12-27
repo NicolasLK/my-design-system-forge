@@ -13,7 +13,9 @@ export const useCarousel = () => {
     const ctx = useContext(CarouselContext);
 
     if (ctx === undefined) {
-        throw new Error('useCarousel deve ser usado dentro de <Carousel.Root>');
+        throw new Error(
+            'useCarousel deve ser usado dentro de CarouselProvider',
+        );
     }
 
     return ctx;

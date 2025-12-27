@@ -3,68 +3,68 @@
    =========================== */
 
 .textarea-wrapper {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-2);
-  width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+    width: 100%;
 }
 
 .textarea-label {
-  font-size: var(--font-text2-size);
-  font-weight: var(--weight-medium);
+    font-size: var(--font-sm);
+    font-weight: var(--weight-medium);
 }
 
 /* Caixa principal */
 .textarea {
-  width: 100%;
-  padding: var(--space-2) var(--space-3);
-  border: 1px solid var(--color-gray-500);
-  border-radius: var(--radius-md);
-  background-color: var(--color-white);
-  font-size: var(--font-text2-size);
-  resize: vertical;
-  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    width: 100%;
+    padding: var(--space-2) var(--space-3);
+    border: 1px solid var(--color-gray-500);
+    border-radius: var(--radius-md);
+    background-color: var(--color-white);
+    font-size: var(--font-sm);
+    resize: vertical;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
 }
 
 .textarea:focus {
-  outline: none;
-  border-color: var(--color-primary-500);
-  box-shadow: 0 0 0 3px
-    color-mix(in srgb, var(--color-primary-500) 20%, transparent);
+    outline: none;
+    border-color: var(--color-primary-500);
+    box-shadow: 0 0 0 3px
+        color-mix(in srgb, var(--color-primary-500) 20%, transparent);
 }
 
 .textarea:disabled {
-  opacity: 0.6;
-  cursor: not-allowed;
+    opacity: 0.6;
+    cursor: not-allowed;
 }
 
 /* Erro */
 .textarea-error {
-  border-color: var(--color-destructive-500);
+    border-color: var(--color-destructive-500);
 }
 
 .textarea-error:focus {
-  border-color: var(--color-destructive-500);
-  box-shadow: 0 0 0 3px
-    color-mix(in srgb, var(--color-destructive-500) 20%, transparent);
+    border-color: var(--color-destructive-500);
+    box-shadow: 0 0 0 3px
+        color-mix(in srgb, var(--color-destructive-500) 20%, transparent);
 }
 
 .textarea-error-message {
-  color: var(--color-destructive-500);
-  font-size: var(--font-text3-size);
+    color: var(--color-destructive-500);
+    font-size: var(--font-xs);
 }
 
 /* Tamanhos */
 .textarea-sm {
-  font-size: var(--font-text3-size);
-  padding: var(--space-1) var(--space-2);
+    font-size: var(--font-xs);
+    padding: var(--space-1) var(--space-2);
 }
 
 .textarea-md {
-  font-size: var(--font-text2-size);
+    font-size: var(--font-sm);
 }
 
 .textarea-lg {
-  font-size: var(--font-text1-size);
-  padding: var(--space-3);
+    font-size: var(--font-base);
+    padding: var(--space-3);
 }

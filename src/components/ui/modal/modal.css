@@ -1,155 +1,155 @@
 /* 🔳 Overlay (fundo) */
 .modal {
-  display: grid; /* 👉 mais consistente que flex neste caso */
-  position: fixed;
-  inset: 0;
-  place-items: center; /* centraliza vertical e horizontalmente */
-  background-color: rgba(0, 0, 0, 0.45);
-  z-index: 1000;
-  padding: var(--space-4);
-  backdrop-filter: blur(2px);
-  animation: modal-fade-in 0.25s ease;
-  overflow-y: auto; /* permite rolagem em telas pequenas */
+    display: grid; /* 👉 mais consistente que flex neste caso */
+    position: fixed;
+    inset: 0;
+    place-items: center; /* centraliza vertical e horizontalmente */
+    background-color: rgba(0, 0, 0, 0.45);
+    z-index: 1000;
+    padding: var(--space-4);
+    backdrop-filter: blur(2px);
+    animation: modal-fade-in 0.25s ease;
+    overflow-y: auto; /* permite rolagem em telas pequenas */
 }
 
 /* 🧭 Cabeçalho do modal */
 .modal-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: var(--space-2);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: var(--space-2);
 }
 
 .modal-close {
-  background: none;
-  border: none;
-  color: var(--color-gray-500);
-  font-size: 1.5rem;
-  font-weight: var(--weight-medium);
-  cursor: pointer;
-  line-height: 1;
-  padding: var(--space-1);
-  transition: color 0.2s ease, transform 0.15s ease;
+    background: none;
+    border: none;
+    color: var(--color-gray-500);
+    font-size: 1.5rem;
+    font-weight: var(--weight-medium);
+    cursor: pointer;
+    line-height: 1;
+    padding: var(--space-1);
+    transition: color 0.2s ease, transform 0.15s ease;
 }
 
 .modal-close:hover {
-  color: var(--color-black);
-  transform: scale(1.1);
+    color: var(--color-black);
+    transform: scale(1.1);
 }
 
 .modal-close:active {
-  transform: scale(0.95);
+    transform: scale(0.95);
 }
 
 /* 🧱 Conteúdo */
 .modal-content {
-  background-color: var(--color-white);
-  border-radius: var(--radius-lg);
-  padding: var(--space-5);
-  width: auto; /* ❗ evita ocupar toda a largura */
-  max-width: 480px;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
-  color: var(--color-black);
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-4);
-  transform: translateY(10px);
-  animation: modal-slide-up 0.3s ease forwards;
-  margin: 0 auto; /* centraliza horizontalmente quando tem overflow */
+    background-color: var(--color-white);
+    border-radius: var(--radius-lg);
+    padding: var(--space-5);
+    width: auto; /* ❗ evita ocupar toda a largura */
+    max-width: 480px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+    color: var(--color-black);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+    transform: translateY(10px);
+    animation: modal-slide-up 0.3s ease forwards;
+    margin: 0 auto; /* centraliza horizontalmente quando tem overflow */
 }
 
 .modal-closing {
-  animation: modal-fade-out 0.3s ease forwards;
+    animation: modal-fade-out 0.3s ease forwards;
 }
 
 .modal-content.modal-closing {
-  animation: modal-slide-down 0.3s ease forwards;
+    animation: modal-slide-down 0.3s ease forwards;
 }
 
 /* 📏 Tamanhos via getComponentSize */
 .modal-sm {
-  max-width: 320px;
+    max-width: 320px;
 }
 
 .modal-lg {
-  max-width: 640px;
+    max-width: 640px;
 }
 
 /* ✨ Tipografia */
 .modal-title {
-  font-size: var(--font-heading3-size);
-  line-height: var(--line-height-heading3);
-  font-weight: var(--weight-semibold);
-  margin: 0;
+    font-size: var(--font-2xl);
+    line-height: var(--leading-snug);
+    font-weight: var(--weight-semibold);
+    margin: 0;
 }
 
 .modal-description {
-  font-size: var(--font-text2-size);
-  line-height: var(--line-height-text2);
-  color: var(--color-gray-500);
-  margin: 0;
+    font-size: var(--font-sm);
+    line-height: var(--leading-tight);
+    color: var(--color-gray-500);
+    margin: 0;
 }
 
 /* 📦 Rodapé (botões) */
 .modal-footer {
-  display: flex;
-  justify-content: flex-end;
-  gap: var(--space-3);
+    display: flex;
+    justify-content: flex-end;
+    gap: var(--space-3);
 }
 
 /* 📱 Responsividade */
 @media (max-width: var(--screen-md)) {
-  .modal {
-    align-items: flex-start; /* começa do topo */
-    padding-top: var(--space-10);
-  }
+    .modal {
+        align-items: flex-start; /* começa do topo */
+        padding-top: var(--space-10);
+    }
 
-  .modal-content {
-    width: 100%;
-    max-width: 90%;
-    padding: var(--space-4);
-    gap: var(--space-3);
-  }
+    .modal-content {
+        width: 100%;
+        max-width: 90%;
+        padding: var(--space-4);
+        gap: var(--space-3);
+    }
 }
 
 /* 💨 Animações */
 @keyframes modal-fade-in {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
 }
 
 @keyframes modal-slide-up {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 @keyframes modal-slide-down {
-  from {
-    opacity: 1;
-    transform: translateY(0);
-  }
-  to {
-    opacity: 0;
-    transform: translateY(20px);
-  }
+    from {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    to {
+        opacity: 0;
+        transform: translateY(20px);
+    }
 }
 
 @keyframes modal-fade-out {
-  from {
-    opacity: 1;
-  }
-  to {
-    opacity: 0;
-    backdrop-filter: blur(0px);
-  }
+    from {
+        opacity: 1;
+    }
+    to {
+        opacity: 0;
+        backdrop-filter: blur(0px);
+    }
 }

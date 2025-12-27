@@ -3,120 +3,120 @@
    =========================== */
 
 .range-picker-root {
-  border: none;
-  box-shadow: none;
+    border: none;
+    box-shadow: none;
 
-  padding: var(--space-4);
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-4);
-  background: var(--color-white);
-  width: auto;
+    padding: var(--space-4);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+    background: var(--color-white);
+    width: auto;
 }
 
 .range-picker-root.range-picker-full {
-  width: 100%;
+    width: 100%;
 }
 
 /* Exibição da Seleção (Header) */
 .range-header {
-  display: flex;
-  justify-content: space-between;
-  gap: var(--space-4);
-  font-size: var(--font-text2-size);
+    display: flex;
+    justify-content: space-between;
+    gap: var(--space-4);
+    font-size: var(--font-sm);
 }
 
 .range-display {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  padding: var(--space-2);
-  border: 1px solid var(--color-gray-200);
-  border-radius: var(--radius-sm);
-  transition: all 0.2s;
-  background: var(--color-gray-50);
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    padding: var(--space-2);
+    border: 1px solid var(--color-gray-200);
+    border-radius: var(--radius-sm);
+    transition: all 0.2s;
+    background: var(--color-gray-50);
 }
 
-.range-display[data-active="true"] {
-  border-color: var(--color-primary-500);
-  box-shadow: 0 0 0 1px var(--color-primary-500);
-  background: var(--color-primary-50);
+.range-display[data-active='true'] {
+    border-color: var(--color-primary-500);
+    box-shadow: 0 0 0 1px var(--color-primary-500);
+    background: var(--color-primary-50);
 }
 
 .range-label {
-  font-weight: var(--weight-medium);
-  color: var(--color-gray-700);
+    font-weight: var(--weight-medium);
+    color: var(--color-gray-700);
 }
 .range-date {
-  font-size: var(--font-text1-size);
-  font-weight: var(--weight-semibold);
-  color: var(--color-gray-900);
+    font-size: var(--font-base);
+    font-weight: var(--weight-semibold);
+    color: var(--color-gray-900);
 }
 
 /* Containers dos Calendários */
 .range-calendars {
-  display: flex;
-  gap: var(--space-4);
+    display: flex;
+    gap: var(--space-4);
 
-  justify-content: center;
+    justify-content: center;
 }
 
 /* Esconde o border/shadow dos Calendários aninhados, pois o Root já tem */
 .range-calendars .calendar {
-  flex-shrink: 0;
+    flex-shrink: 0;
 }
 
 /* Tamanhos (Aplica nos Calendários Aninhados) */
 .range-picker-root.range-picker-sm .calendar {
-  /* Não precisa, pois a prop 'size' é passada via React */
+    /* Não precisa, pois a prop 'size' é passada via React */
 }
 
 /* Estilos de Range do Calendar (Injetados por Calendar.tsx) */
 .calendar-grid-cell {
-  position: relative;
+    position: relative;
 }
 
 /* Trilha de seleção (Meio) */
 .calendar-day-button.day-range-middle {
-  background-color: var(--color-primary-100);
-  border-radius: 0;
-  color: var(--color-gray-900);
+    background-color: var(--color-primary-100);
+    border-radius: 0;
+    color: var(--color-gray-900);
 }
 .calendar-day-button.day-range-middle:hover {
-  background-color: var(--color-primary-200);
+    background-color: var(--color-primary-200);
 }
 
 /* Borda / Início - Fim */
-.calendar-day-button[data-range-start="true"] {
-  border-radius: var(--radius-sm) 0 0 var(--radius-sm);
-  background-color: var(--color-primary-500);
-  color: var(--color-white);
-  box-shadow: none;
+.calendar-day-button[data-range-start='true'] {
+    border-radius: var(--radius-sm) 0 0 var(--radius-sm);
+    background-color: var(--color-primary-500);
+    color: var(--color-white);
+    box-shadow: none;
 }
 
-.calendar-day-button[data-range-end="true"] {
-  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
-  background-color: var(--color-primary-500);
-  color: var(--color-white);
-  box-shadow: none;
+.calendar-day-button[data-range-end='true'] {
+    border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+    background-color: var(--color-primary-500);
+    color: var(--color-white);
+    box-shadow: none;
 }
 
 /* Se o início e o fim são o mesmo dia */
-.calendar-day-button[data-range-start="true"][data-range-end="true"] {
-  border-radius: var(--radius-sm);
+.calendar-day-button[data-range-start='true'][data-range-end='true'] {
+    border-radius: var(--radius-sm);
 }
 
 /* Remove a cor de fundo do dia selecionado se ele estiver no Range (evitando conflito) */
-.calendar-day-button[data-range-start="true"]:not([data-range-end="true"]) {
-  /* Edge start */
+.calendar-day-button[data-range-start='true']:not([data-range-end='true']) {
+    /* Edge start */
 }
-.calendar-day-button[data-range-end="true"]:not([data-range-start="true"]) {
-  /* Edge end */
+.calendar-day-button[data-range-end='true']:not([data-range-start='true']) {
+    /* Edge end */
 }
 
 @media (max-width: 650px) {
-  .range-calendars {
-    flex-direction: column;
-    gap: var(--space-3);
-  }
+    .range-calendars {
+        flex-direction: column;
+        gap: var(--space-3);
+    }
 }

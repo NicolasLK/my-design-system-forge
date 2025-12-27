@@ -35,7 +35,6 @@
     "customizations": {
         "vscode": {
             "settings": {
-                "extensions.ignoreRecommendations": true,
                 "editor.defaultFormatter": "esbenp.prettier-vscode",
                 "editor.formatOnSave": true,
                 "editor.codeActionsOnSave": {

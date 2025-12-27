@@ -4,90 +4,90 @@
 
 /* Root (Container e Tamanho) */
 .avatar-root {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
 
-  background-color: var(--color-gray-500);
-  color: var(--color-white);
+    background-color: var(--color-gray-500);
+    color: var(--color-white);
 
-  font-family: var(--font-family-base);
-  font-weight: var(--weight-medium);
-  overflow: hidden;
-  text-transform: uppercase;
-  user-select: none;
-  position: relative;
-  flex-shrink: 0;
+    font-family: var(--font-family-base);
+    font-weight: var(--weight-medium);
+    overflow: hidden;
+    text-transform: uppercase;
+    user-select: none;
+    position: relative;
+    flex-shrink: 0;
 
-  transition: box-shadow 0.2s ease, filter 0.2s ease;
+    transition: box-shadow 0.2s ease, filter 0.2s ease;
 }
 
 /* 🟢 Formatos */
 .avatar-circle {
-  border-radius: var(--radius-full);
+    border-radius: var(--radius-full);
 }
 
 .avatar-square {
-  border-radius: var(--radius-md);
+    border-radius: var(--radius-md);
 }
 
 /* 📸 Imagem */
 .avatar-image {
-  width: 100%;
-  height: 100%;
-  aspect-ratio: 1/1;
-  object-fit: cover;
-  position: absolute;
-  top: 0;
-  left: 0;
-  z-index: 10;
-  opacity: 0;
-  transition: opacity 0.3s ease;
+    width: 100%;
+    height: 100%;
+    aspect-ratio: 1/1;
+    object-fit: cover;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 10;
+    opacity: 0;
+    transition: opacity 0.3s ease;
 }
 
 /* Imagem visível quando carregada */
 .avatar-image-loaded {
-  opacity: 1;
+    opacity: 1;
 }
 
 /* 🔤 Fallback (iniciais / Ícone) */
 .avatar-fallback {
-  position: absolute;
-  inset: 0;
-  z-index: 1;
+    position: absolute;
+    inset: 0;
+    z-index: 1;
 
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
 
-  background-color: var(--color-gray-500);
-  color: var(--color-white);
-  font-size: 1em;
+    background-color: var(--color-gray-500);
+    color: var(--color-white);
+    font-size: 1em;
 }
 
 /* 📏 Tamanhos via getComponentSize */
 
 /* Small (sm) */
 .avatar-root.avatar-sm {
-  width: var(--avatar-size-sm);
-  height: var(--avatar-size-sm);
-  font-size: var(--font-text3-size); /* 12-14px */
+    width: var(--avatar-size-sm);
+    height: var(--avatar-size-sm);
+    font-size: var(--font-xs); /* 12-14px */
 }
 
 /* Medium (default) */
 .avatar-root:not(.avatar-sm):not(.avatar-lg) {
-  width: var(--avatar-size-md);
-  height: var(--avatar-size-md);
-  font-size: var(--font-text2-size); /* 14-16px */
+    width: var(--avatar-size-md);
+    height: var(--avatar-size-md);
+    font-size: var(--font-sm); /* 14-16px */
 }
 
 /* Large (lg) */
 .avatar-root.avatar-lg {
-  width: var(--avatar-size-lg);
-  height: var(--avatar-size-lg);
-  font-size: var(--font-text1-size); /* 16-18px */
+    width: var(--avatar-size-lg);
+    height: var(--avatar-size-lg);
+    font-size: var(--font-base); /* 16-18px */
 }
 
 /* 🧠 Responsividade */

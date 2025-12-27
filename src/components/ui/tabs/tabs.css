@@ -3,116 +3,116 @@
    =========================== */
 
 .tabs-root {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-3);
-  width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+    width: 100%;
 }
 
 /* Lista de abas */
 .tabs-list {
-  display: flex;
-  flex-wrap: wrap;
-  border-bottom: 2px solid var(--color-gray-300);
-  gap: var(--space-2);
-  padding-bottom: var(--space-1);
+    display: flex;
+    flex-wrap: wrap;
+    border-bottom: 2px solid var(--color-gray-300);
+    gap: var(--space-2);
+    padding-bottom: var(--space-1);
 }
 
 /* Aba */
 .tabs-trigger {
-  background: transparent;
-  border: none;
-  padding: var(--space-2) var(--space-3);
-  font-size: var(--font-text2-size);
-  font-weight: var(--weight-medium);
-  cursor: pointer;
+    background: transparent;
+    border: none;
+    padding: var(--space-2) var(--space-3);
+    font-size: var(--font-sm);
+    font-weight: var(--weight-medium);
+    cursor: pointer;
 
-  color: var(--color-gray-600);
-  border-bottom: 2px solid transparent;
+    color: var(--color-gray-600);
+    border-bottom: 2px solid transparent;
 
-  display: inline-flex;
-  align-items: center;
-  gap: var(--space-2);
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
 
-  transition: color 0.2s ease, border-color 0.2s ease;
+    transition: color 0.2s ease, border-color 0.2s ease;
 }
 
 .tabs-trigger:hover {
-  color: var(--color-primary-500);
+    color: var(--color-primary-500);
 }
 
-.tabs-trigger[data-state="active"] {
-  color: var(--color-primary-600);
-  border-bottom-color: var(--color-primary-500);
+.tabs-trigger[data-state='active'] {
+    color: var(--color-primary-600);
+    border-bottom-color: var(--color-primary-500);
 }
 
 .tabs-trigger-icon {
-  display: flex;
-  align-items: center;
+    display: flex;
+    align-items: center;
 }
 
 /* Conteúdo + Animações */
 .tabs-content {
-  position: relative;
-  width: 100%;
-  padding: var(--space-4) 0;
+    position: relative;
+    width: 100%;
+    padding: var(--space-4) 0;
 
-  font-size: var(--font-text2-size);
-  line-height: var(--line-height-text2);
+    font-size: var(--font-sm);
+    line-height: var(--leading-tight);
 
-  color: var(--color-gray-900);
-  opacity: 1;
-  transform: none;
-  filter: none;
+    color: var(--color-gray-900);
+    opacity: 1;
+    transform: none;
+    filter: none;
 
-  transition: opacity 0.25s ease, transform 0.25s ease, filter 0.25s ease;
+    transition: opacity 0.25s ease, transform 0.25s ease, filter 0.25s ease;
 }
 
 /* Conteúdo INATIVO (sem animação) */
-.tabs-content[data-active="false"] {
-  position: absolute;
-  top: 0;
-  left: 0;
+.tabs-content[data-active='false'] {
+    position: absolute;
+    top: 0;
+    left: 0;
 
-  width: 100%;
+    width: 100%;
 
-  opacity: 0;
-  pointer-events: none;
+    opacity: 0;
+    pointer-events: none;
 }
 
 /* Fade */
-.tabs-content[data-animation="fade"][data-active="false"] {
-  opacity: 0;
+.tabs-content[data-animation='fade'][data-active='false'] {
+    opacity: 0;
 }
 
 /* Slide */
-.tabs-content[data-animation="slide"][data-active="false"] {
-  opacity: 0;
-  transform: translateX(10px);
+.tabs-content[data-animation='slide'][data-active='false'] {
+    opacity: 0;
+    transform: translateX(10px);
 }
 
 /* Scale */
-.tabs-content[data-animation="scale"][data-active="false"] {
-  opacity: 0;
-  transform: scale(0.96);
+.tabs-content[data-animation='scale'][data-active='false'] {
+    opacity: 0;
+    transform: scale(0.96);
 }
 
 /* Dissolve (Fade + blur) */
-.tabs-content[data-animation="dissolve"][data-active="false"] {
-  opacity: 0;
-  filter: blur(6px);
+.tabs-content[data-animation='dissolve'][data-active='false'] {
+    opacity: 0;
+    filter: blur(6px);
 }
 
 /* 📱 Responsividade */
 @media (max-width: var(--screen-sm)) {
-  .tabs-list {
-    gap: var(--space-1);
-    overflow-x: auto;
-    scrollbar-width: none;
-  }
+    .tabs-list {
+        gap: var(--space-1);
+        overflow-x: auto;
+        scrollbar-width: none;
+    }
 
-  .tabs-trigger {
-    font-size: clamp(0.75rem, 1vw, 0.875rem);
-    padding: var(--space-1) var(--space-2);
-  }
+    .tabs-trigger {
+        font-size: clamp(0.75rem, 1vw, 0.875rem);
+        padding: var(--space-1) var(--space-2);
+    }
 }

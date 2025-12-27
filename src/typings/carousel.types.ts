@@ -26,7 +26,7 @@ export interface ICarouselContextProps {
     goTo: (index: number) => void;
 }
 
-export interface ICarouselRootProps {
+export interface ICarouselProviderProps {
     children: ReactNode;
     autoplay?: boolean;
     autoplayDelay?: number;

@@ -1,140 +1,140 @@
 .input-container {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-1);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-1);
 }
 
 /* 🔁 Largura total */
 .input-full {
-  width: 100%;
+    width: 100%;
 }
 
 /* Label */
 .input-label {
-  display: block;
-  font-size: var(--font-text3-size);
-  font-weight: var(--weight-medium);
-  color: var(--color-gray-700);
-  padding-left: var(--space-1);
+    display: block;
+    font-size: var(--font-xs);
+    font-weight: var(--weight-medium);
+    color: var(--color-gray-700);
+    padding-left: var(--space-1);
 }
 
 /* Wrapper (Contém campo e ícones) */
 .input-wrapper {
-  display: flex;
-  align-items: center;
-  position: relative;
-  width: 100%;
+    display: flex;
+    align-items: center;
+    position: relative;
+    width: 100%;
 
-  border: 1px solid var(--color-gray-300);
-  border-radius: var(--radius-md);
-  background: var(--color-white);
+    border: 1px solid var(--color-gray-300);
+    border-radius: var(--radius-md);
+    background: var(--color-white);
 
-  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
 }
 
 /* Campo de Input (O elemento <input> real) */
 .input-field {
-  flex: 1;
-  width: 100%;
-  min-width: 0;
+    flex: 1;
+    width: 100%;
+    min-width: 0;
 
-  /* Paddings e Altura Padrão (Medium) */
-  padding: var(--space-2) var(--space-3);
+    /* Paddings e Altura Padrão (Medium) */
+    padding: var(--space-2) var(--space-3);
 
-  border: none;
-  background: transparent;
+    border: none;
+    background: transparent;
 
-  font-size: var(--font-text2-size);
-  line-height: var(--line-height-text2);
-  color: var(--color-text-default);
+    font-size: var(--font-sm);
+    line-height: var(--leading-tight);
+    color: var(--color-text-default);
 
-  /* Reseta estilos do browser */
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none;
+    /* Reseta estilos do browser */
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
 }
 
 .input-field:focus {
-  outline: none;
+    outline: none;
 }
 
 .input-field::placeholder {
-  color: var(--color-gray-500);
+    color: var(--color-gray-500);
 }
 
 /* Estados (Foco, Erro, Desabilitado) */
 .input-wrapper:focus-within {
-  outline: none;
-  border-color: var(--color-primary-500);
-  box-shadow: 0 0 0 2px var(--color-primary-200);
+    outline: none;
+    border-color: var(--color-primary-500);
+    box-shadow: 0 0 0 2px var(--color-primary-200);
 }
 
 /* 🚫 Estado desabilitado */
-.input-container[data-disabled="true"] .input-wrapper,
+.input-container[data-disabled='true'] .input-wrapper,
 .input-field:disabled {
-  opacity: 0.6;
-  cursor: not-allowed;
+    opacity: 0.6;
+    cursor: not-allowed;
 }
 
 /* ❌ Estado de Erro */
 .input-error .input-wrapper {
-  border-color: var(--color-destructive-500);
+    border-color: var(--color-destructive-500);
 }
 
 .input-error .input-wrapper:focus-within {
-  box-shadow: 0 0 0 2px var(--color-destructive-200);
+    box-shadow: 0 0 0 2px var(--color-destructive-200);
 }
 
 /* ❌ Mensagem de Erro */
 .input-error-message {
-  display: block;
-  margin-top: var(--space-0);
-  color: var(--color-destructive-500);
-  font-size: var(--font-text3-size);
-  padding-left: var(--space-1);
+    display: block;
+    margin-top: var(--space-0);
+    color: var(--color-destructive-500);
+    font-size: var(--font-xs);
+    padding-left: var(--space-1);
 }
 
 /* Ícones (Prefix / Suffix) */
 .input-icon {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: var(--color-gray-500);
-  pointer-events: none;
-  font-size: var(--font-text2-size);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--color-gray-500);
+    pointer-events: none;
+    font-size: var(--font-sm);
 }
 
 .input-prefix {
-  padding-left: var(--space-3);
+    padding-left: var(--space-3);
 }
 
 .input-suffix {
-  padding-right: var(--space-3);
+    padding-right: var(--space-3);
 }
 
 .input-wrapper.input-has-prefix .input-field {
-  padding-left: var(--space-2);
+    padding-left: var(--space-2);
 }
 
 .input-wrapper.input-has-suffix .input-field {
-  padding-right: var(--space-2);
+    padding-right: var(--space-2);
 }
 
 /* 📏 Tamanhos */
 /* Small */
 .input-container.input-sm .input-field {
-  padding: var(--space-1) var(--space-2);
-  font-size: var(--font-text3-size);
+    padding: var(--space-1) var(--space-2);
+    font-size: var(--font-xs);
 }
 .input-container.input-sm .input-icon {
-  font-size: var(--font-text3-size);
+    font-size: var(--font-xs);
 }
 
 /* Large */
 .input-container.input-lg .input-field {
-  padding: var(--space-3) var(--space-5);
-  font-size: var(--font-text1-size);
+    padding: var(--space-3) var(--space-5);
+    font-size: var(--font-base);
 }
 .input-container.input-lg .input-icon {
-  font-size: var(--font-text1-size);
+    font-size: var(--font-base);
 }

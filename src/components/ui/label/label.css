@@ -8,8 +8,8 @@
     gap: var(--space-1);
 
     /* Tipografia baseada em tokens */
-    font-size: var(--font-text3-size);
-    line-height: var(--line-height-text3);
+    font-size: var(--font-xs);
+    line-height: var(--leading-relaxed);
     font-weight: var(--weight-medium);
 
     color: var(--color-gray-700);

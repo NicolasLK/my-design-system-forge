@@ -6,7 +6,7 @@
     padding: 0.25em 0.6em;
     border-radius: var(--radius-full);
 
-    font-size: var(--font-text3-size);
+    font-size: var(--font-xs);
     font-weight: var(--weight-medium);
     line-height: 1;
 
@@ -31,13 +31,13 @@
 
 /* SM */
 .badge-sm {
-    font-size: var(--font-text4-size);
+    font-size: var(--font-xs);
     padding: 0.2em 0.5em;
 }
 
 /* LG */
 .badge-lg {
-    font-size: var(--font-text2-size);
+    font-size: var(--font-sm);
     padding: 0.35em 0.75em;
 }
 

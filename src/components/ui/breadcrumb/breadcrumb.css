@@ -3,74 +3,74 @@
    =========================== */
 
 .breadcrumb {
-  width: 100%;
-  display: block;
-  font-family: var(--font-family-base);
+    width: 100%;
+    display: block;
+    font-family: var(--font-family-base);
 }
 
 .breadcrumb-list {
-  list-style: none;
-  display: flex;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: var(--space-1);
-  padding: var(--space-0);
-  margin: var(--space-0);
+    list-style: none;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: var(--space-1);
+    padding: var(--space-0);
+    margin: var(--space-0);
 }
 
 .breadcrumb-segment {
-  display: flex;
-  align-items: center;
-  gap: var(--space-1);
+    display: flex;
+    align-items: center;
+    gap: var(--space-1);
 }
 
 .breadcrumb-item {
-  display: inline-flex;
-  align-items: center;
-  font-size: var(--font-text3-size);
-  line-height: var(--line-height-text3);
-  gap: var(--space-1);
-  white-space: nowrap;
+    display: inline-flex;
+    align-items: center;
+    font-size: var(--font-xs);
+    line-height: var(--leading-relaxed);
+    gap: var(--space-1);
+    white-space: nowrap;
 }
 
 /* Ícone */
 .breadcrumb-icon {
-  display: flex;
-  align-items: center;
-  font-size: 1em;
+    display: flex;
+    align-items: center;
+    font-size: 1em;
 }
 
 /* Link Navegável */
 .breadcrumb-link {
-  color: var(--color-primary-600);
-  text-decoration: none;
-  transition: color 0.2s ease;
+    color: var(--color-primary-600);
+    text-decoration: none;
+    transition: color 0.2s ease;
 }
 
 .breadcrumb-link:hover {
-  color: var(--color-primary-800);
-  text-decoration: underline;
+    color: var(--color-primary-800);
+    text-decoration: underline;
 }
 
 /* Item Atual (BreadcrumbPage) */
 .breadcrumb-current {
-  color: var(--color-gray-900);
-  font-weight: var(--weight-semibold);
+    color: var(--color-gray-900);
+    font-weight: var(--weight-semibold);
 }
 
 /* Separador */
 .breadcrumb-separator {
-  color: var(--color-gray-500);
-  font-size: var(--font-text2-size);
-  user-select: none;
+    color: var(--color-gray-500);
+    font-size: var(--font-sm);
+    user-select: none;
 }
 
 /* 📱 Responsivo */
 @media (max-width: var(--screen-sm)) {
-  .breadcrumb-item {
-    font-size: var(--font-text4-size);
-  }
-  .breadcrumb-separator {
-    font-size: var(--font-text3-size);
-  }
+    .breadcrumb-item {
+        font-size: var(--font-xs);
+    }
+    .breadcrumb-separator {
+        font-size: var(--font-xs);
+    }
 }

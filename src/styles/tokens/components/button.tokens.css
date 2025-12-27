@@ -1,0 +1,13 @@
+:root {
+    /* Size */
+    --button-height-sm: var(--control-height-sm);
+    --button-height-md: var(--control-height-md);
+    --button-height-lg: var(--control-height-lg);
+
+    /* Shape */
+    --button-radius: var(--radius-md);
+
+    /* Focus */
+    --button-focus-ring-color: var(--color-primary-800);
+    --button-focus-ring-offset: 0.125rem;
+}

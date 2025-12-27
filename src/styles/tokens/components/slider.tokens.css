@@ -1,0 +1,18 @@
+:root {
+    /* Colors */
+    --slider-track-color: var(--color-gray-300);
+    --slider-range-color: var(--color-primary-500);
+
+    /* Sizes */
+    --slider-thumb-size-md: clamp(
+        0.75rem,
+        1rem + 0.5vw,
+        1.25rem
+    ); /* 12px → 20px */
+
+    --slider-track-height-md: clamp(
+        0.25rem,
+        0.375rem + 0.3vw,
+        0.5rem
+    ); /* 4px → 8px */
+}

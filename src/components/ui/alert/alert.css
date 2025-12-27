@@ -9,8 +9,8 @@
   padding: var(--space-3);
   border-radius: var(--radius-md);
 
-  font-size: var(--font-text2-size);
-  line-height: var(--line-height-text2);
+  font-size: var(--font-sm);
+  line-height: var(--leading-tight);
   font-weight: var(--weight-medium);
 
   border: 1px solid transparent;
@@ -24,13 +24,13 @@
 /* SM */
 .alert-sm {
   padding: var(--space-2) var(--space-3);
-  font-size: var(--font-text3-size);
+  font-size: var(--font-xs);
 }
 
 /* LG */
 .alert-lg {
   padding: var(--space-4) var(--space-5);
-  font-size: var(--font-text1-size);
+  font-size: var(--font-base);
 }
 
 /* FULL WIDTH */
@@ -45,7 +45,7 @@
   grid-column: 1;
 
   grid-row: 1 / span 2;
-  font-size: var(--font-text1-size);
+  font-size: var(--font-base);
   flex-shrink: 0;
 
   margin-top: var(--space-0);
@@ -68,7 +68,7 @@
 .alert-description {
   grid-column: 2;
   grid-row: 2;
-  font-size: var(--font-text2-size);
+  font-size: var(--font-sm);
   opacity: 0.9;
   margin: var(--space-0);
 
