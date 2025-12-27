@@ -5,7 +5,33 @@
     --sidebar-padding: var(--space-2);
 
     /* Items */
-    --sidebar-item-height: var(--control-height-md);
+    /* Items - Sizes */
+
+    /* Extra small */
+    --sidebar-item-width-xs: var(--control-width-xs);
+    --sidebar-item-height-xs: var(--control-height-xs);
+
+    /* Small */
+    --sidebar-item-width-sm: var(--control-width-sm);
+    --sidebar-item-height-sm: var(--control-height-sm);
+
+    /* Medium */
+    --sidebar-item-width-md: var(--control-width-md);
+    --sidebar-item-height-md: var(--control-height-md);
+
+    /* Large */
+    --sidebar-item-width-lg: var(--control-width-lg);
+    --sidebar-item-height-lg: var(--control-height-lg);
+
+    /* Extra large */
+    --sidebar-item-width-xl: var(--control-width-xl);
+    --sidebar-item-height-xl: var(--control-height-xl);
+
+    /* Full */
+    --sidebar-item-width-full: var(--control-width-full);
+    --sidebar-item-height-full: var(--control-height-full);
+
+    /* Shape */
     --sidebar-item-radius: var(--radius-md);
 
     /* Colors */

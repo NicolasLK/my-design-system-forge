@@ -151,17 +151,30 @@
    📏 Spacing – Tailwind-like
   =============================== */
 
-    /* Spacing */
+    /* Spacing - O min de um token nunca deve ser menor que o max do token anterior */
     --space-0: 0;
-    --space-1: clamp(0.25rem, 0.5vw, 0.5rem); /* 0.25rem → 0.5rem */
-    --space-1_5: clamp(0.375rem, 0.75vw, 0.625rem); /* 0.375rem → 0.625rem */
-    --space-2: clamp(0.5rem, 1vw, 0.75rem); /* 0.5rem → 0.75rem */
-    --space-3: clamp(0.75rem, 1.25vw, 1rem); /* 0.75rem → 1rem */
-    --space-4: clamp(1rem, 1.5vw, 1.25rem); /* 1rem → 1.25rem */
-    --space-5: clamp(1.25rem, 2vw, 1.5rem); /* 1.25rem → 1.5rem */
-    --space-6: clamp(1.5rem, 3vw, 2rem); /* 1.5rem → 2rem */
-    --space-8: clamp(2rem, 4vw, 3rem); /* 2rem → 3rem */
-    --space-10: clamp(3rem, 5vw, 4rem); /* 3rem → 4rem */
+
+    /* Micro spacing */
+    --space-0_5: clamp(0.125rem, 0.25vw, 0.25rem); /* 2px → 4px */
+    --space-1: clamp(0.25rem, 0.5vw, 0.5rem); /* 4px → 8px */
+    --space-1_5: clamp(0.375rem, 0.75vw, 0.625rem); /* 6px → 10px */
+
+    /* Base spacing */
+    --space-2: clamp(0.5rem, 1vw, 0.75rem); /* 8px  → 12px */
+    --space-3: clamp(0.75rem, 1.25vw, 1rem); /* 12px → 16px */
+    --space-4: clamp(1rem, 1.5vw, 1.25rem); /* 16px → 20px */
+    --space-5: clamp(1.25rem, 2vw, 1.5rem); /* 20px → 24px */
+
+    /* Layout spacing */
+    --space-6: clamp(1.5rem, 3vw, 2rem); /* 24px → 32px */
+    --space-8: clamp(2rem, 4vw, 3rem); /* 32px → 48px */
+    --space-10: clamp(3rem, 5vw, 4rem); /* 48px → 64px */
+
+    /* Section spacing */
+    --space-12: clamp(4rem, 6vw, 5rem); /* 64px  → 80px */
+    --space-16: clamp(5rem, 8vw, 7rem); /* 80px  → 112px */
+    --space-20: clamp(7rem, 10vw, 9rem); /* 112px → 144px */
+    --space-24: clamp(9rem, 12vw, 12rem); /* 144px → 192px */
 
     /* Border Radius */
     --radius-none: 0px;
@@ -190,7 +203,27 @@
     🎛 Controls – Physical Scale
     =============================== */
 
+    /* Extra small */
+    --control-width-xs: clamp(1.5rem, 2vw, 1.75rem); /* 24px → 28px */
+    --control-height-xs: clamp(1.5rem, 2vw, 1.75rem); /* 24px → 28px */
+
+    /* Small */
+    --control-width-sm: clamp(1.75rem, 2.2vw, 2rem); /* 28px → 32px */
     --control-height-sm: clamp(1.75rem, 2.2vw, 2rem); /* 28px → 32px */
-    --control-height-md: clamp(2.25rem, 2.8vw, 2.5rem); /* 36px → 40px */
+
+    /* Medium */
+    --control-width-md: clamp(2rem, 2.8vw, 2.25rem); /* 32px → 36px */
+    --control-height-md: clamp(2rem, 2.8vw, 2.25rem); /* 32px → 36px */
+
+    /* Large */
+    --control-width-lg: clamp(2.75rem, 3.4vw, 3rem); /* 44px → 48px */
     --control-height-lg: clamp(2.75rem, 3.4vw, 3rem); /* 44px → 48px */
+
+    /* Extra large */
+    --control-width-xl: clamp(3.25rem, 4vw, 3.5rem); /* 52px → 56px */
+    --control-height-xl: clamp(3.25rem, 4vw, 3.5rem); /* 52px → 56px */
+
+    /* Full / block controls */
+    --control-width-full: 100%;
+    --control-height-full: 100%;
 }

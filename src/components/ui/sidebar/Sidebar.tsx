@@ -4,29 +4,12 @@ import { useSidebar } from '@/contexts/components/sidebar/SidebarContext';
 import { SidebarProvider } from '@/contexts/components/sidebar/SidebarProvider';
 import { cn } from '@/lib/utils/cn';
 import type {
+    ISidebarPanelProps,
     ISidebarProviderProps,
     ISidebarRoot,
 } from '@/typings/sidebar.types';
-import type { ComponentProps, ReactNode } from 'react';
+import type { ComponentProps } from 'react';
 import './sidebar.css';
-
-/* ===========================
-  📦 Sidebar Wrapper
-=========================== */
-
-const SidebarWrapper = ({
-    children,
-    className,
-}: {
-    children: ReactNode;
-    className?: string;
-}) => {
-    return (
-        <>
-            <div className={cn('sidebar-wrapper', className)}>{children}</div>
-        </>
-    );
-};
 
 /* ===========================
    🧱 Sidebar Root
@@ -40,9 +23,9 @@ export const SidebarRoot = ({
     return (
         <>
             <SidebarProvider {...providerProps}>
-                <SidebarWrapper className={className}>
+                <section className={cn('layout-sidebar-wrapper', className)}>
                     {children}
-                </SidebarWrapper>
+                </section>
             </SidebarProvider>
         </>
     );
@@ -54,13 +37,21 @@ export const SidebarRoot = ({
 
 export const SidebarPanel = ({
     className,
+    side = 'left',
+    variant = 'sidebar',
+    collapsible = 'offcanvas',
+    children,
     ...props
-}: ComponentProps<'aside'>) => {
-    const { isOpen, isMobile } = useSidebar();
+}: ISidebarPanelProps & ComponentProps<'aside'>) => {
+    const { isOpen, isMobile, state } = useSidebar();
 
     return (
         <>
             <aside
+                data-state={state}
+                data-variant={variant}
+                data-side={side}
+                data-collapsible={collapsible}
                 className={cn(
                     'sidebar-panel',
                     isOpen && 'sidebar-panel--open',
@@ -75,7 +66,69 @@ export const SidebarPanel = ({
                         : 'var(--sidebar-width-collapsed)',
                 }}
                 {...props}
-            />
+            >
+                <div className="sidebar-inner">{children}</div>
+            </aside>
+        </>
+    );
+};
+
+/* ===========================
+   🧱 Sidebar Header
+=========================== */
+
+export const SidebarHeader = ({
+    className,
+    ...props
+}: ComponentProps<'div'>) => {
+    return (
+        <>
+            <div className={cn('sidebar-header', className)} {...props} />
+        </>
+    );
+};
+
+/* ===========================
+   🧱 Sidebar Content
+=========================== */
+
+export const SidebarContent = ({
+    className,
+    ...props
+}: ComponentProps<'div'>) => {
+    return (
+        <>
+            <div className={cn('sidebar-content', className)} {...props} />
+        </>
+    );
+};
+
+/* ===========================
+   🧱 Sidebar Footer
+=========================== */
+
+export const SidebarFooter = ({
+    className,
+    ...props
+}: ComponentProps<'div'>) => {
+    return (
+        <>
+            <div className={cn('sidebar-footer', className)} {...props} />
+        </>
+    );
+};
+
+/* ===========================
+   🧱 Sidebar Group
+=========================== */
+
+export const SidebarGroup = ({
+    className,
+    ...props
+}: ComponentProps<'div'>) => {
+    return (
+        <>
+            <div className={cn('sidebar-group', className)} {...props} />
         </>
     );
 };
@@ -87,10 +140,10 @@ export const SidebarPanel = ({
 export const SidebarInset = ({
     className,
     ...props
-}: ComponentProps<'div'>) => {
+}: ComponentProps<'main'>) => {
     return (
         <>
-            <div className={cn('sidebar-inset', className)} {...props} />
+            <main className={cn('sidebar-inset', className)} {...props} />
         </>
     );
 };

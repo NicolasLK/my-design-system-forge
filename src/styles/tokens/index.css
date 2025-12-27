@@ -11,3 +11,7 @@
 @import './components/sidebar.tokens.css';
 @import './components/slider.tokens.css';
 /* -------------------------------------- */
+
+/* ---------- Utilities Tokens - CSS Inline ---------- */
+@import '../utilities.css';
+/* -------------------------------------------------- */

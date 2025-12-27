@@ -2,7 +2,7 @@ export default function HomePage() {
     return (
         <>
             <article>
-                <h1>Bem-vindo ao Design System Preview</h1>
+                <h1>Bem-vindo ao Design System Forge</h1>
                 <p>
                     Explore a documentação completa navegando para a seção de
                     componentes no menu.
@@ -16,9 +16,7 @@ export default function HomePage() {
                         entre modos claro e escuro e o Fast Refresh está ativo.
                     </p>
                 </section>
-                <span>
-                    <a href="/preview">Página de Preview</a>
-                </span>
+                <a href="/preview">Página de Preview</a>
             </article>
         </>
     );

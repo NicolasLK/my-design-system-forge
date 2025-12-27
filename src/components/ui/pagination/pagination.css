@@ -13,7 +13,7 @@
 
 /* Estilos dos Botões (Usando a classe Button base) */
 .pagination-button {
-    width: var(--control-height-md);
+    width: var(--control-width-md);
     min-width: var(--control-height-md);
     padding-left: 0;
     padding-right: 0;
@@ -26,7 +26,7 @@
 
 /* Botões de Navegação (‹ e ›) */
 .pagination-nav-button {
-    min-width: calc(var(--control-height-md) + var(--space-2));
+    min-width: calc(var(--control-width-md) + var(--space-2));
 }
 
 /* Reticências */

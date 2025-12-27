@@ -1,8 +1,29 @@
 :root {
-    /* Size */
+    /* Sizes */
+
+    /* Extra small */
+    --button-width-xs: var(--control-width-xs);
+    --button-height-xs: var(--control-height-xs);
+
+    /* Small */
+    --button-width-sm: var(--control-width-sm);
     --button-height-sm: var(--control-height-sm);
+
+    /* Medium */
+    --button-width-md: var(--control-width-md);
     --button-height-md: var(--control-height-md);
+
+    /* Large */
+    --button-width-lg: var(--control-width-lg);
     --button-height-lg: var(--control-height-lg);
+
+    /* Extra large */
+    --button-width-xl: var(--control-width-xl);
+    --button-height-xl: var(--control-height-xl);
+
+    /* Full */
+    --button-width-full: var(--control-width-full);
+    --button-height-full: var(--control-height-full);
 
     /* Shape */
     --button-radius: var(--radius-md);

@@ -3,13 +3,19 @@
    📄 Semantics Tokens
    =============================== */
 
-    /* Text */
+    /* ===============================
+       📄 Text Semantics
+       =============================== */
+
     --text-default: var(--color-gray-900);
     --text-muted: var(--color-gray-500);
     --text-inverse: var(--color-white);
     --text-brand: var(--color-primary-500);
 
-    /* Text on colored backgrounds */
+    /* Status text */
+    --text-success: var(--color-success-500);
+    --text-warning: var(--color-warning-500);
+    --text-destructive: var(--color-destructive-500);
     --text-on-colored: var(--color-white);
 
     /* ===============================
@@ -19,4 +25,76 @@
     --bg-default: var(--color-white);
     --bg-muted: var(--color-gray-50);
     --bg-brand: var(--color-primary-500);
+
+    /* Status backgrounds */
+    --bg-success: var(--color-success-500);
+    --bg-warning: var(--color-warning-500);
+    --bg-destructive: var(--color-destructive-500);
+
+    /* Surface / panels */
+    --bg-surface: var(--color-gray-100);
+    --bg-surface-muted: var(--color-gray-50);
+
+    /* ===============================
+       📄 Border Semantics
+       =============================== */
+
+    --border-default: var(--color-gray-300);
+    --border-muted: var(--color-gray-200);
+    --border-brand: var(--color-primary-500);
+
+    /* Status borders */
+    --border-success: var(--color-success-500);
+    --border-warning: var(--color-warning-500);
+    --border-destructive: var(--color-destructive-500);
+
+    /* ===============================
+     📄 Spacing Semantics
+     =============================== */
+
+    /* Inline spacing */
+    --space-inline-xs: var(--space-1);
+    --space-inline-sm: var(--space-2);
+    --space-inline-md: var(--space-3);
+    --space-inline-lg: var(--space-4);
+    --space-inline-xl: var(--space-6);
+
+    /* Stack / vertical spacing */
+    --space-stack-xs: var(--space-2);
+    --space-stack-sm: var(--space-3);
+    --space-stack-md: var(--space-4);
+    --space-stack-lg: var(--space-6);
+    --space-stack-xl: var(--space-8);
+    --space-stack-2xl: var(--space-10);
+
+    /* ===============================
+       🎛 Controls Semantics
+       =============================== */
+
+    /* Primary controls */
+    --control-primary-bg: var(--color-primary-500);
+    --control-primary-text: var(--color-white);
+    --control-primary-border: var(--color-primary-500);
+
+    /* Secondary controls */
+    --control-secondary-bg: var(--color-secondary-500);
+    --control-secondary-text: var(--color-white);
+    --control-secondary-border: var(--color-secondary-500);
+
+    /* Status controls */
+    --control-success-bg: var(--color-success-500);
+    --control-success-text: var(--color-white);
+    --control-success-border: var(--color-success-500);
+
+    --control-warning-bg: var(--color-warning-500);
+    --control-warning-text: var(--color-white);
+    --control-warning-border: var(--color-warning-500);
+
+    --control-destructive-bg: var(--color-destructive-500);
+    --control-destructive-text: var(--color-white);
+    --control-destructive-border: var(--color-destructive-500);
+
+    /* Full / block controls */
+    --control-width-full: 100%;
+    --control-height-full: 100%;
 }

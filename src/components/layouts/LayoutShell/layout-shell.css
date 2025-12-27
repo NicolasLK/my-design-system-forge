@@ -1,0 +1,54 @@
+/* ===========================
+   🧱 App Shell
+=========================== */
+
+.app-shell-root {
+    display: flex;
+    width: 100%;
+    min-height: 100vh;
+    overflow: hidden;
+}
+
+/* ===========================
+   🧭 Sidebar
+=========================== */
+
+.app-shell-sidebar {
+    flex-shrink: 0;
+    height: 100vh;
+}
+
+/* ===========================
+   🧱 Body
+=========================== */
+
+.app-shell-body {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    min-width: var(--space-0);
+    height: 100vh;
+    /* overflow: hidden; */
+}
+
+/* ===========================
+   🧭 Header
+=========================== */
+
+.app-shell-header {
+    flex-shrink: 0;
+    width: 100%;
+    z-index: 10;
+    /* border-bottom: 1px solid var(--sidebar-border); */
+}
+
+/* ===========================
+   📄 Main
+=========================== */
+
+.app-shell-main {
+    flex: 1;
+    overflow-y: auto;
+    width: 100%;
+    background-color: var(--bg-default);
+}
