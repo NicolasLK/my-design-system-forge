@@ -1,71 +1,61 @@
-import { type ComponentProps, type ReactNode } from "react"
-import { cn } from "@/lib/utils/cn"
-import { Divider } from "../divider"
-import "./accordion.css"
-
+import { cn } from '@/lib/utils/cn';
+import type { IAccordionRootProps } from '@/typings/accordion.types';
+import { type ComponentProps, type ReactNode } from 'react';
+import { Divider } from '../../divider';
+import './accordion.css';
 
 /* ============================================================
  * 🟦 ROOT
  * ============================================================ */
-type AccordionRootTypes = "single" | "multiple"
-
-interface IAccordionRootProps {
-    type?: AccordionRootTypes
-    defaultValue?: string | string[]
-}
 
 export const AccordionRoot = ({
     className,
     ...props
-}: ComponentProps<"div"> & IAccordionRootProps) => {
-
+}: ComponentProps<'div'> & IAccordionRootProps) => {
     return (
         <>
             <div
                 data-slot="accordion"
-                className={cn("accordion", className)}
+                className={cn('accordion', className)}
                 {...props}
             />
         </>
-    )
-}
+    );
+};
 
 /* ============================================================
  * 🟦 ITEM
  * ============================================================ */
 interface IAccordionItemProps {
-    value: string
-    open?: boolean
+    value: string;
+    open?: boolean;
 }
 
 export const AccordionItem = ({
     className,
     ...props
-}: ComponentProps<"div"> & IAccordionItemProps) => {
-
+}: ComponentProps<'div'> & IAccordionItemProps) => {
     return (
         <>
             <div
                 data-slot="accordion-item"
-                data-state={props.open ? "open" : "closed"}
+                data-state={props.open ? 'open' : 'closed'}
                 data-value={props.value}
-                className={cn("accordion-item", className)}
+                className={cn('accordion-item', className)}
                 {...props}
             ></div>
         </>
-    )
-}
-
-
+    );
+};
 
 /* ============================================================
  * 🟦 TRIGGER
  * ============================================================ */
-interface IAccordionTriggerProps extends ComponentProps<"button"> {
-    children: ReactNode
-    icon?: ReactNode
-    onToggle?: () => void
-    open?: boolean
+interface IAccordionTriggerProps extends ComponentProps<'button'> {
+    children: ReactNode;
+    icon?: ReactNode;
+    onToggle?: () => void;
+    open?: boolean;
 }
 
 export const AccordionTrigger = ({
@@ -76,7 +66,6 @@ export const AccordionTrigger = ({
     open,
     ...props
 }: IAccordionTriggerProps) => {
-
     return (
         <>
             <button
@@ -84,26 +73,26 @@ export const AccordionTrigger = ({
                 aria-expanded={open}
                 onClick={onToggle}
                 data-slot="accordion-trigger"
-                data-state={open ? "open" : "closed"}
-                className={cn("accordion-trigger", className)}
+                data-state={open ? 'open' : 'closed'}
+                className={cn('accordion-trigger', className)}
                 {...props}
             >
                 <span className="accordion-title">{children}</span>
 
                 <span className="accordion-icon">
-                    {icon ? icon : open ? "−" : "+"}
+                    {icon ? icon : open ? '−' : '+'}
                 </span>
             </button>
         </>
-    )
-}
+    );
+};
 
 /* ============================================================
  * 🟦 CONTENT
  * ============================================================ */
-interface IAccordionContentProps extends ComponentProps<"div"> {
-    open?: boolean
-    children: ReactNode
+interface IAccordionContentProps extends ComponentProps<'div'> {
+    open?: boolean;
+    children: ReactNode;
 }
 
 export const AccordionContent = ({
@@ -112,18 +101,17 @@ export const AccordionContent = ({
     open,
     ...props
 }: IAccordionContentProps) => {
-
     return (
         <>
             <div
                 data-slot="accordion-content"
-                data-state={open ? "open" : "closed"}
-                className={cn("accordion-content", className)}
+                data-state={open ? 'open' : 'closed'}
+                className={cn('accordion-content', className)}
                 {...props}
             >
                 <Divider spacing="small" />
                 <div className="accordion-content-inner">{children}</div>
             </div>
         </>
-    )
-}
+    );
+};

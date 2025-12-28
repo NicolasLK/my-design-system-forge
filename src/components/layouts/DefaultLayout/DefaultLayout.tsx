@@ -2,15 +2,12 @@ import { AppSidebar } from '@/components/AppSidebar';
 import { Sidebar } from '@/components/ui/sidebar';
 import type { IDefaultLayoutProps } from '@/typings/layouts.types';
 import { useEffect } from 'react';
+import { Outlet } from 'react-router-dom';
 import { Header } from '../../Header';
 import LayoutShell from '../LayoutShell/LayoutShell';
 import './default-layout.css';
 
-const DefaultLayout = ({
-    children,
-    withSidebar = true,
-    title,
-}: IDefaultLayoutProps) => {
+const DefaultLayout = ({ withSidebar = true, title }: IDefaultLayoutProps) => {
     // Opcional: Mudança do título do documento dinamicamente
     useEffect(() => {
         if (title) {
@@ -21,7 +18,9 @@ const DefaultLayout = ({
     if (!withSidebar) {
         return (
             <>
-                <LayoutShell header={<Header />}>{children}</LayoutShell>
+                <LayoutShell header={<Header />}>
+                    <Outlet />
+                </LayoutShell>
             </>
         );
     }
@@ -33,7 +32,7 @@ const DefaultLayout = ({
                     header={<Header hasSidebarTrigger={withSidebar} />}
                     sidebar={withSidebar ? <AppSidebar /> : null}
                 >
-                    {children}
+                    <Outlet />
                 </LayoutShell>
             </Sidebar.Root>
         </>

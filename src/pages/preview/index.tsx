@@ -2,8 +2,8 @@ import { useState } from 'react';
 // ==== Components - Base Essentials ====
 import { Button } from '@/components/ui/button';
 import { Checkbox } from '@/components/ui/checkbox';
+import { Radio } from '@/components/ui/form-controls/radio';
 import { Input } from '@/components/ui/input';
-import { Radio } from '@/components/ui/radio';
 import { Switch } from '@/components/ui/switch';
 import { Textarea } from '@/components/ui/textarea';
 //=======================================
@@ -16,13 +16,11 @@ import { Toast } from '@/components/ui/toast';
 import { Tooltip } from '@/components/ui/tooltip';
 //================================
 // ==== Components - Layout ====
-import { Accordion } from '@/components/ui/accordion';
 import { Card } from '@/components/ui/card';
 import { Divider } from '@/components/ui/divider';
 import { Tabs } from '@/components/ui/tabs';
 //==============================
 // ==== Components - Advanced Forms ====
-import { DateRangePicker } from '@/components/ui/date-range-picker';
 import { Dropdown } from '@/components/ui/dropdown';
 import { FileInput } from '@/components/ui/file-input';
 import { Select } from '@/components/ui/select';
@@ -43,8 +41,6 @@ import { Chip } from '@/components/ui/chip';
 import { Tag } from '@/components/ui/tag';
 //=============================
 // ==== Components - Extra ====
-import { Calendar } from '@/components/ui/calendar';
-import { LoadingOverlay } from '@/components/ui/loading-overlay';
 import { TooltipAdvanced } from '@/components/ui/tooltip-advanced';
 //=============================
 // ==== Components - Others ====
@@ -55,16 +51,14 @@ import { Typography } from '@/components/ui/typography';
 //==============================
 // ==== Functions and Hooks ====
 import { cn } from '@/lib/utils/cn';
-import { useAccordion } from '@/models/hooks/useAccordion';
 import { useCurrencyFormatter } from '@/models/hooks/useCurrencyFormatter';
 import { useTableSort } from '@/models/hooks/useTableSort';
 import { useTabs } from '@/models/hooks/useTabs';
 //==============================
 // ==== Interfaces and Types ====
-import { Carousel } from '@/components/ui/carousel';
-import type { IDateRange } from '@/components/ui/date-range-picker/DateRangePicker';
-import { RadioGroup } from '@/components/ui/form/radio-group';
+import { RadioGroup } from '@/components/ui/form-controls/radio-group';
 import { Label } from '@/components/ui/label';
+import { Link } from 'react-router-dom';
 //===============================
 
 // --- 1. Estruturas de Dados ---
@@ -204,48 +198,16 @@ const PROJECT_TAGS_LIST = [
 ];
 //======================================
 
-// === Dados de Exemplo - Carousel ===
-const CAROUSEL_PREVIEW_ITEMS = [
-    {
-        id: 'slide-1',
-        title: 'Entrega Rápida',
-        description: 'Receba seus produtos em até 24h em regiões selecionadas.',
-        image: 'https://picsum.photos/800/400?random=1',
-    },
-    {
-        id: 'slide-2',
-        title: 'Produtos Sustentáveis',
-        description: 'Linha completa com foco em sustentabilidade e economia.',
-        image: 'https://picsum.photos/800/400?random=2',
-    },
-    {
-        id: 'slide-3',
-        title: 'Ofertas da Semana',
-        description: 'Descontos exclusivos para clientes cadastrados.',
-        image: 'https://picsum.photos/800/400?random=3',
-    },
-    {
-        id: 'slide-4',
-        title: 'Atendimento Especializado',
-        description: 'Suporte humanizado pronto para te ajudar.',
-        image: 'https://picsum.photos/800/400?random=4',
-    },
-];
-//====================================
-
 export default function PreviewPage() {
     // ==== Estados ====
     const [isModalOpen, setIsModalOpen] = useState(false);
-    const [isLoading, setIsLoading] = useState(false);
+
     const [selectedPlan, setSelectedPlan] = useState('');
     const [showToast, setShowToast] = useState(false);
     const [city, setCity] = useState('');
     const [open, setOpen] = useState(false);
     const [openDropdown, setOpenDropdown] = useState(false);
-    const [selectedRange, setSelectedRange] = useState<IDateRange>({
-        start: null,
-        end: null,
-    });
+
     const [selectedTag, setSelectedTag] = useState('react');
     const [removableTags, setRemovableTags] = useState([
         'TypeScript',
@@ -258,7 +220,6 @@ export default function PreviewPage() {
 
     // ==== Hooks ====
     const { active, setActive, isActive } = useTabs('tab1'); // Tabs
-    const { isOpen, toggle } = useAccordion(['item-1']); // Accordion
 
     // Lógica de Ordenação: Recebe os dados e retorna o estado de ordenação e os dados ordenados.
     const { sortedData, sortKey, sortDir, toggleSort } = useTableSort({
@@ -283,9 +244,27 @@ export default function PreviewPage() {
 
     return (
         <>
-            <span>
-                <a href="/">Página Inicial</a>
-            </span>
+            <section className="u-flex u-flex-col u-gap-6 u-p-6 u-max-w-full">
+                <article className="u-flex u-flex-col u-gap-2">
+                    <h1 className="u-text-lg u-text-bold">
+                        Página de Preview (Categories)
+                    </h1>
+
+                    <div className="u-flex u-items-center u-justify-around">
+                        <Link to="/" className="u-text-primary u-text-sm">
+                            ⬅ Voltar para: Home Page
+                        </Link>
+
+                        <Link
+                            to="categories/advanced-components"
+                            className="u-text-primary u-text-sm"
+                        >
+                            Ir para: Advanced Components Page ➡
+                        </Link>
+                    </div>
+                </article>
+            </section>
+
             <h2>Base Essentials Components</h2>
             <section className="u-mt-4">
                 <h3>Botões</h3>
@@ -780,41 +759,6 @@ export default function PreviewPage() {
                 </div>
             </section>
 
-            <section style={sectionStyle}>
-                <h3>Accordion</h3>
-                <div style={divStyle}>
-                    <Accordion.Root>
-                        {/* ITEM 1 */}
-                        <Accordion.Item value="item-1" open={isOpen('item-1')}>
-                            <Accordion.Trigger
-                                open={isOpen('item-1')}
-                                onToggle={() => toggle('item-1')}
-                            >
-                                Geral
-                            </Accordion.Trigger>
-
-                            <Accordion.Content open={isOpen('item-1')}>
-                                Conteúdo da aba geral controlado via hook.
-                            </Accordion.Content>
-                        </Accordion.Item>
-
-                        {/* ITEM 2 */}
-                        <Accordion.Item value="item-2" open={isOpen('item-2')}>
-                            <Accordion.Trigger
-                                open={isOpen('item-2')}
-                                onToggle={() => toggle('item-2')}
-                            >
-                                Configurações
-                            </Accordion.Trigger>
-
-                            <Accordion.Content open={isOpen('item-2')}>
-                                Configurações técnicas controladas via hook.
-                            </Accordion.Content>
-                        </Accordion.Item>
-                    </Accordion.Root>
-                </div>
-            </section>
-
             <h2 style={h2Style}>Advanced Forms Components</h2>
 
             <section style={sectionStyle}>
@@ -895,24 +839,6 @@ export default function PreviewPage() {
                         onValueChange={(v) => console.log('Valor:', v)}
                     />
                     <Slider defaultValue={75} showValue={false} />
-                </div>
-            </section>
-
-            <section style={sectionStyle}>
-                <h3>DateRangePicker</h3>
-                <div style={divStyle}>
-                    <DateRangePicker
-                        onChange={(range: IDateRange) => {
-                            console.log('Range selecionado:', range);
-                            setSelectedRange(range);
-                        }}
-                    />
-                    {selectedRange.start && selectedRange.end && (
-                        <p style={{ marginTop: '10px' }}>
-                            De: {selectedRange.start.toLocaleDateString()} Até:{' '}
-                            {selectedRange.end.toLocaleDateString()}
-                        </p>
-                    )}
                 </div>
             </section>
 
@@ -1351,17 +1277,6 @@ export default function PreviewPage() {
             <h2 style={h2Style}>Extra</h2>
 
             <section style={sectionStyle}>
-                <h3>Calendar</h3>
-                <div style={divStyle}>
-                    <Calendar
-                        onSelect={(date) =>
-                            console.log('Data selecionada:', date)
-                        }
-                    />
-                </div>
-            </section>
-
-            <section style={sectionStyle}>
                 <h3>TooltipAdvanced</h3>
                 <div style={divStyle}>
                     {/* 1. Trigger: HOVER (Padrão) - Posição TOP */}
@@ -1410,24 +1325,6 @@ export default function PreviewPage() {
                             Alerta (Hover Left)
                         </Button>
                     </TooltipAdvanced>
-                </div>
-            </section>
-
-            <section style={{ position: 'relative', height: 200 }}>
-                <h3>LoadingOverlay</h3>
-                <div style={divStyle}>
-                    <LoadingOverlay
-                        active={isLoading}
-                        message="Carregando dados..."
-                    />
-                    <p>Conteúdo da página</p>
-
-                    <Button
-                        colorVariant="primary"
-                        onClick={() => setIsLoading(true)}
-                    >
-                        Ativar Loading
-                    </Button>
                 </div>
             </section>
 
@@ -1500,27 +1397,6 @@ export default function PreviewPage() {
                     <ProgressCircular value={45} color="destructive" />
                     <ProgressCircular value={30} color="warning" />
                 </div>
-            </section>
-
-            <section>
-                <h3>Carousel</h3>
-                <Carousel.Root autoplay loop>
-                    <Carousel.Content>
-                        {CAROUSEL_PREVIEW_ITEMS.map((item) => (
-                            <Carousel.Item key={item.id}>
-                                <Carousel.Banner
-                                    image={item.image}
-                                    title={item.title}
-                                    description={item.description}
-                                />
-                            </Carousel.Item>
-                        ))}
-                    </Carousel.Content>
-
-                    <Carousel.Previous />
-                    <Carousel.Next />
-                    <Carousel.Dots type="rectangular" />
-                </Carousel.Root>
             </section>
 
             <section style={sectionStyle}>

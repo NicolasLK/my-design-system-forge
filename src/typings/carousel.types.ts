@@ -11,6 +11,7 @@ type SlidesPerViewConfig = Partial<{
 }>;
 
 export type DotsType = 'rounded' | 'rectangular' | 'progress' | 'numeric';
+/* --------------------------- */
 
 /* ---------- Interfaces ---------- */
 
@@ -48,3 +49,4 @@ export interface ICarouselDotsProps {
     className?: string;
     type?: DotsType;
 }
+/* ------------------------------- */

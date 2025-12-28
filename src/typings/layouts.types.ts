@@ -16,7 +16,6 @@ export interface ILayoutShellProps {
 
 /* ---------- Default ---------- */
 export interface IDefaultLayoutProps {
-    children: ReactNode;
     withSidebar?: boolean;
     title?: string;
 }

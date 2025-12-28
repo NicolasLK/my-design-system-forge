@@ -1,10 +1,10 @@
-import { useState } from 'react';
+import { cn } from '@/lib/utils/cn';
 import {
     getComponentSize,
     type ComponentSize,
 } from '@/models/get-component-size';
-import { cn } from '@/lib/utils/cn';
-import { Radio } from '../../radio';
+import { useState } from 'react';
+import { Radio } from '../radio';
 
 interface IRadioGroupItem {
     label: string;

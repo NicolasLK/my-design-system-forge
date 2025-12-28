@@ -16,7 +16,8 @@ import {
     type KeyboardEvent,
     type ReactNode,
 } from 'react';
-import { Button } from '../button';
+
+import type { Button } from '../../button';
 import './carousel.css';
 
 /* ===========================
