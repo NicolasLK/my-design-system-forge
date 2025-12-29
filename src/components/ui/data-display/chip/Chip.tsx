@@ -1,11 +1,19 @@
-import type { MouseEvent, ReactNode } from "react";
-import { getComponentColor, type ComponentColor } from "@/models/get-component-color";
-import { getComponentSize, type ComponentSize } from "@/models/get-component-size";
-import { getComponentVariant, type ComponentVariant } from "@/models/get-component-variant";
-import { cn } from "@/lib/utils/cn";
-import { Button } from "../button";
-import "./chip.css";
-
+import { cn } from '@/lib/utils/cn';
+import {
+    getComponentColor,
+    type ComponentColor,
+} from '@/models/get-component-color';
+import {
+    getComponentSize,
+    type ComponentSize,
+} from '@/models/get-component-size';
+import {
+    getComponentVariant,
+    type ComponentVariant,
+} from '@/models/get-component-variant';
+import type { MouseEvent, ReactNode } from 'react';
+import { Button } from '../../form-controls/button';
+import './chip.css';
 
 /* ============================================================
  * 🟦 DEFINIÇÕES
@@ -13,53 +21,52 @@ import "./chip.css";
 
 interface IChipProps {
     /** Conteúdo exibido no chip (texto ou ReactNode) */
-    children: ReactNode
+    children: ReactNode;
     /** Cor (padrão: cinza neutro) */
-    color?: ComponentColor
+    color?: ComponentColor;
     /** Tamanho do chip */
-    size?: ComponentSize
+    size?: ComponentSize;
     /** Variante Visual (default/solid, outline, ghost, etc.). */
-    visualVariant?: ComponentVariant
+    visualVariant?: ComponentVariant;
     /** Define se está selecionado */
-    selected?: boolean
+    selected?: boolean;
     /** Define se está desabilitado */
-    disabled?: boolean
+    disabled?: boolean;
     /** O chip possui um botão de fechar (x) */
-    closable?: boolean
+    closable?: boolean;
     /** Ação ao fechar o chip (só funciona se closable=true) */
-    onClose?: (e: MouseEvent<HTMLButtonElement>) => void
+    onClose?: (e: MouseEvent<HTMLButtonElement>) => void;
     /** Ação ao clicar */
-    onClick?: (e: MouseEvent<HTMLButtonElement>) => void
+    onClick?: (e: MouseEvent<HTMLButtonElement>) => void;
     /** Classe CSS adicional */
-    className?: string
+    className?: string;
 }
 
 export const Chip = ({
     children,
-    color = "neutral",
-    visualVariant = "default",
-    size = "medium",
+    color = 'neutral',
+    visualVariant = 'default',
+    size = 'medium',
     selected = false,
     disabled = false,
     closable = false,
     onClose,
     onClick,
-    className
+    className,
 }: IChipProps) => {
-
     const colorClass = getComponentColor(color, 'chip');
     const sizeClass = getComponentSize(size, 'chip');
     const variantClass = getComponentVariant(visualVariant, 'chip');
 
     const classes = cn(
-        "chip",
+        'chip',
         colorClass,
         sizeClass,
         variantClass,
-        selected && "chip-selected",
-        disabled && "chip-disabled",
-        closable && "chip-closable",
-        className
+        selected && 'chip-selected',
+        disabled && 'chip-disabled',
+        closable && 'chip-closable',
+        className,
     );
 
     /**
@@ -101,5 +108,5 @@ export const Chip = ({
                 {closable && <CloseButton />}
             </button>
         </>
-    )
-}
+    );
+};

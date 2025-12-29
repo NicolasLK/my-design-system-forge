@@ -1,5 +1,5 @@
 import { AppSidebar } from '@/components/AppSidebar';
-import { Sidebar } from '@/components/ui/sidebar';
+import { Sidebar } from '@/components/ui/navigation/sidebar';
 import type { IDefaultLayoutProps } from '@/typings/layouts.types';
 import { useEffect } from 'react';
 import { Outlet } from 'react-router-dom';

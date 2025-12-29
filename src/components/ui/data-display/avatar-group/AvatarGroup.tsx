@@ -1,8 +1,10 @@
-import { getComponentSize, type ComponentSize } from "@/models/get-component-size";
-import { cn } from "@/lib/utils/cn";
-import { Avatar } from "../avatar";
-import "./avatar-group.css"
-
+import { cn } from '@/lib/utils/cn';
+import {
+    getComponentSize,
+    type ComponentSize,
+} from '@/models/get-component-size';
+import { Avatar } from '../avatar';
+import './avatar-group.css';
 
 /* ============================================================
  * 🟦 DEFINIÇÕES
@@ -12,33 +14,32 @@ interface IAvatarUser {
     name?: string;
     src?: string;
     alt?: string;
-    shape?: "circle" | "square";
+    shape?: 'circle' | 'square';
 }
 
 interface IAvatarGroupProps {
-    users: IAvatarUser[]
-    maxVisible?: number
-    size?: ComponentSize
-    className?: string
+    users: IAvatarUser[];
+    maxVisible?: number;
+    size?: ComponentSize;
+    className?: string;
 }
 
 export const AvatarGroup = ({
     users,
     maxVisible = 4,
-    size = "medium",
-    className
+    size = 'medium',
+    className,
 }: IAvatarGroupProps) => {
-
     const visibleUsers = users.slice(0, maxVisible);
     const remaining = users.length - maxVisible;
 
-    const sizeClass = getComponentSize(size, "avatar-group");
+    const sizeClass = getComponentSize(size, 'avatar-group');
 
     return (
         <>
             <div
                 data-slot="avatar-group-root"
-                className={cn("avatar-group", sizeClass, className)}
+                className={cn('avatar-group', sizeClass, className)}
             >
                 {visibleUsers.map((user, i) => (
                     <div
@@ -49,7 +50,7 @@ export const AvatarGroup = ({
                         style={{ zIndex: visibleUsers.length + i }} // Aumenta o z-index da esquerda para a direita (item mais à frente = z-index maior)
                     >
                         {/* Usa o componente composto Avatar */}
-                        <Avatar.Root size={size} shape={user.shape || "circle"}>
+                        <Avatar.Root size={size} shape={user.shape || 'circle'}>
                             {user.src && (
                                 <Avatar.Image
                                     src={user.src}
@@ -73,5 +74,5 @@ export const AvatarGroup = ({
                 )}
             </div>
         </>
-    )
-}
+    );
+};

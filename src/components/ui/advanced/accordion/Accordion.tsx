@@ -1,7 +1,7 @@
 import { cn } from '@/lib/utils/cn';
 import type { IAccordionRootProps } from '@/typings/accordion.types';
 import { type ComponentProps, type ReactNode } from 'react';
-import { Divider } from '../../divider';
+import { Divider } from '../../foundations/divider';
 import './accordion.css';
 
 /* ============================================================

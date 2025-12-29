@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { LoadingOverlay } from '../ui/advanced/loading-overlay';
-import { Button } from '../ui/button';
+import { Button } from '../ui/form-controls/button';
 
 export const LoadingOverlayDemo = () => {
     const [isLoading, setIsLoading] = useState(false);

@@ -1,4 +1,4 @@
-import { Sidebar } from './ui/sidebar';
+import { Sidebar } from './ui/navigation/sidebar';
 
 export const AppSidebar = () => {
     return (

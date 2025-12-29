@@ -1,21 +1,23 @@
-import { useId, useState, type ChangeEvent, type DragEvent } from "react"
-import { getComponentSize, type ComponentSize } from "@/models/get-component-size"
-import { cn } from "@/lib/utils/cn"
-import { Label } from "../label"
-import { Input } from "../input"
-import { Tag } from "../tag"
-import "./file-input.css"
-
+import { cn } from '@/lib/utils/cn';
+import {
+    getComponentSize,
+    type ComponentSize,
+} from '@/models/get-component-size';
+import { useId, useState, type ChangeEvent, type DragEvent } from 'react';
+import { Tag } from '../data-display/tag';
+import { Input } from '../form-controls/input';
+import { Label } from '../foundations/label';
+import './file-input.css';
 
 interface IFileInputProps {
-    label?: string
-    accept?: string
-    multiple?: boolean
-    disabled?: boolean
-    onChange?: (files: File[]) => void
-    size?: ComponentSize
-    className?: string
-    full?: boolean
+    label?: string;
+    accept?: string;
+    multiple?: boolean;
+    disabled?: boolean;
+    onChange?: (files: File[]) => void;
+    size?: ComponentSize;
+    className?: string;
+    full?: boolean;
 }
 
 export const FileInput = ({
@@ -28,11 +30,10 @@ export const FileInput = ({
     className,
     full = false,
 }: IFileInputProps) => {
+    const [filesData, setFilesData] = useState<File[]>([]);
+    const [dragActive, setDragActive] = useState(false);
 
-    const [filesData, setFilesData] = useState<File[]>([])
-    const [dragActive, setDragActive] = useState(false)
-
-    const classSize = getComponentSize(size, "fileinput");
+    const classSize = getComponentSize(size, 'fileinput');
     const isFull = full || className?.includes('fileinput-full');
 
     const fileInputId = useId();
@@ -54,49 +55,53 @@ export const FileInput = ({
         }
 
         const uniqueFiles = Array.from(
-            new Map<string, File>(fileArray.map((f) => [`${f.name}-${f.size}`, f])).values()
+            new Map<string, File>(
+                fileArray.map((f) => [`${f.name}-${f.size}`, f]),
+            ).values(),
         );
 
         setFilesData(uniqueFiles);
         onChange?.(uniqueFiles);
-    }
+    };
 
     /**
      * Função para remover um arquivo pelo nome
      */
     const removeFile = (name: string) => {
-        const updatedFiles = filesData.filter(f => f.name !== name);
+        const updatedFiles = filesData.filter((f) => f.name !== name);
         setFilesData(updatedFiles);
         onChange?.(updatedFiles);
 
         /**
          * Limpar o valor do input file nativo para permitir upload do mesmo arquivo
          */
-        const inputElement = document.getElementById(fileInputId) as HTMLInputElement;
+        const inputElement = document.getElementById(
+            fileInputId,
+        ) as HTMLInputElement;
         if (inputElement) {
             inputElement.value = '';
         }
-    }
+    };
 
     // --- Drag Handlers ---
     const onDragOver = (e: DragEvent<HTMLDivElement>) => {
-        e.preventDefault()
-        setDragActive(true)
-    }
+        e.preventDefault();
+        setDragActive(true);
+    };
 
-    const onDragLeave = () => setDragActive(false)
+    const onDragLeave = () => setDragActive(false);
 
     const onDrop = (e: DragEvent<HTMLDivElement>) => {
-        e.preventDefault()
-        setDragActive(false)
+        e.preventDefault();
+        setDragActive(false);
         if (!disabled && e.dataTransfer.files.length > 0) {
-            handleFiles(e.dataTransfer.files)
+            handleFiles(e.dataTransfer.files);
         }
-    }
+    };
 
     const onFileChange = (e: ChangeEvent<HTMLInputElement>) => {
         if (e.target.files) handleFiles(e.target.files);
-    }
+    };
 
     /**
      * Adiciona feedback visual de desabilitado
@@ -108,15 +113,14 @@ export const FileInput = ({
      */
     // const fileNames = filesData.map(f => f.name);
 
-
     return (
         <>
             <div
                 data-slot="fileinput-root"
                 className={cn(
-                    "fileinput-root",
-                    isFull && "fileinput-full",
-                    className
+                    'fileinput-root',
+                    isFull && 'fileinput-full',
+                    className,
                 )}
                 {...wrapperProps}
             >
@@ -125,16 +129,15 @@ export const FileInput = ({
                 <div
                     data-slot="fileinput-dropzone"
                     className={cn(
-                        "fileinput-dropzone",
+                        'fileinput-dropzone',
                         classSize,
-                        dragActive && !disabled && "dragactive",
-                        disabled && "disabled"
+                        dragActive && !disabled && 'dragactive',
+                        disabled && 'disabled',
                     )}
                     onDragOver={onDragOver}
                     onDragLeave={onDragLeave}
                     onDrop={onDrop}
                 >
-
                     <Input
                         id={fileInputId}
                         label=""
@@ -149,7 +152,8 @@ export const FileInput = ({
                     />
 
                     <p className="fileinput-text">
-                        Arraste arquivos aqui {multiple ? 'ou' : ''}<br />
+                        Arraste arquivos aqui {multiple ? 'ou' : ''}
+                        <br />
                         <span className="fileinput-link">
                             clique para selecionar
                         </span>
@@ -157,8 +161,13 @@ export const FileInput = ({
                 </div>
 
                 {filesData.length > 0 && (
-                    <div data-slot="fileinput-list-wrapper" className="fileinput-list-wrapper">
-                        <p className="fileinput-list-label">Arquivos selecionados:</p>
+                    <div
+                        data-slot="fileinput-list-wrapper"
+                        className="fileinput-list-wrapper"
+                    >
+                        <p className="fileinput-list-label">
+                            Arquivos selecionados:
+                        </p>
                         <div className="fileinput-tags-container">
                             {filesData.map((file) => (
                                 <Tag
@@ -175,5 +184,5 @@ export const FileInput = ({
                 )}
             </div>
         </>
-    )
-}
+    );
+};

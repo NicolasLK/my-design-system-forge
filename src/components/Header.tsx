@@ -1,5 +1,5 @@
 import { useTheme } from '@/contexts/theme/ThemeContext';
-import { Sidebar } from './ui/sidebar';
+import { Sidebar } from './ui/navigation/sidebar';
 
 interface IHeaderProps {
     hasSidebarTrigger?: boolean;

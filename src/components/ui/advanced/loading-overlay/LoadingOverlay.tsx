@@ -1,4 +1,4 @@
-import { Spinner } from '@/components/ui/spinner';
+import { Spinner } from '@/components/ui/feedback/spinner';
 import { cn } from '@/lib/utils/cn';
 import type { ILoadingOverlayProps } from '@/typings/loading-overlay.types';
 import './loading-overlay.css';

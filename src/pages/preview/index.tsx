@@ -1,53 +1,53 @@
 import { useState } from 'react';
 // ==== Components - Base Essentials ====
-import { Button } from '@/components/ui/button';
-import { Checkbox } from '@/components/ui/checkbox';
+import { Button } from '@/components/ui/form-controls/button';
+import { Checkbox } from '@/components/ui/form-controls/checkbox';
+import { Input } from '@/components/ui/form-controls/input';
 import { Radio } from '@/components/ui/form-controls/radio';
-import { Input } from '@/components/ui/input';
-import { Switch } from '@/components/ui/switch';
-import { Textarea } from '@/components/ui/textarea';
+import { Switch } from '@/components/ui/form-controls/switch';
+import { Textarea } from '@/components/ui/form-controls/textarea';
 //=======================================
 // ==== Components - Feedback ====
-import { Alert } from '@/components/ui/alert';
-import { Modal } from '@/components/ui/modal';
-import { Skeleton } from '@/components/ui/skeleton';
-import { Spinner } from '@/components/ui/spinner';
-import { Toast } from '@/components/ui/toast';
-import { Tooltip } from '@/components/ui/tooltip';
+import { Alert } from '@/components/ui/feedback/alert';
+import { Skeleton } from '@/components/ui/feedback/skeleton';
+import { Spinner } from '@/components/ui/feedback/spinner';
+import { Toast } from '@/components/ui/feedback/toast';
+import { Modal } from '@/components/ui/overlay/modal';
+import { Tooltip } from '@/components/ui/overlay/tooltip';
 //================================
 // ==== Components - Layout ====
-import { Card } from '@/components/ui/card';
-import { Divider } from '@/components/ui/divider';
-import { Tabs } from '@/components/ui/tabs';
+import { Card } from '@/components/ui/data-display/card';
+import { Divider } from '@/components/ui/foundations/divider';
+import { Tabs } from '@/components/ui/navigation/tabs';
 //==============================
 // ==== Components - Advanced Forms ====
-import { Dropdown } from '@/components/ui/dropdown';
 import { FileInput } from '@/components/ui/file-input';
-import { Select } from '@/components/ui/select';
-import { Slider } from '@/components/ui/slider';
+import { Select } from '@/components/ui/form-controls/select';
+import { Slider } from '@/components/ui/form-controls/slider';
+import { Dropdown } from '@/components/ui/overlay/dropdown';
 import { TagInput } from '@/components/ui/tag-input';
 //======================================
 // ==== Components - Data / Presentation ====
-import { Breadcrumb } from '@/components/ui/breadcrumb';
-import { Pagination } from '@/components/ui/pagination';
-import { Progress } from '@/components/ui/progress';
-import { Stepper } from '@/components/ui/stepper';
-import { Table } from '@/components/ui/table';
+import { Table } from '@/components/ui/data-display/table';
+import { Progress } from '@/components/ui/feedback/progress';
+import { Breadcrumb } from '@/components/ui/navigation/breadcrumb';
+import { Pagination } from '@/components/ui/navigation/pagination';
+import { Stepper } from '@/components/ui/navigation/stepper';
 //===========================================
 // ==== Components - Users ====
-import { Avatar } from '@/components/ui/avatar';
-import { AvatarGroup } from '@/components/ui/avatar-group';
-import { Chip } from '@/components/ui/chip';
-import { Tag } from '@/components/ui/tag';
+import { Avatar } from '@/components/ui/data-display/avatar';
+import { AvatarGroup } from '@/components/ui/data-display/avatar-group';
+import { Chip } from '@/components/ui/data-display/chip';
+import { Tag } from '@/components/ui/data-display/tag';
 //=============================
 // ==== Components - Extra ====
-import { TooltipAdvanced } from '@/components/ui/tooltip-advanced';
+import { TooltipAdvanced } from '@/components/ui/overlay/tooltip-advanced';
 //=============================
 // ==== Components - Others ====
-import { ProgressCircular } from '@/components/ui//progress-circular';
-import { Badge } from '@/components/ui/badge';
-import { BadgeGroup } from '@/components/ui/badge-group';
-import { Typography } from '@/components/ui/typography';
+import { Badge } from '@/components/ui/data-display/badge';
+import { BadgeGroup } from '@/components/ui/data-display/badge-group';
+import { ProgressCircular } from '@/components/ui/feedback/progress-circular';
+import { Typography } from '@/components/ui/foundations/typography';
 //==============================
 // ==== Functions and Hooks ====
 import { cn } from '@/lib/utils/cn';
@@ -57,7 +57,7 @@ import { useTabs } from '@/models/hooks/useTabs';
 //==============================
 // ==== Interfaces and Types ====
 import { RadioGroup } from '@/components/ui/form-controls/radio-group';
-import { Label } from '@/components/ui/label';
+import { Label } from '@/components/ui/foundations/label';
 import { Link } from 'react-router-dom';
 //===============================
 

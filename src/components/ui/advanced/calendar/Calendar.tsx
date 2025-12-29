@@ -2,7 +2,7 @@ import { cn } from '@/lib/utils/cn';
 import { getComponentSize } from '@/models/get-component-size';
 import type { ICalendarProps } from '@/typings/calendar.types';
 import { useMemo, useState } from 'react';
-import { Button } from '../../button';
+import { Button } from '../../form-controls/button';
 import './calendar.css';
 
 const WEEKDAYS_PT = ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sáb'];

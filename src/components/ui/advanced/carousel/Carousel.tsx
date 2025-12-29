@@ -17,7 +17,7 @@ import {
     type ReactNode,
 } from 'react';
 
-import type { Button } from '../../button';
+import type { Button } from '../../form-controls/button';
 import './carousel.css';
 
 /* ===========================

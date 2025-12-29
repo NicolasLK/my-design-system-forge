@@ -1,8 +1,8 @@
+import { cn } from '@/lib/utils/cn';
 import {
     getComponentSize,
     type ComponentSize,
 } from '@/models/get-component-size';
-import { cn } from '@/lib/utils/cn';
 import { Badge } from '../badge/Badge';
 import './badge-group.css';
 

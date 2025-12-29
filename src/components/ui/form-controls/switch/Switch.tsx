@@ -1,10 +1,10 @@
+import { cn } from '@/lib/utils/cn';
 import type { ChangeEvent, InputHTMLAttributes } from 'react';
 import {
     getComponentSize,
     type ComponentSize,
-} from '../../../models/get-component-size';
-import { useControllableState } from '../../../models/hooks/useControllableState';
-import { cn } from '@/lib/utils/cn';
+} from '../../../../models/get-component-size';
+import { useControllableState } from '../../../../models/hooks/useControllableState';
 import './switch.css';
 
 interface ISwitchProps
