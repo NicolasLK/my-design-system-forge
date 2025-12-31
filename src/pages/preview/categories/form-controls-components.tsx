@@ -10,7 +10,10 @@ export default function FormControlsComponentsPage() {
                         Form-Controls Components
                     </h1>
 
-                    <p className="u-text-gray u-text-base">....</p>
+                    <p className="u-text-gray u-text-base">
+                        Componentes responsáveis pela entrada de dados e
+                        interação do usuário.
+                    </p>
 
                     <Link to="/preview" className="u-text-primary u-text-sm">
                         ⬅ Voltar para Preview
