@@ -1,7 +1,12 @@
 import '@/components/preview-articles/styles/advanced-article.css';
-import type { IAdvancedArticleProps } from '@/typings/preview-articles.types';
+import type { AdvancedComponentPreviewKey } from '@/typings/preview-articles.types';
+import { useState } from 'react';
+import { AdvancedPreview } from './advanced/AdvancedPreview';
 
-export const AdvancedArticle = ({ onSelect }: IAdvancedArticleProps) => {
+export const AdvancedArticle = () => {
+    const [active, setActive] =
+        useState<AdvancedComponentPreviewKey>('calendar');
+
     return (
         <>
             <article className="advanced-article">
@@ -16,39 +21,41 @@ export const AdvancedArticle = ({ onSelect }: IAdvancedArticleProps) => {
                     {/* Exemplo de placeholders */}
                     <button
                         className="advanced-article-card"
-                        onClick={() => onSelect('calendar')}
+                        onClick={() => setActive('calendar')}
                     >
                         calendar
                     </button>
 
                     <button
                         className="advanced-article-card"
-                        onClick={() => onSelect('date-range-picker')}
+                        onClick={() => setActive('date-range-picker')}
                     >
                         date-rage-picker
                     </button>
 
                     <button
                         className="advanced-article-card"
-                        onClick={() => onSelect('carousel')}
+                        onClick={() => setActive('carousel')}
                     >
                         carousel
                     </button>
 
                     <button
                         className="advanced-article-card"
-                        onClick={() => onSelect('accordion')}
+                        onClick={() => setActive('accordion')}
                     >
                         accordion
                     </button>
 
                     <button
                         className="advanced-article-card"
-                        onClick={() => onSelect('loading-overlay')}
+                        onClick={() => setActive('loading-overlay')}
                     >
                         loading-overlay
                     </button>
                 </div>
+
+                {active && <AdvancedPreview component={active} />}
             </article>
         </>
     );

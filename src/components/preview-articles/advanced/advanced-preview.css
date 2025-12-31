@@ -8,9 +8,11 @@
 .advanced-preview-title {
     font-size: var(--font-sm);
     font-weight: var(--weight-semibold);
+
+    text-transform: capitalize;
 }
 
-.advanced-preview__demo {
+.advanced-preview-demo {
     border: 1px solid var(--color-gray-200);
     border-radius: var(--radius-md);
     padding: var(--space-4);

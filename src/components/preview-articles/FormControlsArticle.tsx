@@ -1,7 +1,7 @@
-export const FormControlsSection = () => {
+export const FormControlsArticle = () => {
     return (
         <>
-            <section>FormControlsSection</section>
+            <section>FormControlsArticle</section>
         </>
     );
 };

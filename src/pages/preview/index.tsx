@@ -17,7 +17,6 @@ import { Tooltip } from '@/components/ui/overlay/tooltip';
 //================================
 // ==== Components - Layout ====
 import { Card } from '@/components/ui/data-display/card';
-import { Divider } from '@/components/ui/foundations/divider';
 import { Tabs } from '@/components/ui/navigation/tabs';
 //==============================
 // ==== Components - Advanced Forms ====
@@ -47,7 +46,6 @@ import { TooltipAdvanced } from '@/components/ui/overlay/tooltip-advanced';
 import { Badge } from '@/components/ui/data-display/badge';
 import { BadgeGroup } from '@/components/ui/data-display/badge-group';
 import { ProgressCircular } from '@/components/ui/feedback/progress-circular';
-import { Typography } from '@/components/ui/foundations/typography';
 //==============================
 // ==== Functions and Hooks ====
 import { cn } from '@/lib/utils/cn';
@@ -260,6 +258,20 @@ export default function PreviewPage() {
                             className="u-text-primary u-text-sm"
                         >
                             Ir para: Advanced Components Page ➡
+                        </Link>
+
+                        <Link
+                            to="categories/foundations-components"
+                            className="u-text-primary u-text-sm"
+                        >
+                            Ir para: Foundations Components Page ➡
+                        </Link>
+
+                        <Link
+                            to="categories/form-controls-components"
+                            className="u-text-primary u-text-sm"
+                        >
+                            Ir para: Form-Controls Components Page ➡
                         </Link>
                     </div>
                 </article>
@@ -675,30 +687,6 @@ export default function PreviewPage() {
                             </Button>
                         </Card.Footer>
                     </Card.Root>
-                </div>
-            </section>
-
-            <section style={sectionStyle}>
-                <h3>Divider</h3>
-                <div className="u-flex u-flex-col u-gap-4">
-                    {/* Default (horizontal) */}
-                    <Divider />
-
-                    {/* Vertical */}
-                    <div className="u-flex u-h-5 u-items-center u-gap-4">
-                        <span>Item A</span>
-                        <Divider orientation="vertical" />
-                        <span>Item B</span>
-                    </div>
-
-                    {/* Strong (mais contrastado) */}
-                    <Divider variant="strong" />
-
-                    {/* Inserindo espaçamentos */}
-                    <Divider spacing="large" />
-
-                    {/* Divider não-decorativo (acessível) */}
-                    <Divider decorative={false} />
                 </div>
             </section>
 
@@ -1355,36 +1343,6 @@ export default function PreviewPage() {
                 <h3>Badge Group</h3>
                 <div style={divStyle}>
                     <BadgeGroup items={PROJECT_TAGS_LIST} maxVisible={3} />
-                </div>
-            </section>
-
-            <section style={sectionStyle}>
-                <h3>Typography</h3>
-                <div style={divStyle}>
-                    <Typography variant="h1" weight="bold">
-                        Título Principal (H1)
-                    </Typography>
-
-                    <Typography variant="h2" weight="bold">
-                        Subtítulo Secundário (H2)
-                    </Typography>
-
-                    <Typography variant="h3" weight="bold">
-                        Subtítulo Terciário (H3)
-                    </Typography>
-
-                    <Typography>
-                        Este é um texto padrão utilizado em descrições ou
-                        parágrafos.
-                    </Typography>
-
-                    <Typography variant="lead" color="var(--color-gray-500)">
-                        Texto de apoio ou descrição
-                    </Typography>
-
-                    <Typography variant="small" as="span">
-                        Texto pequeno em linha
-                    </Typography>
                 </div>
             </section>
 

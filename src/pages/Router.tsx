@@ -3,6 +3,8 @@ import { Route, Routes } from 'react-router-dom';
 import HomePage from './home';
 import PreviewPage from './preview';
 import AdvancedComponentsPage from './preview/categories/advanced-components';
+import FormControlsComponentsPage from './preview/categories/form-controls-components';
+import FoundationsComponentsPage from './preview/categories/foundations-components';
 
 export function Router() {
     return (
@@ -20,11 +22,21 @@ export function Router() {
                     <Route path="/preview">
                         {/* Página /preview */}
                         <Route index element={<PreviewPage />} />
-
                         {/* Página Advanced Components */}
+
                         <Route
                             path="categories/advanced-components"
                             element={<AdvancedComponentsPage />}
+                        />
+                        {/* Página Foundations Components */}
+                        <Route
+                            path="categories/foundations-components"
+                            element={<FoundationsComponentsPage />}
+                        />
+                        {/* Página Foundations Components */}
+                        <Route
+                            path="categories/form-controls-components"
+                            element={<FormControlsComponentsPage />}
                         />
                     </Route>
                 </Route>

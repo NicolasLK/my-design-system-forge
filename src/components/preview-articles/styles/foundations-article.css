@@ -1,0 +1,44 @@
+.foundations-article {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+}
+
+.foundations-article-title {
+    font-size: var(--font-lg);
+    font-weight: var(--weight-semibold);
+}
+
+.foundations-article-description {
+    color: var(--color-gray-500);
+    max-width: 60ch;
+}
+
+.foundations-article-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(10rem, 1fr));
+    gap: var(--space-4);
+}
+
+.foundations-article-card {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: var(--space-4);
+    border-radius: var(--radius-md);
+    background-color: var(--bg-muted);
+    border: 1px solid var(--color-gray-200);
+    cursor: pointer;
+    transition: background 0.2s ease, border 0.2s ease;
+
+    text-transform: capitalize;
+}
+
+.foundations-article-card:hover {
+    background-color: var(--color-gray-100);
+}
+
+.foundations-article-card.is-active {
+    border-color: var(--color-primary-500);
+    background-color: var(--color-primary-50);
+}

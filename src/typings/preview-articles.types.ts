@@ -1,5 +1,8 @@
 /* ---------- Types ---------- */
 
+/* Foundations */
+export type FoundationComponentPreviewKey = 'typography' | 'divider' | 'label';
+
 /* Advanced */
 export type AdvancedComponentPreviewKey =
     | 'calendar'
@@ -11,10 +14,4 @@ export type AdvancedComponentPreviewKey =
 /* --------------------------- */
 
 /* ---------- Interfaces ---------- */
-
-/* Advanced */
-export interface IAdvancedArticleProps {
-    onSelect: (key: AdvancedComponentPreviewKey) => void;
-}
-
 /* ------------------------------- */

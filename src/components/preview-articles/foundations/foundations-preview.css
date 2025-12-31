@@ -1,0 +1,21 @@
+.foundations-preview {
+    margin-top: var(--space-6);
+    padding: var(--space-5);
+    border-radius: var(--radius-lg);
+    background-color: var(--bg-default);
+    border: 1px solid var(--color-gray-200);
+}
+
+.foundations-preview-title {
+    margin-bottom: var(--space-4);
+    font-size: var(--font-base);
+    font-weight: var(--weight-medium);
+
+    text-transform: capitalize;
+}
+
+.foundations-preview-demo {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+}

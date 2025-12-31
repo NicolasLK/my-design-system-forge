@@ -14,7 +14,7 @@ export const AdvancedPreview = ({
     return (
         <>
             <div className="advanced-preview">
-                <h3 className="advanced-preview-title">Exemplo</h3>
+                <h3 className="advanced-preview-title">exemplo: {component}</h3>
 
                 <div className="advanced-preview-demo">
                     {component === 'calendar' && <CalendarDemo />}
