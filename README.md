@@ -14,7 +14,7 @@
 
 **My Design System Forge** is a frontend project that provides reusable UI components, design tokens, and usage guidelines to facilitate the creation of consistent interfaces in React applications. It offers a modern setup with:
 
--   🛠 **React + TypeScript**
+-   🛠️ **React + TypeScript**
 -   ⚡ **Vite** for fast development and build times
 -   🎨 Token-first styling architecture
 
