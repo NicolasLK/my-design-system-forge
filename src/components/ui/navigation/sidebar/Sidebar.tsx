@@ -3,17 +3,17 @@
 import { useSidebar } from '@/contexts/components/sidebar/SidebarContext';
 import { SidebarProvider } from '@/contexts/components/sidebar/SidebarProvider';
 import { cn } from '@/lib/utils/cn';
-import type {
-    ISidebarPanelProps,
-    ISidebarProviderProps,
-    ISidebarRoot,
-} from '@/typings/sidebar.types';
+import type { ISidebarProviderProps } from '@/typings/sidebar.types';
 import type { ComponentProps } from 'react';
 import './sidebar.css';
 
 /* ===========================
    🧱 Sidebar Root
 =========================== */
+
+interface ISidebarRoot {
+    className?: string;
+}
 
 export const SidebarRoot = ({
     children,
@@ -34,6 +34,21 @@ export const SidebarRoot = ({
 /* ===========================
    🧱 Panel
 =========================== */
+
+/* ---------- Types ---------- */
+
+type SidebarSide = 'left' | 'right';
+
+type SidebarVariant = 'sidebar' | 'floating' | 'inset';
+
+type SidebarCollapsible = 'offcanvas' | 'icon' | 'none';
+/* -------------------------- */
+
+interface ISidebarPanelProps {
+    side?: SidebarSide;
+    variant?: SidebarVariant;
+    collapsible?: SidebarCollapsible;
+}
 
 export const SidebarPanel = ({
     className,

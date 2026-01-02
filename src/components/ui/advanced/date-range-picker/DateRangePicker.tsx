@@ -1,12 +1,23 @@
 import { cn } from '@/lib/utils/cn';
-import { getComponentSize } from '@/models/get-component-size';
-import type {
-    IDateRange,
-    IDateRangePickerProps,
-} from '@/typings/date-range-picker.types';
+import {
+    getComponentSize,
+    type ComponentSize,
+} from '@/models/get-component-size';
+import type { IDateRange } from '@/typings/date-range-picker.types';
 import { useMemo, useState } from 'react';
 import { Calendar } from '../calendar';
 import './date-range-picker.css';
+
+interface IDateRangePickerProps {
+    /** Tamanho (small, medium, large) */
+    size?: ComponentSize;
+    /** Callback ao alterar o intervalo */
+    onChange?: (range: IDateRange) => void;
+    /** Define a largura total */
+    full?: boolean;
+    /** Classe CSS adicional */
+    className?: string;
+}
 
 const normalizeDate = (date: Date | null): Date | null => {
     if (!date) return null;

@@ -1,9 +1,33 @@
 import { cn } from '@/lib/utils/cn';
-import { getComponentSize } from '@/models/get-component-size';
-import type { ICalendarProps } from '@/typings/calendar.types';
+import {
+    getComponentSize,
+    type ComponentSize,
+} from '@/models/get-component-size';
+import type { IDateRange } from '@/typings/date-range-picker.types';
 import { useMemo, useState } from 'react';
 import { Button } from '../../form-controls/button';
 import './calendar.css';
+
+interface ICalendarProps {
+    /** Data opcionalmente selecionada (se for controlado externamente) */
+    selected?: Date;
+    /** Callback ao selecionar uma data */
+    onSelect?: (date: Date) => void;
+    /** Tamanho (small, medium, large) */
+    size?: ComponentSize;
+    /** Classe CSS adicional */
+    className?: string;
+    /** Propriedade de Range (para colorir o intervalo) */
+    range?: IDateRange;
+    /** Mês a ser exibido (para controle externo) */
+    currentMonth?: Date;
+    /** Função para mudar o mês (para controle externo) */
+    setCurrentMonth?: (date: Date) => void;
+    /** Desabilita a navegação (setas) */
+    readOnlyNav?: boolean;
+    /** Desabilita APENAS o botão de navegação para o próximo mês */
+    disableNextNav?: boolean;
+}
 
 const WEEKDAYS_PT = ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sáb'];
 

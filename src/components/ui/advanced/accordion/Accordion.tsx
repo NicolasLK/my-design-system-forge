@@ -1,5 +1,4 @@
 import { cn } from '@/lib/utils/cn';
-import type { IAccordionRootProps } from '@/typings/accordion.types';
 import { type ComponentProps, type ReactNode } from 'react';
 import { Divider } from '../../foundations/divider';
 import './accordion.css';
@@ -7,6 +6,13 @@ import './accordion.css';
 /* ============================================================
  * 🟦 ROOT
  * ============================================================ */
+
+type AccordionRootTypes = 'single' | 'multiple';
+
+interface IAccordionRootProps {
+    type?: AccordionRootTypes;
+    defaultValue?: string | string[];
+}
 
 export const AccordionRoot = ({
     className,

@@ -5,8 +5,7 @@ import { CarouselProvider } from '@/contexts/components/carousel/CarouselProvide
 import { cn } from '@/lib/utils/cn';
 import { getCarouselDotsVariant } from '@/models/get-carousel-dots-variant';
 import type {
-    ICarouselBannerProps,
-    ICarouselDotsProps,
+    DotsType,
     ICarouselProviderProps,
 } from '@/typings/carousel.types';
 import {
@@ -150,6 +149,14 @@ export const CarouselItem = ({
    🖼️ Banner (Padrão com Imagem + Texto)
 =========================== */
 
+interface ICarouselBannerProps {
+    children?: ReactNode;
+    image: string;
+    title?: string;
+    description?: string;
+    alt?: string;
+}
+
 export const CarouselBanner = ({
     children,
     image,
@@ -247,6 +254,11 @@ export const CarouselNext = ({
 /* ===========================
    🔵 Dots
 =========================== */
+
+interface ICarouselDotsProps {
+    className?: string;
+    type?: DotsType;
+}
 
 export const CarouselDots = ({
     className,

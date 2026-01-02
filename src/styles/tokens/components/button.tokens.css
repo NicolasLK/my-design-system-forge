@@ -1,34 +1,49 @@
+/* Design Tokens */
 :root {
     /* Sizes */
 
     /* Extra small */
-    --button-width-xs: var(--control-width-xs);
-    --button-height-xs: var(--control-height-xs);
+    --btn-width-xs: var(--control-width-xs);
+    --btn-height-xs: var(--control-height-xs);
 
     /* Small */
-    --button-width-sm: var(--control-width-sm);
-    --button-height-sm: var(--control-height-sm);
+    --btn-width-sm: var(--control-width-sm);
+    --btn-height-sm: var(--control-height-sm);
 
     /* Medium */
-    --button-width-md: var(--control-width-md);
-    --button-height-md: var(--control-height-md);
+    --btn-width-md: var(--control-width-md);
+    --btn-height-md: var(--control-height-md);
 
     /* Large */
-    --button-width-lg: var(--control-width-lg);
-    --button-height-lg: var(--control-height-lg);
+    --btn-width-lg: var(--control-width-lg);
+    --btn-height-lg: var(--control-height-lg);
 
     /* Extra large */
-    --button-width-xl: var(--control-width-xl);
-    --button-height-xl: var(--control-height-xl);
+    --btn-width-xl: var(--control-width-xl);
+    --btn-height-xl: var(--control-height-xl);
 
     /* Full */
-    --button-width-full: var(--control-width-full);
-    --button-height-full: var(--control-height-full);
+    --btn-width-full: var(--control-width-full);
+    --btn-height-full: var(--control-height-full);
 
-    /* Shape */
-    --button-radius: var(--radius-md);
+    /* Border */
+    --btn-radius: var(--control-radius-md);
 
     /* Focus */
-    --button-focus-ring-color: var(--color-primary-800);
-    --button-focus-ring-offset: 0.125rem;
+    --btn-focus-ring-color: var(--color-primary-800);
+    --btn-focus-ring-offset: 0.125rem;
+
+    /* Colors */
+    --btn-bg: var(--color-primary-500);
+    --btn-bg-hover: var(--int-primary-hover);
+    --btn-bg-active: var(--int-primary-active);
+    --btn-text: var(--color-white);
+    --btn-hover-text: var(--color-white);
+    --btn-border: transparent;
+
+    /* --- Estados --- */
+    --btn-disabled-bg: var(--control-disabled-bg);
+    --btn-disabled-text: var(--control-disabled-text);
+
+    --btn-current-color: var(--color-primary-500);
 }

@@ -15,21 +15,20 @@ import type { ButtonHTMLAttributes, ReactNode } from 'react';
 import { cn } from '../../../../lib/utils/cn';
 import './button.css';
 
-type ButtonVariant = ComponentColor;
-type ButtonVisual = ComponentVariant;
-
 interface IButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
-    // A variante define a classe CSS e o texto.
-    colorVariant?: ButtonVariant;
-    // A variante visual (default/sólido é o padrão)
-    visualVariant?: ButtonVisual;
-    // A prop para odefinir o tamanho. 'medium' será o padrão.
+    /** A variante define a classe CSS e o texto. */
+    colorVariant?: ComponentColor;
+    /** A variante visual (default/sólido é o padrão). */
+    visualVariant?: ComponentVariant;
+    /** A prop para odefinir o tamanho. 'medium' será o padrão. */
     size?: ComponentSize;
-    // Opcional: define se o botão deve estar desabilitado
+    /** Opcional: define se o botão deve estar desabilitado. */
     disabled?: boolean;
-    // Opcional: fullWidth programatico.
+    /** Opcional: fullWidth programatico. */
     fullWidth?: boolean;
-    // Opcional: permite passar um conteúdo customizado, como um ícone.
+    /** Opcional: fullRadius programatico. */
+    fullRadius?: boolean;
+    /** Opcional: permite passar um conteúdo customizado, como um ícone. */
     children?: ReactNode;
 }
 
@@ -39,6 +38,7 @@ export const Button = ({
     size = 'medium',
     disabled = false,
     fullWidth = false,
+    fullRadius = false,
     className,
     children,
     ...props
@@ -68,13 +68,17 @@ export const Button = ({
      */
     const hasIcon = isIconElement(content[0]);
 
+    const isIconOnly = hasIcon && content.filter(Boolean).length === 1;
+
     const buttonClasses = cn(
         'btn',
         colorClass,
         visualClass,
         sizeClass,
         hasIcon && 'btn-with-icon',
+        isIconOnly && 'btn-icon-only',
         fullWidth && 'btn-full',
+        fullRadius && 'btn-full-radius',
         className,
     );
 

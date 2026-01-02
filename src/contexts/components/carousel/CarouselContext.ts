@@ -1,7 +1,18 @@
 'use client';
 
-import type { ICarouselContextProps } from '@/typings/carousel.types';
 import { createContext, useContext } from 'react';
+
+interface ICarouselContextProps {
+    axis?: 'horizontal' | 'vertical';
+    currentIndex: number;
+    itemsCount: number;
+    slidesPerView: number;
+    pagesCount: number;
+    setItemsCount: (count: number) => void;
+    scrollPrev: () => void;
+    scrollNext: () => void;
+    goTo: (index: number) => void;
+}
 
 // 1. Criação e Definição da Estrutura do Contexto
 export const CarouselContext = createContext<ICarouselContextProps | undefined>(

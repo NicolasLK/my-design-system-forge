@@ -108,7 +108,7 @@
     --color-white: #ffffff;
 
     /* ===============================
-   🪶 Typography – RAW SCALE
+   🪶 Typography – Raw Scale
   =============================== */
 
     --font-family-base: 'Inter', system-ui, sans-serif;
@@ -200,30 +200,29 @@
     --screen-xl: 1280px;
 
     /* ===============================
-    🎛 Controls – Physical Scale
+    📏 Physical Scale - Raw Scale
     =============================== */
 
     /* Extra small */
-    --control-width-xs: clamp(1.5rem, 2vw, 1.75rem); /* 24px → 28px */
-    --control-height-xs: clamp(1.5rem, 2vw, 1.75rem); /* 24px → 28px */
+    --width-xs: clamp(1.5rem, 2vw, 1.75rem); /* 24px → 28px */
+    --height-xs: clamp(1.5rem, 2vw, 1.75rem); /* 24px → 28px */
 
     /* Small */
-    --control-width-sm: clamp(1.75rem, 2.2vw, 2rem); /* 28px → 32px */
-    --control-height-sm: clamp(1.75rem, 2.2vw, 2rem); /* 28px → 32px */
+    --width-sm: clamp(1.75rem, 2.2vw, 2rem); /* 28px → 32px */
+    --height-sm: clamp(1.75rem, 2.2vw, 2rem); /* 28px → 32px */
 
     /* Medium */
-    --control-width-md: clamp(2rem, 2.8vw, 2.25rem); /* 32px → 36px */
-    --control-height-md: clamp(2rem, 2.8vw, 2.25rem); /* 32px → 36px */
+    --width-md: clamp(2rem, 2.8vw, 2.25rem); /* 32px → 36px */
+    --height-md: clamp(2rem, 2.8vw, 2.25rem); /* 32px → 36px */
 
     /* Large */
-    --control-width-lg: clamp(2.75rem, 3.4vw, 3rem); /* 44px → 48px */
-    --control-height-lg: clamp(2.75rem, 3.4vw, 3rem); /* 44px → 48px */
+    --width-lg: clamp(2.75rem, 3.4vw, 3rem); /* 44px → 48px */
+    --height-lg: clamp(2.75rem, 3.4vw, 3rem); /* 44px → 48px */
 
     /* Extra large */
-    --control-width-xl: clamp(3.25rem, 4vw, 3.5rem); /* 52px → 56px */
-    --control-height-xl: clamp(3.25rem, 4vw, 3.5rem); /* 52px → 56px */
+    --width-xl: clamp(3.25rem, 4vw, 3.5rem); /* 52px → 56px */
+    --height-xl: clamp(3.25rem, 4vw, 3.5rem); /* 52px → 56px */
 
-    /* Full / block controls */
-    --control-width-full: 100%;
-    --control-height-full: 100%;
+    /* Full */
+    --size-full: 100%;
 }

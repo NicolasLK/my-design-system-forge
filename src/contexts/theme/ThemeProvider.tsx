@@ -1,6 +1,10 @@
-import type { IThemeProviderProps, ThemeType } from '@/typings/theme.types';
-import { useEffect, useState } from 'react';
+import type { ThemeType } from '@/typings/theme.types';
+import { useEffect, useState, type ReactNode } from 'react';
 import { ThemeContext } from './ThemeContext';
+
+interface IThemeProviderProps {
+    children: ReactNode;
+}
 
 // Componente Provider que gerencia o estado e aplica a classe CSS
 export const ThemeContextProvider = ({ children }: IThemeProviderProps) => {

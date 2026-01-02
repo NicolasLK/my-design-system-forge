@@ -43,7 +43,7 @@
 }
 /* --------------- */
 
-/* ----- Wrap ----- */
+/* ----- Align-items ----- */
 .u-items-start {
     align-items: flex-start;
 }
@@ -54,7 +54,7 @@
     align-items: flex-end;
 }
 
-/* ----- Wrap ----- */
+/* ----- Justify-content ----- */
 .u-justify-start {
     justify-content: flex-start;
 }

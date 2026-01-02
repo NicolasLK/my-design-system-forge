@@ -94,7 +94,72 @@
     --control-destructive-text: var(--color-white);
     --control-destructive-border: var(--color-destructive-500);
 
-    /* Full / block controls */
-    --control-width-full: 100%;
-    --control-height-full: 100%;
+    --control-disabled-bg: var(--color-gray-200);
+    --control-disabled-text: var(--color-gray-500);
+
+    /* Radius borders */
+    --control-radius-none: var(--radius-none);
+    --control-radius-sm: var(--radius-sm);
+    --control-radius-default: var(--radius-default);
+    --control-radius-md: var(--radius-md);
+    --control-radius-lg: var(--radius-lg);
+    --control-radius-xl: var(--radius-xl);
+    --control-radius-2xl: var(--radius-2xl);
+    --control-radius-3xl: var(--radius-3xl);
+    --control-radius-full: var(--radius-full);
+
+    /* Physical scale controls */
+
+    /* Extra small */
+    --control-width-xs: var(--width-xs);
+    --control-height-xs: var(--height-xs);
+
+    /* Small */
+    --control-width-sm: var(--width-sm);
+    --control-height-sm: var(--height-sm);
+
+    /* Medium */
+    --control-width-md: var(--width-md);
+    --control-height-md: var(--height-md);
+
+    /* Large */
+    --control-width-lg: var(--width-lg);
+    --control-height-lg: var(--height-lg);
+
+    /* Extra large */
+    --control-width-xl: var(--width-xl);
+    --control-height-xl: var(--height-xl);
+
+    /* Full */
+    --control-width-full: var(--size-full);
+    --control-height-full: var(--size-full);
+
+    /* ===============================
+       🔄 Interaction Semantics
+    =============================== */
+
+    /* Hover Colors (1 nível acima na escala) */
+    --int-primary-hover: var(--color-primary-600);
+    --int-secondary-hover: var(--color-secondary-600);
+    --int-success-hover: var(--color-success-600);
+    --int-destructive-hover: var(--color-destructive-600);
+    --int-warning-hover: var(--color-warning-600);
+    --int-neutral-hover: var(--color-gray-800);
+
+    --int-ghost-hover: var(--color-gray-100);
+    --int-primary-ghost-hover: var(--color-primary-200);
+    --int-destructive-ghost-hover: var(--color-destructive-200);
+
+    /* Active Colors (2 níveis acima) */
+    --int-primary-active: var(--color-primary-700);
+    --int-secondary-active: var(--color-secondary-700);
+    --int-success-active: var(--color-success-700);
+    --int-destructive-active: var(--color-destructive-700);
+    --int-warning-active: var(--color-warning-700);
+    --int-neutral-active: var(--color-gray-900);
+
+    --int-ghost-active: var(--color-gray-200);
+    --int-link-active: var(--color-primary-700);
+    --int-primary-ghost-active: var(--color-primary-300);
+    --int-destructive-ghost-active: var(--color-destructive-300);
 }

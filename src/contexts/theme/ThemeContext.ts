@@ -1,5 +1,10 @@
-import type { IThemeContextProps } from '@/typings/theme.types';
+import type { ThemeType } from '@/typings/theme.types';
 import { createContext, useContext } from 'react';
+
+interface IThemeContextProps {
+    theme: ThemeType;
+    toggleTheme: () => void;
+}
 
 // 1. Definição e Criação do Contexto
 export const ThemeContext = createContext<IThemeContextProps | undefined>(

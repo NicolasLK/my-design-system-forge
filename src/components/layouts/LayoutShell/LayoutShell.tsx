@@ -1,5 +1,11 @@
-import type { ILayoutShellProps } from '@/typings/layouts.types';
+import type { ReactNode } from 'react';
 import './layout-shell.css';
+
+interface ILayoutShellProps {
+    header: ReactNode;
+    sidebar?: ReactNode;
+    children: ReactNode;
+}
 
 const LayoutShell = ({ header, sidebar, children }: ILayoutShellProps) => {
     return (
