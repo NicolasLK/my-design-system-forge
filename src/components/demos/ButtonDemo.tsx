@@ -1,5 +1,6 @@
 import { Button } from '../ui/form-controls/button';
 import { Divider } from '../ui/foundations/divider';
+import { CogIcon } from './IconsDemo';
 
 export const ButtonDemo = () => {
     return (
@@ -124,6 +125,22 @@ export const ButtonDemo = () => {
                         </div>
                     </div>
                 </div>
+                {/* ------ */}
+                <Divider spacing="small" />
+                {/* ------ */}
+                <div className="u-flex u-flex-col u-items-start u-gap-6">
+                    <div className="u-flex u-gap-4">
+                        <span className="u-text-sm u-text-gray u-text-transform-capitalize">
+                            icon:
+                        </span>
+                        <Button>
+                            <CogIcon />
+                        </Button>
+                    </div>
+                </div>
+                {/* ------ */}
+                <Divider spacing="small" />
+                {/* ------ */}
             </div>
         </>
     );
