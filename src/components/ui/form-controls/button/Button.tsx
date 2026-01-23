@@ -20,7 +20,7 @@ interface IButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
     colorVariant?: ComponentColor;
     /** A variante visual (default/sólido é o padrão). */
     visualVariant?: ComponentVariant;
-    /** A prop para odefinir o tamanho. 'medium' será o padrão. */
+    /** A prop para odefinir o tamanho. 'md' é o padrão conforme o tipo. */
     size?: ComponentSize;
     /** Opcional: define se o botão deve estar desabilitado. */
     disabled?: boolean;
@@ -34,8 +34,8 @@ interface IButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 
 export const Button = ({
     colorVariant = 'primary',
-    visualVariant = 'default',
-    size = 'medium',
+    visualVariant = 'solid',
+    size = 'md',
     disabled = false,
     fullWidth = false,
     fullRadius = false,

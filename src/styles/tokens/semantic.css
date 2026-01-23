@@ -1,165 +1,65 @@
 :root {
     /* ===============================
-   📄 Semantics Tokens
-   =============================== */
-
-    /* ===============================
-       📄 Text Semantics
+       🎨 SEMANTIC COLORS
        =============================== */
 
-    --text-default: var(--color-gray-900);
-    --text-muted: var(--color-gray-500);
-    --text-inverse: var(--color-white);
-    --text-brand: var(--color-primary-500);
+    /* Backgrounds */
+    --bg-page: var(--color-white);
+    --bg-surface: var(--color-gray-50);
+    --bg-surface-sunken: var(--color-gray-100);
+    --bg-overlay: rgba(13, 13, 13, 0.4);
 
-    /* Status text */
-    --text-success: var(--color-success-500);
-    --text-warning: var(--color-warning-500);
-    --text-destructive: var(--color-destructive-500);
-    --text-on-colored: var(--color-white);
+    /* Text */
+    --text-main: var(--color-gray-900);
+    --text-muted: var(--color-gray-600);
+    --text-subtle: var(--color-gray-400);
+    --text-on-color: var(--color-white);
+    --text-link: var(--color-primary-600);
+    --text-link-hover: var(--color-primary-700);
+
+    /* Interactive States (Primary) */
+    --action-primary: var(--color-primary-500);
+    --action-primary-hover: var(--color-primary-600);
+    --action-primary-active: var(--color-primary-700);
+    --action-primary-disabled: var(--color-primary-200);
+
+    /* Feedback States */
+    --status-success: var(--color-success-500);
+    --status-success-bg: var(--color-success-50);
+
+    --status-warning: var(--color-warning-500);
+    --status-warning-bg: var(--color-warning-50);
+
+    --status-error: var(--color-destructive-500);
+    --status-error-bg: var(--color-destructive-50);
+
+    /* Borders */
+    --border-default: var(--color-gray-200);
+    --border-focused: var(--color-primary-400);
 
     /* ===============================
-     📄 Background Semantics
-     =============================== */
-
-    --bg-default: var(--color-white);
-    --bg-muted: var(--color-gray-50);
-    --bg-brand: var(--color-primary-500);
-
-    /* Status backgrounds */
-    --bg-success: var(--color-success-500);
-    --bg-warning: var(--color-warning-500);
-    --bg-destructive: var(--color-destructive-500);
-
-    /* Surface / panels */
-    --bg-surface: var(--color-gray-100);
-    --bg-surface-muted: var(--color-gray-50);
-
-    /* ===============================
-       📄 Border Semantics
+       🪶 SEMANTIC TYPOGRAPHY
        =============================== */
 
-    --border-default: var(--color-gray-300);
-    --border-muted: var(--color-gray-200);
-    --border-brand: var(--color-primary-500);
+    /* Typography Scale */
+    --font-heading-lg: var(--font-4xl);
+    --font-heading-md: var(--font-2xl);
+    --font-heading-sm: var(--font-xl);
 
-    /* Status borders */
-    --border-success: var(--color-success-500);
-    --border-warning: var(--color-warning-500);
-    --border-destructive: var(--color-destructive-500);
-
-    /* ===============================
-     📄 Spacing Semantics
-     =============================== */
-
-    /* Inline spacing */
-    --space-inline-xs: var(--space-1);
-    --space-inline-sm: var(--space-2);
-    --space-inline-md: var(--space-3);
-    --space-inline-lg: var(--space-4);
-    --space-inline-xl: var(--space-6);
-
-    /* Stack / vertical spacing */
-    --space-stack-xs: var(--space-2);
-    --space-stack-sm: var(--space-3);
-    --space-stack-md: var(--space-4);
-    --space-stack-lg: var(--space-6);
-    --space-stack-xl: var(--space-8);
-    --space-stack-2xl: var(--space-10);
+    --font-body: var(--font-base);
+    --font-body-sm: var(--font-sm);
+    --font-caption: var(--font-xs);
 
     /* ===============================
-       🎛 Controls Semantics
+       📏 SEMANTIC SPACING
        =============================== */
 
-    /* Primary controls */
-    --control-primary-bg: var(--color-primary-500);
-    --control-primary-text: var(--color-white);
-    --control-primary-border: var(--color-primary-500);
+    /* Layout Spacing */
+    --page-gutter: var(--space-4); /* Respiro lateral da página */
+    --section-gap: var(--space-12); /* Espaço entre seções verticais */
 
-    /* Secondary controls */
-    --control-secondary-bg: var(--color-secondary-500);
-    --control-secondary-text: var(--color-white);
-    --control-secondary-border: var(--color-secondary-500);
-
-    /* Status controls */
-    --control-success-bg: var(--color-success-500);
-    --control-success-text: var(--color-white);
-    --control-success-border: var(--color-success-500);
-
-    --control-warning-bg: var(--color-warning-500);
-    --control-warning-text: var(--color-white);
-    --control-warning-border: var(--color-warning-500);
-
-    --control-destructive-bg: var(--color-destructive-500);
-    --control-destructive-text: var(--color-white);
-    --control-destructive-border: var(--color-destructive-500);
-
-    --control-disabled-bg: var(--color-gray-200);
-    --control-disabled-text: var(--color-gray-500);
-
-    /* Radius borders */
-    --control-radius-none: var(--radius-none);
-    --control-radius-sm: var(--radius-sm);
-    --control-radius-default: var(--radius-default);
-    --control-radius-md: var(--radius-md);
-    --control-radius-lg: var(--radius-lg);
-    --control-radius-xl: var(--radius-xl);
-    --control-radius-2xl: var(--radius-2xl);
-    --control-radius-3xl: var(--radius-3xl);
-    --control-radius-full: var(--radius-full);
-
-    /* Physical scale controls */
-
-    /* Extra small */
-    --control-width-xs: var(--width-xs);
-    --control-height-xs: var(--height-xs);
-
-    /* Small */
-    --control-width-sm: var(--width-sm);
-    --control-height-sm: var(--height-sm);
-
-    /* Medium */
-    --control-width-md: var(--width-md);
-    --control-height-md: var(--height-md);
-
-    /* Large */
-    --control-width-lg: var(--width-lg);
-    --control-height-lg: var(--height-lg);
-
-    /* Extra large */
-    --control-width-xl: var(--width-xl);
-    --control-height-xl: var(--height-xl);
-
-    /* Full */
-    --control-width-full: var(--size-full);
-    --control-height-full: var(--size-full);
-
-    /* ===============================
-       🔄 Interaction Semantics
-    =============================== */
-
-    /* Hover Colors (1 nível acima na escala) */
-    --int-primary-hover: var(--color-primary-600);
-    --int-secondary-hover: var(--color-secondary-600);
-    --int-success-hover: var(--color-success-600);
-    --int-destructive-hover: var(--color-destructive-600);
-    --int-warning-hover: var(--color-warning-600);
-    --int-neutral-hover: var(--color-gray-800);
-
-    --int-ghost-hover: var(--color-gray-100);
-    --int-primary-ghost-hover: var(--color-primary-200);
-    --int-destructive-ghost-hover: var(--color-destructive-200);
-
-    /* Active Colors (2 níveis acima) */
-    --int-primary-active: var(--color-primary-700);
-    --int-secondary-active: var(--color-secondary-700);
-    --int-success-active: var(--color-success-700);
-    --int-destructive-active: var(--color-destructive-700);
-    --int-warning-active: var(--color-warning-700);
-    --int-neutral-active: var(--color-gray-900);
-
-    --int-ghost-active: var(--color-gray-200);
-    --int-link-active: var(--color-primary-700);
-    --int-primary-ghost-active: var(--color-primary-300);
-    --int-destructive-ghost-active: var(--color-destructive-300);
+    /* Component Spacing */
+    --container-padding: var(--space-4);
+    --stack-gap: var(--space-3); /* Espaço entre elementos em lista */
+    --inline-gap: var(--space-2); /* Espaço entre ícone e texto */
 }

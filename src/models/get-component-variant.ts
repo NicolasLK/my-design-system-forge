@@ -1,10 +1,9 @@
 export type ComponentVariant =
-    | 'default'
     | 'solid'
     | 'outline'
     | 'ghost'
-    | 'light'
     | 'link'
+    | 'raised'
     | string;
 
 /**
@@ -20,7 +19,7 @@ export function getComponentVariant(
     variant: ComponentVariant | string,
     prefix: string,
 ) {
-    if (!variant || variant === 'default') return '';
+    if (!variant || variant === '') return 'solid';
 
     const normalized = String(variant).trim();
 

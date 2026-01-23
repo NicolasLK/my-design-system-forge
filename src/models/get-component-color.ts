@@ -1,13 +1,13 @@
 export type ComponentColor =
-    | "default"
-    | "neutral"
-    | "primary"
-    | "secondary"
-    | "tertiary"
-    | "success"
-    | "warning"
-    | "destructive"
-    | "info"
+    | 'primary'
+    | 'secondary'
+    | 'tertiary'
+    | 'neutral'
+    | 'info'
+    | 'success'
+    | 'warning'
+    | 'destructive'
+    | 'info'
     | string;
 
 /**
@@ -23,16 +23,16 @@ export type ComponentColor =
  */
 export function getComponentColor(
     color: ComponentColor | string,
-    prefix: string
+    prefix: string,
 ): string {
-    if (!color || color === "default") return "";
+    if (!color || color === '') return 'primary';
 
     const normalized = String(color).trim();
 
     /**
      * Remove caracteres inválidos
      */
-    const safe = normalized.replace(/[^a-z0-9\-_]/gi, "");
+    const safe = normalized.replace(/[^a-z0-9\-_]/gi, '');
 
     /**
      * Retorna classe CSS: spinner-primary-600

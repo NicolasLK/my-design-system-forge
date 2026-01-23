@@ -24,7 +24,7 @@ export const ButtonDemo = () => {
                     </span>
                     <div className="u-flex u-items-start u-gap-2">
                         <Button
-                            size="small"
+                            size="sm"
                             visualVariant="outline"
                             className="u-text-transform-capitalize"
                         >
@@ -37,7 +37,7 @@ export const ButtonDemo = () => {
                             medium
                         </Button>
                         <Button
-                            size="large"
+                            size="lg"
                             visualVariant="outline"
                             className="u-text-transform-capitalize"
                         >

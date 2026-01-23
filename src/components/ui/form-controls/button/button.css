@@ -1,216 +1,136 @@
 /* ===============================
-   🔘 Button – Base
+   🔘 Button – Base e Estrutura
 =============================== */
 .btn {
     display: inline-flex;
     align-items: center;
     justify-content: center;
     gap: var(--space-2);
-
     height: var(--btn-height-md);
-    padding: var(--space-0) var(--space-4);
+    padding: 0 var(--space-4);
 
-    background-color: var(--btn-bg);
-    color: var(--btn-text);
-    border: 1px solid var(--btn-border);
+    /* Variáveis dinâmicas preenchidas pelas variantes */
+    background-color: var(--btn-bg, transparent);
+    color: var(--btn-text, inherit);
+    border: 1px solid var(--btn-border, transparent);
     border-radius: var(--btn-radius);
 
     font-weight: var(--weight-medium);
     font-size: var(--font-sm);
     line-height: var(--leading-none);
     cursor: pointer;
-
     white-space: nowrap;
-    user-select: none;
-    -webkit-tap-highlight-color: transparent;
-
-    transition: background-color 0.2s ease, color 0.2s ease,
-        border-color 0.2s ease, box-shadow 0.2s ease;
-
-    /* Reset de foco e acessibilidade */
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
     outline: none;
 }
-/* --------- */
 
 /* ===============================
-   🧠 Estados de Interação
+   ✨ Variantes Visuais (A alma do componente)
 =============================== */
-.btn:hover:not(:disabled) {
-    background-color: var(--btn-bg-hover);
-    color: var(--btn-hover-text);
-    border-color: var(--btn-border);
+
+/* Variante Solid (Padrão visual) */
+.btn-solid,
+.btn:not([class*='btn-outline']):not([class*='btn-ghost']):not(
+        [class*='btn-link']
+    ) {
+    --btn-bg: var(--btn-current-color);
+    --btn-text: var(--text-on-color);
+    --btn-border: var(--btn-current-color);
 }
 
-.btn:active:not(:disabled) {
-    background-color: var(--btn-bg-active);
+.btn-solid:hover:not(:disabled),
+.btn:not([class*='btn-outline']):not([class*='btn-ghost']):not(
+        [class*='btn-link']
+    ):hover:not(:disabled) {
+    --btn-bg: var(--btn-bg-hover);
+    --btn-border: var(--btn-bg-hover);
 }
 
-.btn:focus-visible {
-    box-shadow: 0 0 0 var(--btn-focus-ring-offset) var(--btn-focus-ring-color);
+/* Variante Outline */
+.btn-outline {
+    --btn-bg: transparent;
+    --btn-text: var(--btn-current-color);
+    --btn-border: var(--btn-current-color);
 }
 
-/* 🚫 Estado desabilitado */
-.btn:disabled {
-    background-color: var(--btn-disabled-bg);
-    color: var(--btn-disabled-text);
-    border-color: transparent;
-
-    cursor: not-allowed;
-    box-shadow: none;
-    filter: grayscale(0.6);
-    opacity: 1;
+.btn-outline:hover:not(:disabled) {
+    --btn-bg: var(--color-gray-50);
 }
 
-/* ---------------------- */
+/* Variante Ghost */
+.btn-ghost {
+    --btn-bg: transparent;
+    --btn-text: var(--btn-current-color);
+    --btn-border: transparent;
+}
+
+.btn-ghost:hover:not(:disabled) {
+    --btn-bg: var(--int-primary-ghost-hover, var(--color-gray-100));
+}
+
+/* Variante Link */
+.btn-link {
+    --btn-bg: transparent;
+    --btn-border: transparent;
+    --btn-text: var(--btn-current-color);
+    padding: 0;
+    height: auto;
+}
+
+.btn-link:hover:not(:disabled) {
+    text-decoration: underline;
+    --btn-text: var(--btn-bg-hover);
+}
 
 /* ===============================
-  📏 Tamanhos (Size Variants)
+   📏 Modificadores de Tamanho
 =============================== */
-
-/* Tamanho Pequeno (Small) */
 .btn-sm {
-    height: var(--control-height-sm);
+    height: var(--btn-height-sm);
     padding-inline: var(--space-inline-sm);
     font-size: var(--font-xs);
 }
 
-/* Tamanho Grande (Large) */
 .btn-lg {
     height: var(--btn-height-lg);
     padding-inline: var(--space-inline-lg);
     font-size: var(--font-base);
 }
 
-/* 🔁 Largura total */
 .btn-full {
-    width: var(--btn-width-full);
+    width: 100%;
 }
-/* -------------------------- */
-
-/* ===============================
-  🎨 Cores e Variantes
-=============================== */
-
-/* 🎨 Cores */
-.btn-primary {
-    --btn-bg: var(--color-primary-500);
-    --btn-bg-hover: var(--int-primary-hover);
-    --btn-bg-active: var(--int-primary-active);
-}
-
-.btn-secondary {
-    --btn-bg: var(--color-secondary-500);
-    --btn-bg-hover: var(--int-secondary-hover);
-    --btn-bg-active: var(--int-secondary-active);
-}
-
-.btn-success {
-    --btn-bg: var(--color-success-500);
-    --btn-bg-hover: var(--int-success-hover);
-    --btn-bg-active: var(--int-success-active);
-}
-
-.btn-destructive {
-    --btn-bg: var(--color-destructive-500);
-    --btn-bg-hover: var(--int-destructive-hover);
-    --btn-bg-active: var(--int-destructive-active);
-}
-
-.btn-warning {
-    --btn-bg: var(--color-warning-500);
-    --btn-bg-hover: var(--int-warning-hover);
-    --btn-bg-active: var(--color-warning-700);
-}
-
-.btn-neutral {
-    --btn-bg: var(--color-gray-500);
-    --btn-bg-hover: var(--int-neutral-hover);
-    --btn-bg-active: var(--int-neutral-active);
-}
-
-/* ✨ Variantes visuais */
-.btn-outline {
-    --btn-border: var(--btn-current-color);
-    --btn-text: var(--btn-current-color);
-    --btn-bg: transparent;
-    --btn-bg-hover: var(--color-gray-50);
-    --btn-hover-text: var(--btn-current-color);
-}
-
-.btn-ghost {
-    --btn-bg: transparent;
-    --btn-border: transparent;
-    --btn-text: var(--btn-current-color);
-}
-
-.btn-primary.btn-ghost {
-    --btn-bg-hover: var(--int-primary-ghost-hover);
-}
-
-.btn-link {
-    --btn-bg: transparent;
-    --btn-bg-hover: transparent;
-    --btn-border: transparent;
-
-    --btn-text: var(--btn-current-color);
-    --btn-hover-text: var(--int-primary-hover);
-
-    padding: var(--space-0);
-    height: auto;
-    font-size: var(--font-sm);
-    text-decoration: none;
-}
-
-.btn-link:hover:not(:disabled) {
-    text-decoration: underline;
-}
-
-/* ===============================
-   🔘 Botão com Ícone
-=============================== */
-.btn-with-icon {
-    display: inline-flex;
-    align-items: center;
-    gap: var(--space-2);
-}
-
-.btn-with-icon > *:first-child {
-    display: inline-flex;
-    align-items: center;
-}
-
-/* ===============================
-   🔘 Icon-only Button
-=============================== */
-.btn-icon-only {
-    padding: var(--space-0);
-    width: var(--btn-height-md);
-    min-width: var(--btn-height-md);
-    height: var(--btn-height-md);
-}
-
-/* Sizes */
-.btn-sm.btn-icon-only {
-    width: var(--btn-height-sm);
-    min-width: var(--btn-height-sm);
-    height: var(--btn-height-sm);
-}
-
-.btn-lg.btn-icon-only {
-    width: var(--btn-height-lg);
-    min-width: var(--btn-height-lg);
-    height: var(--btn-height-lg);
-}
-
 .btn-full-radius {
     border-radius: var(--control-radius-full);
 }
 
-/* 🧠 Responsividade */
-@media (max-width: var(--screen-sm)) {
-    .btn {
-        width: var(--btn-width-full);
-        justify-content: center;
-        font-size: var(--font-sm);
-    }
+/* ===============================
+   🔘 Estados Globais
+=============================== */
+.btn:focus-visible {
+    box-shadow: 0 0 0 var(--btn-focus-ring-offset) var(--btn-focus-ring-color);
+}
+
+.btn:disabled {
+    background-color: var(--btn-disabled-bg);
+    color: var(--btn-disabled-text);
+    border-color: transparent;
+    cursor: not-allowed;
+    filter: none;
+    opacity: 0.6;
+}
+
+/* ===============================
+   🔘 Icon Management
+=============================== */
+.btn-icon-only {
+    padding: 0;
+    width: var(--btn-height-md);
+}
+
+.btn-sm.btn-icon-only {
+    width: var(--btn-height-sm);
+}
+.btn-lg.btn-icon-only {
+    width: var(--btn-height-lg);
 }
