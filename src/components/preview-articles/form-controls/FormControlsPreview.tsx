@@ -1,4 +1,5 @@
 import { ButtonDemo } from '@/components/demos/ButtonDemo';
+import { InputDemo } from '@/components/demos/InputDemo';
 import type { FormControlsComponentPreviewKey } from '@/typings/preview-articles.types';
 import './form-controls-preview.css';
 
@@ -16,6 +17,7 @@ export const FormControlsPreview = ({
 
                 <div className="form-controls-preview-demo">
                     {component === 'button' && <ButtonDemo />}
+                    {component === 'input' && <InputDemo />}
                 </div>
             </div>
         </>

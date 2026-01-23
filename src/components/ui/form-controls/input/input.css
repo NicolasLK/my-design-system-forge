@@ -1,7 +1,7 @@
 .input-container {
     display: flex;
     flex-direction: column;
-    gap: var(--space-1);
+    gap: var(--input-container-gap);
 }
 
 /* 🔁 Largura total */
@@ -12,10 +12,10 @@
 /* Label */
 .input-label {
     display: block;
-    font-size: var(--font-xs);
-    font-weight: var(--weight-medium);
-    color: var(--color-gray-700);
-    padding-left: var(--space-1);
+    font-size: var(--input-label-font-size);
+    font-weight: var(--input-label-font-weight);
+    color: var(--input-label-color);
+    padding-left: var(--input-label-padding-left);
 }
 
 /* Wrapper (Contém campo e ícones) */
@@ -25,11 +25,13 @@
     position: relative;
     width: 100%;
 
-    border: 1px solid var(--color-gray-300);
-    border-radius: var(--radius-md);
-    background: var(--color-white);
+    border: var(--input-border-width) solid var(--input-border-color);
+    border-radius: var(--input-border-radius);
+    background: var(--input-background-color);
 
-    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    transition:
+        border-color 0.2s ease,
+        box-shadow 0.2s ease;
 }
 
 /* Campo de Input (O elemento <input> real) */
@@ -39,14 +41,14 @@
     min-width: 0;
 
     /* Paddings e Altura Padrão (Medium) */
-    padding: var(--space-2) var(--space-3);
+    padding: var(--input-padding-vertical) var(--input-padding-horizontal);
 
     border: none;
     background: transparent;
 
-    font-size: var(--font-sm);
-    line-height: var(--leading-tight);
-    color: var(--color-text-default);
+    font-size: var(--input-font-size);
+    line-height: var(--input-line-height);
+    color: var(--input-text-color);
 
     /* Reseta estilos do browser */
     -webkit-appearance: none;
@@ -59,39 +61,39 @@
 }
 
 .input-field::placeholder {
-    color: var(--color-gray-500);
+    color: var(--input-placeholder-color);
 }
 
 /* Estados (Foco, Erro, Desabilitado) */
 .input-wrapper:focus-within {
     outline: none;
-    border-color: var(--color-primary-500);
-    box-shadow: 0 0 0 2px var(--color-primary-200);
+    border-color: var(--input-border-color-focus);
+    box-shadow: var(--input-box-shadow-focus);
 }
 
 /* 🚫 Estado desabilitado */
 .input-container[data-disabled='true'] .input-wrapper,
 .input-field:disabled {
-    opacity: 0.6;
+    opacity: var(--input-disabled-opacity);
     cursor: not-allowed;
 }
 
 /* ❌ Estado de Erro */
 .input-error .input-wrapper {
-    border-color: var(--color-destructive-500);
+    border-color: var(--input-border-color-error);
 }
 
 .input-error .input-wrapper:focus-within {
-    box-shadow: 0 0 0 2px var(--color-destructive-200);
+    box-shadow: var(--input-box-shadow-error-focus);
 }
 
 /* ❌ Mensagem de Erro */
 .input-error-message {
     display: block;
-    margin-top: var(--space-0);
-    color: var(--color-destructive-500);
-    font-size: var(--font-xs);
-    padding-left: var(--space-1);
+    margin-top: var(--input-error-message-margin-top);
+    color: var(--input-error-message-color);
+    font-size: var(--input-error-message-font-size);
+    padding-left: var(--input-error-message-padding-left);
 }
 
 /* Ícones (Prefix / Suffix) */
@@ -99,42 +101,44 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    color: var(--color-gray-500);
+    color: var(--input-icon-color);
     pointer-events: none;
-    font-size: var(--font-sm);
+    font-size: var(--input-icon-font-size);
 }
 
 .input-prefix {
-    padding-left: var(--space-3);
+    padding-left: var(--input-icon-padding-left);
 }
 
 .input-suffix {
-    padding-right: var(--space-3);
+    padding-right: var(--input-icon-padding-right);
 }
 
 .input-wrapper.input-has-prefix .input-field {
-    padding-left: var(--space-2);
+    padding-left: var(--input-padding-horizontal);
 }
 
 .input-wrapper.input-has-suffix .input-field {
-    padding-right: var(--space-2);
+    padding-right: var(--input-padding-horizontal);
 }
 
 /* 📏 Tamanhos */
 /* Small */
 .input-container.input-sm .input-field {
-    padding: var(--space-1) var(--space-2);
-    font-size: var(--font-xs);
+    padding: var(--input-padding-vertical-small)
+        var(--input-padding-horizontal-small);
+    font-size: var(--input-font-size-small);
 }
 .input-container.input-sm .input-icon {
-    font-size: var(--font-xs);
+    font-size: var(--input-icon-font-size-small);
 }
 
 /* Large */
 .input-container.input-lg .input-field {
-    padding: var(--space-3) var(--space-5);
-    font-size: var(--font-base);
+    padding: var(--input-padding-vertical-large)
+        var(--input-padding-horizontal-large);
+    font-size: var(--input-font-size-large);
 }
 .input-container.input-lg .input-icon {
-    font-size: var(--font-base);
+    font-size: var(--input-icon-font-size-large);
 }

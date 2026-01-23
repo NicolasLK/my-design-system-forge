@@ -2,7 +2,6 @@ import { useState } from 'react';
 // ==== Components - Base Essentials ====
 import { Button } from '@/components/ui/form-controls/button';
 import { Checkbox } from '@/components/ui/form-controls/checkbox';
-import { Input } from '@/components/ui/form-controls/input';
 import { Radio } from '@/components/ui/form-controls/radio';
 import { Switch } from '@/components/ui/form-controls/switch';
 import { Textarea } from '@/components/ui/form-controls/textarea';
@@ -275,42 +274,6 @@ export default function PreviewPage() {
                         </Link>
                     </div>
                 </article>
-            </section>
-
-            <section style={sectionStyle}>
-                <h3>Inputs</h3>
-                <div style={divStyle}>
-                    {/* Input Padrão (Medium) */}
-                    <Input
-                        label="E-mail"
-                        placeholder="usuario@exemplo.com"
-                        type="email"
-                    />
-
-                    {/* Input Grande */}
-                    <Input
-                        label="Senha"
-                        placeholder="Digite sua senha"
-                        inputSize="large"
-                        type="password"
-                    />
-
-                    {/* Input de Erro com Mensagem */}
-                    <Input
-                        label="CEP"
-                        placeholder="99999-999"
-                        inputSize="small"
-                        error={true}
-                        errorMessage="O CEP informado é inválido."
-                    />
-
-                    {/* Input Desabilitado */}
-                    <Input
-                        label="Telefone"
-                        placeholder="Apenas para administradores"
-                        disabled={true}
-                    />
-                </div>
             </section>
 
             <section style={sectionStyle}>

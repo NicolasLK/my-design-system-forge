@@ -1,53 +1,54 @@
-import { forwardRef, type InputHTMLAttributes, type ReactNode } from 'react'
-import { getComponentSize, type ComponentSize } from '@/models/get-component-size'
-import { genUid } from '@/models/gen-uid'
-import { cn } from '@/lib/utils/cn'
-import './input.css'
-
+import { cn } from '@/lib/utils/cn';
+import { genUid } from '@/models/gen-uid';
+import {
+    getComponentSize,
+    type ComponentSize,
+} from '@/models/get-component-size';
+import { forwardRef, type InputHTMLAttributes, type ReactNode } from 'react';
+import './input.css';
 
 interface IInputProps extends InputHTMLAttributes<HTMLInputElement> {
     /** Texto do rótulo */
-    label: string
+    label: string;
     /** Placeholder (texto de sugestão) */
-    placeholder?: string
+    placeholder?: string;
     /** Opcional: Define o tamanho. 'medium' será o padrão */
-    inputSize?: ComponentSize
-    /** Opcional: Classe aplicada diretamente no <input> */
-    inputClassName?: string
+    inputSize?: ComponentSize;
     /** Opcional: Ativa o estado de erro */
-    error?: boolean
+    error?: boolean;
     /** Opcional: Desabilita o campo */
-    disabled?: boolean
+    disabled?: boolean;
     /** Opcional: fullWidth programatico */
-    fullWidth?: boolean
+    fullWidth?: boolean;
     /** Opcional: mensagem de erro */
-    errorMessage?: string
+    errorMessage?: string;
     /** Opcional: Tipo do input (text, email, password, etc.) */
-    type?: string
+    type?: string;
     /** Opcional: Ícone de prefixo (pode ser um elemento React) */
-    iconPrefix?: ReactNode
+    iconPrefix?: ReactNode;
     /** Opcional: Ícone de sufixo (pode ser um elemento React)*/
-    iconSuffix?: ReactNode
+    iconSuffix?: ReactNode;
 }
 
 export const Input = forwardRef<HTMLInputElement, IInputProps>(
-    ({
-        label,
-        placeholder,
-        inputSize = 'medium',
-        inputClassName,
-        error = false,
-        disabled = false,
-        fullWidth = false,
-        errorMessage,
-        type = 'text',
-        className,
-        id: externalId,
-        iconPrefix,
-        iconSuffix,
-        ...props
-    }, ref) => {
-
+    (
+        {
+            label,
+            placeholder,
+            inputSize = 'medium',
+            error = false,
+            disabled = false,
+            fullWidth = false,
+            errorMessage,
+            type = 'text',
+            className,
+            id: externalId,
+            iconPrefix,
+            iconSuffix,
+            ...props
+        },
+        ref,
+    ) => {
         /**
          * Gera um ID único apenas se não houver um ID externo
          */
@@ -60,7 +61,7 @@ export const Input = forwardRef<HTMLInputElement, IInputProps>(
             'input-field',
             sizeClass,
             errorClass,
-            className
+            className,
         );
 
         // Define se há ícones para adicionar classes de padding
@@ -69,21 +70,22 @@ export const Input = forwardRef<HTMLInputElement, IInputProps>(
 
         return (
             <>
-                <div data-slot="input-container"
+                <div
+                    data-slot="input-container"
                     className={cn(
-                        "input-container",
+                        'input-container',
                         fullWidth && 'input-full',
                         errorClass,
                         sizeClass,
-                    )}>
-
-                    {type === "file" ? (
+                    )}
+                >
+                    {type === 'file' ? (
                         <input
                             id={inputId}
                             ref={ref}
                             type="file"
                             data-slot="input-field"
-                            className={cn(inputClassName)}
+                            className={cn(inputClasses)}
                             disabled={disabled}
                             {...props}
                         />
@@ -91,46 +93,52 @@ export const Input = forwardRef<HTMLInputElement, IInputProps>(
                         <>
                             {/* 1. Rótulo (Label) */}
                             {label && (
-                                <label className="input-label" htmlFor={inputId}>
+                                <label
+                                    className="input-label"
+                                    htmlFor={inputId}
+                                >
                                     {label}
                                 </label>
                             )}
 
                             {/* 2. Wrapper do Input com Ícones */}
-                            <div data-slot="input-wrapper" className={cn(
-                                "input-wrapper",
-                                hasPrefix && "input-has-prefix",
-                                hasSuffix && "input-has-suffix",
-                            )}>
-                                {hasPrefix &&
+                            <div
+                                data-slot="input-wrapper"
+                                className={cn(
+                                    'input-wrapper',
+                                    hasPrefix && 'input-has-prefix',
+                                    hasSuffix && 'input-has-suffix',
+                                )}
+                            >
+                                {hasPrefix && (
                                     <span
                                         data-slot="input-prefix"
                                         className="input-icon input-prefix"
                                     >
                                         {iconPrefix}
                                     </span>
-                                }
+                                )}
 
                                 <input
                                     id={inputId}
                                     ref={ref}
                                     type={type}
                                     data-slot="input-field"
-                                    className={cn(inputClasses, inputClassName)}
+                                    className={cn(inputClasses)}
                                     placeholder={placeholder}
                                     disabled={disabled}
                                     aria-invalid={error}
                                     {...props}
                                 />
 
-                                {hasSuffix &&
+                                {hasSuffix && (
                                     <span
                                         data-slot="input-suffix"
                                         className="input-icon input-suffix"
                                     >
                                         {iconSuffix}
                                     </span>
-                                }
+                                )}
                             </div>
                         </>
                     )}
@@ -146,6 +154,6 @@ export const Input = forwardRef<HTMLInputElement, IInputProps>(
                     )}
                 </div>
             </>
-        )
-    }
-)
+        );
+    },
+);

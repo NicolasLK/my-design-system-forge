@@ -49,7 +49,9 @@
                 "dbaeumer.vscode-eslint",
                 "kamikillerto.vscode-colorize",
                 "ms-ceintl.vscode-language-pack-pt-br",
-                "Zignd.html-css-class-completion"
+                "Zignd.html-css-class-completion",
+                "GitHub.copilot",
+                "GitHub.copilot-chat"
             ]
         }
     },
