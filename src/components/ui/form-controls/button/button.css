@@ -5,110 +5,33 @@
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    gap: var(--space-2);
-    height: var(--btn-height-md);
-    padding: 0 var(--space-4);
 
-    /* Variáveis dinâmicas preenchidas pelas variantes */
+    gap: var(--space-2);
+    padding: var(--space-2) var(--space-4);
+
     background-color: var(--btn-bg, transparent);
     color: var(--btn-text, inherit);
     border: 1px solid var(--btn-border, transparent);
+
     border-radius: var(--btn-radius);
 
-    font-weight: var(--weight-medium);
     font-size: var(--font-sm);
+    font-weight: var(--weight-medium);
     line-height: var(--leading-none);
+
     cursor: pointer;
     white-space: nowrap;
-    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-    outline: none;
+    transition: all 0.2s ease;
 }
 
-/* ===============================
-   ✨ Variantes Visuais (A alma do componente)
-=============================== */
-
-/* Variante Solid (Padrão visual) */
-.btn-solid,
-.btn:not([class*='btn-outline']):not([class*='btn-ghost']):not(
-        [class*='btn-link']
-    ) {
-    --btn-bg: var(--btn-current-color);
-    --btn-text: var(--text-on-color);
-    --btn-border: var(--btn-current-color);
+.btn svg {
+    pointer-events: none;
+    flex-shrink: 0;
 }
 
-.btn-solid:hover:not(:disabled),
-.btn:not([class*='btn-outline']):not([class*='btn-ghost']):not(
-        [class*='btn-link']
-    ):hover:not(:disabled) {
-    --btn-bg: var(--btn-bg-hover);
-    --btn-border: var(--btn-bg-hover);
-}
-
-/* Variante Outline */
-.btn-outline {
-    --btn-bg: transparent;
-    --btn-text: var(--btn-current-color);
-    --btn-border: var(--btn-current-color);
-}
-
-.btn-outline:hover:not(:disabled) {
-    --btn-bg: var(--color-gray-50);
-}
-
-/* Variante Ghost */
-.btn-ghost {
-    --btn-bg: transparent;
-    --btn-text: var(--btn-current-color);
-    --btn-border: transparent;
-}
-
-.btn-ghost:hover:not(:disabled) {
-    --btn-bg: var(--int-primary-ghost-hover, var(--color-gray-100));
-}
-
-/* Variante Link */
-.btn-link {
-    --btn-bg: transparent;
-    --btn-border: transparent;
-    --btn-text: var(--btn-current-color);
-    padding: 0;
-    height: auto;
-}
-
-.btn-link:hover:not(:disabled) {
-    text-decoration: underline;
-    --btn-text: var(--btn-bg-hover);
-}
-
-/* ===============================
-   📏 Modificadores de Tamanho
-=============================== */
-.btn-sm {
-    height: var(--btn-height-sm);
-    padding-inline: var(--space-inline-sm);
-    font-size: var(--font-xs);
-}
-
-.btn-lg {
-    height: var(--btn-height-lg);
-    padding-inline: var(--space-inline-lg);
-    font-size: var(--font-base);
-}
-
-.btn-full {
-    width: 100%;
-}
-.btn-full-radius {
-    border-radius: var(--control-radius-full);
-}
-
-/* ===============================
-   🔘 Estados Globais
-=============================== */
-.btn:focus-visible {
-    box-shadow: 0 0 0 var(--btn-focus-ring-offset) var(--btn-focus-ring-color);
+.btn svg:not([class*='size-']) {
+    width: clamp(1rem, 1.5vw, 1.25rem);
+    height: clamp(1rem, 1.5vw, 1.25rem);
 }
 
 .btn:disabled {
@@ -117,20 +40,126 @@
     border-color: transparent;
     cursor: not-allowed;
     filter: none;
-    opacity: 0.6;
+    opacity: 0.8;
+}
+
+.btn:focus-visible {
+    box-shadow: 0 0 0 var(--btn-focus-ring-offset) var(--btn-focus-ring-color);
+    outline: none;
+}
+
+/* ===============================
+   ✨ Variantes Visuais (A alma do componente)
+=============================== */
+
+/* Variante Solid (Padrão visual) */
+.btn-solid {
+    --btn-bg: var(--btn-current-color);
+    --btn-text: var(--text-on-color);
+    --btn-border: var(--btn-current-color);
+}
+
+.btn-solid:hover:not(:disabled) {
+    --btn-bg: var(--btn-bg-hover);
+    --btn-border: var(--btn-bg-hover);
+}
+
+/* Variante Outline */
+.btn-outline {
+    background: transparent;
+    color: var(--btn-current-color);
+    border: 1px solid var(--btn-current-color);
+}
+
+.btn-outline:hover:not(:disabled) {
+    background: var(--color-gray-50);
+}
+
+/* Variante Ghost */
+.btn-ghost {
+    background: transparent;
+    color: var(--btn-current-color);
+    border-color: transparent;
+}
+
+.btn-ghost:hover:not(:disabled) {
+    background: var(--int-primary-ghost-hover, var(--color-gray-100));
+}
+
+/* Variante Link */
+.btn-link {
+    height: auto;
+    background: transparent;
+    border: none;
+    color: var(--btn-current-color);
+    padding: var(--space-0);
+}
+
+.btn-link:hover:not(:disabled) {
+    text-decoration: underline;
+}
+
+/* ===============================
+   📏 Modificadores de Tamanho
+=============================== */
+.btn-sm {
+    height: var(--btn-height-sm);
+    padding: var(--space-0) var(--space-inline-sm);
+    font-size: var(--font-xs);
+    gap: var(--space-1_5);
+}
+
+.btn-lg {
+    height: var(--btn-height-lg);
+    padding: var(--space-0) var(--space-inline-lg);
+    font-size: var(--font-base);
+}
+
+.btn-full {
+    width: var(--btn-width-full);
+}
+.btn-full-radius {
+    border-radius: var(--btn-radius-full);
 }
 
 /* ===============================
    🔘 Icon Management
 =============================== */
-.btn-icon-only {
-    padding: 0;
-    width: var(--btn-height-md);
+.btn-icon-xs {
+    width: var(--btn-width-icon-xs);
+    height: var(--btn-height-icon-xs);
 }
 
-.btn-sm.btn-icon-only {
-    width: var(--btn-height-sm);
+.btn-icon-sm {
+    width: var(--btn-width-icon-sm);
+    height: var(--btn-height-icon-sm);
 }
-.btn-lg.btn-icon-only {
-    width: var(--btn-height-lg);
+
+.btn-icon {
+    width: var(--btn-width-icon);
+    height: var(--btn-height-icon);
+}
+
+.btn-icon-lg {
+    width: var(--btn-width-icon-lg);
+    height: var(--btn-height-icon-lg);
+}
+
+.btn-icon-xs,
+.btn-icon-sm,
+.btn-icon,
+.btn-icon-lg {
+    padding: var(--space-0);
+}
+
+.btn-with-icon {
+    gap: var(--space-2);
+}
+
+.btn-sm.btn-with-icon {
+    gap: var(--space-1_5);
+}
+
+.btn-lg.btn-with-icon {
+    gap: var(--space-3);
 }

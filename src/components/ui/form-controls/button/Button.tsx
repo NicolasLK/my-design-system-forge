@@ -17,9 +17,9 @@ import './button.css';
 
 interface IButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
     /** A variante define a classe CSS e o texto. */
-    colorVariant?: ComponentColor;
+    color?: ComponentColor;
     /** A variante visual (default/sólido é o padrão). */
-    visualVariant?: ComponentVariant;
+    variant?: ComponentVariant;
     /** A prop para odefinir o tamanho. 'md' é o padrão conforme o tipo. */
     size?: ComponentSize;
     /** Opcional: define se o botão deve estar desabilitado. */
@@ -33,8 +33,8 @@ interface IButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 }
 
 export const Button = ({
-    colorVariant = 'primary',
-    visualVariant = 'solid',
+    color = 'primary',
+    variant = 'solid',
     size = 'md',
     disabled = false,
     fullWidth = false,
@@ -46,12 +46,12 @@ export const Button = ({
     /**
      * Classe de Cor (ex: btn-primary)
      */
-    const colorClass = getComponentColor(colorVariant, 'btn');
+    const colorClass = getComponentColor(color, 'btn');
 
     /**
-     * Classe visual: default (solid), outline, ghost, text
+     * Classe visual: solid (default), outline, ghost, text
      */
-    const visualClass = getComponentVariant(visualVariant, 'btn');
+    const visualClass = getComponentVariant(variant, 'btn');
 
     /**
      * Classe de Tamanho (ex: btn-sm)
@@ -68,15 +68,12 @@ export const Button = ({
      */
     const hasIcon = isIconElement(content[0]);
 
-    const isIconOnly = hasIcon && content.filter(Boolean).length === 1;
-
     const buttonClasses = cn(
         'btn',
         colorClass,
         visualClass,
         sizeClass,
         hasIcon && 'btn-with-icon',
-        isIconOnly && 'btn-icon-only',
         fullWidth && 'btn-full',
         fullRadius && 'btn-full-radius',
         className,

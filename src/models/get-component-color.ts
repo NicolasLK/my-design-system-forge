@@ -7,7 +7,6 @@ export type ComponentColor =
     | 'success'
     | 'warning'
     | 'destructive'
-    | 'info'
     | string;
 
 /**

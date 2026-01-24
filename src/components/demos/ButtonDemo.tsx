@@ -25,20 +25,20 @@ export const ButtonDemo = () => {
                     <div className="u-flex u-items-start u-gap-2">
                         <Button
                             size="sm"
-                            visualVariant="outline"
+                            variant="outline"
                             className="u-text-transform-capitalize"
                         >
                             small
                         </Button>
                         <Button
-                            visualVariant="outline"
+                            variant="outline"
                             className="u-text-transform-capitalize"
                         >
                             medium
                         </Button>
                         <Button
                             size="lg"
-                            visualVariant="outline"
+                            variant="outline"
                             className="u-text-transform-capitalize"
                         >
                             large
@@ -54,7 +54,7 @@ export const ButtonDemo = () => {
                             outline:
                         </span>
                         <Button
-                            visualVariant="outline"
+                            variant="outline"
                             className="u-text-transform-capitalize"
                         >
                             outline
@@ -70,7 +70,7 @@ export const ButtonDemo = () => {
                             secondary:
                         </span>
                         <Button
-                            colorVariant="secondary"
+                            color="secondary"
                             className="u-text-transform-capitalize"
                         >
                             secondary
@@ -87,13 +87,13 @@ export const ButtonDemo = () => {
                         </span>
                         <div className="u-flex u-items-start u-gap-2">
                             <Button
-                                visualVariant="link"
+                                variant="link"
                                 className="u-text-transform-capitalize"
                             >
                                 link
                             </Button>
                             <Button
-                                visualVariant="ghost"
+                                variant="ghost"
                                 className="u-text-transform-capitalize"
                             >
                                 ghost
@@ -111,13 +111,13 @@ export const ButtonDemo = () => {
                         </span>
                         <div className="u-flex u-items-start u-gap-2">
                             <Button
-                                colorVariant="success"
+                                color="success"
                                 className="u-text-transform-capitalize"
                             >
                                 success
                             </Button>
                             <Button
-                                colorVariant="destructive"
+                                color="destructive"
                                 className="u-text-transform-capitalize"
                             >
                                 destructive
@@ -133,7 +133,16 @@ export const ButtonDemo = () => {
                         <span className="u-text-sm u-text-gray u-text-transform-capitalize">
                             icon:
                         </span>
-                        <Button>
+                        <Button size="icon-xs">
+                            <CogIcon />
+                        </Button>
+                        <Button size="icon-sm">
+                            <CogIcon />
+                        </Button>
+                        <Button size="icon">
+                            <CogIcon />
+                        </Button>
+                        <Button size="icon-lg">
                             <CogIcon />
                         </Button>
                     </div>
@@ -141,6 +150,22 @@ export const ButtonDemo = () => {
                 {/* ------ */}
                 <Divider spacing="small" />
                 {/* ------ */}
+                <div className="u-flex u-flex-col u-items-start u-gap-6">
+                    <div className="u-flex u-gap-4">
+                        <span className="u-text-sm u-text-gray u-text-transform-capitalize">
+                            with icon:
+                        </span>
+                        <Button className="u-text-transform-capitalize">
+                            <CogIcon /> settings
+                        </Button>
+                        <Button
+                            className="u-text-transform-capitalize"
+                            disabled
+                        >
+                            <CogIcon /> settings
+                        </Button>
+                    </div>
+                </div>
             </div>
         </>
     );

@@ -1,18 +1,39 @@
 /* Design Tokens - Button */
 :root {
     --btn-radius: var(--radius-md);
-    --control-radius-full: var(--radius-full);
-    --btn-height-md: var(--height-md);
-    --btn-height-sm: var(--height-sm);
-    --btn-height-lg: var(--height-lg);
+    --btn-radius-full: var(--radius-full);
+
     --space-inline-sm: var(--space-3);
     --space-inline-lg: var(--space-6);
-    --btn-width-full: 100%;
 
+    /* Dimensions */
+    --btn-width-sm: var(--width-sm);
+    --btn-height-sm: var(--height-sm);
+
+    --btn-width-lg: var(--width-lg);
+    --btn-height-lg: var(--height-lg);
+
+    --btn-width-full: var(--size-full);
+    --btn-height-full: var(--size-full);
+
+    /* Icon Dimensions */
+    --btn-width-icon-xs: var(--width-xs);
+    --btn-height-icon-xs: var(--height-xs);
+
+    --btn-width-icon: var(--width-md);
+    --btn-height-icon: var(--height-md);
+
+    --btn-width-icon-sm: var(--width-sm);
+    --btn-height-icon-sm: var(--height-sm);
+
+    --btn-width-icon-lg: var(--width-lg);
+    --btn-height-icon-lg: var(--height-lg);
+
+    /* Accessibility */
     --btn-focus-ring-offset: 2px;
-    --btn-focus-ring-color: var(--color-primary-300);
-    --btn-disabled-bg: var(--color-gray-200);
-    --btn-disabled-text: var(--color-gray-500);
+    --btn-focus-ring-color: var(--color-primary-400);
+    --btn-disabled-bg: var(--color-gray-300);
+    --btn-disabled-text: var(--color-gray-600);
 }
 
 /* ===============================
@@ -28,24 +49,29 @@
 .btn-secondary {
     --btn-current-color: var(--color-secondary-500);
     --btn-bg-hover: var(--color-secondary-600);
+    --int-secondary-ghost-hover: var(--color-secondary-50);
 }
 
 .btn-success {
     --btn-current-color: var(--status-success);
     --btn-bg-hover: var(--color-success-600);
+    --int-success-ghost-hover: var(--color-success-50);
 }
 
 .btn-destructive {
     --btn-current-color: var(--status-error);
     --btn-bg-hover: var(--color-destructive-600);
+    --int-destructive-ghost-hover: var(--color-destructive-50);
 }
 
 .btn-warning {
     --btn-current-color: var(--status-warning);
     --btn-bg-hover: var(--color-warning-600);
+    --int-warning-ghost-hover: var(--color-warning-50);
 }
 
 .btn-neutral {
     --btn-current-color: var(--color-gray-500);
     --btn-bg-hover: var(--color-gray-600);
+    --int-neutral-ghost-hover: var(--color-gray-50);
 }
