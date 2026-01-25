@@ -1,51 +1,11 @@
 /* Design Tokens - Input */
+:root {
+    --input-border: var(--border-default);
+    --input-radius: var(--radius-md);
 
-root: {
-    /* Cores */
-    --input-border-color: var(--color-gray-300);
-    --input-border-color-focus: var(--color-primary-500);
-    --input-border-color-error: var(--color-destructive-500);
-    --input-background-color: var(--color-white);
-    --input-text-color: var(--color-text-default);
-    --input-placeholder-color: var(--color-gray-500);
-    --input-label-color: var(--color-gray-700);
-    --input-error-message-color: var(--color-destructive-500);
+    --input-placeholder-color: var(--text-muted);
 
-    /* Espaçamentos */
-    --input-container-gap: var(--space-1);
-    --input-padding-vertical: var(--space-2);
-    --input-padding-horizontal: var(--space-3);
-    --input-padding-vertical-small: var(--space-1);
-    --input-padding-horizontal-small: var(--space-2);
-    --input-padding-vertical-large: var(--space-3);
-    --input-padding-horizontal-large: var(--space-5);
-    --input-label-padding-left: var(--space-1);
-    --input-error-message-margin-top: var(--space-0);
-    --input-error-message-padding-left: var(--space-1);
-    --input-icon-padding-left: var(--space-3);
-    --input-icon-padding-right: var(--space-3);
-
-    /* Bordas e Sombras */
-    --input-border-radius: var(--radius-md);
-    --input-border-width: 1px;
-    --input-box-shadow-focus: 0 0 0 2px var(--color-primary-200);
-    --input-box-shadow-error-focus: 0 0 0 2px var(--color-destructive-200);
-
-    /* Tipografia */
-    --input-font-size: var(--font-sm);
-    --input-font-size-small: var(--font-xs);
-    --input-font-size-large: var(--font-base);
-    --input-line-height: var(--leading-tight);
-    --input-label-font-size: var(--font-xs);
-    --input-label-font-weight: var(--weight-medium);
-    --input-error-message-font-size: var(--font-xs);
-
-    /* Ícones */
-    --input-icon-color: var(--color-gray-500);
-    --input-icon-font-size: var(--font-sm);
-    --input-icon-font-size-small: var(--font-xs);
-    --input-icon-font-size-large: var(--font-base);
-
-    /* Estados */
-    --input-disabled-opacity: 0.6;
+    --input-focus-ring-offset: 0.125rem;
+    --input-focus-ring-color: var(--color-primary-400);
+    --input-border-error: var(--color-destructive-500);
 }

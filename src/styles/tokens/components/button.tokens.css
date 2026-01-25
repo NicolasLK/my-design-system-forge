@@ -1,5 +1,7 @@
 /* Design Tokens - Button */
 :root {
+    --btn-border: transparent;
+
     --btn-radius: var(--radius-md);
     --btn-radius-full: var(--radius-full);
 
@@ -30,7 +32,7 @@
     --btn-height-icon-lg: var(--height-lg);
 
     /* Accessibility */
-    --btn-focus-ring-offset: 2px;
+    --btn-focus-ring-offset: 0.125rem;
     --btn-focus-ring-color: var(--color-primary-400);
     --btn-disabled-bg: var(--color-gray-300);
     --btn-disabled-text: var(--color-gray-600);

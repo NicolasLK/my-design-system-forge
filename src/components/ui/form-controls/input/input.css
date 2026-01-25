@@ -1,34 +1,27 @@
 .input-container {
     display: flex;
     flex-direction: column;
-    gap: var(--input-container-gap);
-}
-
-/* 🔁 Largura total */
-.input-full {
-    width: 100%;
+    gap: var(--space-3);
 }
 
 /* Label */
 .input-label {
-    display: block;
-    font-size: var(--input-label-font-size);
-    font-weight: var(--input-label-font-weight);
-    color: var(--input-label-color);
-    padding-left: var(--input-label-padding-left);
+    font-size: var(--font-sm);
+    font-weight: var(--weight-medium);
+    color: var(--text-main);
+    padding-left: var(--space-0_5);
+    /* margin-bottom: var(--space-1_5); */
+    text-align: left;
 }
 
-/* Wrapper (Contém campo e ícones) */
+/* Wrapper (Componente do Input + Ícones) */
 .input-wrapper {
     display: flex;
     align-items: center;
     position: relative;
-    width: 100%;
-
-    border: var(--input-border-width) solid var(--input-border-color);
-    border-radius: var(--input-border-radius);
-    background: var(--input-background-color);
-
+    width: var(--size-full);
+    padding: var(--space-0_5);
+    background: transparent;
     transition:
         border-color 0.2s ease,
         box-shadow 0.2s ease;
@@ -37,63 +30,30 @@
 /* Campo de Input (O elemento <input> real) */
 .input-field {
     flex: 1;
-    width: 100%;
+    width: var(--size-full);
     min-width: 0;
-
-    /* Paddings e Altura Padrão (Medium) */
-    padding: var(--input-padding-vertical) var(--input-padding-horizontal);
-
-    border: none;
-    background: transparent;
-
-    font-size: var(--input-font-size);
-    line-height: var(--input-line-height);
-    color: var(--input-text-color);
-
-    /* Reseta estilos do browser */
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    appearance: none;
+    padding: var(--space-2) var(--space-3);
+    font-size: var(--font-sm);
+    line-height: var(--leading-tight);
+    color: var(--text-main, var(--color-black));
+    background: var(--bg-surface);
+    border: 1px solid var(--input-border);
+    border-radius: var(--input-radius);
 }
-
-.input-field:focus {
-    outline: none;
-}
-
 .input-field::placeholder {
-    color: var(--input-placeholder-color);
+    color: var(--input-placeholder-color, var(--text-main));
 }
 
-/* Estados (Foco, Erro, Desabilitado) */
-.input-wrapper:focus-within {
+.input-field:focus-visible {
+    box-shadow: 0 0 0 var(--input-focus-ring-offset)
+        var(--input-focus-ring-color);
     outline: none;
-    border-color: var(--input-border-color-focus);
-    box-shadow: var(--input-box-shadow-focus);
 }
 
-/* 🚫 Estado desabilitado */
-.input-container[data-disabled='true'] .input-wrapper,
 .input-field:disabled {
-    opacity: var(--input-disabled-opacity);
+    background-color: var(--bg-surface-sunken);
     cursor: not-allowed;
-}
-
-/* ❌ Estado de Erro */
-.input-error .input-wrapper {
-    border-color: var(--input-border-color-error);
-}
-
-.input-error .input-wrapper:focus-within {
-    box-shadow: var(--input-box-shadow-error-focus);
-}
-
-/* ❌ Mensagem de Erro */
-.input-error-message {
-    display: block;
-    margin-top: var(--input-error-message-margin-top);
-    color: var(--input-error-message-color);
-    font-size: var(--input-error-message-font-size);
-    padding-left: var(--input-error-message-padding-left);
+    opacity: 0.6;
 }
 
 /* Ícones (Prefix / Suffix) */
@@ -101,44 +61,49 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    color: var(--input-icon-color);
+    font-size: var(--font-sm);
+    color: var(--text-muted);
     pointer-events: none;
-    font-size: var(--input-icon-font-size);
 }
 
 .input-prefix {
-    padding-left: var(--input-icon-padding-left);
+    padding-left: var(--space-2);
 }
 
 .input-suffix {
-    padding-right: var(--input-icon-padding-right);
+    padding-right: var(--space-2);
 }
 
+/* Espaço adicional para ícone prefixo */
 .input-wrapper.input-has-prefix .input-field {
-    padding-left: var(--input-padding-horizontal);
+    padding-left: calc(var(--space-3) + var(--space-2));
 }
 
+/* Espaço adicional para ícone sufixo */
 .input-wrapper.input-has-suffix .input-field {
-    padding-right: var(--input-padding-horizontal);
+    padding-right: calc(var(--space-3) + var(--space-2));
 }
 
-/* 📏 Tamanhos */
-/* Small */
-.input-container.input-sm .input-field {
-    padding: var(--input-padding-vertical-small)
-        var(--input-padding-horizontal-small);
-    font-size: var(--input-font-size-small);
-}
-.input-container.input-sm .input-icon {
-    font-size: var(--input-icon-font-size-small);
+/* ❌ Estado de Erro */
+.input-error .input-wrapper {
+    border-color: var(--input-border-error);
+    box-shadow: 0 0 0 2px var(--input-border-error);
 }
 
-/* Large */
-.input-container.input-lg .input-field {
-    padding: var(--input-padding-vertical-large)
-        var(--input-padding-horizontal-large);
-    font-size: var(--input-font-size-large);
+/* ❌ Mensagem de Erro */
+.input-error-message {
+    color: var(--input-border-error);
+    font-size: var(--font-xs);
+    margin-top: var(--space-1_5);
 }
-.input-container.input-lg .input-icon {
-    font-size: var(--input-icon-font-size-large);
+
+/* 🚫 Estado desabilitado */
+.input-wrapper.disabled\:pointer-events-none {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+/* 🔁 Largura total */
+.input-full {
+    width: var(--size-full);
 }

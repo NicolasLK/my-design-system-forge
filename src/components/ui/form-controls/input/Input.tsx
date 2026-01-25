@@ -9,19 +9,19 @@ import './input.css';
 
 interface IInputProps extends InputHTMLAttributes<HTMLInputElement> {
     /** Texto do rótulo */
-    label: string;
+    label?: string;
     /** Placeholder (texto de sugestão) */
     placeholder?: string;
     /** Opcional: Define o tamanho. 'medium' será o padrão */
     inputSize?: ComponentSize;
     /** Opcional: Ativa o estado de erro */
     error?: boolean;
+    /** Opcional: mensagem de erro */
+    errorMessage?: string;
     /** Opcional: Desabilita o campo */
     disabled?: boolean;
     /** Opcional: fullWidth programatico */
     fullWidth?: boolean;
-    /** Opcional: mensagem de erro */
-    errorMessage?: string;
     /** Opcional: Tipo do input (text, email, password, etc.) */
     type?: string;
     /** Opcional: Ícone de prefixo (pode ser um elemento React) */
@@ -35,11 +35,11 @@ export const Input = forwardRef<HTMLInputElement, IInputProps>(
         {
             label,
             placeholder,
-            inputSize = 'medium',
+            inputSize = 'md',
             error = false,
+            errorMessage,
             disabled = false,
             fullWidth = false,
-            errorMessage,
             type = 'text',
             className,
             id: externalId,
@@ -75,75 +75,58 @@ export const Input = forwardRef<HTMLInputElement, IInputProps>(
                     className={cn(
                         'input-container',
                         fullWidth && 'input-full',
-                        errorClass,
+                        error && 'input-error',
                         sizeClass,
                     )}
                 >
-                    {type === 'file' ? (
+                    {/* Rótulo (Label) */}
+                    {label && (
+                        <label className="input-label" htmlFor={inputId}>
+                            {label}
+                        </label>
+                    )}
+
+                    {/* Wrapper do Input com Ícones */}
+                    <div
+                        data-slot="input-wrapper"
+                        className={cn(
+                            'input-wrapper',
+                            hasPrefix && 'input-has-prefix',
+                            hasSuffix && 'input-has-suffix',
+                        )}
+                    >
+                        {hasPrefix && (
+                            <span
+                                data-slot="input-prefix"
+                                className="input-icon input-prefix"
+                            >
+                                {iconPrefix}
+                            </span>
+                        )}
+
                         <input
                             id={inputId}
                             ref={ref}
-                            type="file"
+                            type={type}
                             data-slot="input-field"
                             className={cn(inputClasses)}
+                            placeholder={placeholder}
                             disabled={disabled}
+                            aria-invalid={error}
                             {...props}
                         />
-                    ) : (
-                        <>
-                            {/* 1. Rótulo (Label) */}
-                            {label && (
-                                <label
-                                    className="input-label"
-                                    htmlFor={inputId}
-                                >
-                                    {label}
-                                </label>
-                            )}
 
-                            {/* 2. Wrapper do Input com Ícones */}
-                            <div
-                                data-slot="input-wrapper"
-                                className={cn(
-                                    'input-wrapper',
-                                    hasPrefix && 'input-has-prefix',
-                                    hasSuffix && 'input-has-suffix',
-                                )}
+                        {hasSuffix && (
+                            <span
+                                data-slot="input-suffix"
+                                className="input-icon input-suffix"
                             >
-                                {hasPrefix && (
-                                    <span
-                                        data-slot="input-prefix"
-                                        className="input-icon input-prefix"
-                                    >
-                                        {iconPrefix}
-                                    </span>
-                                )}
+                                {iconSuffix}
+                            </span>
+                        )}
+                    </div>
 
-                                <input
-                                    id={inputId}
-                                    ref={ref}
-                                    type={type}
-                                    data-slot="input-field"
-                                    className={cn(inputClasses)}
-                                    placeholder={placeholder}
-                                    disabled={disabled}
-                                    aria-invalid={error}
-                                    {...props}
-                                />
-
-                                {hasSuffix && (
-                                    <span
-                                        data-slot="input-suffix"
-                                        className="input-icon input-suffix"
-                                    >
-                                        {iconSuffix}
-                                    </span>
-                                )}
-                            </div>
-                        </>
-                    )}
-
-                    {/* 3. Mensagem de Erro Condicional */}
+                    {/* Mensagem de Erro Condicional */}
                     {error && errorMessage && (
                         <span
                             data-slot="input-error-message"
