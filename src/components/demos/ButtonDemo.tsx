@@ -1,3 +1,4 @@
+import { Spinner } from '../ui/feedback/spinner';
 import { Button } from '../ui/form-controls/button';
 import { Divider } from '../ui/foundations/divider';
 import { CogIcon } from './IconsDemo';
@@ -163,6 +164,19 @@ export const ButtonDemo = () => {
                             disabled
                         >
                             <CogIcon /> settings
+                        </Button>
+                    </div>
+                </div>
+                {/* ------ */}
+                <Divider spacing="small" />
+                {/* ------ */}
+                <div className="u-flex u-flex-col u-items-start u-gap-6">
+                    <div className="u-flex u-gap-4">
+                        <span className="u-text-sm u-text-gray u-text-transform-capitalize">
+                            loading:
+                        </span>
+                        <Button disabled>
+                            <Spinner size="sm" /> Please wait
                         </Button>
                     </div>
                 </div>

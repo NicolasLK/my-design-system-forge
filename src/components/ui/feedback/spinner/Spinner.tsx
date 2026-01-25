@@ -1,12 +1,18 @@
-import type { ReactNode } from "react"
-import { getComponentSize, type ComponentSize } from "@/models/get-component-size"
-import { getComponentColor, type ComponentColor } from "@/models/get-component-color"
-import { cn } from "@/lib/utils/cn"
-import "./spinner.css"
+import { cn } from '@/lib/utils/cn';
+import {
+    getComponentColor,
+    type ComponentColor,
+} from '@/models/get-component-color';
+import {
+    getComponentSize,
+    type ComponentSize,
+} from '@/models/get-component-size';
+import type { ReactNode } from 'react';
+import './spinner.css';
 
 interface ISpinnerProps {
-    size?: ComponentSize
-    variant?: ComponentColor
+    size?: ComponentSize;
+    variant?: ComponentColor;
     width?: number | string;
     height?: number | string;
     animated?: boolean;
@@ -15,40 +21,38 @@ interface ISpinnerProps {
 }
 
 export const Spinner = ({
-    size = "medium",
-    variant = "default",
+    size = 'md',
+    variant = 'default',
     width,
     height,
     animated = true,
     children,
-    className
+    className,
 }: ISpinnerProps) => {
-    const sizeClass = getComponentSize(size, "spinner") || "spinner-md";
-    const colorClass = getComponentColor(variant, 'spinner')
+    const sizeClass = getComponentSize(size, 'spinner') || 'spinner-md';
+    const colorClass = getComponentColor(variant, 'spinner');
 
     return (
         <>
             <div className="spinner-wrapper">
                 <span
                     className={cn(
-                        "spinner",
+                        'spinner',
                         sizeClass,
                         colorClass,
-                        !animated && "spinner-static",
-                        className
+                        !animated && 'spinner-static',
+                        className,
                     )}
                     style={{
                         ...(width ? { width } : {}),
-                        ...(height ? { height } : {})
+                        ...(height ? { height } : {}),
                     }}
                     aria-hidden="true"
                 />
-                {children && (
-                    <span className="spinner-text">{children}</span>
-                )}
+                {children && <span className="spinner-text">{children}</span>}
             </div>
         </>
-    )
-}
+    );
+};
 
-Spinner.displayName = "Spinner";
+Spinner.displayName = 'Spinner';
