@@ -10,7 +10,7 @@ export const LoadingOverlayDemo = () => {
             <LoadingOverlay active={isLoading} message="Carregando dados..." />
             <p>Conteúdo da página</p>
 
-            <Button colorVariant="primary" onClick={() => setIsLoading(true)}>
+            <Button color="primary" onClick={() => setIsLoading(true)}>
                 Ativar Loading
             </Button>
         </>

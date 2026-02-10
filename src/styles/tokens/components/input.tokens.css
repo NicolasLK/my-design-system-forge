@@ -1,11 +1,42 @@
 /* Design Tokens - Input */
 :root {
-    --input-border: var(--border-default);
+    /* Dimensions */
+    --input-height-sm: var(--height-sm);
+    --input-height-md: var(--height-md); /* Default */
+    --input-height-lg: var(--height-lg);
+
+    --input-padding-inline-sm: var(--space-2);
+    --input-padding-inline-md: var(--space-3);
+    --input-padding-inline-lg: var(--space-4);
+
+    --input-font-size-sm: var(--font-xs);
+    --input-font-size-md: var(--font-sm);
+    --input-font-size-lg: var(--font-base);
+
     --input-radius: var(--radius-md);
 
-    --input-placeholder-color: var(--text-muted);
+    /* Colors - Default State */
+    --input-bg: var(--bg-surface);
+    --input-border: var(--border-default);
+    --input-text: var(--text-main);
+    --input-placeholder: var(--text-muted);
 
+    /* Colors - Focus State */
+    --input-focus-border: var(--color-primary-500);
     --input-focus-ring-offset: 0.125rem;
     --input-focus-ring-color: var(--color-primary-400);
-    --input-border-error: var(--color-destructive-500);
+
+    /* Colors - Error State */
+    --input-error-border: var(--color-destructive-500);
+    --input-error-text: var(--color-destructive-500);
+
+    /* Colors - Disabled State */
+    --input-disabled-bg: var(--bg-surface-sunken);
+    --input-disabled-text: var(--text-muted);
+    --input-disabled-border: var(--border-default);
+
+    /* Icon Dimensions */
+    --input-icon-size-sm: var(--font-sm);
+    --input-icon-size-md: var(--font-base);
+    --input-icon-size-lg: var(--font-lg);
 }

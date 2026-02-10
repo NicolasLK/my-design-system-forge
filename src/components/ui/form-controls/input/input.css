@@ -31,7 +31,7 @@
 .input-field {
     flex: 1;
     width: var(--size-full);
-    min-width: 0;
+    min-width: var(--space-0);
     padding: var(--space-2) var(--space-3);
     font-size: var(--font-sm);
     line-height: var(--leading-tight);

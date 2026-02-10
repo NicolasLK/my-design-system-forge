@@ -28,7 +28,7 @@ export const TagInput = ({
     defaultTags = [],
     disabled = false,
     onChange,
-    size = 'medium',
+    size = 'md',
     className,
     full = false,
 }: ITagInputProps) => {

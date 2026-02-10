@@ -26,7 +26,7 @@ export const FileInput = ({
     multiple = false,
     disabled = false,
     onChange,
-    size = 'medium',
+    size = 'md',
     className,
     full = false,
 }: IFileInputProps) => {
@@ -146,8 +146,7 @@ export const FileInput = ({
                         accept={accept}
                         disabled={disabled}
                         onChange={onFileChange}
-                        className=""
-                        inputClassName="fileinput-native-input"
+                        className="fileinput-native-input"
                         inputSize={size}
                     />
 
