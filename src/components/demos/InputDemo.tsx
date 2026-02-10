@@ -10,7 +10,12 @@ export const InputDemo = () => {
                     <span className="u-text-sm u-text-gray u-text-transform-capitalize">
                         default:
                     </span>
-                    <Input label="" type="text" placeholder="Name" />
+                    <Input
+                        label=""
+                        type="text"
+                        placeholder="Name"
+                        description="Choose a unique username for your account."
+                    />
                 </div>
                 {/* ------ */}
                 <Divider spacing="small" />
@@ -22,6 +27,10 @@ export const InputDemo = () => {
                 {/* ------ */}
                 <Divider spacing="small" />
                 {/* ------ */}
+                <div className="u-flex u-gap-4">
+                    <span className="u-text-sm u-text-gray">With label:</span>
+                    <Input label="Name" type="text" placeholder="Name" />
+                </div>
             </div>
         </>
     );

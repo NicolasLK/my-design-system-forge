@@ -1,7 +1,7 @@
 .input-container {
     display: flex;
     flex-direction: column;
-    gap: var(--space-3);
+    gap: var(--space-1_5);
 }
 
 /* Label */
@@ -84,23 +84,36 @@
     padding-right: calc(var(--space-3) + var(--space-2));
 }
 
-/* ❌ Estado de Erro */
-.input-error .input-wrapper {
-    border-color: var(--input-border-error);
-    box-shadow: 0 0 0 2px var(--input-border-error);
+/* ❌ Estado de erro no input */
+.input-field.input-error {
+    border-color: var(--input-error-border);
+}
+
+.input-field.input-error:focus-visible {
+    box-shadow: 0 0 0 2px var(--input-error-border);
 }
 
 /* ❌ Mensagem de Erro */
 .input-error-message {
-    color: var(--input-border-error);
+    text-align: left;
+    color: var(--input-error-border);
     font-size: var(--font-xs);
-    margin-top: var(--space-1_5);
+    padding-left: var(--space-0_5);
 }
 
 /* 🚫 Estado desabilitado */
 .input-wrapper.disabled\:pointer-events-none {
     opacity: 0.6;
     cursor: not-allowed;
+}
+
+/* 📘 Descrição do campo */
+.input-description {
+    font-size: var(--font-xs);
+    color: var(--text-muted);
+    line-height: var(--leading-snug);
+    /* margin-top: var(--space-0_5); */
+    padding-left: var(--space-0_5);
 }
 
 /* 🔁 Largura total */

@@ -10,6 +10,8 @@ import './input.css';
 interface IInputProps extends InputHTMLAttributes<HTMLInputElement> {
     /** Texto do rótulo */
     label?: string;
+    /** Texto de descrição abaixo do campo */
+    description?: ReactNode;
     /** Placeholder (texto de sugestão) */
     placeholder?: string;
     /** Opcional: Define o tamanho. 'medium' será o padrão */
@@ -34,6 +36,7 @@ export const Input = forwardRef<HTMLInputElement, IInputProps>(
     (
         {
             label,
+            description,
             placeholder,
             inputSize = 'md',
             error = false,
@@ -75,7 +78,6 @@ export const Input = forwardRef<HTMLInputElement, IInputProps>(
                     className={cn(
                         'input-container',
                         fullWidth && 'input-full',
-                        error && 'input-error',
                         sizeClass,
                     )}
                 >
@@ -134,6 +136,16 @@ export const Input = forwardRef<HTMLInputElement, IInputProps>(
                         >
                             {errorMessage}
                         </span>
+                    )}
+
+                    {/* Descrição opcional (não aparece se houver erro) */}
+                    {!error && description && (
+                        <p
+                            data-slot="input-description"
+                            className="input-description"
+                        >
+                            {description}
+                        </p>
                     )}
                 </div>
             </>
