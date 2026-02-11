@@ -10,7 +10,6 @@
     font-weight: var(--weight-medium);
     color: var(--text-main);
     padding-left: var(--space-0_5);
-    /* margin-bottom: var(--space-1_5); */
     text-align: left;
 }
 
@@ -109,10 +108,10 @@
 
 /* 📘 Descrição do campo */
 .input-description {
+    text-align: left;
     font-size: var(--font-xs);
     color: var(--text-muted);
     line-height: var(--leading-snug);
-    /* margin-top: var(--space-0_5); */
     padding-left: var(--space-0_5);
 }
 

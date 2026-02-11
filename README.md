@@ -14,9 +14,9 @@
 
 **My Design System Forge** is a frontend project that provides reusable UI components, design tokens, and usage guidelines to facilitate the creation of consistent interfaces in React applications. It offers a modern setup with:
 
--   🛠️ **React + TypeScript**
--   ⚡ **Vite** for fast development and build times
--   🎨 Token-first styling architecture
+- 🛠️ **React + TypeScript**
+- ⚡ **Vite** for fast development and build times
+- 🎨 Token-first styling architecture
 
 > A **Design System** is a collection of reusable patterns, styles, and components that ensures visual consistency, accelerates development, and improves collaboration between design and engineering teams.
 
@@ -119,9 +119,9 @@
 
 ### 🧰 Requirements
 
--   Node.js 18+
--   npm or Yarn
--   Docker & Docker Compose (optional, recommended)
+- Node.js 18+
+- npm or Yarn
+- Docker & Docker Compose (optional, recommended)
 
 ### 📥 Installation
 
@@ -168,13 +168,13 @@ docker system prune -a
 
 2. Verify the cleanup: To ensure the environment is clean and there are no remaining containers or images, use the following commands:
 
--   List containers:
+- List containers:
 
 ```bash
   docker ps -a
 ```
 
--   List images:
+- List images:
 
 ```bash
 docker image ls
@@ -186,10 +186,10 @@ docker image ls
 
 Design Tokens define reusable visual decisions such as:
 
--   🎨 Colors
--   ✍️ Typography
--   📐 Spacing
--   🔲 Borders, radius, and shadows
+- 🎨 Colors
+- ✍️ Typography
+- 📐 Spacing
+- 🔲 Borders, radius, and shadows
 
 Token example:
 
@@ -223,12 +223,39 @@ Token example:
 
 Components are built with:
 
--   Reusability in mind
--   Accessibility and responsiveness
--   Strong TypeScript typing
--   Clear separation of concerns
+- Reusability in mind
+- Accessibility and responsiveness
+- Strong TypeScript typing
+- Clear separation of concerns
 
-Usage example (soon):
+Usage example:
+
+```tsx
+<div className="u-flex u-gap-4">
+    <span className="u-text-sm u-text-gray u-text-transform-capitalize">
+        size:
+    </span>
+    <div className="u-flex u-items-start u-gap-2">
+        <Button
+            size="sm"
+            variant="outline"
+            className="u-text-transform-capitalize"
+        >
+            small
+        </Button>
+        <Button variant="outline" className="u-text-transform-capitalize">
+            medium
+        </Button>
+        <Button
+            size="lg"
+            variant="outline"
+            className="u-text-transform-capitalize"
+        >
+            large
+        </Button>
+    </div>
+</div>
+```
 
 ---
 
