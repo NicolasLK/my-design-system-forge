@@ -19,7 +19,7 @@
     align-items: center;
     position: relative;
     width: var(--size-full);
-    padding: var(--space-0_5);
+    padding: var(--space-0);
     background: transparent;
     transition:
         border-color 0.2s ease,
@@ -62,25 +62,40 @@
     justify-content: center;
     font-size: var(--font-sm);
     color: var(--text-muted);
-    pointer-events: none;
+
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
 }
 
 .input-prefix {
+    left: 0;
     padding-left: var(--space-2);
 }
 
+.input-prefix:hover {
+    opacity: 0.6;
+    cursor: pointer;
+}
+
 .input-suffix {
+    right: 0;
     padding-right: var(--space-2);
+}
+
+.input-suffix:hover {
+    opacity: 0.6;
+    cursor: pointer;
 }
 
 /* Espaço adicional para ícone prefixo */
 .input-wrapper.input-has-prefix .input-field {
-    padding-left: calc(var(--space-3) + var(--space-2));
+    padding-left: calc(var(--space-3) + var(--space-3));
 }
 
 /* Espaço adicional para ícone sufixo */
 .input-wrapper.input-has-suffix .input-field {
-    padding-right: calc(var(--space-3) + var(--space-2));
+    padding-right: calc(var(--space-2) + var(--space-3));
 }
 
 /* ❌ Estado de erro no input */

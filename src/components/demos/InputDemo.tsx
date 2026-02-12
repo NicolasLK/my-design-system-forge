@@ -1,5 +1,6 @@
 import { Input } from '../ui/form-controls/input';
 import { Divider } from '../ui/foundations/divider';
+import { EyeOffIcon } from './IconsDemo';
 
 export const InputDemo = () => {
     return (
@@ -12,7 +13,6 @@ export const InputDemo = () => {
                     </span>
                     <Input
                         label=""
-                        type="text"
                         placeholder="Name"
                         description="Choose a unique username for your account."
                     />
@@ -66,6 +66,7 @@ export const InputDemo = () => {
                         type="password"
                         required
                         description="This field must be filled out."
+                        iconSuffix={<EyeOffIcon />}
                     />
                 </div>
                 {/* ------ */}
@@ -79,6 +80,19 @@ export const InputDemo = () => {
                         label="Upload file"
                         type="file"
                         description="Select a picture to upload."
+                    />
+                </div>
+                {/* ------ */}
+                <Divider spacing="small" />
+                {/* ------ */}
+                <div className="u-flex u-gap-4">
+                    <span className="u-text-sm u-text-gray u-text-transform-capitalize">
+                        prefix:
+                    </span>
+                    <Input
+                        label="Password"
+                        type="password"
+                        iconPrefix={<EyeOffIcon />}
                     />
                 </div>
             </div>
