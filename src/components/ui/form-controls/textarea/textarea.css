@@ -2,69 +2,104 @@
    📝 Textarea Component
    =========================== */
 
-.textarea-wrapper {
+   .textarea-root {
     display: flex;
     flex-direction: column;
-    gap: var(--space-2);
-    width: 100%;
+    gap: var(--space-1_5);
+    width: auto; /* Default width */
 }
 
+/* Label */
 .textarea-label {
     font-size: var(--font-sm);
     font-weight: var(--weight-medium);
+    color: var(--text-main);
+    padding-left: var(--space-0_5);
+    text-align: left;
 }
 
-/* Caixa principal */
-.textarea {
+/* Campo de Textarea */
+.textarea-field {
     width: 100%;
-    padding: var(--space-2) var(--space-3);
-    border: 1px solid var(--color-gray-500);
-    border-radius: var(--radius-md);
-    background-color: var(--color-white);
-    font-size: var(--font-sm);
-    resize: vertical;
+    min-width: var(--space-0);
+    padding: var(--textarea-padding-block-md) var(--textarea-padding-inline-md);
+    font-size: var(--textarea-font-size-md);
+    line-height: var(--leading-normal);
+    color: var(--textarea-text);
+    background: var(--textarea-bg);
+    border: 1px solid var(--textarea-border);
+    border-radius: var(--textarea-radius);
+    resize: vertical; /* Permitir redimensionamento vertical por padrão */
     transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    font-family: inherit;
 }
 
-.textarea:focus {
+.textarea-field::placeholder {
+    color: var(--textarea-placeholder);
+}
+
+.textarea-field:focus {
     outline: none;
-    border-color: var(--color-primary-500);
-    box-shadow: 0 0 0 3px
-        color-mix(in srgb, var(--color-primary-500) 20%, transparent);
+    border-color: var(--textarea-focus-border);
+    box-shadow: 0 0 0 var(--textarea-focus-ring-offset) var(--textarea-focus-ring-color);
 }
 
-.textarea:disabled {
-    opacity: 0.6;
+.textarea-field:disabled {
+    background-color: var(--textarea-disabled-bg);
+    color: var(--textarea-disabled-text);
+    border-color: var(--textarea-disabled-border);
     cursor: not-allowed;
+    opacity: 0.6;
 }
 
-/* Erro */
-.textarea-error {
-    border-color: var(--color-destructive-500);
+/* ❌ Estado de erro */
+.textarea-field.textarea-error {
+    border-color: var(--textarea-error-border);
 }
 
-.textarea-error:focus {
-    border-color: var(--color-destructive-500);
-    box-shadow: 0 0 0 3px
-        color-mix(in srgb, var(--color-destructive-500) 20%, transparent);
+.textarea-field.textarea-error:focus {
+    box-shadow: 0 0 0 var(--textarea-focus-ring-offset) color-mix(in srgb, var(--textarea-error-border) 20%, transparent);
+    border-color: var(--textarea-error-border);
 }
 
+/* ❌ Mensagem de Erro */
 .textarea-error-message {
-    color: var(--color-destructive-500);
+    text-align: left;
+    color: var(--textarea-error-text);
     font-size: var(--font-xs);
+    padding-left: var(--space-0_5);
 }
 
-/* Tamanhos */
-.textarea-sm {
+/* 📘 Descrição */
+.textarea-description {
+    text-align: left;
     font-size: var(--font-xs);
-    padding: var(--space-1) var(--space-2);
+    color: var(--text-muted);
+    line-height: var(--leading-snug);
+    padding-left: var(--space-0_5);
 }
 
-.textarea-md {
-    font-size: var(--font-sm);
+/* 🔁 Largura total */
+.textarea-full {
+    width: 100%;
 }
 
-.textarea-lg {
-    font-size: var(--font-base);
-    padding: var(--space-3);
+/* --- Tamanhos --- */
+
+/* Small */
+.textarea-sm .textarea-field {
+    padding: var(--textarea-padding-block-sm) var(--textarea-padding-inline-sm);
+    font-size: var(--textarea-font-size-sm);
+}
+
+/* Medium (Default) - já aplicado na classe base, mas reforçado aqui se necessário */
+.textarea-md .textarea-field {
+    padding: var(--textarea-padding-block-md) var(--textarea-padding-inline-md);
+    font-size: var(--textarea-font-size-md);
+}
+
+/* Large */
+.textarea-lg .textarea-field {
+    padding: var(--textarea-padding-block-lg) var(--textarea-padding-inline-lg);
+    font-size: var(--textarea-font-size-lg);
 }

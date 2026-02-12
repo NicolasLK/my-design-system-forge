@@ -1,67 +1,101 @@
-
-import { getComponentSize, type ComponentSize } from "@/models/get-component-size"
-import "./textarea.css"
-import type { TextareaHTMLAttributes } from "react"
-import { cn } from "@/lib/utils/cn"
+import { cn } from '@/lib/utils/cn';
+import { genUid } from '@/models/gen-uid';
+import {
+    getComponentSize,
+    type ComponentSize,
+} from '@/models/get-component-size';
+import { forwardRef, type TextareaHTMLAttributes, type ReactNode } from 'react';
+import './textarea.css';
 
 interface ITextareaProps extends TextareaHTMLAttributes<HTMLTextAreaElement> {
-    label?: string
-    value?: string
-    defaultValue?: string
-    placeholder?: string
-    rows?: number
-    disabled?: boolean
-    error?: boolean
-    errorMessage?: string
-    size?: ComponentSize
+    /** Texto do rótulo */
+    label?: string;
+    /** Texto de descrição abaixo do campo */
+    description?: ReactNode;
+    /** Opcional: Define o tamanho. 'medium' será o padrão */
+    size?: ComponentSize;
+    /** Opcional: Ativa o estado de erro */
+    error?: boolean;
+    /** Opcional: mensagem de erro */
+    errorMessage?: string;
+    /** Opcional: fullWidth programatico */
+    fullWidth?: boolean;
 }
 
-export const Textarea = ({
-    label,
-    value,
-    defaultValue,
-    placeholder = "Digite aqui...",
-    rows = 4,
-    disabled = false,
-    error = false,
-    errorMessage,
-    size = "medium",
-    onChange,
-    className,
-    ...props
-}: ITextareaProps) => {
+export const Textarea = forwardRef<HTMLTextAreaElement, ITextareaProps>(
+    (
+        {
+            label,
+            description,
+            size = 'md',
+            error = false,
+            errorMessage,
+            fullWidth = false,
+            className,
+            id: externalId,
+            disabled = false,
+            ...props
+        },
+        ref,
+    ) => {
+        /**
+         * Gera um ID único apenas se não houver um ID externo
+         */
+        const textareaId = externalId || (label ? genUid(8) : undefined);
 
-    const sizeClass = getComponentSize(size, "textarea")
-    const finalSizeClass = sizeClass || "textarea-md"
+        const sizeClass = getComponentSize(size, 'textarea');
+        const errorClass = error ? 'textarea-error' : '';
 
-    const textareaId = `textarea-${Math.random().toString(36).substring(2, 9)}`;
-
-    return (
-        <>
-            <div className="textarea-wrapper">
-                {label && <label htmlFor={textareaId} className="textarea-label">{label}</label>}
+        return (
+            <div
+                data-slot="textarea-root"
+                className={cn(
+                    'textarea-root',
+                    fullWidth && 'textarea-full',
+                    sizeClass,
+                    className,
+                )}
+            >
+                {label && (
+                    <label
+                        data-slot="textarea-label"
+                        htmlFor={textareaId}
+                        className="textarea-label"
+                    >
+                        {label}
+                    </label>
+                )}
 
                 <textarea
                     id={textareaId}
-                    className={cn(
-                        "textarea",
-                        finalSizeClass,
-                        error && "textarea-error",
-                        className
-                    )}
-                    value={value}
-                    defaultValue={defaultValue}
-                    placeholder={placeholder}
+                    ref={ref}
+                    data-slot="textarea-field"
+                    className={cn('textarea-field', errorClass)}
                     disabled={disabled}
-                    rows={rows}
-                    onChange={onChange}
+                    aria-invalid={error}
                     {...props}
                 />
 
                 {error && errorMessage && (
-                    <small className="textarea-error-message">{errorMessage}</small>
+                    <span
+                        data-slot="textarea-error-message"
+                        className="textarea-error-message"
+                    >
+                        {errorMessage}
+                    </span>
+                )}
+
+                {!error && description && (
+                    <p
+                        data-slot="textarea-description"
+                        className="textarea-description"
+                    >
+                        {description}
+                    </p>
                 )}
             </div>
-        </>
-    )
-}
+        );
+    },
+);
+
+Textarea.displayName = 'Textarea';

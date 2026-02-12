@@ -1,0 +1,38 @@
+/* Design Tokens - Textarea */
+:root {
+    /* Dimensions */
+    --textarea-padding-block-sm: var(--space-1);
+    --textarea-padding-inline-sm: var(--space-2);
+
+    --textarea-padding-block-md: var(--space-2);
+    --textarea-padding-inline-md: var(--space-3);
+
+    --textarea-padding-block-lg: var(--space-3);
+    --textarea-padding-inline-lg: var(--space-4);
+
+    --textarea-font-size-sm: var(--font-xs);
+    --textarea-font-size-md: var(--font-sm);
+    --textarea-font-size-lg: var(--font-base);
+
+    --textarea-radius: var(--radius-md);
+
+    /* Colors - Default State */
+    --textarea-bg: var(--bg-surface);
+    --textarea-border: var(--border-default);
+    --textarea-text: var(--text-main);
+    --textarea-placeholder: var(--text-muted);
+
+    /* Colors - Focus State */
+    --textarea-focus-border: var(--color-primary-500);
+    --textarea-focus-ring-offset: 0.125rem;
+    --textarea-focus-ring-color: var(--color-primary-400);
+
+    /* Colors - Error State */
+    --textarea-error-border: var(--color-destructive-500);
+    --textarea-error-text: var(--color-destructive-500);
+
+    /* Colors - Disabled State */
+    --textarea-disabled-bg: var(--bg-surface-sunken);
+    --textarea-disabled-text: var(--text-muted);
+    --textarea-disabled-border: var(--border-default);
+}

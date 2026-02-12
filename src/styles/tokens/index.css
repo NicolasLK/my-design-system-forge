@@ -7,8 +7,10 @@
 @import './components/avatar.tokens.css';
 @import './components/button.tokens.css';
 @import './components/input.tokens.css';
+@import './components/textarea.tokens.css';
 @import './components/sidebar.tokens.css';
 @import './components/slider.tokens.css';
+@import './components/switch.tokens.css';
 /* @import './components/modal.tokens.css'; */
 
 /* -------------------------------------- */

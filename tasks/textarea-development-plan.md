@@ -82,8 +82,8 @@ Criar um conjunto de tokens exclusivos no arquivo CSS do componente ou no sistem
 
 ## ✅ Critérios de Aceite
 
-1.  O componente deve aceitar `ref`.
-2.  IDs de acessibilidade (label `for` -> textarea `id`) devem ser gerados automaticamente se não fornecidos.
-3.  Estilo visual (borda, radius, cores, focus) deve ser **idêntico** ao `Input`.
-4.  Suporte a mensagem de erro e descrição auxiliar.
-5.  Código limpo e tipado corretamente.
+1.  [x] O componente deve aceitar `ref`.
+2.  [x] IDs de acessibilidade (label `for` -> textarea `id`) devem ser gerados automaticamente se não fornecidos.
+3.  [x] Estilo visual (borda, radius, cores, focus) deve ser **idêntico** ao `Input`.
+4.  [x] Suporte a mensagem de erro e descrição auxiliar.
+5.  [x] Código limpo e tipado corretamente.

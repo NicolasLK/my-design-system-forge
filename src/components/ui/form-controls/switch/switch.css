@@ -1,102 +1,164 @@
-/* 🌳 Contêiner */
+/* ===========================
+   🔘 Switch Component
+   =========================== */
+
+/* Root Wrapper */
+.switch-root {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-1);
+    width: fit-content;
+}
+
+/* Container (Input + Track + Label) */
 .switch-container {
     display: inline-flex;
     align-items: center;
     gap: var(--space-2);
-    cursor: pointer;
     position: relative;
+    cursor: pointer;
 }
 
-.switch-container input[type='checkbox'] {
+/* Ocultar Input, mas manter acessível para foco */
+.switch-input {
     position: absolute;
     opacity: 0;
     width: 0;
     height: 0;
+    margin: 0;
+    pointer-events: none;
 }
 
-/* 📐 Núcleo do Switch (Core) - Define o estilo base */
-.switch-core {
+/* --- Track (O "trilho" do switch) --- */
+.switch-track {
     position: relative;
-    width: 42px;
-    height: 24px;
+    display: inline-flex;
+    align-items: center;
+    flex-shrink: 0;
+    background-color: var(--switch-track-bg);
     border-radius: var(--radius-full);
-    background-color: var(--color-gray-500);
-    transition: background-color 0.3s;
+    transition: background-color 0.2s ease-in-out, box-shadow 0.2s ease;
     cursor: pointer;
+    box-sizing: border-box;
+
+    /* Tamanho padrão (Medium) */
+    width: var(--switch-width-md);
+    height: var(--switch-height-md);
 }
 
-.switch-core .slider {
-    position: absolute;
-    content: '';
-    left: 3px;
-    bottom: 3px;
-    height: 18px;
-    width: 18px;
-    background-color: var(--color-white);
-    border-radius: 50%;
-    transition: transform 0.3s;
+/* --- Thumb (A "bolinha" do switch) --- */
+.switch-thumb {
+    display: block;
+    background-color: var(--switch-thumb-bg);
+    border-radius: var(--radius-full);
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+    transition: transform 0.2s cubic-bezier(0.4, 0.0, 0.2, 1);
+    
+    /* Tamanho padrão (Medium) */
+    width: var(--switch-thumb-size-md);
+    height: var(--switch-thumb-size-md);
+    
+    /* Posicionamento inicial */
+    transform: translateX(4px); /* Espaçamento interno */
 }
 
-/* Quando o input está checked */
-.switch-container input:checked + .switch-core {
-    background-color: var(--color-primary-500);
+/* --- Estados de Interação --- */
+
+/* Checked State */
+.switch-input:checked + .switch-track {
+    background-color: var(--switch-track-bg-checked);
 }
 
-.switch-container input:checked + .switch-core .slider {
-    transform: translateX(18px);
+.switch-input:checked + .switch-track .switch-thumb {
+    /* Move o thumb para a direita. O valor depende do tamanho do switch */
+    transform: translateX(calc(var(--switch-width-md) - var(--switch-thumb-size-md) - 4px));
 }
 
-/* Estado desabilitado */
-.switch-container input:disabled + .switch-core {
+/* Disabled State */
+.switch-input:disabled + .switch-track {
+    background-color: var(--switch-track-bg-disabled);
+    cursor: not-allowed;
+    opacity: 0.6;
+}
+
+.switch-input:disabled ~ .switch-label {
     opacity: 0.6;
     cursor: not-allowed;
 }
 
-/* 📏 Tamanhos */
-.switch-core.switch-sm {
-    width: 34px;
-    height: 20px;
-}
-.switch-core.switch-sm .slider {
-    height: 14px;
-    width: 14px;
-}
-.switch-container input:checked + .switch-core.switch-sm .slider {
-    transform: translateX(14px);
+/* Focus State (Acessibilidade) */
+.switch-input:focus-visible + .switch-track {
+    outline: none;
+    box-shadow: 0 0 0 var(--switch-focus-ring-offset) var(--switch-focus-ring-color);
 }
 
-.switch-core.switch-lg {
-    width: 50px;
-    height: 30px;
-}
-.switch-core.switch-lg .slider {
-    height: 24px;
-    width: 24px;
-}
-.switch-container input:checked + .switch-core.switch-lg .slider {
-    transform: translateX(20px);
+/* Error State */
+.switch-track.switch-error {
+    background-color: var(--switch-track-bg-error);
 }
 
-/* 📱 Responsividade */
-@media (max-width: var(--screen-sm)) {
-    .switch-core {
-        width: 42px;
-        height: 24px;
-    }
-    .switch-core .slider {
-        height: 18px;
-        width: 18px;
-        transform: none;
-        left: 3px;
-        bottom: 3px;
-    }
-    .switch-container input:checked + .switch-core .slider {
-        transform: translateX(18px);
-    }
+.switch-input:checked + .switch-track.switch-error {
+    background-color: var(--switch-track-bg-error);
 }
 
-/* Label de texto */
+.switch-error-message {
+    font-size: var(--font-xs);
+    color: var(--switch-error-color);
+    line-height: var(--leading-tight);
+}
+
+/* Label Text */
 .switch-label {
     font-size: var(--font-sm);
+    color: var(--switch-label-color);
     user-select: none;
+    cursor: pointer;
+    line-height: var(--leading-normal);
+}
+
+/* Description Text */
+.switch-description {
+    font-size: var(--font-xs);
+    color: var(--switch-description-color);
+    line-height: var(--leading-snug);
+}
+
+/* --- Tamanhos (Variants) --- */
+
+/* Small */
+.switch-sm {
+    width: var(--switch-width-sm);
+    height: var(--switch-height-sm);
+}
+
+.switch-sm .switch-thumb {
+    width: var(--switch-thumb-size-sm);
+    height: var(--switch-thumb-size-sm);
+    transform: translateX(3px);
+}
+
+.switch-input:checked + .switch-sm .switch-thumb {
+    transform: translateX(calc(var(--switch-width-sm) - var(--switch-thumb-size-sm) - 3px));
+}
+
+/* Medium (já definido no base, mas reforçando se necessário) */
+.switch-md {
+    width: var(--switch-width-md);
+    height: var(--switch-height-md);
+}
+
+/* Large */
+.switch-lg {
+    width: var(--switch-width-lg);
+    height: var(--switch-height-lg);
+}
+
+.switch-lg .switch-thumb {
+    width: var(--switch-thumb-size-lg);
+    height: var(--switch-thumb-size-lg);
+    transform: translateX(5px);
+}
+
+.switch-input:checked + .switch-lg .switch-thumb {
+    transform: translateX(calc(var(--switch-width-lg) - var(--switch-thumb-size-lg) - 5px));
 }

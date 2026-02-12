@@ -1,0 +1,42 @@
+:root {
+    /* ===============================
+       🔘 Switch Tokens
+       =============================== */
+
+    /* --- Dimensions --- */
+    
+    /* Small */
+    --switch-width-sm: var(--space-8);      /* ~32px */
+    --switch-height-sm: var(--space-5);     /* ~20px */
+    --switch-thumb-size-sm: var(--space-3); /* ~14px */
+
+    /* Medium (Default) */
+    --switch-width-md: var(--space-10);     /* ~48px */
+    --switch-height-md: var(--space-6);     /* ~24px */
+    --switch-thumb-size-md: var(--space-4); /* ~18px */
+
+    /* Large */
+    --switch-width-lg: var(--space-12);     /* ~64px */
+    --switch-height-lg: var(--space-8);     /* ~32px */
+    --switch-thumb-size-lg: var(--space-6); /* ~24px */
+
+    /* --- Colors --- */
+    
+    /* Track */
+    --switch-track-bg: var(--color-gray-500);
+    --switch-track-bg-checked: var(--color-primary-500);
+    --switch-track-bg-disabled: var(--color-gray-300);
+    --switch-track-bg-error: var(--color-destructive-500);
+
+    /* Thumb */
+    --switch-thumb-bg: var(--color-white);
+
+    /* Text */
+    --switch-label-color: var(--text-main);
+    --switch-description-color: var(--text-muted);
+    --switch-error-color: var(--color-destructive-500);
+
+    /* --- Focus --- */
+    --switch-focus-ring-color: var(--color-primary-400);
+    --switch-focus-ring-offset: 2px;
+}
