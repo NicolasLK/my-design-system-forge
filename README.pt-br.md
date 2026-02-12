@@ -94,7 +94,7 @@
 │ ├── styles/ # Estilos e toknes globais e específicos
 │ │  ├── tokens/ # Design Tokens (cores, tipografia, espaçamentos)
 │ │  │  ├── components/ # Tokens específicos por componente
-│ │  │  │  ├── {component}.tokens.css # Tokens do componente (cores, spacing, radius)
+│ │  │  │  ├── {component}.tokens.css # Tokens padrões do componente (cores, spacing, radius)
 │ │  │  │  └── # Outros tokens
 │ │  │  ├── foundation.css # Tokens base (cores primárias, tipografia, spacing)
 │ │  │  ├── index.css # Export central dos tokens

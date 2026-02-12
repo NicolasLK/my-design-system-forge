@@ -90,7 +90,7 @@
 │ ├── styles/ # Global styles and design tokens
 │ │  ├── tokens/ # Design Tokens
 │ │  │  ├── components/ # Component-level tokens
-│ │  │  │  ├── {component}.tokens.css
+│ │  │  │  ├── {component}.tokens.css # Standard component tokens (colors, spacing, radius)
 │ │  │  │  └── # Other tokens
 │ │  │  ├── foundation.css # Core tokens
 │ │  │  ├── semantic.css # Semantic tokens
