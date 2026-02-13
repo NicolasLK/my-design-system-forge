@@ -1,126 +1,192 @@
-import { useMemo, useState, type ChangeEvent, type ChangeEventHandler, type InputHTMLAttributes } from "react"
-import { getComponentSize, type ComponentSize } from "@/models/get-component-size"
-import { cn } from "@/lib/utils/cn"
-import "./slider.css"
+import { cn } from '@/lib/utils/cn';
+import { genUid } from '@/models/gen-uid';
+import {
+    getComponentSize,
+    type ComponentSize,
+} from '@/models/get-component-size';
+import { useControllableState } from '@/models/hooks/useControllableState';
+import {
+    forwardRef,
+    useMemo,
+    type ChangeEvent,
+    type InputHTMLAttributes,
+    type ReactNode,
+} from 'react';
+import './slider.css';
 
-interface ISliderProps extends InputHTMLAttributes<HTMLInputElement> {
-    /** Valor mínimo */
-    min?: number
-    /** Valor máximo */
-    max?: number
-    /** Valor inicial, não controlado */
-    defaultValue?: number
-    /** Valor inicial, controlado */
-    value?: number
-    /** Etapas (incrementos) */
-    step?: number
-    /** Mostrar valor atual */
-    showValue?: boolean
-    /** Tamanho (small, medium, large) */
-    componentSize?: ComponentSize
-    /** Largura total */
-    full?: boolean
-    /** Callback ao alterar o valor (retorna apenas o número) */
-    onValueChange?: (value: number) => void
-    /** Callback ao alterar */
-    onChange?: ChangeEventHandler<HTMLInputElement>
-    /** Classe CSS adicional */
-    className?: string
+interface ISliderProps
+    extends Omit<InputHTMLAttributes<HTMLInputElement>, 'onChange'> {
+    /** Texto do rótulo */
+    label?: string;
+    /** Descrição opcional */
+    description?: ReactNode;
+    /** Valor mínimo (default: 0) */
+    min?: number;
+    /** Valor máximo (default: 100) */
+    max?: number;
+    /** Etapa de incremento (default: 1) */
+    step?: number;
+    /** Valor atual (controlado) */
+    value?: number;
+    /** Valor inicial (não controlado) */
+    defaultValue?: number;
+    /** Callback de mudança (retorna number) */
+    onValueChange?: (value: number) => void;
+    /** Callback nativo */
+    onChange?: (event: ChangeEvent<HTMLInputElement>) => void;
+    /** Formatação do valor exibido (ex: R$ 100) */
+    formatValue?: (value: number) => string;
+    /** Mostrar valor numérico ao lado? */
+    showValue?: boolean;
+    /** Tamanho do slider */
+    sliderSize?: ComponentSize;
+    /** Estado de erro */
+    error?: boolean;
+    /** Mensagem de erro */
+    errorMessage?: string;
 }
 
-export const Slider = ({
-    min = 0,
-    max = 100,
-    defaultValue = 50,
-    value: controlledValue,
-    step = 1,
-    showValue = true,
-    componentSize = 'medium',
-    full,
-    onValueChange,
-    onChange: nativeOnChange,
-    className,
-    ...props
-}: ISliderProps) => {
+export const Slider = forwardRef<HTMLInputElement, ISliderProps>(
+    (
+        {
+            label,
+            description,
+            min = 0,
+            max = 100,
+            step = 1,
+            value: valueProp,
+            defaultValue,
+            onValueChange,
+            onChange,
+            formatValue,
+            showValue = false,
+            sliderSize = 'md',
+            error = false,
+            errorMessage,
+            disabled = false,
+            className,
+            id: externalId,
+            style,
+            ...props
+        },
+        ref,
+    ) => {
+        const [value, setValue] = useControllableState(
+            valueProp,
+            defaultValue || min,
+            onValueChange,
+        );
 
-    const isControlled = controlledValue !== undefined;
-    const initialValue = isControlled ? controlledValue : defaultValue;
+        const uniqueId = externalId || (label ? genUid(8) : undefined);
+        const sliderId = uniqueId || undefined;
+        const errorId = uniqueId ? `${uniqueId}-error` : undefined;
+        const descriptionId = uniqueId ? `${uniqueId}-description` : undefined;
 
-    /**
-     * Estado para valores não controlados
-     */
-    const [uncontrolledValue, setUncontrolledValue] = useState(initialValue);
+        const sizeClass = getComponentSize(sliderSize, 'slider');
 
-    /**
-     * Valor atual a ser usado e renderizado
-     */
-    const currentValue = isControlled ? controlledValue : uncontrolledValue;
+        const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+            if (disabled) return;
+            const newValue = Number(e.target.value);
+            setValue(newValue);
+            onChange?.(e);
+        };
 
-    const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
-        const val = Number(e.target.value)
+        const fillPercentage = useMemo(() => {
+            if (max === min) return 0;
+            const percent = ((value - min) / (max - min)) * 100;
+            return Math.min(Math.max(percent, 0), 100); // Clamp entre 0 e 100
+        }, [value, min, max]);
 
-        if (!isControlled) {
-            setUncontrolledValue(val);
-        }
+        const formattedValue = formatValue ? formatValue(value) : value;
 
-        /**
-         * Chama o callback personalizado (number)
-         */
-        onValueChange?.(val);
+        // Construção do aria-describedby
+        const ariaDescribedBy = [
+            error && errorMessage ? errorId : null,
+            description ? descriptionId : null,
+        ]
+            .filter(Boolean)
+            .join(' ');
 
-        /**
-         * Chama o callback nativo (event)
-         */
-        nativeOnChange?.(e);
-    }
-
-    const fillPercentage = useMemo(() => {
-        const numericMin = min;
-        const numericMax = max;
-        const numericValue = currentValue;
-
-        if (numericMax === numericMin) return 0;
-
-        return ((numericValue - numericMin) / (numericMax - numericMin)) * 100;
-    }, [currentValue, min, max]);
-
-    const isFull = full || className?.includes('slider-full');
-    const sizeClass = getComponentSize(componentSize, 'slider');
-
-    return (
-        <>
+        return (
             <div
                 data-slot="slider-root"
                 className={cn(
-                    "slider-root",
-                    isFull && "slider-full",
+                    'slider-root',
                     sizeClass,
-                    className
+                    error && 'slider-error',
+                    disabled && 'slider-disabled',
+                    className,
                 )}
-            >
-                <input
-                    data-slot="slider-input"
-                    type="range"
-                    min={min}
-                    max={max}
-                    step={step}
-                    value={currentValue}
-                    onChange={handleChange}
-                    style={{
-                        background: `linear-gradient(to right, var(--slider-range-color) 0%, var(--slider-range-color) ${fillPercentage}%, var(--slider-track-color) ${fillPercentage}%, var(--slider-track-color) 100%)`
-                    }}
-                    className="slider-input"
-                    {...props}
-                />
-                {showValue &&
-                    <span
-                        data-slot="slider-value"
-                        className="slider-value"
-                    >
-                        {currentValue}
-                    </span>
+                style={
+                    {
+                        ...style,
+                        '--slider-fill': `${fillPercentage}%`,
+                    } as React.CSSProperties
                 }
+            >
+                <div className="slider-header">
+                    {label && (
+                        <label
+                            htmlFor={sliderId}
+                            className="slider-label"
+                            data-slot="slider-label"
+                        >
+                            {label}
+                        </label>
+                    )}
+                    {showValue && (
+                        <span
+                            className="slider-value-display"
+                            data-slot="slider-value-display"
+                        >
+                            {formattedValue}
+                        </span>
+                    )}
+                </div>
+
+                <div className="slider-track-container">
+                    <input
+                        id={sliderId}
+                        ref={ref}
+                        type="range"
+                        className="slider-input"
+                        min={min}
+                        max={max}
+                        step={step}
+                        value={value}
+                        disabled={disabled}
+                        onChange={handleChange}
+                        aria-invalid={error}
+                        aria-describedby={ariaDescribedBy || undefined}
+                        data-slot="slider-input"
+                        {...props}
+                    />
+                    <div className="slider-track" aria-hidden="true" />
+                    <div className="slider-range" aria-hidden="true" />
+                </div>
+
+                {error && errorMessage && (
+                    <span
+                        id={errorId}
+                        className="slider-error-message"
+                        data-slot="slider-error-message"
+                    >
+                        {errorMessage}
+                    </span>
+                )}
+
+                {!error && description && (
+                    <p
+                        id={descriptionId}
+                        className="slider-description"
+                        data-slot="slider-description"
+                    >
+                        {description}
+                    </p>
+                )}
             </div>
-        </>
-    )
-}
+        );
+    },
+);
+
+Slider.displayName = 'Slider';

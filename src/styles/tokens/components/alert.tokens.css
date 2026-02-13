@@ -1,0 +1,61 @@
+:root {
+    /* ===============================
+       🚨 Alert Tokens
+       =============================== */
+
+    /* --- Dimensions --- */
+    --alert-padding: var(--space-4);
+    --alert-radius: var(--radius-md);
+    --alert-gap: var(--space-3);
+    --alert-icon-size: var(--font-lg);
+
+    /* --- Colors (Default/Neutral) --- */
+    --alert-bg-neutral: var(--color-gray-50);
+    --alert-border-neutral: var(--color-gray-200);
+    --alert-text-neutral: var(--color-gray-800);
+    --alert-icon-neutral: var(--color-gray-600);
+
+    /* --- Semantic Colors (Info) --- */
+    /* Subtle (Default) */
+    --alert-bg-info: var(--color-blue-50);
+    --alert-border-info: var(--color-blue-200);
+    --alert-text-info: var(--color-blue-800);
+    --alert-icon-info: var(--color-blue-600);
+    
+    /* Solid */
+    --alert-bg-info-solid: var(--color-blue-600);
+    --alert-text-info-solid: var(--color-white);
+
+    /* --- Semantic Colors (Success) --- */
+    /* Subtle */
+    --alert-bg-success: var(--color-green-50);
+    --alert-border-success: var(--color-green-200);
+    --alert-text-success: var(--color-green-800);
+    --alert-icon-success: var(--color-green-600);
+    
+    /* Solid */
+    --alert-bg-success-solid: var(--color-green-600);
+    --alert-text-success-solid: var(--color-white);
+
+    /* --- Semantic Colors (Warning) --- */
+    /* Subtle */
+    --alert-bg-warning: var(--color-yellow-50);
+    --alert-border-warning: var(--color-yellow-200);
+    --alert-text-warning: var(--color-yellow-800);
+    --alert-icon-warning: var(--color-yellow-600);
+    
+    /* Solid */
+    --alert-bg-warning-solid: var(--color-yellow-500);
+    --alert-text-warning-solid: var(--color-black); /* Contraste melhor */
+
+    /* --- Semantic Colors (Error) --- */
+    /* Subtle */
+    --alert-bg-error: var(--color-destructive-50);
+    --alert-border-error: var(--color-destructive-200);
+    --alert-text-error: var(--color-destructive-800);
+    --alert-icon-error: var(--color-destructive-600);
+    
+    /* Solid */
+    --alert-bg-error-solid: var(--color-destructive-600);
+    --alert-text-error-solid: var(--color-white);
+}

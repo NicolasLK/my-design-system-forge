@@ -1,270 +1,278 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
-"use-client"
-
-import { Children, cloneElement, useEffect, useRef, type ComponentProps, type ReactNode } from "react"
-import { cn } from "@/lib/utils/cn"
-import "./select.css"
+import { SelectProvider, useSelectContext } from '@/contexts/components/select/SelectContext';
+import { cn } from '@/lib/utils/cn';
+import { getComponentSize, type ComponentSize } from '@/models/get-component-size';
+import { useClickOutside } from '@/models/hooks/useClickOutside';
+import { useControllableState } from '@/models/hooks/useControllableState';
+import {
+    forwardRef,
+    useEffect,
+    useRef,
+    useState,
+    type ButtonHTMLAttributes,
+    type ComponentProps,
+    type HTMLAttributes,
+    type LiHTMLAttributes,
+    type ReactNode,
+    type RefObject,
+} from 'react';
+import './select.css';
 
 /* ============================================================
  * 🟦 ROOT
  * ============================================================ */
 interface ISelectRootProps {
-    children: ReactNode
-    value: string
-    onChange: (value: string) => void
-    open: boolean
-    onOpenChange: (open: boolean) => void
-    className?: string
+    children: ReactNode;
+    value?: string;
+    defaultValue?: string;
+    onValueChange?: (value: string) => void;
+    open?: boolean;
+    defaultOpen?: boolean;
+    onOpenChange?: (open: boolean) => void;
+    disabled?: boolean;
+    error?: boolean;
+    placeholder?: string;
+    className?: string;
+    selectSize?: ComponentSize;
 }
 
 export const SelectRoot = ({
     children,
-    value,
-    onChange,
-    open,
+    value: valueProp,
+    defaultValue,
+    onValueChange,
+    open: openProp,
+    defaultOpen,
     onOpenChange,
-    className
+    disabled = false,
+    error = false,
+    placeholder,
+    className,
+    selectSize = 'md',
 }: ISelectRootProps) => {
-    const ref = useRef<HTMLDivElement>(null)
+    const [value, setValue] = useControllableState(
+        valueProp,
+        defaultValue || '',
+        onValueChange
+    );
 
-    // Fecha o dropdown ao clicar fora
-    useEffect(() => {
-        const handleClickOutside = (event: MouseEvent) => {
-            if (ref.current && !ref.current.contains(event.target as Node)) {
-                onOpenChange(false)
-            }
-        }
-        document.addEventListener("mousedown", handleClickOutside)
-        return () => document.removeEventListener("mousedown", handleClickOutside)
-    }, [onOpenChange])
+    const [open, setOpen] = useControllableState(
+        openProp,
+        defaultOpen || false,
+        onOpenChange
+    );
+
+    // Store labels for value mapping
+    const [labels, setLabels] = useState<Record<string, string>>({});
+
+    const registerOption = (val: string, label: string) => {
+        setLabels((prev) => ({ ...prev, [val]: label }));
+    };
+
+    const unregisterOption = (val: string) => {
+        setLabels((prev) => {
+            const next = { ...prev };
+            delete next[val];
+            return next;
+        });
+    };
+
+    const getLabel = (val: string) => labels[val];
+
+    const ref = useRef<HTMLDivElement>(null);
+    useClickOutside(ref as RefObject<HTMLElement | null>, () => setOpen(false), open);
+
+    const sizeClass = getComponentSize(selectSize, 'select');
 
     return (
-        <>
+        <SelectProvider
+            value={{
+                value,
+                onValueChange: setValue,
+                open,
+                onOpenChange: setOpen,
+                disabled,
+                error,
+                placeholder,
+                registerOption,
+                unregisterOption,
+                getLabel,
+            }}
+        >
             <div
                 ref={ref}
-                data-slot="select"
-                data-open={open}
-                data-value={value}
-                className={cn("select-root", className)}
+                data-slot="select-root"
+                data-state={open ? 'open' : 'closed'}
+                className={cn('select-root', sizeClass, className)}
             >
-                {/* Injeta handlers para Trigger e Option */}
-                {injectProps(children, { value, onChange, open, onOpenChange })}
-            </div>
-        </>
-    )
-}
-
-/* ============================================================
- * 🟦 LABEL
- * ============================================================ */
-export const SelectLabel = ({
-    className,
-    children
-}: ComponentProps<"label">) => {
-
-    return (
-        <>
-            <label className={cn("select-label", className)}>
                 {children}
-            </label>
-        </>
-    )
-}
+            </div>
+        </SelectProvider>
+    );
+};
 
 /* ============================================================
  * 🟦 TRIGGER
  * ============================================================ */
-interface ISelectTriggerProps extends ComponentProps<"button"> {
-    open?: boolean
-    onOpenChange?: (open: boolean) => void
+interface ISelectTriggerProps extends ButtonHTMLAttributes<HTMLButtonElement> {
+    children?: ReactNode;
 }
 
-export const SelectTrigger = ({
-    className,
-    children,
-    open,
-    onOpenChange,
-    ...props
-}: ISelectTriggerProps) => {
+export const SelectTrigger = forwardRef<HTMLButtonElement, ISelectTriggerProps>(
+    ({ className, children, ...props }, ref) => {
+        const { open, onOpenChange, disabled, error } = useSelectContext();
 
-    return (
-        <>
+        return (
             <button
+                ref={ref}
                 type="button"
                 data-slot="select-trigger"
                 aria-expanded={open}
-                onClick={() => { onOpenChange?.(!open) }}
-                className={cn("select-trigger", className)}
+                aria-haspopup="listbox"
+                disabled={disabled}
+                data-error={error}
+                onClick={() => {
+                    if (!disabled) onOpenChange(!open);
+                }}
+                className={cn(
+                    'select-trigger',
+                    error && 'select-trigger-error',
+                    className
+                )}
                 {...props}
             >
-                <span className="select-trigger-text">
-                    {children}
-                </span>
-
-                <span className={cn("select-arrow", open && "rotate")}>▾</span>
+                {children}
+                <span className={cn('select-arrow', open && 'rotate')}>▾</span>
             </button>
-        </>
-    )
-}
+        );
+    }
+);
+SelectTrigger.displayName = 'SelectTrigger';
 
 /* ============================================================
  * 🟦 VALUE
  * ============================================================ */
 interface ISelectValueProps {
-    value?: string
-    options?: { value: string; label: string }[]
-    placeholder?: string
+    placeholder?: string;
+    className?: string;
 }
 
-export const SelectValue = ({
-    value,
-    options,
-    placeholder
-}: ISelectValueProps) => {
-    const label = options?.find(op => op.value === value)?.label
+export const SelectValue = ({ placeholder: placeholderProp, className }: ISelectValueProps) => {
+    const { value, getLabel, placeholder: contextPlaceholder } = useSelectContext();
+    const placeholder = placeholderProp || contextPlaceholder;
+    
+    const label = value ? getLabel(value) : undefined;
+    const displayText = label || value || placeholder;
+    const isPlaceholder = !value && !!placeholder;
 
     return (
-        <>
-            <span data-slot="select-value">
-                {label || placeholder}
-            </span>
-        </>
-    )
-}
+        <span
+            data-slot="select-value"
+            className={cn(
+                'select-value',
+                isPlaceholder && 'select-placeholder',
+                className
+            )}
+        >
+            {displayText}
+        </span>
+    );
+};
 
 /* ============================================================
  * 🟦 CONTENT
  * ============================================================ */
-interface ISelectContentProps extends ComponentProps<"ul"> {
-    open?: boolean
+interface ISelectContentProps extends HTMLAttributes<HTMLUListElement> {
+    children: ReactNode;
 }
 
-export const SelectContent = ({
-    className,
-    children,
-    open,
-    ...props
-}: ISelectContentProps) => {
-    if (!open) return null
+export const SelectContent = forwardRef<HTMLUListElement, ISelectContentProps>(
+    ({ className, children, ...props }, ref) => {
+        const { open } = useSelectContext();
 
-    return (
-        <>
+        if (!open) return null;
+
+        return (
             <ul
+                ref={ref}
+                role="listbox"
                 data-slot="select-content"
-                className={cn("select-content", className)}
+                data-state={open ? 'open' : 'closed'}
+                className={cn('select-content', className)}
                 {...props}
             >
                 {children}
             </ul>
-        </>
-    )
-}
+        );
+    }
+);
+SelectContent.displayName = 'SelectContent';
 
 /* ============================================================
- * 🟦 OPTION
+ * 🟦 ITEM (OPTION)
  * ============================================================ */
-interface ISelectOptionProps {
-    value: string
-    children: ReactNode
-    selected?: boolean
-    onSelect?: (value: string) => void
+interface ISelectItemProps extends LiHTMLAttributes<HTMLLIElement> {
+    value: string;
+    children: ReactNode;
+    disabled?: boolean;
 }
 
-export const SelectOption = ({
-    value,
-    children,
-    selected,
-    onSelect
-}: ISelectOptionProps) => {
+export const SelectItem = forwardRef<HTMLLIElement, ISelectItemProps>(
+    ({ className, value, children, disabled, ...props }, ref) => {
+        const {
+            value: selectedValue,
+            onValueChange,
+            onOpenChange,
+            registerOption,
+            unregisterOption,
+        } = useSelectContext();
 
-    return (
-        <>
+        // Register label on mount
+        useEffect(() => {
+            const label = typeof children === 'string' ? children : String(children); // Simplificação
+            registerOption(value, label);
+            return () => unregisterOption(value);
+        }, [value, children, registerOption, unregisterOption]);
+
+        const isSelected = selectedValue === value;
+
+        const handleSelect = () => {
+            if (disabled) return;
+            onValueChange(value);
+            onOpenChange(false);
+        };
+
+        return (
             <li
-                data-slot="select-option"
-                data-selected={selected}
-                onClick={() => onSelect?.(value)}
-                className="select-option"
+                ref={ref}
+                role="option"
+                data-slot="select-item"
+                aria-selected={isSelected}
+                data-selected={isSelected}
+                data-disabled={disabled}
+                onClick={handleSelect}
+                className={cn(
+                    'select-item',
+                    isSelected && 'select-item-selected',
+                    disabled && 'select-item-disabled',
+                    className
+                )}
+                {...props}
             >
                 {children}
+                {isSelected && <span className="select-check">✓</span>}
             </li>
-        </>
-    )
-}
+        );
+    }
+);
+SelectItem.displayName = 'SelectItem';
 
 /* ============================================================
- * 🧩 Helpers: injeta automaticamente props nos filhos
- * para coletar opções e iniciar a injeção.
+ * 🟦 LABEL (GROUP)
  * ============================================================ */
-function injectProps(
-    children: ReactNode,
-    injected: Record<string, any>
-): ReactNode {
-    const options: { value: string; label: string }[] = []
-
-    // 1. Coletar Opções (melhor que buscar recursivamente duas vezes)
-    Children.forEach(children, (child: any) => {
-        // Encontra o SelectContent e itera sobre suas opções
-        if (child && child.type === SelectContent && child.props.children) {
-            Children.forEach(child.props.children, (option: any) => {
-                if (option && option.type === SelectOption) {
-                    options.push({
-                        value: option.props.value,
-                        label: option.props.children
-                    })
-                }
-            })
-        }
-    })
-
-    const extraInjected = {
-        ...injected,
-        options
-    }
-
-    // 2. Injetar Props nos filhos diretos
-    return Children.map(children, (child) => wrap(child, extraInjected));
-}
-
-function wrap(
-    child: any,
-    injected: Record<string, any>
-): any {
-    if (!child || !child.props) return child
-
-    const extra: Record<string, any> = {}
-
-    // 1. Condições de Injeção de Props
-    if (child.type === SelectTrigger) {
-        extra.open = injected.open;
-        extra.onOpenChange = injected.onOpenChange;
-    }
-
-    if (child.type === SelectValue) {
-        extra.value = injected.value;
-        extra.options = injected.options;
-    }
-
-    if (child.type === SelectContent) {
-        extra.open = injected.open;
-    }
-
-    if (child.type === SelectOption) {
-        extra.selected = injected.value === child.props.value;
-        extra.onSelect = () => {
-            injected.onChange(child.props.value);
-            injected.onOpenChange(false);
-        };
-    }
-
-    // 2. Clonagem Recursiva
-    // Isso garante que todos os filhos de 'child' sejam processados
-    const clonedChildren = Children.map(child.props.children, (c) =>
-        wrap(c, injected)
+export const SelectLabel = ({ className, children, ...props }: ComponentProps<'div'>) => {
+    return (
+        <div className={cn('select-label', className)} {...props}>
+            {children}
+        </div>
     );
-
-    return cloneElement(
-        child,
-        { ...child.props, ...extra },
-        clonedChildren
-    )
-}
+};

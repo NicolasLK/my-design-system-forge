@@ -2,104 +2,112 @@
    📝 Textarea Component
    =========================== */
 
-   .textarea-root {
+/* Root Wrapper */
+.textarea-root {
     display: flex;
     flex-direction: column;
     gap: var(--space-1_5);
-    width: auto; /* Default width */
+    width: fit-content;
+    min-width: 200px; /* Largura mínima razoável */
 }
 
-/* Label */
+/* Full Width Variant */
+.textarea-root.textarea-full {
+    width: 100%;
+}
+
+/* --- Label --- */
 .textarea-label {
-    font-size: var(--font-sm);
+    font-size: var(--textarea-font-size-md);
     font-weight: var(--weight-medium);
-    color: var(--text-main);
+    color: var(--textarea-text);
     padding-left: var(--space-0_5);
     text-align: left;
+    line-height: var(--leading-tight);
 }
 
-/* Campo de Textarea */
+/* --- Field (The actual textarea) --- */
 .textarea-field {
     width: 100%;
-    min-width: var(--space-0);
+    min-height: 80px; /* Altura mínima */
     padding: var(--textarea-padding-block-md) var(--textarea-padding-inline-md);
+    
+    font-family: inherit;
     font-size: var(--textarea-font-size-md);
-    line-height: var(--leading-normal);
     color: var(--textarea-text);
-    background: var(--textarea-bg);
+    line-height: var(--leading-normal);
+    
+    background-color: var(--textarea-bg);
     border: 1px solid var(--textarea-border);
     border-radius: var(--textarea-radius);
-    resize: vertical; /* Permitir redimensionamento vertical por padrão */
+    
+    resize: vertical; /* Permite redimensionar apenas verticalmente */
     transition: border-color 0.2s ease, box-shadow 0.2s ease;
-    font-family: inherit;
 }
 
 .textarea-field::placeholder {
     color: var(--textarea-placeholder);
 }
 
-.textarea-field:focus {
+/* Hover State */
+.textarea-field:hover:not(:disabled) {
+    border-color: var(--textarea-focus-ring-color); /* Leve destaque ao hover */
+}
+
+/* Focus State */
+.textarea-field:focus-visible {
     outline: none;
     border-color: var(--textarea-focus-border);
     box-shadow: 0 0 0 var(--textarea-focus-ring-offset) var(--textarea-focus-ring-color);
 }
 
+/* Disabled State */
 .textarea-field:disabled {
     background-color: var(--textarea-disabled-bg);
     color: var(--textarea-disabled-text);
     border-color: var(--textarea-disabled-border);
     cursor: not-allowed;
-    opacity: 0.6;
+    opacity: 0.7;
 }
 
-/* ❌ Estado de erro */
+/* Error State */
 .textarea-field.textarea-error {
     border-color: var(--textarea-error-border);
-}
-
-.textarea-field.textarea-error:focus {
-    box-shadow: 0 0 0 var(--textarea-focus-ring-offset) color-mix(in srgb, var(--textarea-error-border) 20%, transparent);
-    border-color: var(--textarea-error-border);
-}
-
-/* ❌ Mensagem de Erro */
-.textarea-error-message {
-    text-align: left;
     color: var(--textarea-error-text);
-    font-size: var(--font-xs);
-    padding-left: var(--space-0_5);
 }
 
-/* 📘 Descrição */
+.textarea-field.textarea-error:focus-visible {
+    box-shadow: 0 0 0 var(--textarea-focus-ring-offset) var(--textarea-error-border);
+}
+
+/* --- Error Message --- */
+.textarea-error-message {
+    font-size: var(--font-xs);
+    color: var(--textarea-error-text);
+    padding-left: var(--space-0_5);
+    line-height: var(--leading-tight);
+}
+
+/* --- Description --- */
 .textarea-description {
-    text-align: left;
     font-size: var(--font-xs);
     color: var(--text-muted);
-    line-height: var(--leading-snug);
     padding-left: var(--space-0_5);
+    line-height: var(--leading-snug);
 }
 
-/* 🔁 Largura total */
-.textarea-full {
-    width: 100%;
-}
-
-/* --- Tamanhos --- */
+/* --- Sizes (Variants) --- */
 
 /* Small */
-.textarea-sm .textarea-field {
-    padding: var(--textarea-padding-block-sm) var(--textarea-padding-inline-sm);
+.textarea-root.textarea-sm .textarea-field {
     font-size: var(--textarea-font-size-sm);
-}
-
-/* Medium (Default) - já aplicado na classe base, mas reforçado aqui se necessário */
-.textarea-md .textarea-field {
-    padding: var(--textarea-padding-block-md) var(--textarea-padding-inline-md);
-    font-size: var(--textarea-font-size-md);
+    padding: var(--textarea-padding-block-sm) var(--textarea-padding-inline-sm);
+    min-height: 60px;
 }
 
 /* Large */
-.textarea-lg .textarea-field {
-    padding: var(--textarea-padding-block-lg) var(--textarea-padding-inline-lg);
+.textarea-root.textarea-lg .textarea-field {
     font-size: var(--textarea-font-size-lg);
+    padding: var(--textarea-padding-block-lg) var(--textarea-padding-inline-lg);
+    min-height: 100px;
 }

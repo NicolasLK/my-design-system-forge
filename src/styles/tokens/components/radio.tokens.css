@@ -1,0 +1,50 @@
+:root {
+    /* ===============================
+       🔘 Radio Tokens
+       =============================== */
+
+    /* --- Dimensions --- */
+    
+    /* Small */
+    --radio-size-sm: var(--space-4);      /* ~16px */
+    --radio-dot-size-sm: var(--space-1_5);
+
+    /* Medium (Default) */
+    --radio-size-md: var(--space-5);      /* ~20px */
+    --radio-dot-size-md: var(--space-2_5);
+
+    /* Large */
+    --radio-size-lg: var(--space-6);      /* ~24px */
+    --radio-dot-size-lg: var(--space-3);
+
+    /* Radius (Circular) */
+    --radio-radius: var(--radius-full);
+
+    /* --- Colors --- */
+    
+    /* Background & Border */
+    --radio-bg: var(--color-white);
+    --radio-border: var(--color-gray-300);
+    
+    /* Checked State */
+    --radio-bg-checked: var(--color-white);
+    --radio-border-checked: var(--color-primary-500);
+    --radio-dot-color: var(--color-primary-500);
+
+    /* Disabled State */
+    --radio-bg-disabled: var(--color-gray-100);
+    --radio-border-disabled: var(--color-gray-200);
+    --radio-dot-color-disabled: var(--color-gray-400);
+
+    /* Error State */
+    --radio-border-error: var(--color-destructive-500);
+    
+    /* Text */
+    --radio-label-color: var(--text-main);
+    --radio-description-color: var(--text-muted);
+    --radio-error-color: var(--color-destructive-500);
+
+    /* --- Focus --- */
+    --radio-focus-ring-color: var(--color-primary-400);
+    --radio-focus-ring-offset: 2px;
+}

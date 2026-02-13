@@ -4,7 +4,7 @@ import {
     getComponentSize,
     type ComponentSize,
 } from '@/models/get-component-size';
-import { forwardRef, type TextareaHTMLAttributes, type ReactNode } from 'react';
+import { forwardRef, type ReactNode, type TextareaHTMLAttributes } from 'react';
 import './textarea.css';
 
 interface ITextareaProps extends TextareaHTMLAttributes<HTMLTextAreaElement> {
@@ -41,10 +41,21 @@ export const Textarea = forwardRef<HTMLTextAreaElement, ITextareaProps>(
         /**
          * Gera um ID único apenas se não houver um ID externo
          */
-        const textareaId = externalId || (label ? genUid(8) : undefined);
+        const uniqueId = externalId || (label ? genUid(8) : undefined);
+        const textareaId = uniqueId || undefined;
+        const errorId = uniqueId ? `${uniqueId}-error` : undefined;
+        const descriptionId = uniqueId ? `${uniqueId}-description` : undefined;
 
         const sizeClass = getComponentSize(size, 'textarea');
         const errorClass = error ? 'textarea-error' : '';
+
+        // Construção do aria-describedby
+        const ariaDescribedBy = [
+            error && errorMessage ? errorId : null,
+            description ? descriptionId : null,
+        ]
+            .filter(Boolean)
+            .join(' ');
 
         return (
             <div
@@ -73,11 +84,13 @@ export const Textarea = forwardRef<HTMLTextAreaElement, ITextareaProps>(
                     className={cn('textarea-field', errorClass)}
                     disabled={disabled}
                     aria-invalid={error}
+                    aria-describedby={ariaDescribedBy || undefined}
                     {...props}
                 />
 
                 {error && errorMessage && (
                     <span
+                        id={errorId}
                         data-slot="textarea-error-message"
                         className="textarea-error-message"
                     >
@@ -87,6 +100,7 @@ export const Textarea = forwardRef<HTMLTextAreaElement, ITextareaProps>(
 
                 {!error && description && (
                     <p
+                        id={descriptionId}
                         data-slot="textarea-description"
                         className="textarea-description"
                     >

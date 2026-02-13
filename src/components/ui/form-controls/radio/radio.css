@@ -2,71 +2,146 @@
    🔘 Radio Component
    =========================== */
 
-.radio-wrapper {
+/* Root Wrapper */
+.radio-root {
     display: flex;
+    flex-direction: column;
+    gap: var(--space-1);
+    width: fit-content;
+}
+
+/* Container (Input + Indicator + Label) */
+.radio-container {
+    display: inline-flex;
     align-items: center;
     gap: var(--space-2);
-    cursor: pointer;
-    user-select: none;
-}
-
-.radio-wrapper.disabled {
-    opacity: 0.6;
-    cursor: not-allowed;
-}
-
-/* Ocultar o input nativo */
-.radio-wrapper input {
-    display: none;
-}
-
-/* Círculo externo */
-.radio-circle {
-    border: 2px solid var(--color-gray-500);
-    border-radius: var(--radius-full);
-    background-color: white;
-    transition: all 0.2s ease;
     position: relative;
+    cursor: pointer;
 }
 
-/* Tamanhos */
+/* Visually Hidden Input (Maintain accessibility) */
+.radio-input {
+    position: absolute;
+    opacity: 0;
+    width: 0;
+    height: 0;
+    margin: 0;
+    pointer-events: none;
+}
+
+/* --- Indicator (The circle) --- */
+.radio-indicator {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid var(--radio-border);
+    background-color: var(--radio-bg);
+    border-radius: var(--radio-radius);
+    transition: all 0.2s ease-in-out;
+    cursor: pointer;
+    box-sizing: border-box;
+}
+
+/* Sizes */
 .radio-sm {
-    width: 14px;
-    height: 14px;
+    width: var(--radio-size-sm);
+    height: var(--radio-size-sm);
+}
+
+.radio-sm .radio-dot {
+    width: var(--radio-dot-size-sm);
+    height: var(--radio-dot-size-sm);
 }
 
 .radio-md {
-    width: 18px;
-    height: 18px;
+    width: var(--radio-size-md);
+    height: var(--radio-size-md);
+}
+
+.radio-md .radio-dot {
+    width: var(--radio-dot-size-md);
+    height: var(--radio-dot-size-md);
 }
 
 .radio-lg {
-    width: 22px;
-    height: 22px;
+    width: var(--radio-size-lg);
+    height: var(--radio-size-lg);
 }
 
-/* Marcado */
-.radio-wrapper input:checked + .radio-circle {
-    border-color: var(--color-primary-500);
+.radio-lg .radio-dot {
+    width: var(--radio-dot-size-lg);
+    height: var(--radio-dot-size-lg);
 }
 
-.radio-wrapper input:checked + .radio-circle::after {
-    content: '';
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 55%;
-    height: 55%;
-    background-color: var(--color-primary-500);
+/* --- Dot (The inner circle) --- */
+.radio-dot {
+    background-color: var(--radio-dot-color);
     border-radius: var(--radius-full);
-    transform: translate(-50%, -50%);
+    transform: scale(0);
+    opacity: 0;
+    transition: transform 0.2s cubic-bezier(0.4, 0.0, 0.2, 1), opacity 0.2s ease;
 }
 
-/* Hover */
-.radio-wrapper:not(.disabled):hover .radio-circle {
-    border-color: var(--color-primary-500);
+/* --- States --- */
+
+/* Checked */
+.radio-indicator.radio-checked {
+    border-color: var(--radio-border-checked);
+    background-color: var(--radio-bg-checked);
 }
 
+.radio-indicator.radio-checked .radio-dot {
+    transform: scale(1);
+    opacity: 1;
+}
+
+/* Disabled */
+.radio-indicator.radio-disabled {
+    background-color: var(--radio-bg-disabled);
+    border-color: var(--radio-border-disabled);
+    cursor: not-allowed;
+}
+
+.radio-indicator.radio-disabled .radio-dot {
+    background-color: var(--radio-dot-color-disabled);
+}
+
+.radio-label-disabled {
+    color: var(--text-muted);
+    cursor: not-allowed;
+    opacity: 0.7;
+}
+
+/* Error */
+.radio-indicator.radio-error {
+    border-color: var(--radio-border-error);
+}
+
+/* Focus Visible */
+.radio-input:focus-visible ~ .radio-indicator {
+    outline: none;
+    box-shadow: 0 0 0 var(--radio-focus-ring-offset) var(--radio-focus-ring-color);
+}
+
+/* Label Text */
 .radio-label {
     font-size: var(--font-sm);
+    color: var(--radio-label-color);
+    user-select: none;
+    cursor: pointer;
+    line-height: var(--leading-normal);
+}
+
+/* Description Text */
+.radio-description {
+    font-size: var(--font-xs);
+    color: var(--radio-description-color);
+    line-height: var(--leading-snug);
+}
+
+/* Error Message */
+.radio-error-message {
+    font-size: var(--font-xs);
+    color: var(--radio-error-color);
+    line-height: var(--leading-tight);
 }

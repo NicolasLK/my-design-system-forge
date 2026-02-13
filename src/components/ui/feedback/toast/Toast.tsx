@@ -1,56 +1,68 @@
-import { useEffect, useState } from "react"
-import { getComponentColor, type ComponentColor } from "@/models/get-component-color"
-import { cn } from "@/lib/utils/cn"
-import "./toast.css"
+import { useToast, type IToast } from '@/contexts/components/toast/ToastContext';
+import { cn } from '@/lib/utils/cn';
+import { getComponentColor } from '@/models/get-component-color';
+import './toast.css';
 
-type ToastVariant = ComponentColor
+/* ============================================================
+ * 🍞 Toast Component (Individual)
+ * ============================================================ */
 
-interface IToastProps {
-    /** Mensagem principal */
-    message: string
-    /** Tipo do toast */
-    variant?: ToastVariant
-    /** Tempo até desaparecer (ms) */
-    duration?: number
-    /** Visibilidade do componente */
-    visible?: boolean;
-    /** Função chamada ao fechar */
-    onClose?: () => void
-    /** Propriedade para adicionar mais estilos */
-    className?: string;
+interface ToastProps extends Omit<IToast, 'duration'> {
+    onClose: () => void;
 }
 
 export const Toast = ({
-    message,
-    variant = "default",
-    duration = 3000,
-    visible = false,
+    id,
+    title,
+    description,
+    severity = 'info',
+    action,
     onClose,
-    className
-}: IToastProps) => {
-    const [show, setShow] = useState(visible);
-
-    useEffect(() => {
-        setShow(visible)
-        if (!visible) return
-
-        const timer = setTimeout(() => {
-            setShow(false)
-            onClose?.()
-        }, duration)
-
-        return () => clearTimeout(timer)
-    }, [visible, duration, onClose])
-
-    const colorClass = getComponentColor(variant, 'toast')
-
-    if (!show) return null;
+}: ToastProps) => {
+    const severityClass = getComponentColor(severity, 'toast-border');
+    const iconColorClass = getComponentColor(severity, 'toast-icon');
 
     return (
-        <>
-            <div className={cn("toast", colorClass, className)}>
-                <span>{message}</span>
+        <div
+            role="status"
+            aria-live="polite"
+            className={cn('toast', severityClass)}
+            data-severity={severity}
+        >
+            <div className="toast-content">
+                {title && <strong className="toast-title">{title}</strong>}
+                {description && <p className="toast-description">{description}</p>}
             </div>
-        </>
-    )
-}
+            
+            {action && <div className="toast-action">{action}</div>}
+
+            <button
+                onClick={onClose}
+                className="toast-close"
+                aria-label="Close"
+            >
+                ✕
+            </button>
+        </div>
+    );
+};
+
+/* ============================================================
+ * 📋 Toast Viewport (List Container)
+ * ============================================================ */
+
+export const ToastViewport = () => {
+    const { toasts, dismiss } = useToast();
+
+    return (
+        <div className="toast-viewport">
+            {toasts.map((toast) => (
+                <Toast
+                    key={toast.id}
+                    {...toast}
+                    onClose={() => dismiss(toast.id)}
+                />
+            ))}
+        </div>
+    );
+};

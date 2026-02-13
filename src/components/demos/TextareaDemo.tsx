@@ -5,33 +5,35 @@ export const TextareaDemo = () => {
     return (
         <div className="u-flex u-flex-col u-items-start u-gap-6">
             {/* Default */}
-            <div className="u-flex u-gap-4">
+            <div className="u-flex u-flex-col u-gap-2">
                 <span className="u-text-sm u-text-gray u-text-transform-capitalize">
-                    default:
+                    Default:
                 </span>
-                <Textarea placeholder="Escreva algo aqui..." />
+                <Textarea placeholder="Type something here..." />
             </div>
 
             <Divider spacing="small" />
 
-            {/* With Label */}
-            <div className="u-flex u-gap-4">
-                <span className="u-text-sm u-text-gray">With label:</span>
+            {/* With Label and Description */}
+            <div className="u-flex u-flex-col u-gap-2">
+                <span className="u-text-sm u-text-gray u-text-transform-capitalize">
+                    Label & Description:
+                </span>
                 <Textarea
-                    label="Biografia"
-                    placeholder="Conte um pouco sobre você..."
-                    description="Essa descrição será exibida publicamente no seu perfil."
+                    label="Biography"
+                    placeholder="Tell us a little about yourself..."
+                    description="This description will be displayed on your public profile."
                 />
             </div>
 
             <Divider spacing="small" />
 
             {/* Sizes */}
-            <div className="u-flex u-gap-4">
+            <div className="u-flex u-flex-col u-gap-4 u-w-full">
                 <span className="u-text-sm u-text-gray u-text-transform-capitalize">
-                    sizes:
+                    Sizes:
                 </span>
-                <div className="u-flex u-flex-col u-gap-4 u-w-full">
+                <div className="u-flex u-items-start u-gap-4">
                     <Textarea size="sm" placeholder="Small (sm)" />
                     <Textarea size="md" placeholder="Medium (md)" />
                     <Textarea size="lg" placeholder="Large (lg)" />
@@ -40,29 +42,29 @@ export const TextareaDemo = () => {
 
             <Divider spacing="small" />
 
-            {/* Invalid */}
-            <div className="u-flex u-gap-4">
+            {/* Error State */}
+            <div className="u-flex u-flex-col u-gap-2">
                 <span className="u-text-sm u-text-gray u-text-transform-capitalize">
-                    invalid:
+                    Error State:
                 </span>
                 <Textarea
-                    label="Comentário"
-                    placeholder="Digite seu comentário..."
+                    label="Comment"
+                    placeholder="Enter your comment..."
                     error
-                    errorMessage="O comentário não pode estar vazio."
+                    errorMessage="The comment cannot be empty."
                 />
             </div>
 
             <Divider spacing="small" />
 
             {/* Disabled */}
-            <div className="u-flex u-gap-4">
+            <div className="u-flex u-flex-col u-gap-2">
                 <span className="u-text-sm u-text-gray u-text-transform-capitalize">
-                    disabled:
+                    Disabled:
                 </span>
                 <Textarea
-                    label="Feedback Enviado"
-                    defaultValue="Obrigado pelo seu feedback! Não é possível editar agora."
+                    label="Feedback Sent"
+                    defaultValue="Thank you for your feedback! Editing is disabled."
                     disabled
                 />
             </div>
@@ -70,14 +72,14 @@ export const TextareaDemo = () => {
             <Divider spacing="small" />
 
             {/* Full Width */}
-            <div className="u-flex u-gap-4 u-w-full">
-                <span className="u-text-sm u-text-gray u-text-transform-capitalize u-w-20">
-                    full width:
+            <div className="u-flex u-flex-col u-gap-2 u-w-full">
+                <span className="u-text-sm u-text-gray u-text-transform-capitalize">
+                    Full Width:
                 </span>
                 <Textarea
                     fullWidth
-                    placeholder="Este textarea ocupa 100% da largura do container pai."
-                    rows={6}
+                    placeholder="This textarea takes up 100% of the parent container's width."
+                    rows={4}
                 />
             </div>
         </div>

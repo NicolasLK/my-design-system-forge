@@ -1,6 +1,6 @@
 /* Design Tokens - Textarea */
 :root {
-    /* Dimensions */
+    /* Dimensions - Height is auto (rows), so we focus on padding */
     --textarea-padding-block-sm: var(--space-1);
     --textarea-padding-inline-sm: var(--space-2);
 

@@ -1,0 +1,57 @@
+:root {
+    /* ===============================
+       🔽 Select Tokens
+       =============================== */
+
+    /* --- Dimensions --- */
+    
+    /* Height (Matches Input) */
+    --select-height-sm: var(--space-8);      /* ~32px */
+    --select-height-md: var(--space-10);     /* ~40px */
+    --select-height-lg: var(--space-12);     /* ~48px */
+
+    /* Padding */
+    --select-padding-x: var(--space-3);
+    --select-padding-y: var(--space-2);
+
+    /* Radius */
+    --select-radius: var(--radius-md);
+
+    /* --- Colors --- */
+    
+    /* Background & Border */
+    --select-bg: var(--bg-surface);
+    --select-border: var(--color-gray-300);
+    --select-bg-hover: var(--color-gray-50);
+    --select-border-hover: var(--color-gray-400);
+    --select-border-focus: var(--color-primary-500);
+
+    /* Text */
+    --select-text-color: var(--text-main);
+    --select-placeholder-color: var(--text-muted);
+
+    /* Disabled */
+    --select-bg-disabled: var(--bg-surface-sunken);
+    --select-text-disabled: var(--text-muted);
+    --select-border-disabled: var(--color-gray-200);
+
+    /* Error */
+    --select-border-error: var(--color-destructive-500);
+
+    /* --- Content (Dropdown) --- */
+    --select-content-bg: var(--bg-surface);
+    --select-content-border: var(--color-gray-200);
+    --select-content-shadow: var(--shadow-lg);
+    --select-content-radius: var(--radius-md);
+    --select-content-z-index: 50;
+    
+    /* Item */
+    --select-item-bg-hover: var(--color-gray-100);
+    --select-item-bg-selected: var(--color-primary-50);
+    --select-item-text-selected: var(--color-primary-700);
+    --select-item-padding: var(--space-2);
+
+    /* --- Focus Ring --- */
+    --select-focus-ring-color: var(--color-primary-200);
+    --select-focus-ring-offset: 2px;
+}

@@ -1,130 +1,221 @@
 /* ===========================
-   🎚 Slider Component
+   🎚️ Slider Component
    =========================== */
 
+/* Root Wrapper */
 .slider-root {
     display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+    width: 100%;
+    min-width: 150px;
+}
+
+/* Header (Label + Value) */
+.slider-header {
+    display: flex;
+    justify-content: space-between;
     align-items: center;
-    gap: var(--space-3);
-    width: 100%;
-    max-width: 20rem;
+    margin-bottom: var(--space-1);
 }
 
-/* Largura total */
-.slider-root.slider-full {
-    max-width: 100%;
+.slider-label {
+    font-size: var(--font-sm);
+    font-weight: var(--weight-medium);
+    color: var(--slider-label-color);
+    line-height: var(--leading-tight);
 }
 
-/* Input */
-.slider-input {
-    width: 100%;
+.slider-value-display {
+    font-size: var(--font-xs);
+    font-weight: var(--weight-medium);
+    color: var(--slider-value-color);
+    font-feature-settings: "tnum"; /* Tabular numbers */
+}
 
+/* Track Container */
+.slider-track-container {
+    position: relative;
+    width: 100%;
+    height: var(--slider-thumb-size-md); /* Altura baseada no thumb para alinhamento */
+    display: flex;
+    align-items: center;
+}
+
+/* Base Track */
+.slider-track {
+    position: absolute;
+    width: 100%;
     height: var(--slider-track-height-md);
-
+    background-color: var(--slider-track-bg);
     border-radius: var(--radius-full);
+    pointer-events: none;
+}
+
+/* Filled Range */
+.slider-range {
+    position: absolute;
+    height: var(--slider-track-height-md);
+    background-color: var(--slider-range-bg);
+    border-radius: var(--radius-full);
+    width: var(--slider-fill, 0%); /* Controlado via JS */
+    pointer-events: none;
+    z-index: 1;
+}
+
+/* Native Input (Invisible but interactive) */
+.slider-input {
+    -webkit-appearance: none;
     appearance: none;
+    width: 100%;
+    height: 100%;
+    background: transparent;
+    margin: 0;
+    padding: 0;
     cursor: pointer;
-
-    transition: box-shadow 0.2s ease;
+    position: relative;
+    z-index: 2;
 }
 
-.slider-input::-webkit-slider-runnable-track {
-    background: none;
-}
-.slider-input::-moz-range-track {
-    background: none;
+.slider-input:focus-visible {
+    outline: none;
 }
 
-/* 🟣 Thumb (Controle) */
+/* --- Thumb Styles (Browser Specific) --- */
+
+/* Webkit (Chrome, Safari, Edge) */
 .slider-input::-webkit-slider-thumb {
+    -webkit-appearance: none;
     appearance: none;
     width: var(--slider-thumb-size-md);
     height: var(--slider-thumb-size-md);
+    background-color: var(--slider-thumb-bg);
+    border: 2px solid var(--slider-thumb-border);
     border-radius: 50%;
-    background: var(--color-white);
-
-    border: 2px solid var(--color-primary-500);
-
-    box-shadow: var(--shadow-sm);
-    cursor: grab;
-    transition: transform 0.15s ease, box-shadow 0.15s ease;
+    box-shadow: var(--slider-thumb-shadow);
+    transition: transform 0.1s ease, border-color 0.2s ease;
+    margin-top: calc((var(--slider-track-height-md) - var(--slider-thumb-size-md)) / 2); /* Centralizar no track */
+    /* Hack para alinhar verticalmente no Chrome se necessário, mas flex container resolve */
 }
 
-/* Foco e Hover: Thumb */
-.slider-input:focus::-webkit-slider-thumb,
 .slider-input::-webkit-slider-thumb:hover {
-    /* Efeito de anel de foco/hover no thumb */
-    box-shadow: 0 0 0 4px var(--color-primary-100);
-    transform: scale(1.05);
+    transform: scale(var(--slider-thumb-scale-hover));
 }
 
-/* Mozilla (Firefox) */
+/* Firefox */
 .slider-input::-moz-range-thumb {
     width: var(--slider-thumb-size-md);
     height: var(--slider-thumb-size-md);
+    background-color: var(--slider-thumb-bg);
+    border: 2px solid var(--slider-thumb-border);
     border-radius: 50%;
-    background: var(--color-white);
-    border: 2px solid var(--color-primary-500);
-    cursor: grab;
-    transition: all 0.15s ease;
+    box-shadow: var(--slider-thumb-shadow);
+    transition: transform 0.1s ease, border-color 0.2s ease;
 }
 
-.slider-input:focus::-moz-range-thumb,
 .slider-input::-moz-range-thumb:hover {
-    box-shadow: 0 0 0 4px var(--color-primary-100);
+    transform: scale(var(--slider-thumb-scale-hover));
 }
 
-/* Valor atual */
-.slider-value {
-    font-size: var(--font-sm);
-    font-weight: var(--weight-medium);
-    color: var(--color-gray-900);
-    min-width: 2rem;
-    text-align: right;
-    user-select: none;
+/* --- Focus State --- */
+.slider-input:focus-visible::-webkit-slider-thumb {
+    box-shadow: 0 0 0 var(--slider-focus-ring-offset) var(--slider-focus-ring-color);
 }
 
-/* Sizes */
-/* Small */
-.slider-root.slider-sm {
-    gap: var(--space-2);
+.slider-input:focus-visible::-moz-range-thumb {
+    box-shadow: 0 0 0 var(--slider-focus-ring-offset) var(--slider-focus-ring-color);
 }
-.slider-root.slider-sm .slider-input {
-    height: 4px; /* Trilha mais fina */
+
+/* --- Disabled State --- */
+.slider-root.slider-disabled {
+    opacity: 0.6;
+    pointer-events: none;
 }
-.slider-root.slider-sm .slider-input::-webkit-slider-thumb,
-.slider-root.slider-sm .slider-input::-moz-range-thumb {
-    width: 12px;
-    height: 12px;
+
+.slider-disabled .slider-track {
+    background-color: var(--slider-track-bg-disabled);
 }
-.slider-root.slider-sm .slider-value {
+
+.slider-disabled .slider-range {
+    background-color: var(--slider-range-bg-disabled);
+}
+
+.slider-disabled .slider-input::-webkit-slider-thumb {
+    border-color: var(--slider-thumb-border-disabled);
+    cursor: not-allowed;
+}
+
+.slider-disabled .slider-input::-moz-range-thumb {
+    border-color: var(--slider-thumb-border-disabled);
+    cursor: not-allowed;
+}
+
+/* --- Error State --- */
+.slider-root.slider-error .slider-range {
+    background-color: var(--slider-range-bg-error);
+}
+
+.slider-root.slider-error .slider-input::-webkit-slider-thumb {
+    border-color: var(--slider-thumb-border-error);
+}
+
+.slider-root.slider-error .slider-input::-moz-range-thumb {
+    border-color: var(--slider-thumb-border-error);
+}
+
+.slider-error-message {
     font-size: var(--font-xs);
+    color: var(--slider-error-color);
+    line-height: var(--leading-tight);
+}
+
+/* --- Description --- */
+.slider-description {
+    font-size: var(--font-xs);
+    color: var(--slider-value-color);
+    line-height: var(--leading-snug);
+}
+
+/* --- Sizes (Variants) --- */
+
+/* Small */
+.slider-sm .slider-track-container {
+    height: var(--slider-thumb-size-sm);
+}
+
+.slider-sm .slider-track,
+.slider-sm .slider-range {
+    height: var(--slider-track-height-sm);
+}
+
+.slider-sm .slider-input::-webkit-slider-thumb {
+    width: var(--slider-thumb-size-sm);
+    height: var(--slider-thumb-size-sm);
+    margin-top: calc((var(--slider-track-height-sm) - var(--slider-thumb-size-sm)) / 2);
+}
+
+.slider-sm .slider-input::-moz-range-thumb {
+    width: var(--slider-thumb-size-sm);
+    height: var(--slider-thumb-size-sm);
 }
 
 /* Large */
-.slider-root.slider-lg {
-    gap: var(--space-4);
-}
-.slider-root.slider-lg .slider-input {
-    height: 8px; /* Trilha mais grossa */
-}
-.slider-root.slider-lg .slider-input::-webkit-slider-thumb,
-.slider-root.slider-lg .slider-input::-moz-range-thumb {
-    width: 20px;
-    height: 20px;
-}
-.slider-root.slider-lg .slider-value {
-    font-size: var(--font-base);
+.slider-lg .slider-track-container {
+    height: var(--slider-thumb-size-lg);
 }
 
-/* 📱 Responsividade */
-/* @media (max-width: var(--screen-sm)) {
-  .slider {
-    gap: var(--space-2);
-  }
+.slider-lg .slider-track,
+.slider-lg .slider-range {
+    height: var(--slider-track-height-lg);
+}
 
-  .slider-input::-webkit-slider-thumb {
-    width: 14px;
-    height: 14px;
-  }
-} */
+.slider-lg .slider-input::-webkit-slider-thumb {
+    width: var(--slider-thumb-size-lg);
+    height: var(--slider-thumb-size-lg);
+    margin-top: calc((var(--slider-track-height-lg) - var(--slider-thumb-size-lg)) / 2);
+}
+
+.slider-lg .slider-input::-moz-range-thumb {
+    width: var(--slider-thumb-size-lg);
+    height: var(--slider-thumb-size-lg);
+}

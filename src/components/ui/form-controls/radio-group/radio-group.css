@@ -1,22 +1,47 @@
 /* ===========================
-   🔘 Radio Group
+   📻 Radio Group Component
    =========================== */
 
+/* Root Wrapper */
 .radio-group {
     display: flex;
     flex-direction: column;
     gap: var(--space-2);
+    width: fit-content;
 }
 
-/* Sizes */
-.radio-group-sm {
-    gap: var(--space-1);
+/* Label do Grupo */
+.radio-group-label {
+    font-size: var(--font-sm);
+    font-weight: var(--weight-medium);
+    color: var(--text-main);
+    line-height: var(--leading-normal);
 }
 
-.radio-group-md {
+/* Wrapper dos Itens (Radios) */
+.radio-group-items {
+    display: flex;
+    gap: var(--space-4);
+}
+
+/* --- Orientation --- */
+
+/* Vertical (Default) */
+.radio-group-vertical .radio-group-items {
+    flex-direction: column;
     gap: var(--space-2);
 }
 
-.radio-group-lg {
-    gap: var(--space-3);
+/* Horizontal */
+.radio-group-horizontal .radio-group-items {
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+/* --- Error --- */
+.radio-group-error-message {
+    font-size: var(--font-xs);
+    color: var(--color-destructive-500); /* Usa token de cor de erro global ou específico se houver */
+    line-height: var(--leading-tight);
 }

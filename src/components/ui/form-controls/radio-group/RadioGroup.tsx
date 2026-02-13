@@ -1,87 +1,128 @@
+import { RadioGroupProvider } from '@/contexts/components/radio-group/RadioGroupContext';
 import { cn } from '@/lib/utils/cn';
+import { genUid } from '@/models/gen-uid';
 import {
     getComponentSize,
     type ComponentSize,
 } from '@/models/get-component-size';
-import { useState } from 'react';
-import { Radio } from '../radio';
+import { useControllableState } from '@/models/hooks/useControllableState';
+import {
+    forwardRef,
+    type HTMLAttributes,
+    type ReactNode,
+} from 'react';
+import './radio-group.css';
 
-interface IRadioGroupItem {
-    label: string;
-    value: string;
-    disabled?: boolean;
-}
-
-interface IRadioGroupProps {
-    /** Itens do grupo */
-    items: IRadioGroupItem[];
-    /** Nome do grupo (obrigatório para radios) */
-    name: string;
-    /** Identificador do label */
-    labelId?: string;
+interface IRadioGroupProps
+    extends Omit<HTMLAttributes<HTMLDivElement>, 'onChange'> {
+    /** Filhos (Componentes Radio) */
+    children: ReactNode;
+    /** Nome do grupo (acessibilidade) */
+    name?: string;
     /** Valor controlado */
     value?: string;
     /** Valor inicial (não controlado) */
     defaultValue?: string;
-    /** Callback quando muda */
-    onChange?: (value: string) => void;
-    /** Tamanho dos radios */
-    size?: ComponentSize;
+    /** Callback de mudança */
+    onValueChange?: (value: string) => void;
+    /** Rótulo do grupo (Acessibilidade) */
+    label?: string;
+    /** Orientação do grupo */
+    orientation?: 'horizontal' | 'vertical';
+    /** Tamanho dos radios filhos */
+    radioSize?: ComponentSize;
     /** Desabilita todo o grupo */
     disabled?: boolean;
-    /** Classe adicional */
-    className?: string;
+    /** Estado de erro */
+    error?: boolean;
+    /** Mensagem de erro */
+    errorMessage?: string;
 }
 
-export const RadioGroup = ({
-    items,
-    name,
-    labelId,
-    value,
-    defaultValue,
-    onChange,
-    size = 'medium',
-    disabled = false,
-    className,
-}: IRadioGroupProps) => {
-    const isControlled = value !== undefined;
+export const RadioGroup = forwardRef<HTMLDivElement, IRadioGroupProps>(
+    (
+        {
+            children,
+            name,
+            value: valueProp,
+            defaultValue,
+            onValueChange,
+            label,
+            orientation = 'vertical',
+            radioSize = 'md',
+            disabled = false,
+            error = false,
+            errorMessage,
+            className,
+            id: externalId,
+            ...props
+        },
+        ref,
+    ) => {
+        const [value, setValue] = useControllableState(
+            valueProp,
+            defaultValue || '',
+            onValueChange,
+        );
 
-    const [internalValue, setInternalValue] = useState(defaultValue);
+        const uniqueId = externalId || genUid(8);
+        const labelId = `${uniqueId}-label`;
+        const groupName = name || uniqueId;
 
-    const currentValue = isControlled ? value : internalValue;
+        // Classe de tamanho não afeta o wrapper diretamente, mas é bom ter consistência se necessário
+        const sizeClass = getComponentSize(radioSize, 'radio-group');
 
-    const sizeClass = getComponentSize(size, 'radio-group');
-
-    const handleChange = (val: string) => {
-        if (!isControlled) {
-            setInternalValue(val);
-        }
-        onChange?.(val);
-
-        console.log('val -> ', val);
-    };
-
-    return (
-        <>
-            <div
-                role="radiogroup"
-                data-slot="radio-group-root"
-                aria-labelledby={labelId}
-                className={cn('radio-group', sizeClass, className)}
+        return (
+            <RadioGroupProvider
+                value={{
+                    name: groupName,
+                    value,
+                    onValueChange: setValue,
+                    disabled,
+                    error,
+                    radioSize,
+                }}
             >
-                {items.map((item) => (
-                    <Radio
-                        key={item.value}
-                        name={name}
-                        value={item.value}
-                        label={item.label}
-                        checked={item.value === currentValue}
-                        disabled={disabled || item.disabled}
-                        radioSize={size}
-                        onChange={handleChange}
-                    />
-                ))}
-            </div>
-        </>
-    );
-};
+                <div
+                    ref={ref}
+                    id={uniqueId}
+                    role="radiogroup"
+                    aria-labelledby={label ? labelId : undefined}
+                    aria-orientation={orientation}
+                    data-slot="radio-group-root"
+                    className={cn(
+                        'radio-group',
+                        `radio-group-${orientation}`,
+                        className,
+                    )}
+                    {...props}
+                >
+                    {label && (
+                        <span
+                            id={labelId}
+                            className="radio-group-label"
+                            data-slot="radio-group-label"
+                        >
+                            {label}
+                        </span>
+                    )}
+                    
+                    <div className="radio-group-items">
+                        {children}
+                    </div>
+
+                    {error && errorMessage && (
+                        <span
+                            className="radio-group-error-message"
+                            data-slot="radio-group-error-message"
+                        >
+                            {errorMessage}
+                        </span>
+                    )}
+                </div>
+            </RadioGroupProvider>
+        );
+    },
+);
+
+RadioGroup.displayName = 'RadioGroup';

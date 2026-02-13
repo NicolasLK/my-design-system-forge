@@ -1,89 +1,41 @@
 # Desenvolvimento do Componente Textarea
 
 ## 🎯 Objetivo
-Refatorar o componente `Textarea` para alinhar com os padrões de qualidade, acessibilidade e estrutura de código estabelecidos nos componentes `Input` e `Button`. O componente atual está funcional mas desatualizado em relação aos tokens do sistema e práticas de React utilizadas no projeto.
+Padronizar o componente `Textarea` seguindo as diretrizes do Design System (alinhado com `Input` e `Select`). Embora já esteja funcional, vamos garantir que ele utilize os tokens corretamente e siga a mesma estrutura de props e renderização dos outros form controls.
 
 ## 🔍 Análise Comparativa
 
-| Feature | `Input` (Referência) | `Textarea` (Atual) | Ação Necessária |
+| Feature | `Textarea` (Atual) | `Textarea` (Padrão) | Ação Necessária |
 | :--- | :--- | :--- | :--- |
-| **Ref Forwarding** | Usa `forwardRef` | Não usa | Implementar `forwardRef` |
-| **Geração de ID** | `genUid` (helper) | `Math.random()` inline | Usar `genUid` |
-| **Props de Tamanho** | `inputSize` | `size` | Padronizar para `textareaSize` ou manter `size` (visto que `<textarea>` nativo não tem atributo `size`) |
-| **Descrição** | Suporta `description` | Não suporta | Adicionar prop `description` |
-| **Estrutura DOM** | `container` > `label` > `wrapper` > `field` | `wrapper` > `label` > `textarea` | Adotar estrutura similar (sem wrapper interno se não houver ícones) |
-| **Tokens CSS** | Semânticos (`--input-border`, etc.) | Diretos (`--color-gray-500`) | Migrar para tokens semânticos (`--textarea-*` ou reutilizar `--input-*`) |
-| **Slots** | Usa `data-slot` | Não usa | Adicionar `data-slot` |
-| **Full Width** | Prop `fullWidth` | CSS `width: 100%` fixo | Implementar prop `fullWidth` para controle |
+| **Tokens** | Parcialmente implementados | `textarea.tokens.css` completo | Revisar e expandir tokens |
+| **Ref Forwarding** | Sim | Sim | Manter |
+| **Geração de ID** | Sim (`genUid`) | Sim | Manter |
+| **Estrutura** | Div wrapper + Label + Textarea + Error + Desc | Padronizada | Ajustar classes e ordem se necessário |
+| **Acessibilidade** | `aria-invalid` | `aria-invalid`, `aria-describedby` | Melhorar associação de descrição/erro |
+| **Props** | `fullWidth`, `error`, `errorMessage` | Padronizadas | Verificar consistência com Input |
 
 ## 🛠️ Plano de Implementação
 
-### 1. Refatoração do `Textarea.tsx`
+### 1. Revisão de Tokens (`textarea.tokens.css`)
+- Garantir que as variáveis de cor, borda, foco e erro estejam alinhadas com `input.tokens.css` para consistência visual.
+- Verificar se `focus-ring` está usando a mesma lógica.
 
-*   **Imports**: Adicionar `forwardRef`, `genUid`.
-*   **Interface**:
-    *   Adicionar `description: ReactNode`.
-    *   Adicionar `fullWidth: boolean`.
-    *   Remover `value`/`defaultValue` da interface explícita (herdar de `TextareaHTMLAttributes`).
-    *   Renomear ou manter `size` (decisão: manter `size` pois não conflita com atributo HTML de textarea, mas alinhar comportamento).
-*   **Componente**:
-    *   Envolver em `forwardRef`.
-    *   Implementar lógica de ID com `genUid`.
-    *   Estruturar JSX com `data-slot`.
-    *   Renderizar `description` condicionalmente (sem erro).
+### 2. Refatoração do `Textarea.tsx`
+- **Acessibilidade**: Adicionar `aria-describedby` apontando para o ID da mensagem de erro ou descrição.
+- **Classes**: Garantir que as classes sigam o padrão BEM ou utilitário do projeto.
+- **Estrutura**:
+    - Wrapper: `textarea-root`
+    - Label: `textarea-label`
+    - Field: `textarea-field`
+    - Error/Description: Abaixo do field.
 
-```tsx
-// Exemplo de estrutura desejada
-export const Textarea = forwardRef<HTMLTextAreaElement, ITextareaProps>(
-    ({ className, size = 'md', ...props }, ref) => {
-        return (
-            <div className="textarea-root" ...>
-                <label ... />
-                <textarea className="textarea-field" ref={ref} ... />
-                <description ... />
-                <error ... />
-            </div>
-        )
-    }
-)
-```
+### 3. Atualização do `textarea.css`
+- Consumir os tokens revisados.
+- Garantir estados `focus-visible`, `disabled`, `error` idênticos ao `Input`.
 
-### 2. Atualização do `textarea.css`
+### 4. Atualização do `TextareaDemo.tsx`
+- O demo atual já é bom, mas vamos revisar se cobre todos os casos (ex: descrição + erro simultâneos, embora a lógica geralmente mostre um ou outro).
 
-*   **Tokens**: **NÃO reutilizar tokens de outros componentes (como `input`).** Criar tokens exclusivos para o textarea (`--textarea-*`) para garantir independência e facilidade de manutenção.
-*   **Classes**:
-    *   `textarea-root` (Container principal)
-    *   `textarea-label` (Estilo de label padronizado)
-    *   `textarea-field` (O elemento input real)
-    *   `textarea-description`
-    *   `textarea-error-message`
-*   **Estados**:
-    *   Focus ring deve ser visualmente consistente, mas usando variáveis próprias.
-    *   Estado `disabled` deve seguir o padrão visual.
-    *   Estado `error` deve pintar a borda e o texto de erro.
-
-### 3. Tokens (Obrigatório)
-
-Criar um conjunto de tokens exclusivos no arquivo CSS do componente ou no sistema de tokens global:
-
-```css
-:root {
-    --textarea-border: ...;
-    --textarea-radius: ...;
-    --textarea-bg: ...;
-    --textarea-focus-ring-color: ...;
-    /* Adicionar outros conforme necessário */
-}
-```
-
-### 4. Ícones
-
-*   **Política de Ícones**: Implementar suporte a ícones **apenas se for estritamente necessário** para a funcionalidade do Textarea (ex: resize handle customizado). Diferente do Input, Textarea raramente precisa de ícones de prefixo/sufixo decorativos internos. Se não houver caso de uso claro, não implementar complexidade desnecessária de wrappers de ícone.
-
-## ✅ Critérios de Aceite
-
-1.  [x] O componente deve aceitar `ref`.
-2.  [x] IDs de acessibilidade (label `for` -> textarea `id`) devem ser gerados automaticamente se não fornecidos.
-3.  [x] Estilo visual (borda, radius, cores, focus) deve ser **idêntico** ao `Input`.
-4.  [x] Suporte a mensagem de erro e descrição auxiliar.
-5.  [x] Código limpo e tipado corretamente.
+## 🚀 Próximos Passos
+1.  Comparar `textarea.tokens.css` com `input.tokens.css`.
+2.  Aplicar melhorias de acessibilidade no componente.

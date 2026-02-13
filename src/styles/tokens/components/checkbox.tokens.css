@@ -1,0 +1,50 @@
+:root {
+    /* ===============================
+       ☑️ Checkbox Tokens
+       =============================== */
+
+    /* --- Dimensions --- */
+    
+    /* Small */
+    --checkbox-size-sm: var(--space-4);      /* ~16px */
+    --checkbox-icon-size-sm: var(--font-xs);
+
+    /* Medium (Default) */
+    --checkbox-size-md: var(--space-5);      /* ~20px */
+    --checkbox-icon-size-md: var(--font-sm);
+
+    /* Large */
+    --checkbox-size-lg: var(--space-6);      /* ~24px */
+    --checkbox-icon-size-lg: var(--font-md);
+
+    /* Radius */
+    --checkbox-radius: var(--radius-sm);
+
+    /* --- Colors --- */
+    
+    /* Background & Border */
+    --checkbox-bg: var(--color-white);
+    --checkbox-border: var(--color-gray-300);
+    
+    /* Checked State */
+    --checkbox-bg-checked: var(--color-primary-500);
+    --checkbox-border-checked: var(--color-primary-500);
+    --checkbox-icon-color: var(--color-white);
+
+    /* Disabled State */
+    --checkbox-bg-disabled: var(--color-gray-100);
+    --checkbox-border-disabled: var(--color-gray-200);
+    --checkbox-icon-color-disabled: var(--color-gray-400);
+
+    /* Error State */
+    --checkbox-border-error: var(--color-destructive-500);
+    
+    /* Text */
+    --checkbox-label-color: var(--text-main);
+    --checkbox-description-color: var(--text-muted);
+    --checkbox-error-color: var(--color-destructive-500);
+
+    /* --- Focus --- */
+    --checkbox-focus-ring-color: var(--color-primary-400);
+    --checkbox-focus-ring-offset: 2px;
+}

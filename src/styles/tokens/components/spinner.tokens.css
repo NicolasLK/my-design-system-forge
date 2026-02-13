@@ -1,0 +1,36 @@
+:root {
+    /* ===============================
+       🌀 Spinner Tokens
+       =============================== */
+
+    /* --- Dimensions --- */
+    --spinner-size-xs: var(--space-3);      /* 12px */
+    --spinner-size-sm: var(--space-4);      /* 16px */
+    --spinner-size-md: var(--space-6);      /* 24px */
+    --spinner-size-lg: var(--space-8);      /* 32px */
+    --spinner-size-xl: var(--space-12);     /* 48px */
+
+    /* --- Border Thickness --- */
+    --spinner-border-width-xs: 1.5px;
+    --spinner-border-width-sm: 2px;
+    --spinner-border-width-md: 3px;
+    --spinner-border-width-lg: 4px;
+    --spinner-border-width-xl: 5px;
+
+    /* --- Animation --- */
+    --spinner-animation-duration: 0.8s;
+    --spinner-animation-easing: linear;
+
+    /* --- Colors --- */
+    --spinner-track-color: currentColor; /* Usually transparent or lighter */
+    --spinner-track-opacity: 0.2;
+    
+    /* Semantic Colors (defaults to currentColor if not specified) */
+    --spinner-color-primary: var(--color-primary-500);
+    --spinner-color-secondary: var(--color-secondary-500);
+    --spinner-color-success: var(--color-green-500);
+    --spinner-color-warning: var(--color-yellow-500);
+    --spinner-color-destructive: var(--color-destructive-500);
+    --spinner-color-neutral: var(--color-gray-500);
+    --spinner-color-white: var(--color-white);
+}
