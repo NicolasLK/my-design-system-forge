@@ -1,9 +1,9 @@
-import '@/components/preview-articles/styles/data-display-article.css';
+// import '@/components/preview-articles/styles/data-display-article.css';
 
-export const DataDisplaySection = () => {
-    return (
-        <>
-            <section>DataDisplaySection</section>
-        </>
-    );
-};
+// export const DataDisplaySection = () => {
+//     return (
+//         <>
+//             <section>DataDisplaySection</section>
+//         </>
+//     );
+// };

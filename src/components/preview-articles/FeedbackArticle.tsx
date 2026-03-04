@@ -1,7 +1,7 @@
-export const FeedbackSection = () => {
-    return (
-        <>
-            <section>FeedbackSection</section>
-        </>
-    );
-};
+// export const FeedbackSection = () => {
+//     return (
+//         <>
+//             <section>FeedbackSection</section>
+//         </>
+//     );
+// };

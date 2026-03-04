@@ -11,7 +11,7 @@ interface IDefaultLayoutProps {
     title?: string;
 }
 
-const DefaultLayout = ({ withSidebar = true, title }: IDefaultLayoutProps) => {
+const DefaultLayout = ({ withSidebar = false, title }: IDefaultLayoutProps) => {
     // Opcional: Mudança do título do documento dinamicamente
     useEffect(() => {
         if (title) {

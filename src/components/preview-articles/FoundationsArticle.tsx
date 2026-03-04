@@ -1,11 +1,28 @@
 import '@/components/preview-articles/styles/foundations-article.css';
-import type { FoundationComponentPreviewKey } from '@/typings/preview-articles.types';
+import type { FoundationsComponentPreviewKey } from '@/typings/preview-articles.types';
 import { useState } from 'react';
-import { FoundationsPreview } from './foundations/FoundationsPreview';
+
+const componentList: Array<{
+    id: number;
+    value: FoundationsComponentPreviewKey;
+}> = [
+    {
+        id: 1,
+        value: 'typography',
+    },
+    {
+        id: 2,
+        value: 'label',
+    },
+    {
+        id: 3,
+        value: 'divider',
+    },
+];
 
 export const FoundationsArticle = () => {
     const [active, setActive] =
-        useState<FoundationComponentPreviewKey>('typography');
+        useState<FoundationsComponentPreviewKey>('typography');
 
     return (
         <>
@@ -19,27 +36,18 @@ export const FoundationsArticle = () => {
                 </p>
 
                 <div className="foundations-article-grid">
-                    <button
-                        onClick={() => setActive('typography')}
-                        className="foundations-article-card"
-                    >
-                        typography
-                    </button>
-                    <button
-                        onClick={() => setActive('divider')}
-                        className="foundations-article-card"
-                    >
-                        divider
-                    </button>
-                    <button
-                        onClick={() => setActive('label')}
-                        className="foundations-article-card"
-                    >
-                        label
-                    </button>
+                    {componentList.map((comp) => (
+                        <button
+                            key={comp.id}
+                            onClick={() => setActive(comp.value)}
+                            className="foundations-article-card"
+                        >
+                            {comp.value}
+                        </button>
+                    ))}
                 </div>
 
-                {active && <FoundationsPreview component={active} />}
+                {/* {active && <FoundationsPreview component={active} />} */}
             </article>
         </>
     );

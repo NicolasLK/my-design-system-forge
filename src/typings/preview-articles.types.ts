@@ -1,7 +1,7 @@
 /* ---------- Types ---------- */
 
 /* Foundations */
-export type FoundationComponentPreviewKey = 'typography' | 'divider' | 'label';
+export type FoundationsComponentPreviewKey = 'typography' | 'divider' | 'label';
 
 /* Form-Controls */
 export type FormControlsComponentPreviewKey =
